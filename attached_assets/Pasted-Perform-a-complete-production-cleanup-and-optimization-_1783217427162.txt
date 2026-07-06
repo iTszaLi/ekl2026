@@ -1,0 +1,39 @@
+Perform a complete production cleanup and optimization of this project without changing the website's design, layout, functionality, SEO, or user experience.
+
+Project cleanup
+Identify and remove all unused files, duplicate files, temporary files, test files, backup files, demo files, unused assets, old images, unused components, unused CSS, unused JavaScript/TypeScript, unused fonts, unused libraries, unused dependencies, and any dead code.
+Remove unnecessary packages from package.json and update the lock file.
+Remove unused imports throughout the project.
+Delete build artifacts, cache files, logs, and any generated files that should not be stored in the repository.
+Remove commented-out legacy code that is no longer needed.
+Keep only files that are actually required for production.
+Optimization
+Optimize the entire project for the smallest possible production build while preserving 100% identical functionality and appearance.
+Compress and optimize all images using modern formats where appropriate (WebP/AVIF) without any visible quality loss.
+Minify and optimize CSS, JavaScript, and SVG assets.
+Enable tree-shaking, code splitting, lazy loading, and dynamic imports wherever beneficial.
+Eliminate duplicate code and redundant assets.
+Optimize fonts (subset, preload, remove unused weights/styles).
+Remove unused Tailwind classes (if Tailwind is used).
+Ensure production builds are fully minified.
+Optimize bundle size and reduce initial page load.
+Enable long-term browser caching for static assets where applicable.
+Safety requirements
+Do NOT modify the UI, design, animations, responsiveness, branding, colors, typography, content, SEO metadata, schema, routing, URLs, forms, analytics, or business logic.
+Do NOT remove any file unless you have verified it is completely unused.
+Do NOT break any existing functionality.
+Ensure the website looks and behaves exactly the same before and after optimization.
+Final verification
+
+Before finishing:
+
+Run a production build.
+Verify there are zero build errors.
+Verify every page, component, image, form, navigation link, and feature still works correctly.
+Report:
+Files removed.
+Dependencies removed.
+Original project size vs. final project size.
+Original production bundle size vs. optimized bundle size.
+Estimated performance improvements.
+Confirmation that no visual or functional changes were introduced.

@@ -1,0 +1,206 @@
+kind = "web"
+previewPath = "/"
+title = "ENVOD KINGDOM SHIPPING SERVICES LLC"
+version = "1.0.0"
+id = "artifacts/envod-kingdom"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25184
+
+[services.development]
+run = "pnpm --filter @workspace/envod-kingdom run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/envod-kingdom", "run", "build" ]
+publicDir = "artifacts/envod-kingdom/dist/public"
+serve = "static"
+
+# Prerendered (SSG) content routes: clean URL -> directory index.html.
+# Replit static serving does NOT auto-resolve /foo -> /foo/index.html, so each
+# prerendered route needs an explicit rewrite. Physical files (assets, images,
+# media, logos) are served directly via shadowing. Rules are processed in order,
+# so these exact routes MUST precede the SPA catch-all below.
+# NOTE: keep this list in sync with CONTENT_ROUTES in src/lib/seo-config.ts.
+
+[[services.production.rewrites]]
+from = "/services"
+to = "/services/index.html"
+
+[[services.production.rewrites]]
+from = "/about"
+to = "/about/index.html"
+
+[[services.production.rewrites]]
+from = "/gallery"
+to = "/gallery/index.html"
+
+[[services.production.rewrites]]
+from = "/contact"
+to = "/contact/index.html"
+
+[[services.production.rewrites]]
+from = "/services/air-freight"
+to = "/services/air-freight/index.html"
+
+[[services.production.rewrites]]
+from = "/services/ata-carnet"
+to = "/services/ata-carnet/index.html"
+
+[[services.production.rewrites]]
+from = "/services/breakbulk-shipping"
+to = "/services/breakbulk-shipping/index.html"
+
+[[services.production.rewrites]]
+from = "/services/customs-clearance"
+to = "/services/customs-clearance/index.html"
+
+[[services.production.rewrites]]
+from = "/services/dangerous-goods"
+to = "/services/dangerous-goods/index.html"
+
+[[services.production.rewrites]]
+from = "/services/ecommerce-logistics"
+to = "/services/ecommerce-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/services/exhibition-logistics"
+to = "/services/exhibition-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/services/food-fmcg"
+to = "/services/food-fmcg/index.html"
+
+[[services.production.rewrites]]
+from = "/services/freight-forwarding"
+to = "/services/freight-forwarding/index.html"
+
+[[services.production.rewrites]]
+from = "/services/gcc-transportation"
+to = "/services/gcc-transportation/index.html"
+
+[[services.production.rewrites]]
+from = "/services/medical-pharma"
+to = "/services/medical-pharma/index.html"
+
+[[services.production.rewrites]]
+from = "/services/ocean-freight"
+to = "/services/ocean-freight/index.html"
+
+[[services.production.rewrites]]
+from = "/services/oog-cargo"
+to = "/services/oog-cargo/index.html"
+
+[[services.production.rewrites]]
+from = "/services/pet-animal-import"
+to = "/services/pet-animal-import/index.html"
+
+[[services.production.rewrites]]
+from = "/services/project-cargo"
+to = "/services/project-cargo/index.html"
+
+[[services.production.rewrites]]
+from = "/services/relocation"
+to = "/services/relocation/index.html"
+
+[[services.production.rewrites]]
+from = "/services/roro-shipping"
+to = "/services/roro-shipping/index.html"
+
+[[services.production.rewrites]]
+from = "/services/supply-chain"
+to = "/services/supply-chain/index.html"
+
+[[services.production.rewrites]]
+from = "/services/warehousing"
+to = "/services/warehousing/index.html"
+
+[[services.production.rewrites]]
+from = "/services/white-glove-logistics"
+to = "/services/white-glove-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/services/temperature-controlled-logistics"
+to = "/services/temperature-controlled-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/services/packaging-crating"
+to = "/services/packaging-crating/index.html"
+
+[[services.production.rewrites]]
+from = "/services/express-courier"
+to = "/services/express-courier/index.html"
+
+[[services.production.rewrites]]
+from = "/services/cross-trade-shipping"
+to = "/services/cross-trade-shipping/index.html"
+
+[[services.production.rewrites]]
+from = "/industries"
+to = "/industries/index.html"
+
+[[services.production.rewrites]]
+from = "/vision-2030"
+to = "/vision-2030/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/automotive-logistics"
+to = "/industries/automotive-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/construction-logistics"
+to = "/industries/construction-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/retail-logistics"
+to = "/industries/retail-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/fashion-logistics"
+to = "/industries/fashion-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/electronics-logistics"
+to = "/industries/electronics-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/aerospace-logistics"
+to = "/industries/aerospace-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/hospitality-logistics"
+to = "/industries/hospitality-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/furniture-logistics"
+to = "/industries/furniture-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/chemical-logistics"
+to = "/industries/chemical-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/telecommunications-logistics"
+to = "/industries/telecommunications-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/industries/government-logistics"
+to = "/industries/government-logistics/index.html"
+
+[[services.production.rewrites]]
+from = "/track"
+to = "/track/index.html"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/spa.html"
+
+[services.env]
+PORT = "25184"
+BASE_PATH = "/"

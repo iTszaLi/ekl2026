@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback: any route without a prerendered HTML file
+# (e.g. /track?query=...) is served the SPA shell.
+# Static assets and the 43 prerendered pages always take precedence.
+/* /spa.html 200

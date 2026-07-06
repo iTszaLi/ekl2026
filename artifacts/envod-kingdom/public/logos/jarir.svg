@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 130" fill="none">
+  <rect width="300" height="130" fill="white"/>
+  <rect x="18" y="28" width="90" height="75" rx="8" fill="#CC0000"/>
+  <text x="22" y="60" font-family="Arial,sans-serif" font-size="22" font-weight="900" fill="white">Jarir</text>
+  <text x="22" y="82" font-family="Arial,sans-serif" font-size="11" fill="white" letter-spacing="1">BOOKSTORE</text>
+  <text x="120" y="76" font-family="Arial,sans-serif" font-size="34" font-weight="900" fill="#CC0000" letter-spacing="1">Jarir</text>
+</svg>

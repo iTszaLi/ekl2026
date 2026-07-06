@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 130" fill="none">
+  <rect width="300" height="130" fill="white"/>
+  <rect x="18" y="38" width="18" height="54" rx="4" fill="#0055A4"/>
+  <rect x="46" y="38" width="18" height="54" rx="4" fill="#0055A4"/>
+  <rect x="26" y="57" width="30" height="16" rx="3" fill="#0055A4"/>
+  <text x="80" y="64" font-family="Arial,sans-serif" font-size="26" font-weight="900" fill="#0055A4">HMG</text>
+  <text x="80" y="84" font-family="Arial,sans-serif" font-size="10" fill="#444" letter-spacing="1">DR. SULAIMAN AL HABIB</text>
+  <text x="80" y="98" font-family="Arial,sans-serif" font-size="10" fill="#444" letter-spacing="1">MEDICAL GROUP</text>
+</svg>
