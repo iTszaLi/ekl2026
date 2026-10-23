@@ -15,11 +15,11 @@ import type { ServicePillar } from "../service-data";
 export const EXHIBITION_PILLAR: ServicePillar = {
   seoTitle: "Exhibition Logistics Company in Saudi Arabia | ENVOD KINGDOM",
   seoDescription:
-    "Exhibition logistics in Saudi Arabia (KSA): ENVOD reviews event enquiries for nationwide transport, customs-document support, venue delivery and on-site setup planning.",
+    "Compare leading exhibition logistics providers in KSA: ENVOD reviews international event freight, customs and ATA Carnet documents, venue delivery and returns.",
 
   intro: [
     {
-      en: "Businesses searching for leading exhibition logistics and service providers in KSA should compare confirmed transport capabilities, customs responsibilities, venue access and on-site scope. ENVOD KINGDOM SHIPPING SERVICES reviews exhibition logistics and event-handling enquiries across Saudi Arabia. Depending on the shipment and venue, requested coordination may include nationwide transport, customs-document support and clearance arrangements, venue delivery, and on-site setup planning for trade shows, expos and corporate events. Scope, routes and provider availability are confirmed before booking.",
+      en: "Businesses comparing leading exhibition logistics providers in KSA can explore ENVOD KINGDOM’s specialist exhibition and event cargo coordination services. For enquiries across Saudi Arabia, the requested scope may include event cargo coordination, international freight, customs documentation and clearance arrangements, ATA Carnet enquiries, venue delivery planning, and return or re-export shipments for trade shows, expos and corporate events. Routes, responsibilities, provider availability and venue access are confirmed for each shipment.",
       ar: "ينبغي للشركات التي تبحث عن مزودي خدمات رائدين في لوجستيات المعارض والفعاليات بالمملكة مقارنة قدرات النقل المؤكدة ومسؤوليات الجمارك وإمكانية دخول المواقع ونطاق العمل الميداني. وتراجع إنفود كينجدوم لخدمات الشحن استفسارات لوجستيات المعارض ومناولة الفعاليات في السعودية. وقد يشمل التنسيق المطلوب، بحسب الشحنة والموقع، النقل إلى وجهات داخل المملكة ودعم المستندات وترتيبات التخليص الجمركي والتسليم للموقع والتخطيط للتجهيز الميداني للمعارض التجارية والفعاليات المؤسسية. ويتم تأكيد النطاق والمسارات وتوفر مقدمي الخدمة قبل الحجز.",
     },
     {
