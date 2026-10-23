@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { CARGO_FIELD_LIMITS, isValidCargoWeight, isValidShippingDate } from "./enquiry-cargo-validation";
-import { getEnquiryServiceByValue, validServiceDetails } from "./enquiry-services";
+import { CARGO_FIELD_LIMITS, isValidCargoWeight, isValidShippingDate } from "./enquiry-cargo-validation.js";
+import { getEnquiryServiceByValue, validServiceDetails } from "./enquiry-services.js";
 
 const boundedText = (max: number) => z.string().trim().max(max);
 

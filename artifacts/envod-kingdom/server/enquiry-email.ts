@@ -1,5 +1,5 @@
-import type { EnquirySubmission } from "../src/lib/enquiry-contract";
-import { formatServiceRequirementValue, getEnquiryServiceByValue, getServiceRequirementLabel } from "../src/lib/enquiry-services";
+import type { EnquirySubmission } from "../src/lib/enquiry-contract.js";
+import { formatServiceRequirementValue, getEnquiryServiceByValue, getServiceRequirementLabel } from "../src/lib/enquiry-services.js";
 
 const escape = (value: string) => value.replace(/[&<>"']/g, (character) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]!);

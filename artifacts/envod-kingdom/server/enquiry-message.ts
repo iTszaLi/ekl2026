@@ -1,6 +1,6 @@
 import { createHash, randomUUID } from "node:crypto";
-import type { EnquirySubmission } from "../src/lib/enquiry-contract";
-import { renderEnquiryEmail } from "./enquiry-email";
+import type { EnquirySubmission } from "../src/lib/enquiry-contract.js";
+import { renderEnquiryEmail } from "./enquiry-email.js";
 
 // Recipient changes require explicit business authorization, not public input.
 export const ENQUIRY_RECIPIENT = "info@envodkingdom.net";

@@ -1,10 +1,10 @@
-import { EnquirySubmissionSchema } from "../src/lib/enquiry-contract";
+import { EnquirySubmissionSchema } from "../src/lib/enquiry-contract.js";
 import {
   buildEnquiryEmail,
   buildEnquiryIdempotencyKey,
   DEFAULT_SENDER,
   type EnquiryEmail,
-} from "./enquiry-message";
+} from "./enquiry-message.js";
 
 const MAX_BODY_BYTES = 20 * 1024;
 const RATE_WINDOW_MS = 15 * 60 * 1000;

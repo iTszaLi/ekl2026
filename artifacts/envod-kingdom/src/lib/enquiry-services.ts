@@ -1,4 +1,4 @@
-import { isValidShippingDate } from "./enquiry-cargo-validation";
+import { isValidShippingDate } from "./enquiry-cargo-validation.js";
 
 export interface RequirementChoice {
   value: string;
