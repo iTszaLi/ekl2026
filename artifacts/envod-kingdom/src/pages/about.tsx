@@ -354,25 +354,25 @@ export default function About() {
       <section className="border-y border-white/10 bg-[#0a1a2b]">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 md:py-20">
           <SectionTitle
-            kicker={t("Draft direction · owner review", "توجه مقترح · لمراجعة المالك")}
+            kicker={t("Our purpose and direction", "غرضنا وتوجهنا")}
             title={t("Purpose, vision, mission and values", "الغرض والرؤية والرسالة والقيم")}
             intro={t(
-              "The statements below are proposed page language for owner review. They are not approved corporate policy.",
-              "الصياغات أدناه مقترحة للصفحة ولمراجعة المالك، ولا تمثل سياسة مؤسسية معتمدة."
+              "We help businesses coordinate cargo into, out of and across Saudi Arabia through practical shipment planning, documentation coordination and connections with relevant freight and service partners. Our direction is to grow as a trusted logistics coordination partner for businesses shipping through Saudi Arabia and the GCC.",
+              "نساعد الشركات على تنسيق حركة البضائع إلى السعودية ومنها وعبرها من خلال التخطيط العملي للشحنات وتنسيق المستندات والتواصل مع شركاء الشحن والخدمات ذوي الصلة. ونسعى إلى التطور كشريك موثوق لتنسيق الشحنات المرتبطة بالسعودية ودول مجلس التعاون الخليجي."
             )}
           />
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
-                label: t("Purpose · draft", "الغرض · مسودة"),
+                label: t("Our purpose", "غرضنا"),
                 body: t("Help businesses coordinate cargo into, out of and across Saudi Arabia through practical shipment planning, documentation coordination and relevant service-provider hand-offs.", "مساعدة الشركات على تنسيق حركة البضائع إلى السعودية ومنها وعبرها من خلال التخطيط العملي للشحنة وتنسيق المستندات وتسليم المسؤوليات لمقدمي الخدمات المعنيين."),
               },
               {
-                label: t("Vision · draft", "الرؤية · مسودة"),
-                body: t("Develop as a considered logistics coordination partner for businesses arranging shipments connected with Saudi Arabia and relevant regional markets.", "التطور كشريك تنسيق لوجستي مهني للشركات التي ترتب شحنات مرتبطة بالسعودية والأسواق الإقليمية ذات الصلة."),
+                label: t("Our vision", "رؤيتنا"),
+                body: t("Grow into a trusted logistics coordination partner for businesses arranging shipments through Saudi Arabia and the GCC.", "أن نكون شريكاً موثوقاً لتنسيق الشحنات للشركات التي ترتب نقل بضائع عبر السعودية ودول مجلس التعاون الخليجي."),
               },
               {
-                label: t("Mission · draft", "الرسالة · مسودة"),
+                label: t("Our mission", "رسالتنا"),
                 body: t("Understand each shipment, review its requirements, discuss suitable freight options and coordinate confirmed arrangements with clear communication.", "فهم كل شحنة ومراجعة متطلباتها ومناقشة خيارات النقل المناسبة وتنسيق الترتيبات المؤكدة بتواصل واضح."),
               },
             ].map((item) => (
@@ -384,13 +384,12 @@ export default function About() {
           </div>
           <div className="mt-10 border-t border-white/10 pt-8">
             <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
-              <h3 className="text-xl font-bold text-white">{t("Values · draft for owner review", "القيم · مسودة لمراجعة المالك")}</h3>
-              <p className="text-xs text-slate-500">{t("Proposed language, not approved policy", "صياغة مقترحة وليست سياسة معتمدة")}</p>
+              <h3 className="text-xl font-bold text-white">{t("Our values and working principles", "قيمنا ومبادئ عملنا")}</h3>
             </div>
             <p className="mb-5 max-w-3xl text-sm leading-7 text-slate-300">
               {t(
-                "Proposed values: professionalism, reliability, integrity, clear communication, customer focus and responsible coordination. The examples below describe how these principles could show up in a shipment enquiry.",
-                "القيم المقترحة: المهنية والموثوقية والنزاهة ووضوح التواصل والتركيز على العميل والتنسيق المسؤول. وتوضح الأمثلة أدناه كيف يمكن أن تظهر هذه المبادئ عند الاستفسار عن شحنة."
+                "Professionalism, reliability, integrity, clear communication, customer focus and responsible coordination shape how we approach shipment enquiries. The examples below show how these principles inform our planning and coordination.",
+                "توجّه المهنية والموثوقية والنزاهة ووضوح التواصل والتركيز على العميل والتنسيق المسؤول طريقة تعاملنا مع استفسارات الشحن. وتوضح الأمثلة أدناه كيف تنعكس هذه المبادئ على التخطيط والتنسيق."
               )}
             </p>
             <div className="grid gap-x-12 md:grid-cols-2">
