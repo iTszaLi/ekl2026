@@ -436,7 +436,7 @@ export function ScrollAnimSection({
 
       {reduceMotion ? (
         chapters.length > 1 && (
-          <div className="absolute inset-x-0 bottom-6 z-30 flex justify-center px-4">
+          <div className="absolute inset-x-0 bottom-6 z-30 flex justify-start px-4 md:justify-center">
             <div className="flex items-center gap-3 rounded-full border border-white/15 bg-[#030b18]/90 px-4 py-2 text-white shadow-lg" dir="ltr">
               <button
                 type="button"
