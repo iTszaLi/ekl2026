@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
-import { LanguageProvider } from "@/lib/language-context";
+import { getLocaleBase, LanguageProvider } from "@/lib/language-context";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { SeoManager } from "@/components/SeoManager";
 
@@ -75,6 +75,11 @@ function Router() {
 }
 
 function App({ ssrPath }: { ssrPath?: string }) {
+  const initialPath =
+    ssrPath ??
+    (typeof window !== "undefined" ? window.location.pathname : "/");
+  const initialLanguage = /^\/ar(?:\/|$)/.test(initialPath) ? "ar" : "en";
+
   useEffect(() => {
     let destroy: (() => void) | undefined;
     void import("@/lib/scroll-engine").then((m) => {
@@ -87,9 +92,9 @@ function App({ ssrPath }: { ssrPath?: string }) {
   }, []);
 
   return (
-    <LanguageProvider>
+    <LanguageProvider initialLanguage={initialLanguage}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")} ssrPath={ssrPath}>
+        <WouterRouter base={getLocaleBase(initialLanguage)} ssrPath={ssrPath}>
           <ScrollToTop />
           <SeoManager />
           <Router />

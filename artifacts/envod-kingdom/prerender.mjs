@@ -112,6 +112,11 @@ function buildHead(seo, canonicalAbs) {
       `<script type="application/ld+json" data-seo-ssg="true">${jsonLdSafe(obj)}</script>`,
     );
   }
+  for (const alternate of seo.alternates || []) {
+    tags.push(
+      `<link rel="alternate" hreflang="${esc(alternate.hreflang)}" href="${esc(alternate.href)}" data-seo-ssg="true" />`,
+    );
+  }
   return tags.join("\n    ");
 }
 
@@ -186,27 +191,28 @@ for (const route of CONTENT_ROUTES) {
   await writeFile(path.join(DIST, "spa.html"), shell, "utf-8");
 }
 
-// --- sitemap.xml (generated from CONTENT_ROUTES so it can never drift from the
-// set of prerendered pages). Client-only routes like /track and /admin are not
-// in CONTENT_ROUTES and are intentionally excluded. No hreflang alternates:
-// Arabic is a client-side context toggle (not a distinct crawlable URL), so a
-// ?lang=ar "alternate" would serve identical HTML to crawlers. ---
+// --- sitemap.xml is generated from CONTENT_ROUTES so it stays aligned with
+// prerendered pages. The About page is published in both English and Arabic,
+// with reciprocal hreflang annotations; client-only routes remain excluded. ---
 {
   const lastmod = new Date().toISOString().slice(0, 10);
   const sitemapMeta = (route) => {
     if (route === "/") return { priority: "1.0", changefreq: "weekly" };
     if (route === "/services") return { priority: "0.9", changefreq: "monthly" };
     if (route === "/gallery") return { priority: "0.7", changefreq: "weekly" };
-    if (route === "/about") return { priority: "0.7", changefreq: "monthly" };
+    if (route === "/about" || route === "/ar/about") return { priority: "0.7", changefreq: "monthly" };
     if (route === "/contact") return { priority: "0.8", changefreq: "monthly" };
     return { priority: "0.8", changefreq: "monthly" }; // /services/<detail>
   };
   const urls = CONTENT_ROUTES.map((route) => {
     const loc = route === "/" ? `${SITE_URL}/` : `${SITE_URL}${route}`;
     const { priority, changefreq } = sitemapMeta(route);
-    return `  <url>\n    <loc>${esc(loc)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    const aboutAlternates = route === "/about" || route === "/ar/about"
+      ? `\n    <xhtml:link rel="alternate" hreflang="en-SA" href="${esc(`${SITE_URL}/about`)}" />\n    <xhtml:link rel="alternate" hreflang="ar-SA" href="${esc(`${SITE_URL}/ar/about`)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${esc(`${SITE_URL}/about`)}" />`
+      : "";
+    return `  <url>\n    <loc>${esc(loc)}</loc>${aboutAlternates}\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   }).join("\n");
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`;
   await writeFile(path.join(DIST, "sitemap.xml"), xml, "utf-8");
 }
 

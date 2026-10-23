@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLanguage } from "@/lib/language-context";
-import { buildQuoteMailto, CONTACT_EMAIL, CONTACT_WHATSAPP } from "@/lib/quote-mailto";
+import { buildQuoteMailto, CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP } from "@/lib/quote-mailto";
 import {
   Select,
   SelectContent,
@@ -11,6 +11,7 @@ import {
 import {
   MapPin,
   Phone,
+  MessageCircle,
   Printer,
   Mail,
   CheckCircle2,
@@ -116,8 +117,14 @@ export default function Contact() {
     },
     {
       icon: Phone,
-      title: t("Phone & WhatsApp", "الهاتف والواتساب"),
-      lines: ["+966 50 226 0256"],
+      title: t("Call Us", "اتصل بنا"),
+      lines: [CONTACT_PHONE_DISPLAY],
+      ltr: true,
+    },
+    {
+      icon: MessageCircle,
+      title: t("WhatsApp", "واتساب"),
+      lines: [CONTACT_WHATSAPP],
       ltr: true,
     },
     {

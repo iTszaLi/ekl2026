@@ -11,8 +11,42 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>("en");
+const appBasePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+export function getLocalizedPath(path: string, language: Language): string {
+  let route = path.split(/[?#]/)[0] || "/";
+  if (appBasePath && (route === appBasePath || route.startsWith(`${appBasePath}/`))) {
+    route = route.slice(appBasePath.length) || "/";
+  }
+  route = route.replace(/^\/ar(?=\/|$)/, "") || "/";
+  if (!route.startsWith("/")) route = `/${route}`;
+
+  const localePrefix = language === "ar" ? "/ar" : "";
+  const localized = `${appBasePath}${localePrefix}${route === "/" ? "" : route}`;
+  return localized || (language === "ar" ? "/ar" : "/");
+}
+
+export function getLocaleBase(language: Language): string {
+  return `${appBasePath}${language === "ar" ? "/ar" : ""}`;
+}
+
+export function LanguageProvider({
+  children,
+  initialLanguage = "en",
+}: {
+  children: React.ReactNode;
+  initialLanguage?: Language;
+}) {
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
+
+  const setLanguage = (nextLanguage: Language) => {
+    setLanguageState(nextLanguage);
+    if (typeof window !== "undefined" && nextLanguage !== language) {
+      const url = new URL(window.location.href);
+      url.pathname = getLocalizedPath(url.pathname, nextLanguage);
+      window.location.assign(url.toString());
+    }
+  };
 
   useEffect(() => {
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";

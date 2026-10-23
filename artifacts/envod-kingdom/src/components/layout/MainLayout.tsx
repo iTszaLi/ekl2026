@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { GlobalNetworkMap } from "@/components/GlobalNetworkMap";
@@ -19,6 +19,7 @@ import logoIconLn from "@assets/logo_iconln.webp";
 import logoGla from "@assets/logo_gla.webp";
 import { Button } from "@/components/ui/button";
 import { QuoteModal } from "@/components/QuoteModal";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from "@/lib/quote-mailto";
 
 /* ─────────────────────────── Navbar ─────────────────────────── */
 export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
@@ -407,6 +408,8 @@ function CTAStrip() {
 
 /* ─────────────────────────── Enterprise Footer ─────────────────────────── */
 export function Footer() {
+  const [location] = useLocation();
+  const isAboutPage = location === "/about" || location === "/ar/about";
   const { t, isRtl } = useLanguage();
   const year = new Date().getFullYear();
 
@@ -456,7 +459,7 @@ export function Footer() {
 
   return (
     <footer className="bg-gradient-to-b from-[#0a1524] via-[#06101e] to-[#040b16] text-white relative overflow-hidden" dir={isRtl ? "rtl" : "ltr"}>
-      <GlobalNetworkMap />
+      {!isAboutPage && <GlobalNetworkMap />}
       
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent opacity-50" />
@@ -588,9 +591,9 @@ export function Footer() {
                   <Phone className="w-4 h-4 text-white/60 group-hover:text-secondary transition-colors" />
                 </div>
                 <div>
-                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-1">{t("Phone", "هاتف")}</p>
-                  <a href="tel:+966502260256" className="text-white/80 text-[14px] hover:text-secondary transition-colors font-medium">
-                    +966 50 226 0256
+                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-1">{t("Call Us", "اتصل بنا")}</p>
+                  <a href={`tel:${CONTACT_PHONE_E164}`} className="text-white/80 text-[14px] hover:text-secondary transition-colors font-medium">
+                    {CONTACT_PHONE_DISPLAY}
                   </a>
                 </div>
               </li>

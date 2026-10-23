@@ -7,6 +7,11 @@ import { VISION_SEO, VISION_FAQ } from "./vision-data";
 export const SITE_URL = "https://www.envodkingdom.net";
 export const OG_IMAGE = `${SITE_URL}/opengraph.jpg`;
 const ORG_ID = `${SITE_URL}/#organization`;
+const ABOUT_ALTERNATES = [
+  { hreflang: "en-SA", href: toAbsolute("/about") },
+  { hreflang: "ar-SA", href: toAbsolute("/ar/about") },
+  { hreflang: "x-default", href: toAbsolute("/about") },
+];
 
 export function toAbsolute(pathOrUrl?: string): string {
   if (!pathOrUrl) return SITE_URL;
@@ -90,6 +95,7 @@ export const CONTENT_ROUTES: string[] = [
   "/",
   "/services",
   "/about",
+  "/ar/about",
   "/gallery",
   "/contact",
   "/industries",
@@ -140,16 +146,20 @@ const STATIC: Record<string, SeoConfig> = {
     ],
   },
   "/about": {
-    title: "About ENVOD KINGDOM — Saudi Arabia Logistics Company",
+    title: "About ENVOD KINGDOM | Saudi Shipping & Logistics Company",
     description:
-      "Learn about ENVOD KINGDOM SHIPPING SERVICES LLC — a Riyadh-based logistics company delivering customs clearance, freight forwarding, and supply chain solutions across Saudi Arabia and the GCC.",
+      "Meet ENVOD KINGDOM Shipping Services LLC, a Riyadh-based company coordinating freight, customs-document enquiries, exhibition logistics and project cargo.",
     canonicalPath: "/about",
+    locale: "en_SA",
+    alternateLocale: "ar_SA",
+    alternates: ABOUT_ALTERNATES,
     image: OG_IMAGE,
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "AboutPage",
         name: "About ENVOD KINGDOM SHIPPING SERVICES LLC",
+        inLanguage: "en-SA",
         url: toAbsolute("/about"),
         about: { "@id": ORG_ID },
       },
@@ -370,9 +380,52 @@ function industrySeo(slug: string): SeoConfig {
   };
 }
 
-/** Resolve the SEO config for any route. Falls back to the home config. */
-export function getSeoForPath(rawPath: string): SeoConfig {
-  const path = normalizeRoutePath(rawPath);
+/** Resolve the SEO config for any route. Arabic About has its own crawlable URL. */
+export function getSeoForPath(
+  rawPath: string,
+  requestedLanguage?: "en" | "ar",
+): SeoConfig {
+  const raw = normalizeRoutePath(rawPath);
+  const hasArabicPrefix = raw === "/ar" || raw.startsWith("/ar/");
+  const path = hasArabicPrefix ? normalizeRoutePath(raw.slice(3) || "/") : raw;
+  const language = requestedLanguage ?? (hasArabicPrefix ? "ar" : "en");
+
+  if (path === "/about") {
+    const english = STATIC["/about"];
+    if (language === "ar") {
+      const aboutSchema = english.jsonLd?.[0] ?? {};
+      return {
+        ...english,
+        title: "عن إنفود كينغدوم | الشحن والخدمات اللوجستية في السعودية",
+        description:
+          "تعرّف على شركة إنفود كينغدوم لخدمات الشحن ذ.م.م في الرياض: تنسيق الشحن الجوي والبحري والبري والتخليص الجمركي ولوجستيات المعارض وبضائع المشاريع في السعودية.",
+        canonicalPath: "/ar/about",
+        locale: "ar_SA",
+        alternateLocale: "en_SA",
+        alternates: ABOUT_ALTERNATES,
+        jsonLd: [
+          {
+            ...aboutSchema,
+            name: "عن إنفود كينغدوم لخدمات الشحن ذ.م.م",
+            inLanguage: "ar-SA",
+            url: toAbsolute("/ar/about"),
+          },
+          breadcrumb([
+            { name: "الرئيسية", path: "/ar" },
+            { name: "من نحن", path: "/ar/about" },
+          ]),
+        ],
+      };
+    }
+    return {
+      ...english,
+      locale: "en_SA",
+      alternateLocale: "ar_SA",
+      alternates: ABOUT_ALTERNATES,
+    };
+  }
+
+  if (hasArabicPrefix) return defaultSeo(raw);
   if (STATIC[path]) return STATIC[path];
   const m = path.match(/^\/services\/([^/]+)$/);
   if (m) {

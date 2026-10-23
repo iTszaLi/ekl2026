@@ -1,4 +1,6 @@
 export const CONTACT_EMAIL = "info@envodkingdom.net";
+export const CONTACT_PHONE_DISPLAY = "+966 58 367 1739";
+export const CONTACT_PHONE_E164 = "+966583671739";
 export const CONTACT_WHATSAPP = "+966 50 226 0256";
 
 export interface QuoteField {

@@ -1,4 +1,5 @@
 import { useLocation } from "wouter";
+import { useLanguage } from "@/lib/language-context";
 import { useSeo } from "@/lib/seo";
 import { getSeoForPath } from "@/lib/seo-config";
 
@@ -11,6 +12,7 @@ import { getSeoForPath } from "@/lib/seo-config";
  */
 export function SeoManager() {
   const [location] = useLocation();
-  useSeo(getSeoForPath(location));
+  const { language } = useLanguage();
+  useSeo(getSeoForPath(location, location === "/about" ? language : undefined));
   return null;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "wouter";
 import { useLanguage } from "@/lib/language-context";
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from "@/lib/quote-mailto";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, PhoneCall, Mail, Headset } from "lucide-react";
@@ -73,11 +74,12 @@ export default function Track() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <a
-                href="tel:+966502260256"
+                href={`tel:${CONTACT_PHONE_E164}`}
                 className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-medium px-5 py-2.5 rounded-lg transition-colors"
               >
                 <PhoneCall className="w-4 h-4" />
-                <span dir="ltr">+966 50 226 0256</span>
+                <span>{t("Call Us:", "اتصل بنا:")}</span>
+                <span dir="ltr">{CONTACT_PHONE_DISPLAY}</span>
               </a>
               <a
                 href="mailto:info@envodkingdom.net"

@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState, useEffect } from "react";
+import { CONTACT_PHONE_DISPLAY } from "@/lib/quote-mailto";
 import { Link } from "wouter";
 import { motion, AnimatePresence, useReducedMotion, useInView } from "framer-motion";
 import { geoMercator, geoPath } from "d3-geo";
@@ -123,7 +124,7 @@ interface Office {
 }
 
 // Single shared point of contact for every office (per company records).
-const OFFICE_PHONE = "+966 50 226 0256";
+const OFFICE_PHONE = CONTACT_PHONE_DISPLAY;
 const OFFICE_EMAIL = "info@envodkingdom.net";
 
 const OFFICES: Office[] = [
@@ -605,7 +606,7 @@ export function GlobalNetworkMap() {
                 <div className="mt-6 space-y-3.5">
                   <DetailRow icon={MapPin} label={t("Address", "العنوان")} value={isRtl ? office.addressAr : office.address} />
                   <DetailRow icon={Clock} label={t("Business Hours", "ساعات العمل")} value={isRtl ? office.hoursAr : office.hours} />
-                  <DetailRow icon={Phone} label={t("Phone", "الهاتف")} value={office.phone} href={`tel:${office.phone.replace(/\s/g, "")}`} ltr />
+                  <DetailRow icon={Phone} label={t("Call Us", "اتصل بنا")} value={office.phone} href={`tel:${office.phone.replace(/\s/g, "")}`} ltr />
                   <DetailRow icon={Mail} label={t("Email", "البريد الإلكتروني")} value={office.email} href={`mailto:${office.email}`} ltr />
                 </div>
 
