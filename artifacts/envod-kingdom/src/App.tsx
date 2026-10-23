@@ -1,5 +1,6 @@
 import { Switch, Route, Router as WouterRouter, Redirect, useLocation } from "wouter";
 import { lazy, Suspense, useEffect } from "react";
+import { useReducedMotion } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -107,17 +108,22 @@ function App({ ssrPath }: { ssrPath?: string }) {
     ssrPath ??
     (typeof window !== "undefined" ? window.location.pathname : "/");
   const initialLanguage = /^\/ar(?:\/|$)/.test(initialPath) ? "ar" : "en";
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    if (reducedMotion !== false) return;
+    let cancelled = false;
     let destroy: (() => void) | undefined;
     void import("@/lib/scroll-engine").then((m) => {
+      if (cancelled) return;
       m.initScrollEngine();
       destroy = m.destroyScrollEngine;
     });
     return () => {
+      cancelled = true;
       destroy?.();
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <LanguageProvider initialLanguage={initialLanguage}>

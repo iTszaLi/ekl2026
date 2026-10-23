@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion, useReducedMotion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import logoIcon from "@assets/image_1780532431289.png";
 import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
@@ -51,28 +51,73 @@ export function ScrollAnimSection({
 }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef   = useRef<HTMLVideoElement>(null);
+  const logoParallaxRef = useRef<HTMLDivElement>(null);
+  const chapterTextRef = useRef<HTMLDivElement>(null);
+  const pointerRef = useRef({ clientX: 0, clientY: 0, reset: true });
+  const pointerFrameRef = useRef<number | null>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const reduceMotion = shouldReduceMotion ?? false;
 
   const [chapterIdx, setChapterIdx] = useState(0);
   const [isVisible,  setIsVisible]  = useState(false);
   const [started,    setStarted]    = useState(false); // src attached after first intersect
   const [isReady,    setIsReady]    = useState(false); // first frame decoded
   const [loadPercent, setLoadPercent] = useState(0);
-  const [mouse,      setMouse]      = useState({ x: 0, y: 0 });
 
-  // Mouse parallax
+  // Apply pointer parallax directly once per animation frame, without rerendering
+  // the full chapter tree for every mouse event.
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el) return;
+    if (!el || reduceMotion) return;
+    const applyParallax = () => {
+      pointerFrameRef.current = null;
+      const point = pointerRef.current;
+      let x = 0;
+      let y = 0;
+      if (!point.reset) {
+        const rect = el.getBoundingClientRect();
+        if (rect.width > 0 && rect.height > 0) {
+          x = ((point.clientX - rect.left) / rect.width - 0.5) * 12;
+          y = ((point.clientY - rect.top) / rect.height - 0.5) * 8;
+        }
+      }
+      if (videoRef.current) {
+        videoRef.current.style.transform = `translate3d(${x * 0.4}px, ${y * 0.4}px, 0) scale(1.04)`;
+      }
+      if (logoParallaxRef.current) {
+        logoParallaxRef.current.style.transform = `translate3d(${x * 0.4}px, ${y * 0.4}px, 0)`;
+      }
+      if (chapterTextRef.current) {
+        chapterTextRef.current.style.transform = `translate3d(${-x * 0.15}px, ${-y * 0.1}px, 0)`;
+      }
+    };
+    const scheduleParallax = () => {
+      if (pointerFrameRef.current === null) {
+        pointerFrameRef.current = requestAnimationFrame(applyParallax);
+      }
+    };
     const handleMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect();
-      setMouse({
-        x: ((e.clientX - rect.left) / rect.width  - 0.5) * 12,
-        y: ((e.clientY - rect.top)  / rect.height - 0.5) * 8,
-      });
+      pointerRef.current = { clientX: e.clientX, clientY: e.clientY, reset: false };
+      scheduleParallax();
+    };
+    const handleLeave = () => {
+      pointerRef.current.reset = true;
+      scheduleParallax();
     };
     el.addEventListener("mousemove", handleMove);
-    return () => el.removeEventListener("mousemove", handleMove);
-  }, []);
+    el.addEventListener("mouseleave", handleLeave);
+    return () => {
+      el.removeEventListener("mousemove", handleMove);
+      el.removeEventListener("mouseleave", handleLeave);
+      if (pointerFrameRef.current !== null) {
+        cancelAnimationFrame(pointerFrameRef.current);
+        pointerFrameRef.current = null;
+      }
+      if (videoRef.current) videoRef.current.style.transform = "translate3d(0px, 0px, 0) scale(1.04)";
+      if (logoParallaxRef.current) logoParallaxRef.current.style.transform = "translate3d(0px, 0px, 0)";
+      if (chapterTextRef.current) chapterTextRef.current.style.transform = "translate3d(0px, 0px, 0)";
+    };
+  }, [reduceMotion]);
 
   // IntersectionObserver — attach source on first entry, play/pause thereafter
   useEffect(() => {
@@ -80,29 +125,38 @@ export function ScrollAnimSection({
       (entries) => {
         const visible = entries[0].isIntersecting;
         setIsVisible(visible);
-        if (visible) setStarted(true);
+        if (visible && !reduceMotion) setStarted(true);
       },
       { threshold: 0.15 },
     );
     const el = sectionRef.current;
     if (el) observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [reduceMotion]);
 
-  // Lazy-load the video the first time the section is seen
+  // Keep the poster visible as a sharp fallback; reduced-motion users never
+  // download or autoplay the animated background.
   useEffect(() => {
-    if (!started) return;
     const v = videoRef.current;
     if (!v) return;
+    if (reduceMotion) {
+      v.pause();
+      setIsReady(true);
+      setLoadPercent(100);
+      return;
+    }
+    if (!started) return;
     v.muted = true;
     v.load();
-  }, [started]);
+  }, [reduceMotion, started]);
 
   // Play only while visible; never clear src (avoids re-download on each pass)
   useEffect(() => {
     const v = videoRef.current;
     if (!v || !started) return;
-    if (isVisible) {
+    if (reduceMotion) {
+      v.pause();
+    } else if (isVisible) {
       v.muted = true;
       v.playbackRate = READABLE_PLAYBACK_RATE;
       const p = v.play();
@@ -110,7 +164,7 @@ export function ScrollAnimSection({
     } else {
       v.pause();
     }
-  }, [isVisible, started]);
+  }, [isVisible, reduceMotion, started]);
 
   // Chapter switching + readiness + buffered progress — all driven by the video
   useEffect(() => {
@@ -155,22 +209,23 @@ export function ScrollAnimSection({
   const documentSupport = isRtl ? chapter?.documentSupportAr : chapter?.documentSupport;
 
   return (
-    <motion.section
-      ref={sectionRef}
-      className="relative h-screen overflow-hidden bg-[#030b18]"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: false, amount: 0.2 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-    >
+    <MotionConfig reducedMotion="user">
+      <motion.section
+        ref={sectionRef}
+        className="relative h-screen overflow-hidden bg-[#030b18]"
+        initial={reduceMotion ? false : { opacity: 0 }}
+        whileInView={reduceMotion ? undefined : { opacity: 1 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: reduceMotion ? 0 : 1, ease: "easeOut" }}
+      >
       {/* Video — with subtle mouse parallax (GPU-composited, decoded on the GPU) */}
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
         style={{
-          opacity: isReady ? 1 : 0,
-          transition: "opacity 0.6s ease, transform 0.8s ease",
-          transform: `translate(${mouse.x * 0.4}px, ${mouse.y * 0.4}px) scale(1.04)`,
+          opacity: 1,
+          transition: "opacity 0.6s ease",
+          transform: "translate3d(0px, 0px, 0) scale(1.04)",
         }}
         muted
         loop
@@ -209,7 +264,7 @@ export function ScrollAnimSection({
               width: p.size,
               height: p.size,
               opacity: p.opacity,
-              animation: `float-particle ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
+              animation: reduceMotion || !isVisible ? "none" : `float-particle ${p.duration}s ease-in-out ${p.delay}s infinite alternate`,
             }}
           />
         ))}
@@ -217,13 +272,11 @@ export function ScrollAnimSection({
 
       {/* ── ENVOD logo mark — replaces the former sparkle, lower-right ── */}
       <div
+        ref={logoParallaxRef}
         className="absolute right-6 bottom-24 md:right-[7%] md:bottom-[20%] z-[15] pointer-events-none"
-        style={{
-          transform: `translate(${mouse.x * 0.4}px, ${mouse.y * 0.4}px)`,
-          transition: "transform 0.3s ease-out",
-        }}
+        style={{ transform: "translate3d(0px, 0px, 0)" }}
       >
-        <div style={{ animation: "logo-float 6s ease-in-out infinite alternate" }}>
+        <div style={{ animation: reduceMotion || !isVisible ? "none" : "logo-float 6s ease-in-out infinite alternate" }}>
           <div
             className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden ring-1 ring-white/20"
             style={{
@@ -241,7 +294,7 @@ export function ScrollAnimSection({
       </div>
 
       {/* Loading bar */}
-      {loadPercent < 100 && (
+      {!reduceMotion && loadPercent < 100 && (
         <div className="absolute top-0 inset-x-0 h-0.5 bg-white/10 z-30">
           <div
             className="h-full bg-secondary transition-all duration-300 ease-out"
@@ -252,8 +305,10 @@ export function ScrollAnimSection({
 
       {/* Chapter text */}
       <div
+        ref={chapterTextRef}
         className={`absolute inset-0 z-20 flex flex-col justify-center ${isRtl ? "items-end" : "items-start"}`}
-        style={{ transform: `translate(${-mouse.x * 0.15}px, ${-mouse.y * 0.1}px)` }}
+        style={{ transform: "translate3d(0px, 0px, 0)" }}
+        aria-live={reduceMotion ? "polite" : undefined}
       >
         <div className="w-full max-w-7xl mx-auto px-8 md:px-16 xl:px-24">
           <AnimatePresence mode="wait">
@@ -379,20 +434,47 @@ export function ScrollAnimSection({
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isReady ? 0.6 : 0 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
-      >
-        <span className="text-white/40 text-[10px] tracking-[0.25em] uppercase">Scroll</span>
+      {reduceMotion ? (
+        chapters.length > 1 && (
+          <div className="absolute inset-x-0 bottom-6 z-30 flex justify-center px-4">
+            <div className="flex items-center gap-3 rounded-full border border-white/15 bg-[#030b18]/90 px-4 py-2 text-white shadow-lg" dir="ltr">
+              <button
+                type="button"
+                aria-label={isRtl ? "المشهد السابق" : "Previous scene"}
+                onClick={() => setChapterIdx((current) => (current - 1 + chapters.length) % chapters.length)}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-lg hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary"
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+              <span aria-live="polite" className="min-w-24 text-center text-xs font-semibold">
+                {isRtl ? `المشهد ${chapterIdx + 1} من ${chapters.length}` : `Scene ${chapterIdx + 1} of ${chapters.length}`}
+              </span>
+              <button
+                type="button"
+                aria-label={isRtl ? "المشهد التالي" : "Next scene"}
+                onClick={() => setChapterIdx((current) => (current + 1) % chapters.length)}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-lg hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary"
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        )
+      ) : (
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
-        />
-      </motion.div>
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isReady ? 0.6 : 0 }}
+          transition={{ delay: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+        >
+          <span className="text-white/40 text-[10px] tracking-[0.25em] uppercase">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent"
+          />
+        </motion.div>
+      )}
 
       <style>{`
         @keyframes logo-float {
@@ -404,6 +486,7 @@ export function ScrollAnimSection({
           100% { transform: translate(12px, -10px) scale(1.12); }
         }
       `}</style>
-    </motion.section>
+      </motion.section>
+    </MotionConfig>
   );
 }
