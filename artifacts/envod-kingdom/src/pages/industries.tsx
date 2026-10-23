@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import { INDUSTRY_BG } from "@/lib/industry-images";
+import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 import vision2030Logo from "@assets/logo_vision2030.webp";
 
 const ICONS: Record<string, React.ElementType> = {
@@ -66,6 +67,7 @@ export default function Industries() {
                   <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none" aria-hidden="true">
                     <img
                       src={INDUSTRY_BG[ind.slug]}
+                      {...getIntrinsicImageDimensions(INDUSTRY_BG[ind.slug])}
                       alt=""
                       loading="lazy"
                       className="w-full h-full object-cover opacity-[0.18] transition-all duration-500 group-hover:opacity-30 group-hover:scale-105"
@@ -125,6 +127,7 @@ export default function Industries() {
                 <div className="flex-none bg-white rounded-2xl px-5 py-3.5 shadow-lg shadow-black/20 border border-white/20">
                   <img
                     src={vision2030Logo}
+                    {...getIntrinsicImageDimensions(vision2030Logo)}
                     alt={t("Saudi Vision 2030 — Kingdom of Saudi Arabia", "رؤية السعودية 2030 — المملكة العربية السعودية")}
                     loading="lazy"
                     className="h-16 md:h-20 w-auto object-contain"

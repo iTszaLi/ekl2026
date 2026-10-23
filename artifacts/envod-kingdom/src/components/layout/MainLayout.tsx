@@ -10,15 +10,9 @@ import {
 } from "lucide-react";
 import logoIcon from "@assets/image_1780532431289.png";
 import logoFull from "@assets/image_1780437854819.png";
-import logoJctrans from "@assets/logo_jctrans.webp";
-import logoCooperative from "@assets/logo_cooperative.webp";
-import logoWca from "@assets/logo_wca.webp";
-import logoFiata from "@assets/logo_fiata.webp";
-import logoPln from "@assets/logo_pln.webp";
-import logoIconLn from "@assets/logo_iconln.webp";
-import logoGla from "@assets/logo_gla.webp";
 import { Button } from "@/components/ui/button";
 import { QuoteModal } from "@/components/QuoteModal";
+import { emitAnalyticsEvent } from "@/lib/analytics";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from "@/lib/quote-mailto";
 
 /* ─────────────────────────── Navbar ─────────────────────────── */
@@ -49,7 +43,7 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
     { href: "/", en: "Home", ar: "الرئيسية" },
     { href: "/services", en: "Services", ar: "خدماتنا" },
     { href: "/industries", en: "Industries", ar: "القطاعات" },
-    { href: "/track", en: "Track", ar: "تتبع الشحنة" },
+    { href: "/track", en: "Shipment Status", ar: "حالة الشحنة" },
     { href: "/about", en: "About", ar: "عن الشركة" },
     { href: "/gallery", en: "Gallery", ar: "المعرض" },
     { href: "/contact", en: "Contact", ar: "اتصل بنا" },
@@ -62,29 +56,34 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
           <div className={`flex items-center justify-center gap-6 text-xs font-semibold flex-wrap ${isRtl ? "flex-row-reverse" : ""}`}>
             <span className={`flex items-center gap-1.5 text-secondary ${isRtl ? "flex-row-reverse" : ""}`}>
               <Clock className="w-3.5 h-3.5 flex-shrink-0" />
-              {t("CUSTOMS CLEARANCE OFTEN WITHIN 24 HOURS", "التخليص الجمركي غالباً خلال 24 ساعة")}
+              {t("YOUR TRUSTED PARTNER FOR SHIPPING INTO SAUDI ARABIA", "شريكك الموثوق للشحن إلى المملكة العربية السعودية")}
             </span>
             <span className="text-white/20 hidden sm:block">|</span>
             <span className={`flex items-center gap-1.5 text-white/60 ${isRtl ? "flex-row-reverse" : ""}`}>
               <Globe2 className="w-3.5 h-3.5 flex-shrink-0" />
-              {t("Serving Saudi Arabia, GCC & Global Markets — 25+ Years", "نخدم المملكة والخليج والأسواق العالمية — 25+ عام")}
+              {t("Saudi Arabia · GCC · Worldwide Freight Solutions", "السعودية · الخليج · حلول شحن حول العالم")}
             </span>
             <span className="text-white/20 hidden md:block">|</span>
             <span className={`hidden md:flex items-center gap-1.5 text-white/60 ${isRtl ? "flex-row-reverse" : ""}`}>
               <Shield className="w-3.5 h-3.5 flex-shrink-0" />
-              {t("Customs Clearance · Exhibition · Project Cargo Specialists", "التخليص الجمركي · معارض · بضائع مشاريع")}
+              {t("Customs Clearance · Exhibition Logistics · Project Cargo", "التخليص الجمركي · لوجستيات المعارض · شحن المشاريع")}
             </span>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-4 flex items-center justify-between py-2">
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link
+          href="/"
+          aria-label={t("ENVOD KINGDOM home", "العودة إلى الصفحة الرئيسية لإنفود كينغدوم")}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex items-center gap-3 group"
+        >
           <div
             className="relative flex-shrink-0 w-9 h-9 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-secondary/50 transition-all duration-300"
             style={{ background: "radial-gradient(circle,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 100%)", boxShadow: "0 0 12px rgba(214,40,40,.25),inset 0 0 8px rgba(0,0,0,.2)" }}
           >
-            <img src={logoIcon} alt="إنفود كينغدوم" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+            <img src={logoIcon} width={223} height={171} alt="إنفود كينغدوم" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             <div className="absolute inset-0 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle at 50% 50%,transparent 60%,rgba(0,0,0,.25) 100%)" }} />
           </div>
           <div className={`hidden sm:flex flex-col leading-tight ${isRtl ? "items-end" : "items-start"}`} dir={isRtl ? "rtl" : "ltr"} style={{ fontFamily: isRtl ? "'Cairo',sans-serif" : "inherit" }}>
@@ -93,7 +92,7 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -106,7 +105,7 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <Button variant="ghost" size="sm" onClick={() => setLanguage(language === "en" ? "ar" : "en")} className="text-white hover:bg-white/10 text-sm">
             <Globe className="w-4 h-4 mr-1.5" />{language === "en" ? "عربي" : "EN"}
           </Button>
@@ -120,7 +119,7 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
         </div>
 
         <button
-          className="md:hidden text-white p-1"
+          className="lg:hidden text-white p-1"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           onClick={() => {
             if (!mobileOpen && headerRef.current) setMenuTop(headerRef.current.getBoundingClientRect().bottom);
@@ -134,7 +133,7 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
       {mobileOpen &&
         createPortal(
           <div
-            className="md:hidden fixed left-0 right-0 bg-primary py-4 px-4 flex flex-col gap-4 shadow-lg border-t border-white/10 z-[60]"
+            className="lg:hidden fixed left-0 right-0 bg-primary py-4 px-4 flex flex-col gap-4 shadow-lg border-t border-white/10 z-[60]"
             style={{ top: menuTop }}
           >
             {navLinks.map((link) => (
@@ -165,44 +164,11 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
   );
 }
 
-/* ─────────────────────────── Animated Counter ─────────────────────────── */
-function useCounter(target: number, duration = 2000) {
-  const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { setStarted(true); obs.disconnect(); }
-    }, { threshold: 0.3 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!started) return;
-    let current = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) { setCount(target); clearInterval(timer); }
-      else setCount(Math.floor(current));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [started, target, duration]);
-
-  return { count, ref };
-}
-
-/* Each stat item is its own component so hooks are called at top level */
-function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {
-  const { count, ref } = useCounter(value);
+function ServiceItem({ title, label }: { title: string; label: string }) {
   return (
-    <div ref={ref} className="text-center group py-2">
+    <div className="text-center group py-2">
       <div className="text-3xl md:text-4xl font-black text-white mb-1 group-hover:text-secondary transition-colors duration-300">
-        {count.toLocaleString()}<span className="text-secondary">{suffix}</span>
+        {title}
       </div>
       <div className="text-xs font-semibold text-white/45 uppercase tracking-widest">{label}</div>
     </div>
@@ -213,15 +179,15 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
 function StatsStrip() {
   const { t } = useLanguage();
   const stats = [
-    { value: 25,    suffix: "+", label: t("Years Experience",      "سنة خبرة") },
-    { value: 10000, suffix: "+", label: t("Shipments Delivered",   "شحنة مسلّمة") },
-    { value: 500,   suffix: "+", label: t("Corporate Clients",     "عميل مؤسسي") },
-    { value: 50,    suffix: "+", label: t("Countries Served",      "دولة نخدمها") },
+    { title: t("Saudi Arabia", "السعودية"), label: t("Customs & freight coordination", "تنسيق التخليص والشحن") },
+    { title: t("Sea & Air", "بحري وجوي"), label: t("Freight options", "خيارات الشحن") },
+    { title: t("Exhibitions", "المعارض"), label: t("Event logistics coordination", "تنسيق لوجستيات الفعاليات") },
+    { title: t("GCC", "الخليج"), label: t("Road-transport planning", "تخطيط النقل البري") },
   ];
   return (
     <div className="bg-[#070f1e] border-y border-white/8">
       <div className="container mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-        {stats.map((s, i) => <StatItem key={i} {...s} />)}
+        {stats.map((s) => <ServiceItem key={s.title} {...s} />)}
       </div>
     </div>
   );
@@ -364,17 +330,6 @@ function HeadOfficeMiniMap() {
   );
 }
 
-/* ─────────────────────────── Membership Logos ─────────────────────────── */
-const MEMBERSHIPS: { name: string; logo: string; height: string }[] = [
-  { name: "JCtrans",                            logo: logoJctrans,     height: "h-6 sm:h-7" },
-  { name: "The Cooperative Logistics Network",  logo: logoCooperative, height: "h-11 sm:h-14" },
-  { name: "WCA Worldwide",                      logo: logoWca,         height: "h-9 sm:h-11" },
-  { name: "FIATA",                              logo: logoFiata,       height: "h-11 sm:h-14" },
-  { name: "Planet Logistics Network",           logo: logoPln,         height: "h-8 sm:h-10" },
-  { name: "ICON Logistics Network",             logo: logoIconLn,      height: "h-9 sm:h-11" },
-  { name: "GLA — Global Logistics Alliance",    logo: logoGla,         height: "h-8 sm:h-10" },
-];
-
 /* ─────────────────────────── CTA Strip ─────────────────────────── */
 function CTAStrip() {
   const { t } = useLanguage();
@@ -393,7 +348,7 @@ function CTAStrip() {
           <Link href="/track"
             className="w-full sm:w-auto text-center bg-white/10 backdrop-blur-sm border-2 border-white text-white font-black text-sm tracking-widest uppercase px-8 py-4 rounded-xl hover:bg-white hover:text-secondary transition-all duration-300 hover:-translate-y-0.5"
           >
-            {t("📦 TRACK SHIPMENT", "📦 تتبع شحنتك")}
+            {t("📦 REQUEST SHIPMENT STATUS", "📦 اطلب تحديث حالة الشحنة")}
           </Link>
           <a href="https://wa.me/966502260256" target="_blank" rel="noopener noreferrer"
             className="w-full sm:w-auto text-center bg-[#25D366] text-white font-black text-sm tracking-widest uppercase px-8 py-4 rounded-xl hover:bg-[#1EBE5D] hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 shadow-lg"
@@ -408,40 +363,52 @@ function CTAStrip() {
 
 /* ─────────────────────────── Enterprise Footer ─────────────────────────── */
 export function Footer() {
-  const [location] = useLocation();
-  const isAboutPage = location === "/about" || location === "/ar/about";
   const { t, isRtl } = useLanguage();
   const year = new Date().getFullYear();
 
   const services: [string, string][] = [
-    [t("Customs Clearance", "التخليص الجمركي"), "/services/customs-clearance"],
+    [t("Exhibition & Event Logistics", "لوجستيات المعارض والفعاليات"), "/services/exhibition-logistics"],
+    [t("Customs Clearance in Saudi Arabia", "التخليص الجمركي في السعودية"), "/services/customs-clearance"],
+    [t("Packing, Crating & Relocation", "التعبئة والتغليف والانتقال"), "/services/packaging-crating"],
+    [t("Road Transportation & GCC Freight", "النقل البري والشحن الخليجي"), "/services/gcc-transportation"],
+    [t("Breakbulk Shipping", "شحن البضائع غير المعبأة"), "/services/breakbulk-shipping"],
+    [t("ATA Carnet & Temporary Admission", "دفتر ATA والإدخال المؤقت"), "/services/ata-carnet"],
+    [t("Project Cargo & Oversized Cargo", "بضائع المشاريع والبضائع كبيرة الحجم"), "/services/project-cargo"],
     [t("Ocean & Sea Freight", "الشحن البحري"), "/services/ocean-freight"],
     [t("Air Freight", "الشحن الجوي"), "/services/air-freight"],
-    [t("Exhibition Logistics", "لوجستيات المعارض"), "/services/exhibition-logistics"],
-    [t("ATA Carnet", "كارنيه ATA"), "/services/exhibition-logistics"],
-    [t("Warehousing", "التخزين"), "/services/warehousing"],
-    [t("Project Cargo", "بضائع المشاريع"), "/services/project-cargo"],
-    [t("Freight Forwarding", "الشحن والتخليص"), "/services/freight-forwarding"],
-    [t("GCC Transportation", "النقل الخليجي"), "/services/gcc-transportation"],
+    [t("Freight Forwarding", "تخليص وتنسيق الشحن"), "/services/freight-forwarding"],
+    [t("Warehousing & Distribution", "التخزين والتوزيع"), "/services/warehousing"],
+    [t("Local Delivery & Site Handling", "التوصيل المحلي ومناولة المواقع"), "/services/white-glove-logistics"],
+    [t("Temperature-Controlled Logistics", "الخدمات اللوجستية بدرجة حرارة مضبوطة"), "/services/temperature-controlled-logistics"],
+    [t("Import & Export Logistics", "لوجستيات الاستيراد والتصدير"), "/services/cross-trade-shipping"],
+    [t("Shipment Status Requests", "طلبات تحديث حالة الشحنات"), "/track"],
   ];
 
   const industries: [string, string][] = [
     [t("Automotive", "السيارات"), "/industries/automotive-logistics"],
-    [t("Construction", "البناء والإنشاء"), "/industries/construction-logistics"],
-    [t("Retail", "تجارة التجزئة"), "/industries/retail-logistics"],
-    [t("Electronics", "الإلكترونيات"), "/industries/electronics-logistics"],
-    [t("Government", "القطاع الحكومي"), "/industries/government-logistics"],
-    [t("Vision 2030", "رؤية 2030"), "/vision-2030"],
-    [t("All Industries", "جميع القطاعات"), "/industries"],
+    [t("Construction & Infrastructure", "الإنشاءات والبنية التحتية"), "/industries/construction-logistics"],
+    [t("Retail & Consumer Goods", "التجزئة والسلع الاستهلاكية"), "/industries/retail-logistics"],
+    [t("Electronics & Technology", "الإلكترونيات والتقنية"), "/industries/electronics-logistics"],
+    [t("Government & Public Sector", "القطاع الحكومي والقطاع العام"), "/industries/government-logistics"],
+    [t("Fashion", "الأزياء"), "/industries/fashion-logistics"],
+    [t("Aerospace", "الطيران والفضاء"), "/industries/aerospace-logistics"],
+    [t("Hospitality", "الضيافة"), "/industries/hospitality-logistics"],
+    [t("Furniture", "الأثاث"), "/industries/furniture-logistics"],
+    [t("Chemical", "الصناعات الكيميائية"), "/industries/chemical-logistics"],
+    [t("Telecommunications", "الاتصالات"), "/industries/telecommunications-logistics"],
+    [t("View All Industries", "عرض جميع القطاعات"), "/industries"],
   ];
 
   const quickLinks: [string, string][] = [
     [t("Home", "الرئيسية"), "/"],
-    [t("About", "عن الشركة"), "/about"],
-    [t("Services", "الخدمات"), "/services"],
-    [t("Gallery", "المعرض"), "/gallery"],
-    [t("Track Shipment", "تتبع الشحنة"), "/track"],
-    [t("Contact", "اتصل بنا"), "/contact"],
+    [t("About ENVOD", "عن إنفود كينغدوم"), "/about"],
+    [t("Our Services", "خدماتنا"), "/services"],
+    [t("Industries", "القطاعات"), "/industries"],
+    [t("Exhibition Logistics", "لوجستيات المعارض"), "/services/exhibition-logistics"],
+    [t("Request a Quote", "طلب عرض سعر"), "/contact"],
+    [t("Request Shipment Status", "طلب تحديث حالة الشحنة"), "/track"],
+    [t("Contact Us", "اتصل بنا"), "/contact"],
+    [t("Frequently Asked Questions", "الأسئلة الشائعة"), "/#faq"],
   ];
 
   const containerVariants = {
@@ -459,7 +426,7 @@ export function Footer() {
 
   return (
     <footer className="bg-gradient-to-b from-[#0a1524] via-[#06101e] to-[#040b16] text-white relative overflow-hidden" dir={isRtl ? "rtl" : "ltr"}>
-      {!isAboutPage && <GlobalNetworkMap />}
+      <GlobalNetworkMap />
       
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent opacity-50" />
@@ -469,9 +436,9 @@ export function Footer() {
       {/* ── Main grid ── */}
       <div className="container mx-auto px-6 pt-20 pb-14 relative z-10">
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-8 gap-y-12"
           variants={containerVariants}
-          initial="hidden"
+          initial="visible"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
@@ -484,26 +451,34 @@ export function Footer() {
               className="inline-block mb-8 group"
             >
               <div className="bg-white/95 px-6 py-4 rounded-2xl inline-flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_8px_32px_rgba(214,40,40,0.25)] group-hover:-translate-y-1 group-hover:bg-white border border-white/10">
-                <img src={logoFull} alt="ENVOD KINGDOM Shipping Services LLC" className="h-14 object-contain opacity-95 group-hover:opacity-100 transition-opacity" />
+                <img src={logoFull} width={730} height={114} alt="ENVOD KINGDOM Shipping Services LLC" className="h-14 w-auto object-contain opacity-95 group-hover:opacity-100 transition-opacity" />
               </div>
             </Link>
 
             <p className="text-[14px] leading-relaxed text-white/60 mb-8 font-medium">
               {t(
-                "Saudi Arabia's trusted partner for Exhibition Logistics, ATA Carnet, Customs Clearance, Project Cargo, and Global Shipping — 25+ years of expertise.",
-                "الشريك الموثوق في المملكة للمعارض والتخليص الجمركي وكارنيه ATA وبضائع المشاريع والشحن العالمي — أكثر من 25 عاماً."
+                "Saudi Arabia-based shipping and logistics coordination for exhibition and event cargo, customs clearance, ATA Carnet enquiries, international freight and GCC transportation.",
+                "تنسيق الشحن والخدمات اللوجستية من المملكة العربية السعودية لبضائع المعارض والفعاليات والتخليص الجمركي واستفسارات دفتر ATA والشحن الدولي والنقل الخليجي."
+              )}
+            </p>
+            <p className="text-[13px] leading-relaxed text-white/50 mb-6">
+              {t(
+                "Freight, documentation, transportation and delivery arrangements are confirmed for each shipment.",
+                "يتم تأكيد ترتيبات الشحن والوثائق والنقل والتسليم لكل شحنة على حدة."
               )}
             </p>
 
             <div className="flex flex-wrap gap-2.5 mb-8">
-              {["SABER", "ISO 9001", "ATA Carnet", "SFDA"].map((b) => (
-                <span key={b} className="text-[10px] font-black uppercase tracking-[0.15em] bg-white/[0.03] text-white/80 px-3.5 py-1.5 rounded-full border border-white/10 hover:border-secondary/30 hover:bg-secondary/10 hover:text-secondary transition-all duration-300">
-                  {b}
+              {[
+                t("Freight Coordination", "تنسيق الشحن"),
+                t("Customs Documentation", "وثائق الجمارك"),
+                t("Exhibition Cargo", "بضائع المعارض"),
+              ].map((badge) => (
+                <span key={badge} className="text-[10px] font-black uppercase tracking-[0.15em] bg-white/[0.03] text-white/80 px-3.5 py-1.5 rounded-full border border-white/10">
+                  {badge}
                 </span>
               ))}
             </div>
-
-            <SocialIcons />
 
             <HeadOfficeMiniMap />
           </motion.div>
@@ -516,172 +491,126 @@ export function Footer() {
             </h4>
             <ul className="space-y-3.5">
               {services.map(([label, href], i) => (
-                <li key={i}>
-                  <Link href={href} className="flex items-center gap-3 text-[14px] text-white/60 hover:text-white transition-colors duration-300 group">
-                    <ChevronRight className={`w-3.5 h-3.5 text-secondary/0 group-hover:text-secondary transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 ${isRtl ? "rotate-180 translate-x-2 group-hover:-translate-x-0" : ""}`} />
-                    <span className="transform -translate-x-2 group-hover:translate-x-0 transition-transform duration-300">{label}</span>
+                <li key={href} data-testid={`footer-service-${i + 1}`}>
+                  <Link href={href} data-testid={`link-footer-service-${i + 1}`} className="flex items-start gap-2 text-[13px] leading-snug text-white/65 hover:text-white transition-colors duration-300 group">
+                    <ChevronRight aria-hidden="true" className={`w-3.5 h-3.5 mt-0.5 shrink-0 text-secondary/0 group-hover:text-secondary transition-all duration-300 ${isRtl ? "rotate-180" : ""}`} />
+                    <span>{label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Industries + Quick Links */}
-          <motion.div className="flex flex-col gap-10" variants={itemVariants}>
-            <div>
-              <h4 className="text-white font-black text-[13px] uppercase tracking-[0.22em] mb-6 flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                {t("Industries", "القطاعات")}
-              </h4>
-              <ul className="space-y-3.5">
-                {industries.map(([label, href], i) => (
-                  <li key={i}>
-                    <Link href={href} className="flex items-center gap-3 text-[14px] text-white/60 hover:text-white transition-colors duration-300 group">
-                      <ChevronRight className={`w-3.5 h-3.5 text-secondary/0 group-hover:text-secondary transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 ${isRtl ? "rotate-180 translate-x-2 group-hover:-translate-x-0" : ""}`} />
-                      <span className="transform -translate-x-2 group-hover:translate-x-0 transition-transform duration-300">{label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Industries */}
+          <motion.div variants={itemVariants}>
+            <h4 className="text-white font-black text-[13px] uppercase tracking-[0.18em] mb-6 flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-secondary" />
+              {t("Industries", "القطاعات")}
+            </h4>
+            <ul className="space-y-3">
+              {industries.map(([label, href], i) => (
+                <li key={href}>
+                  <Link href={href} data-testid={`link-footer-industry-${i + 1}`} className="flex items-start gap-2 text-[13px] leading-snug text-white/65 hover:text-white transition-colors duration-300 group">
+                    <ChevronRight aria-hidden="true" className={`w-3.5 h-3.5 mt-0.5 shrink-0 text-secondary/0 group-hover:text-secondary transition-all duration-300 ${isRtl ? "rotate-180" : ""}`} />
+                    <span>{label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
 
-            <div>
-              <h4 className="text-white font-black text-[13px] uppercase tracking-[0.22em] mb-6 flex items-center gap-3">
-                <span className="w-2 h-2 rounded-full bg-secondary"></span>
-                {t("Quick Links", "روابط سريعة")}
-              </h4>
-              <ul className="space-y-3.5">
-                {quickLinks.map(([label, href], i) => (
-                  <li key={i}>
-                    <Link href={href} className="flex items-center gap-3 text-[14px] text-white/60 hover:text-white transition-colors duration-300 group">
-                      <ChevronRight className={`w-3.5 h-3.5 text-secondary/0 group-hover:text-secondary transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0 ${isRtl ? "rotate-180 translate-x-2 group-hover:-translate-x-0" : ""}`} />
-                      <span className="transform -translate-x-2 group-hover:translate-x-0 transition-transform duration-300">{label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Quick links */}
+          <motion.div variants={itemVariants}>
+            <h4 className="text-white font-black text-[13px] uppercase tracking-[0.18em] mb-6 flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-secondary" />
+              {t("Quick Links", "روابط سريعة")}
+            </h4>
+            <ul className="space-y-3">
+              {quickLinks.map(([label, href], i) => (
+                <li key={`${href}-${i}`}>
+                  <Link href={href} data-testid={`link-footer-quick-${i + 1}`} className="flex items-start gap-2 text-[13px] leading-snug text-white/65 hover:text-white transition-colors duration-300 group">
+                    <ChevronRight aria-hidden="true" className={`w-3.5 h-3.5 mt-0.5 shrink-0 text-secondary/0 group-hover:text-secondary transition-all duration-300 ${isRtl ? "rotate-180" : ""}`} />
+                    <span>{label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </motion.div>
 
           {/* Contact */}
           <motion.div variants={itemVariants}>
-            <h4 className="text-white font-black text-[13px] uppercase tracking-[0.22em] mb-6 flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-secondary"></span>
-              {t("Contact Us", "اتصل بنا")}
+            <h4 className="text-white font-black text-[13px] uppercase tracking-[0.18em] mb-6 flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-secondary" />
+              {t("Contact Our Team", "تواصل مع فريقنا")}
             </h4>
 
-            <ul className="space-y-6">
-              <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 group-hover:border-secondary/30 transition-colors duration-300">
-                  <MapPin className="w-4 h-4 text-white/60 group-hover:text-secondary transition-colors" />
-                </div>
+            <ul className="space-y-5">
+              <li className="flex gap-3">
+                <MapPin aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0 text-secondary" />
                 <div>
-                  <p className="text-white font-bold text-[14px] mb-1.5">{t("Riyadh Head Office", "المقر الرئيسي — الرياض")}</p>
-                  <p className="text-white/50 text-[13px] leading-relaxed">
-                    {t("Prince Mansour Bin Abdulaziz St.", "شارع الأمير منصور بن عبدالعزيز")}<br />
-                    {t("Al Malaz, Riyadh 12831", "حي الملز، الرياض 12831")}<br />
-                    {t("P.O. Box 2383", "ص.ب 2383")}<br />
-                    {t("Saudi Arabia", "المملكة العربية السعودية")}
+                  <p className="text-white font-bold text-[13px] mb-1">{t("Riyadh Head Office", "المقر الرئيسي — الرياض")}</p>
+                  <p className="text-white/55 text-[12px] leading-relaxed">
+                    {t("Prince Mansour Bin Abdulaziz Street, Al Malaz, Riyadh 12831, Saudi Arabia", "شارع الأمير منصور بن عبدالعزيز، حي الملز، الرياض 12831، المملكة العربية السعودية")}<br />
+                    {t("P.O. Box 2383", "ص.ب 2383")}
                   </p>
-                </div>
-              </li>
-
-              <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 group-hover:border-secondary/30 transition-colors duration-300">
-                  <Phone className="w-4 h-4 text-white/60 group-hover:text-secondary transition-colors" />
-                </div>
-                <div>
-                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-1">{t("Call Us", "اتصل بنا")}</p>
-                  <a href={`tel:${CONTACT_PHONE_E164}`} className="text-white/80 text-[14px] hover:text-secondary transition-colors font-medium">
-                    {CONTACT_PHONE_DISPLAY}
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Prince+Mansour+Bin+Abdulaziz+Street%2C+Al+Malaz%2C+Riyadh+12831%2C+Saudi+Arabia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid="link-footer-directions"
+                    className="inline-flex items-center gap-1 mt-2 text-secondary text-xs font-semibold hover:text-white"
+                  >
+                    {t("Get Directions", "احصل على الاتجاهات")} <ArrowUpRight aria-hidden="true" className="w-3 h-3" />
                   </a>
                 </div>
               </li>
-
-              <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#25D366]/10 group-hover:border-[#25D366]/30 transition-colors duration-300">
-                  <svg className="w-4 h-4 text-white/60 group-hover:text-[#25D366] transition-colors" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                </div>
+              <li className="flex gap-3">
+                <Phone aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0 text-secondary" />
                 <div>
-                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-1">WhatsApp</p>
-                  <a href="https://wa.me/966502260256" target="_blank" rel="noopener noreferrer" className="text-white/80 text-[14px] hover:text-[#25D366] transition-colors font-medium">
-                    +966 50 226 0256
+                  <a href={`tel:${CONTACT_PHONE_E164}`} data-testid="link-footer-phone" className="text-white/80 text-[13px] hover:text-secondary">
+                    {t(`Call Us: ${CONTACT_PHONE_DISPLAY}`, `اتصل بنا: ${CONTACT_PHONE_DISPLAY}`)}
                   </a>
+                  <p className="text-white/45 text-[11px]">{t("Call Us", "اتصل بنا")}</p>
                 </div>
               </li>
-
-              <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 group-hover:border-secondary/30 transition-colors duration-300">
-                  <Printer className="w-4 h-4 text-white/60 group-hover:text-secondary transition-colors" />
-                </div>
+              <li className="flex gap-3">
+                <Printer aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0 text-secondary" />
                 <div>
-                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-1">{t("Fax", "فاكس")}</p>
-                  <span className="text-white/80 text-[14px] font-medium" dir="ltr">+966 11 238 0517</span>
+                  <p className="text-white/45 text-[11px]">{t("Fax", "فاكس")}</p>
+                  <span className="text-white/80 text-[13px]" dir="ltr">+966 11 238 0517</span>
                 </div>
               </li>
-
-              <li className="flex gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 group-hover:border-secondary/30 transition-colors duration-300">
-                  <Mail className="w-4 h-4 text-white/60 group-hover:text-secondary transition-colors" />
-                </div>
-                <div>
-                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-1">{t("Email", "البريد الإلكتروني")}</p>
-                  <a href="mailto:info@envodkingdom.net" className="text-white/80 text-[14px] hover:text-secondary transition-colors font-medium">
-                    info@envodkingdom.net
-                  </a>
-                </div>
+              <li className="flex gap-3">
+                <Mail aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0 text-secondary" />
+                <a href="mailto:info@envodkingdom.net" data-testid="link-footer-email" aria-label={t("Email our team", "راسل فريقنا")} className="break-all text-white/80 text-[13px] hover:text-secondary">
+                  {t("Email our team", "راسل فريقنا")}<br />info@envodkingdom.net
+                </a>
               </li>
-
-              <li className="flex gap-4 group pt-2">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 group-hover:border-secondary/30 transition-colors duration-300">
-                  <Clock className="w-4 h-4 text-white/60 group-hover:text-secondary transition-colors" />
-                </div>
+              <li className="flex gap-3">
+                <Clock aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0 text-secondary" />
                 <div>
-                  <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.15em] mb-1">{t("Business Hours", "ساعات العمل")}</p>
-                  <p className="text-white/70 text-[13px] leading-relaxed mb-2">
-                    {t("Sun – Thu: 8:00 AM – 6:00 PM", "الأحد – الخميس: 8ص – 6م")}<br />
-                    {t("Sat: 9:00 AM – 2:00 PM", "السبت: 9ص – 2م")}
+                  <p className="text-white font-bold text-[12px] mb-1">{t("Business Hours", "ساعات العمل")}</p>
+                  <p className="text-white/65 text-[12px] leading-relaxed">
+                    {t("Sunday–Thursday: 8:00 AM–6:00 PM", "الأحد–الخميس: 8:00 صباحاً–6:00 مساءً")}<br />
+                    {t("Saturday: 9:00 AM–2:00 PM", "السبت: 9:00 صباحاً–2:00 مساءً")}<br />
+                    {t("Friday: Closed", "الجمعة: مغلق")}
                   </p>
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-secondary/10 border border-secondary/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                    <p className="text-secondary text-[11px] font-bold tracking-wide uppercase">{t("24/7 Tracking & Support", "دعم وتتبع على مدار الساعة")}</p>
-                  </div>
+                  <p className="text-white/45 text-[11px] mt-1">
+                    {t("Saudi Arabia local time (AST, UTC+3)", "التوقيت المحلي للمملكة العربية السعودية (AST، UTC+3)")}
+                  </p>
                 </div>
               </li>
             </ul>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* ── Proud Member Of ── */}
-      <div className="border-t border-white/[0.04] bg-[#0a1526]/50 relative z-10">
-        <div className="container mx-auto px-6 py-14">
-          <p className="text-center text-[10px] font-black uppercase tracking-[0.4em] text-white/30 mb-9">
-            {t("Proud Member Of", "عضو فخور في")}
-          </p>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto max-w-6xl rounded-3xl bg-white/[0.97] border border-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)] px-6 sm:px-10 lg:px-14 py-9 sm:py-11"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-x-10 sm:gap-x-14 lg:gap-x-16 gap-y-8" dir="ltr">
-              {MEMBERSHIPS.map((m) => (
-                <img
-                  key={m.name}
-                  src={m.logo}
-                  alt={m.name}
-                  title={m.name}
-                  loading="lazy"
-                  className={`${m.height} w-auto object-contain transition-all duration-300 ease-out hover:scale-105 hover:drop-shadow-[0_8px_20px_rgba(10,35,66,0.28)]`}
-                />
-              ))}
+            <div className="mt-6 flex flex-wrap gap-2">
+              <a href="https://wa.me/966502260256" target="_blank" rel="noopener noreferrer" data-testid="link-footer-whatsapp" className="rounded-lg bg-[#25D366] px-3 py-2 text-xs font-bold text-white hover:bg-[#1EBE5D]">
+                {t("Chat on WhatsApp", "تواصل عبر واتساب")}
+              </a>
+              <Link href="/contact" data-testid="link-footer-quote" className="rounded-lg bg-secondary px-3 py-2 text-xs font-bold text-white hover:bg-secondary/90">
+                {t("Request a Quote", "اطلب عرض سعر")}
+              </Link>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       {/* ── Bottom Bar ── */}
@@ -692,18 +621,6 @@ export function Footer() {
               © {year} {t("ENVOD KINGDOM SHIPPING SERVICES LLC", "انفود كينغدوم لخدمات الشحن ذ.م.م")}.{" "}
               {t("All rights reserved.", "جميع الحقوق محفوظة.")}
             </p>
-            <div className="flex items-center gap-4 flex-wrap justify-center">
-              {([
-                ["Privacy Policy", "سياسة الخصوصية"],
-                ["Terms & Conditions", "الشروط والأحكام"],
-                ["Cookie Policy", "سياسة الكوكيز"],
-              ] as const).map(([en, ar], i) => (
-                <React.Fragment key={en}>
-                  {i > 0 && <span className="w-px h-3 bg-white/15" aria-hidden />}
-                  <a href="#" className="hover:text-white transition-colors">{t(en, ar)}</a>
-                </React.Fragment>
-              ))}
-            </div>
           </div>
         </div>
       </div>
@@ -711,29 +628,94 @@ export function Footer() {
   );
 }
 
+function AnalyticsBridge() {
+  const { language } = useLanguage();
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const handleClick = (clickEvent: MouseEvent) => {
+      if (!(clickEvent.target instanceof Element)) return;
+      const element = clickEvent.target.closest("a,button");
+      if (!element) return;
+
+      const href =
+        element instanceof HTMLAnchorElement
+          ? element.getAttribute("href") ?? ""
+          : "";
+      const label = (element.textContent ?? "").trim().toLowerCase();
+      const serviceMatch = window.location.pathname.match(/\/services\/([^/]+)/);
+      const serviceCategory = serviceMatch?.[1];
+      const ctaLocation = element.closest("header")
+        ? "header"
+        : element.closest("footer")
+          ? "footer"
+          : element.closest("[role=dialog]")
+            ? "quote_modal"
+            : "content";
+      const payload = {
+        page_path: window.location.pathname,
+        language,
+        service_category: serviceCategory,
+        cta_location: ctaLocation,
+      };
+
+      if (href.startsWith("tel:")) {
+        emitAnalyticsEvent("call_click", payload);
+      } else if (href.includes("wa.me")) {
+        emitAnalyticsEvent("whatsapp_click", payload);
+      } else if (href.startsWith("mailto:")) {
+        emitAnalyticsEvent("email_click", payload);
+      } else if (
+        /\/contact(?:\/|$)/.test(href) ||
+        (element instanceof HTMLButtonElement &&
+          /quote|عرض سعر|تسعيرة/.test(label))
+      ) {
+        emitAnalyticsEvent("service_cta_click", payload);
+      }
+    };
+
+    document.addEventListener("click", handleClick, true);
+    return () => document.removeEventListener("click", handleClick, true);
+  }, [language, location]);
+
+  return null;
+}
+
 /* ─────────────────────────── Main Layout ─────────────────────────── */
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const { t } = useLanguage();
   return (
     <div className="flex flex-col min-h-screen">
+      <AnalyticsBridge />
       <Navbar onGetQuote={() => setQuoteOpen(true)} />
       <main className="flex-1">{children}</main>
       <Footer />
       <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />
 
-      {/* Premium branded WhatsApp floating button */}
-      <a
-        href="https://wa.me/966502260256"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-[#25D366] text-white pl-4 pr-5 py-3 rounded-full shadow-[0_4px_24px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_36px_rgba(37,211,102,0.6)] hover:bg-[#1EBE5D] transition-all duration-300 hover:-translate-y-1"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        <span className="text-sm font-bold hidden sm:block">WhatsApp</span>
-      </a>
+      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+        <a
+          href={`tel:${CONTACT_PHONE_E164}`}
+          aria-label={t(`Call Us: ${CONTACT_PHONE_DISPLAY}`, `اتصل بنا: ${CONTACT_PHONE_DISPLAY}`)}
+          title={t(`Call Us: ${CONTACT_PHONE_DISPLAY}`, `اتصل بنا: ${CONTACT_PHONE_DISPLAY}`)}
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#17456F] text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-[#205D91] sm:h-14 sm:w-14"
+        >
+          <Phone className="h-5 w-5" />
+          <span className="sr-only">{t("Call", "اتصال")}</span>
+        </a>
+        <a
+          href="https://wa.me/966502260256"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={t("Chat on WhatsApp", "تواصل عبر واتساب")}
+          className="flex items-center gap-2.5 rounded-full bg-[#25D366] py-3 pl-4 pr-5 text-white shadow-[0_4px_24px_rgba(37,211,102,0.4)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#1EBE5D] hover:shadow-[0_6px_36px_rgba(37,211,102,0.6)]"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+          <span className="text-sm font-bold hidden sm:block">WhatsApp</span>
+        </a>
+      </div>
     </div>
   );
 }

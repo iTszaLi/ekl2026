@@ -1,0 +1,12 @@
+metric,value,status,source_needed,definition
+Saudi organic impressions,,Unavailable,Authorized Google Search Console,"Saudi country filter; fixed date/device/page/query definitions"
+Saudi organic clicks,,Unavailable,Authorized Google Search Console,Search-result clicks not completed enquiries
+Organic CTR,,Unavailable,Authorized Google Search Console,Clicks divided by impressions using consistent filters
+Average search position,,Unavailable,Authorized Google Search Console,Not a deterministic rank for every user or location
+Organic sessions,,Unavailable,Authorized GA4 or approved analytics,Owner-approved traffic-source definition and consent configuration
+Telephone link clicks,,Unavailable,Authorized analytics event export,Not connected calls
+WhatsApp link clicks,,Unavailable,Authorized analytics event export,Not messages sent or qualified leads
+Successful enquiry API events,,Unavailable,Authorized analytics and provider evidence,Not proof of inbox delivery; exclude tests and bots
+Qualified organic enquiries,,Unavailable,Authorized private lead-qualification workflow,Real qualified enquiries attributed with an agreed method
+Qualified enquiry conversion rate,,Unavailable,Authorized analytics plus private lead qualification,Qualified organic enquiries divided by the agreed organic denominator
+Relevant referring domains,,Unavailable,Authorized backlink provider or verified publication inventory,Separate editorial membership citation and paid sponsorship categories

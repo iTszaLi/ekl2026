@@ -223,6 +223,28 @@
   display: none;
 }
 
+.select-scroll-area {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 30%) transparent;
+}
+.select-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.select-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+.select-scroll-area::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgb(255 255 255 / 30%);
+}
+.select-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgb(255 255 255 / 50%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .envod-float { animation: none; }
 }

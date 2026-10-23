@@ -14,10 +14,11 @@ export interface SeoConfig {
   canonicalPath?: string;
   image?: string;
   imageAlt?: string;
+  type?: string;
+  robots?: string;
   locale?: string;
   alternateLocale?: string;
   alternates?: Array<{ hreflang: string; href: string }>;
-  type?: string;
   /** One or more JSON-LD objects injected as <script type="application/ld+json">. */
   jsonLd?: Array<Record<string, unknown>>;
 }
@@ -64,8 +65,17 @@ function absoluteCanonical(canonicalPath?: string): string {
  */
 export function useSeo(config: SeoConfig): void {
   const {
-    title, description, canonicalPath, image, imageAlt, locale, alternateLocale,
-    alternates, type = "website", jsonLd,
+    title,
+    description,
+    canonicalPath,
+    image,
+    imageAlt,
+    type = "website",
+    robots = "index, follow",
+    locale = "en_SA",
+    alternateLocale = "ar_SA",
+    alternates = [],
+    jsonLd,
   } = config;
 
   useEffect(() => {
@@ -73,7 +83,10 @@ export function useSeo(config: SeoConfig): void {
       .querySelectorAll(`script[type="application/ld+json"][${PRERENDERED}]`)
       .forEach((s) => s.remove());
     document
-      .querySelectorAll(`link[rel="alternate"][${PRERENDERED}]`)
+      .querySelectorAll(`link[rel="alternate"][hreflang][${PRERENDERED}]`)
+      .forEach((link) => link.remove());
+    document
+      .querySelectorAll(`link[rel="alternate"][hreflang][${MANAGED}]`)
       .forEach((link) => link.remove());
 
     const canonicalUrl = absoluteCanonical(canonicalPath);
@@ -83,11 +96,12 @@ export function useSeo(config: SeoConfig): void {
 
     const metas: MetaTag[] = [
       { attr: "name", key: "description", content: description },
+      { attr: "name", key: "robots", content: robots },
       { attr: "property", key: "og:title", content: title },
       { attr: "property", key: "og:description", content: description },
-      { attr: "property", key: "og:locale", content: locale ?? "en_SA" },
-      { attr: "property", key: "og:locale:alternate", content: alternateLocale ?? "ar_SA" },
       { attr: "property", key: "og:type", content: type },
+      { attr: "property", key: "og:locale", content: locale },
+      { attr: "property", key: "og:locale:alternate", content: alternateLocale },
       { attr: "property", key: "og:url", content: canonicalUrl },
       { attr: "name", key: "twitter:card", content: image ? "summary_large_image" : "summary" },
       { attr: "name", key: "twitter:title", content: title },
@@ -102,17 +116,15 @@ export function useSeo(config: SeoConfig): void {
     for (const m of metas) upsertMeta(m.attr, m.key, m.content);
     upsertCanonical(canonicalUrl);
 
-    document.querySelectorAll(`link[rel="alternate"][${MANAGED}]`).forEach((link) => link.remove());
-    const alternateLinks: HTMLLinkElement[] = [];
-    for (const alternate of alternates ?? []) {
+    const alternateLinks = alternates.map(({ hreflang, href }) => {
       const link = document.createElement("link");
       link.rel = "alternate";
-      link.hreflang = alternate.hreflang;
-      link.href = alternate.href;
+      link.hreflang = hreflang;
+      link.href = href;
       link.setAttribute(MANAGED, "true");
       document.head.appendChild(link);
-      alternateLinks.push(link);
-    }
+      return link;
+    });
 
     const scripts: HTMLScriptElement[] = [];
     if (jsonLd && jsonLd.length) {
@@ -131,7 +143,19 @@ export function useSeo(config: SeoConfig): void {
       for (const link of alternateLinks) link.remove();
       document.title = previousTitle;
     };
-  }, [title, description, canonicalPath, image, imageAlt, locale, alternateLocale, type, JSON.stringify(alternates), JSON.stringify(jsonLd)]);
+  }, [
+    title,
+    description,
+    canonicalPath,
+    image,
+    imageAlt,
+    type,
+    robots,
+    locale,
+    alternateLocale,
+    JSON.stringify(alternates),
+    JSON.stringify(jsonLd),
+  ]);
 }
 
 /**

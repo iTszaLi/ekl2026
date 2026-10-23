@@ -1,0 +1,93 @@
+path,language,h1_count,h1_text,h2_count,duplicate_h2_text,heading_sequence,hierarchy_skips,estimated_text_words,under_300_words,jsonld_blocks,jsonld_syntax_errors
+/,en,1,"ENVOD KINGDOM Shipping Services LLC — 25+ Years of Logistics Excellence | Exhibition Logistics, ATA Carnet, Customs Clearance & Freight in Saudi Arabia",15,,h1 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h3 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h3 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,3325,false,9,0
+/services,en,1,Comprehensive Logistics Solutions,5,,h1 > h2 > h3 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1783,false,7,0
+/about,en,1,About ENVOD KINGDOM,2,,h1 > h2 > h3 > h3 > h3 > h3 > h2 > h3 > h4 > h4 > h4 > h4,,573,false,5,0
+/gallery,en,1,Logistics in Motion,2,,h1 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,558,false,4,0
+/contact,en,1,Let's Move Your Business Forward,3,,h1 > h2 > h3 > h3 > h3 > h3 > h2 > h3 > h3 > h3 > h2 > h3 > h4 > h4 > h4 > h4,,647,false,5,0
+/industries,en,1,Logistics Built for Your Industry,4,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,751,false,5,0
+/vision-2030,en,1,Logistics for the Kingdom's Giga-Projects,9,,h1 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1420,false,6,0
+/track,en,1,Request a Shipment Status Update,2,,h1 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,562,false,4,0
+/privacy-policy,en,1,Privacy Notice,5,,h1 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,707,false,3,0
+/terms-and-conditions,en,1,Terms of Use,4,,h1 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,596,false,3,0
+/cookie-policy,en,1,Cookie Notice,4,,h1 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,588,false,3,0
+/services/ocean-freight,en,1,Ocean Freight,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1519,false,6,0
+/services/air-freight,en,1,Air Freight,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1092,false,6,0
+/services/gcc-transportation,en,1,GCC Transportation,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1183,false,6,0
+/services/customs-clearance,en,1,Customs Clearance,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1494,false,6,0
+/services/warehousing,en,1,Warehousing & Distribution,8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1103,false,6,0
+/services/freight-forwarding,en,1,Freight Forwarding,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1205,false,6,0
+/services/supply-chain,en,1,Supply Chain Management,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,757,false,6,0
+/services/project-cargo,en,1,Project Cargo Logistics,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1163,false,6,0
+/services/relocation,en,1,House Moving & Relocation,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,917,false,6,0
+/services/ecommerce-logistics,en,1,E-commerce Logistics,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,805,false,6,0
+/services/exhibition-logistics,en,1,Exhibition & Event Logistics,18,,h1 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,3173,false,6,0
+/services/medical-pharma,en,1,Medical & Pharma Logistics,8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1036,false,6,0
+/services/food-fmcg,en,1,Food & FMCG Logistics,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,852,false,6,0
+/services/pet-animal-import,en,1,Pet & Animal Import,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,794,false,6,0
+/services/breakbulk-shipping,en,1,Breakbulk Shipping,8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,990,false,6,0
+/services/dangerous-goods,en,1,Dangerous Goods (DG Cargo),7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,837,false,6,0
+/services/oog-cargo,en,1,Oversized / Out-of-Gauge (OOG) Cargo,8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,987,false,6,0
+/services/roro-shipping,en,1,RoRo Shipping,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,846,false,6,0
+/services/ata-carnet,en,1,ATA Carnet Coordination,12,,h1 > h2 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1636,false,6,0
+/services/white-glove-logistics,en,1,White Glove Logistics,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,803,false,6,0
+/services/temperature-controlled-logistics,en,1,Temperature Controlled Logistics,8,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,925,false,6,0
+/services/packaging-crating,en,1,Packaging & Crating Services,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,780,false,6,0
+/services/express-courier,en,1,Express Courier Logistics,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,762,false,6,0
+/services/cross-trade-shipping,en,1,Cross Trade Shipping,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,836,false,6,0
+/industries/automotive-logistics,en,1,Automotive Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,917,false,6,0
+/industries/construction-logistics,en,1,Construction Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,924,false,6,0
+/industries/retail-logistics,en,1,Retail Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,867,false,6,0
+/industries/fashion-logistics,en,1,Fashion Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,870,false,6,0
+/industries/electronics-logistics,en,1,Electronics Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,843,false,6,0
+/industries/aerospace-logistics,en,1,Aerospace Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,906,false,6,0
+/industries/hospitality-logistics,en,1,Hospitality Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,881,false,6,0
+/industries/furniture-logistics,en,1,Furniture Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,864,false,6,0
+/industries/chemical-logistics,en,1,Chemical Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,898,false,6,0
+/industries/telecommunications-logistics,en,1,Telecommunications Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,882,false,6,0
+/industries/government-logistics,en,1,Government Logistics,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,868,false,6,0
+/ar,ar,1,إنفود كينغدوم لخدمات الشحن — أكثر من 25 عامًا من التميز اللوجستي | لوجستيات المعارض وكارنيه ATA والتخليص الجمركي والشحن في المملكة العربية السعودية,15,,h1 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h3 > h4 > h4 > h4 > h4 > h4 > h4 > h4 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h3 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,3238,false,5,0
+/ar/services,ar,1,حلول لوجستية متكاملة,5,,h1 > h2 > h3 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1738,false,4,0
+/ar/about,ar,1,عن إنفود كينغدوم,2,,h1 > h2 > h3 > h3 > h3 > h3 > h2 > h3 > h4 > h4 > h4 > h4,,584,false,3,0
+/ar/gallery,ar,1,الخدمات اللوجستية أثناء العمل,2,,h1 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,556,false,3,0
+/ar/contact,ar,1,لننقل عملك إلى الأمام,3,,h1 > h2 > h3 > h3 > h3 > h3 > h2 > h3 > h3 > h3 > h2 > h3 > h4 > h4 > h4 > h4,,638,false,3,0
+/ar/industries,ar,1,لوجستيات مصممة لقطاعكم,4,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,728,false,3,0
+/ar/vision-2030,ar,1,لوجستيات مشاريع المملكة العملاقة,9,,h1 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1343,false,3,0
+/ar/track,ar,1,اطلب تحديثاً عن حالة الشحنة,2,,h1 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,564,false,3,0
+/ar/privacy-policy,ar,1,إشعار الخصوصية,5,,h1 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,695,false,3,0
+/ar/terms-and-conditions,ar,1,شروط استخدام الموقع,4,,h1 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,593,false,3,0
+/ar/cookie-policy,ar,1,إشعار ملفات تعريف الارتباط,4,,h1 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,591,false,3,0
+/ar/services/ocean-freight,ar,1,الشحن البحري,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1435,false,6,0
+/ar/services/air-freight,ar,1,الشحن الجوي,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1060,false,6,0
+/ar/services/gcc-transportation,ar,1,النقل الخليجي,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1141,false,6,0
+/ar/services/customs-clearance,ar,1,التخليص الجمركي,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1415,false,6,0
+/ar/services/warehousing,ar,1,التخزين والتوزيع,8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1065,false,6,0
+/ar/services/freight-forwarding,ar,1,الشحن المتكامل,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1159,false,6,0
+/ar/services/supply-chain,ar,1,إدارة سلسلة التوريد,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,738,false,6,0
+/ar/services/project-cargo,ar,1,لوجستيات بضائع المشاريع,9,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1110,false,6,0
+/ar/services/relocation,ar,1,نقل المنازل والانتقال,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,907,false,6,0
+/ar/services/ecommerce-logistics,ar,1,لوجستيات التجارة الإلكترونية,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,799,false,6,0
+/ar/services/exhibition-logistics,ar,1,لوجستيات المعارض والفعاليات,18,,h1 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,3023,false,6,0
+/ar/services/medical-pharma,ar,1,اللوجستيات الطبية والصيدلانية,8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1005,false,6,0
+/ar/services/food-fmcg,ar,1,لوجستيات الغذاء والسلع الاستهلاكية,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,831,false,6,0
+/ar/services/pet-animal-import,ar,1,استيراد الحيوانات الأليفة,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,780,false,6,0
+/ar/services/breakbulk-shipping,ar,1,الشحن المنفصل (بريك بالك),8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,966,false,6,0
+/ar/services/dangerous-goods,ar,1,البضائع الخطرة (شحن DG),7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,835,false,6,0
+/ar/services/oog-cargo,ar,1,البضائع الضخمة وخارج القياس (OOG),8,,h1 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,974,false,6,0
+/ar/services/roro-shipping,ar,1,الشحن الدحرجي (رورو),7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,824,false,6,0
+/ar/services/ata-carnet,ar,1,تنسيق كارنيه ATA,12,,h1 > h2 > h2 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,1521,false,6,0
+/ar/services/white-glove-logistics,ar,1,لوجستيات القفاز الأبيض,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,782,false,6,0
+/ar/services/temperature-controlled-logistics,ar,1,لوجستيات النقل المبرد,8,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,912,false,6,0
+/ar/services/packaging-crating,ar,1,خدمات التغليف والتصنيد الخشبي,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,760,false,6,0
+/ar/services/express-courier,ar,1,لوجستيات البريد السريع,7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,747,false,6,0
+/ar/services/cross-trade-shipping,ar,1,شحن التجارة العابرة (كروس تريد),7,,h1 > h2 > h3 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,805,false,6,0
+/ar/industries/automotive-logistics,ar,1,لوجستيات السيارات,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,873,false,6,0
+/ar/industries/construction-logistics,ar,1,لوجستيات البناء والإنشاء,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,908,false,6,0
+/ar/industries/retail-logistics,ar,1,لوجستيات التجزئة,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,862,false,6,0
+/ar/industries/fashion-logistics,ar,1,لوجستيات الأزياء,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,847,false,6,0
+/ar/industries/electronics-logistics,ar,1,لوجستيات الإلكترونيات,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,837,false,6,0
+/ar/industries/aerospace-logistics,ar,1,لوجستيات الطيران والفضاء,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,885,false,6,0
+/ar/industries/hospitality-logistics,ar,1,لوجستيات الضيافة,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,842,false,6,0
+/ar/industries/furniture-logistics,ar,1,لوجستيات الأثاث,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,837,false,6,0
+/ar/industries/chemical-logistics,ar,1,لوجستيات الكيماويات,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,871,false,6,0
+/ar/industries/telecommunications-logistics,ar,1,لوجستيات الاتصالات,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,850,false,6,0
+/ar/industries/government-logistics,ar,1,اللوجستيات الحكومية,6,,h1 > h2 > h2 > h2 > h3 > h3 > h3 > h3 > h3 > h2 > h2 > h2 > h3 > h4 > h4 > h4 > h4,,839,false,6,0

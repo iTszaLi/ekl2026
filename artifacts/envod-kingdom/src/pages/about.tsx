@@ -19,7 +19,7 @@ import {
   Warehouse,
 } from "lucide-react";
 import { Link } from "wouter";
-import { AboutNetworkMap } from "@/components/AboutNetworkMap";
+import { GlobalNetworkMap } from "@/components/GlobalNetworkMap";
 import { useLanguage } from "@/lib/language-context";
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164, CONTACT_WHATSAPP } from "@/lib/quote-mailto";
 
@@ -228,7 +228,7 @@ export default function About() {
                 <MessageCircle className="h-4 w-4 text-secondary" aria-hidden="true" /> {t("Discuss on WhatsApp", "ناقش شحنتك عبر واتساب")}
               </a>
               <a href={`tel:${CONTACT_PHONE_E164}`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm px-3 py-3 text-sm font-semibold text-slate-300 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary" data-testid="link-about-call">
-                <Phone className="h-4 w-4 text-secondary" aria-hidden="true" /> {t("Call Us", "اتصل بنا")} <span dir="ltr">{CONTACT_PHONE_DISPLAY}</span>
+                <Phone className="h-4 w-4 text-secondary" aria-hidden="true" /> <span dir="ltr">{CONTACT_PHONE_DISPLAY}</span>
               </a>
             </div>
           </div>
@@ -663,7 +663,7 @@ export default function About() {
           <h2 id="network-heading" className="text-3xl font-extrabold leading-tight text-white sm:text-4xl">{t("A Riyadh head office, with listed locations shown on the shared map.", "مقر رئيسي في الرياض ومواقع مدرجة على الخريطة المشتركة.")}</h2>
           <p className="mt-4 text-base leading-7 text-slate-300">{t("Location markers describe the company's listed locations and network context; map connectors are visual guides, not verified freight routes. A location listing does not independently confirm staffing or service availability. Contact the team to confirm the arrangements relevant to a shipment.", "تعرض العلامات المواقع المدرجة للشركة وسياق الشبكة؛ والروابط على الخريطة إرشادية وليست مسارات شحن مؤكدة. ولا يؤكد إدراج الموقع وحده وجود موظفين أو توفر الخدمة. تواصل مع الفريق لتأكيد الترتيبات المناسبة للشحنة.")}</p>
         </div>
-        <AboutNetworkMap aboutContext />
+        <GlobalNetworkMap aboutContext />
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 md:py-24" aria-labelledby="faq-heading">

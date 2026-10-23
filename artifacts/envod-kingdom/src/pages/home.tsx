@@ -5,13 +5,6 @@ import { useLanguage } from "@/lib/language-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import dhlLogo from "@assets/logo_dhl.webp";
-import fedexLogo from "@assets/logo_fedex.webp";
-import aramexLogo from "@assets/logo_aramex.webp";
-import dsvLogo from "@assets/logo_dsv.webp";
-import cevaLogo from "@assets/logo_ceva.webp";
-import schenkerLogo from "@assets/logo_schenker.webp";
-
 import { ScrollAnimSection, type AnimChapter } from "@/components/ScrollAnimSection";
 import { StatsCounter } from "@/components/StatsCounter";
 import { ClientMarquee } from "@/components/ClientMarquee";
@@ -22,14 +15,15 @@ import { IndustriesSection } from "@/components/IndustriesSection";
 import { TrustSection } from "@/components/TrustSection";
 import { PremiumCTA } from "@/components/PremiumCTA";
 import { FAQSection } from "@/components/FAQSection";
+import { Building2, CalendarDays, Factory, Package, ShoppingBag, Truck } from "lucide-react";
 
-const LOGISTICS_LEADERS = [
-  { name: "DHL",            logo: dhlLogo },
-  { name: "FedEx",          logo: fedexLogo },
-  { name: "Aramex",         logo: aramexLogo },
-  { name: "DSV",            logo: dsvLogo },
-  { name: "CEVA Logistics", logo: cevaLogo },
-  { name: "DB Schenker",    logo: schenkerLogo },
+const LOGISTICS_AUDIENCES = [
+  { en: "Importers & exporters", ar: "المستوردون والمصدرون", icon: Building2 },
+  { en: "Exhibitors & event teams", ar: "العارضون وفرق الفعاليات", icon: CalendarDays },
+  { en: "Manufacturers", ar: "المصنّعون", icon: Factory },
+  { en: "Project cargo buyers", ar: "مشترو شحن المشاريع", icon: Package },
+  { en: "Retail & FMCG businesses", ar: "التجزئة والسلع الاستهلاكية", icon: ShoppingBag },
+  { en: "Freight forwarders", ar: "وكلاء الشحن", icon: Truck },
 ];
 
 function LogisticsLeadersSection() {
@@ -47,7 +41,7 @@ function LogisticsLeadersSection() {
             viewport={{ once: true }}
             className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3"
           >
-            {t("SERVING GLOBAL LOGISTICS NETWORKS", "نخدم شبكات اللوجستيات العالمية")}
+            {t("BUSINESS SHIPMENT ENQUIRIES", "استفسارات شحن الأعمال")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -57,29 +51,25 @@ function LogisticsLeadersSection() {
             className="text-3xl md:text-5xl font-black"
             style={{ color: "#0A2342" }}
           >
-            {t("Customs Clearance & Delivery for", "التخليص الجمركي والتوصيل")}
-            <span className="text-secondary"> {t("Global Logistics Leaders", "لكبرى شركات اللوجستيات العالمية")}</span>
+            {t("Logistics planning for", "تخطيط لوجستي لـ")}
+            <span className="text-secondary"> {t("Saudi business shipments", "شحنات الأعمال في السعودية")}</span>
           </motion.h2>
         </div>
 
         {/* Logo showcase */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-          {LOGISTICS_LEADERS.map(({ name, logo }, i) => (
+          {LOGISTICS_AUDIENCES.map(({ en, ar, icon: Icon }, i) => (
             <motion.div
-              key={name}
+              key={en}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: i * 0.07, duration: 0.5 }}
               whileHover={{ y: -5, boxShadow: "0 16px 40px -8px rgba(10,35,66,0.14)" }}
-              className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm hover:border-secondary/30 transition-all group cursor-default flex items-center justify-center h-28 px-6"
+              className="bg-white rounded-2xl border border-[#E2E8F0] shadow-sm hover:border-secondary/30 transition-all group cursor-default flex flex-col items-center justify-center gap-3 h-28 px-4 text-center"
             >
-              <img
-                src={logo}
-                alt={name}
-                loading="lazy"
-                className="max-h-14 w-full object-contain rounded-md [filter:grayscale(0.35)] opacity-90 group-hover:[filter:grayscale(0)] group-hover:opacity-100 transition-[filter,opacity] duration-300"
-              />
+              <Icon aria-hidden="true" className="h-7 w-7 text-secondary" />
+              <span className="text-sm font-bold text-[#0A2342]">{t(en, ar)}</span>
             </motion.div>
           ))}
         </div>
@@ -94,18 +84,11 @@ function LogisticsLeadersSection() {
           style={{ color: "#475569" }}
         >
           {t(
-            "We provide professional customs clearance and nationwide delivery services for leading international freight forwarders, courier companies, and logistics providers operating in Saudi Arabia. Our team ensures fast customs processing, compliant documentation, and reliable transportation from ports and airports to final destinations across the Kingdom.",
-            "نقدم خدمات احترافية في التخليص الجمركي والتوصيل داخل المملكة لكبرى شركات الشحن الدولي وشركات البريد السريع ومزودي الخدمات اللوجستية العاملين في المملكة العربية السعودية. يحرص فريقنا على إنجاز الإجراءات الجمركية بسرعة، وإعداد مستندات متوافقة مع الأنظمة، وتوفير نقل موثوق من الموانئ والمطارات إلى الوجهات النهائية في مختلف أنحاء المملكة.",
+            "Enquiries may cover customs-document coordination, freight planning and delivery requirements for business shipments in Saudi Arabia. Applicable documents, route, operator and service availability are reviewed for each request; customs release and approvals remain with the responsible authorities.",
+            "قد تشمل الاستفسارات تنسيق مستندات الجمارك وتخطيط الشحن ومتطلبات التسليم لشحنات الأعمال في السعودية. تتم مراجعة المستندات والمسار والمشغّل وتوفر الخدمة لكل طلب؛ وتبقى قرارات الفسح والموافقات لدى الجهات المختصة.",
           )}
         </motion.p>
 
-        {/* Identification-only disclaimer */}
-        <p className="text-center text-[11px] mt-5 max-w-2xl mx-auto" style={{ color: "#94A3B8" }}>
-          {t(
-            "Company logos are shown for identification purposes only and do not imply partnership, endorsement, or exclusivity.",
-            "تُعرض شعارات الشركات لأغراض التعريف فقط ولا تعني أي شراكة رسمية أو تأييد أو حصرية.",
-          )}
-        </p>
       </div>
     </section>
   );
@@ -116,19 +99,21 @@ const craneChapters: AnimChapter[] = [
     startProgress: 0,
     endProgress: 0.48,
     title: "25+ YEARS OF LOGISTICS EXCELLENCE.",
-    titleAr: "أكثر من 25 عاماً من التميز اللوجستي.",
+    titleAr: "أكثر من 25 عامًا من التميز اللوجستي.",
     subtitle: "Saudi Arabia's Trusted Partner For Exhibition Logistics, ATA Carnet Services, Customs Clearance and Global Freight Solutions.",
-    subtitleAr: "الشريك الموثوق للمملكة العربية السعودية في لوجستيات المعارض وكارنيه ATA والتخليص الجمركي.",
-    features: ["ATA Carnet Specialists", "Customs Clearance Often Within 24 Hours", "GCC Road Transport", "Air · Sea · Land Freight", "Exhibition & Trade Shows"],
-    featuresAr: ["متخصصون في كارنيه ATA", "تخليص جمركي غالباً خلال 24 ساعة", "نقل بري خليجي", "جوي · بحري · بري", "المعارض والمؤتمرات"],
+    subtitleAr: "شريككم الموثوق في المملكة العربية السعودية لخدمات لوجستيات المعارض وكارنيه ATA والتخليص الجمركي وحلول الشحن العالمية.",
+    features: ["ATA Carnet Specialists", "Customs Clearance Often Within 24 Hours", "GCC Road Transport", "Air · Sea Freight", "Exhibition & Trade Shows"],
+    featuresAr: ["خبراء كارنيه ATA", "التخليص الجمركي غالبًا خلال 24 ساعة", "النقل البري لدول مجلس التعاون الخليجي", "الشحن الجوي · البحري", "المعارض والفعاليات التجارية"],
+    documentSupport: ["SABER", "SFDA", "IEC", "GACA", "FASAH", "SASO", "ZATCA"],
+    documentSupportAr: ["SABER", "SFDA", "IEC", "GACA", "FASAH", "SASO", "ZATCA"],
   },
   {
     startProgress: 0.5,
     endProgress: 1,
-    title: "Connecting Saudi Arabia. To The World.",
-    titleAr: "ربط المملكة العربية السعودية. بالعالم.",
-    subtitle: "Serving Saudi Arabia, GCC Countries and Global Markets for More Than 25 Years.",
-    subtitleAr: "نخدم المملكة العربية السعودية ودول الخليج والأسواق العالمية منذ أكثر من 25 عاماً.",
+    title: "Connecting Saudi Arabia to the World.",
+    titleAr: "نربط المملكة العربية السعودية بالعالم.",
+    subtitle: "Over 25 Years of Trusted Logistics, Freight Forwarding, and Customs Clearance Across Saudi Arabia, the GCC, and Global Markets.",
+    subtitleAr: "أكثر من 25 عامًا من الخدمات اللوجستية الموثوقة، وخدمات الشحن الدولي، والتخليص الجمركي في المملكة العربية السعودية ودول مجلس التعاون الخليجي والأسواق العالمية.",
   },
 ];
 
@@ -137,17 +122,17 @@ const airChapters: AnimChapter[] = [
     startProgress: 0,
     endProgress: 0.48,
     title: "Fast. Reliable. Worldwide.",
-    titleAr: "سريع. موثوق. عالمي.",
-    subtitle: "Air and ocean freight solutions connecting Saudi Arabia to 50+ countries with reliable transit times.",
-    subtitleAr: "حلول الشحن الجوي والبحري تربط المملكة بأكثر من 50 دولة بأوقات عبور موثوقة.",
+    titleAr: "سريع. موثوق. حول العالم.",
+    subtitle: "Air and ocean freight solutions connecting Saudi Arabia to destinations worldwide.",
+    subtitleAr: "حلول الشحن الجوي والبحري التي تربط المملكة العربية السعودية بوجهات حول العالم.",
   },
   {
     startProgress: 0.5,
     endProgress: 1,
-    title: "Customs Clearance. Often Within 24 Hours.",
-    titleAr: "التخليص الجمركي. غالباً خلال 24 ساعة.",
-    subtitle: "SABER & SFDA certified. ATA Carnet specialists. Direct Saudi Customs Authority relationships.",
-    subtitleAr: "معتمد سابر وهيئة الغذاء والدواء. متخصصون كارنيه ATA. علاقات مباشرة مع هيئة الجمارك السعودية.",
+    title: "Customs Clearance. Often Within 24 Hours",
+    titleAr: "التخليص الجمركي. غالبًا خلال 24 ساعة.",
+    subtitle: "SABER and SFDA documentation support. ATA Carnet specialists. Customs clearance decisions remain with the relevant authorities.",
+    subtitleAr: "دعم مستندات سابر وهيئة الغذاء والدواء. خبراء كارنيه ATA. وتبقى قرارات التخليص لدى الجهات المختصة.",
   },
 ];
 
@@ -157,16 +142,16 @@ const warehouseChapters: AnimChapter[] = [
     endProgress: 0.48,
     title: "Exhibition. Project. Transit. Cargo.",
     titleAr: "معارض. مشاريع. عبور. بضائع.",
-    subtitle: "Specialized logistics for temporary imports, re-exports, project cargo and transit shipments across the GCC.",
+    subtitle: "Enquiries for temporary imports, re-exports, project cargo and cross-border transit; route and operator availability must be confirmed.",
     subtitleAr: "خدمات لوجستية متخصصة للاستيراد المؤقت وإعادة التصدير وبضائع المشاريع.",
   },
   {
     startProgress: 0.5,
     endProgress: 1,
-    title: "Technology Driven. Saudi Excellence.",
-    titleAr: "تقنيات متقدمة. تميز سعودي.",
-    subtitle: "State-of-the-art warehousing, fleet management and supply chain solutions across Saudi Arabia.",
-    subtitleAr: "تخزين وإدارة أسطول وحلول سلسلة التوريد المتطورة في جميع أنحاء المملكة العربية السعودية.",
+    title: "Storage & distribution enquiries",
+    titleAr: "استفسارات التخزين والتوزيع",
+    subtitle: "Share the preferred location, cargo, handling needs and storage period; facility and operator availability must be confirmed.",
+    subtitleAr: "أرسل الموقع المفضل ونوع البضاعة ومتطلبات المناولة ومدة التخزين؛ ويجب تأكيد توفر المنشأة والمشغّل.",
   },
 ];
 
@@ -187,8 +172,8 @@ export default function Home() {
           exposed here for crawlers and screen readers (single H1). */}
       <h1 className="sr-only">
         {t(
-          "ENVOD KINGDOM Shipping Services LLC — Logistics, Customs Clearance & Freight Forwarding in Saudi Arabia and the GCC",
-          "إنفود كينغدوم لخدمات الشحن — الخدمات اللوجستية والتخليص الجمركي والشحن في المملكة العربية السعودية ودول الخليج",
+          "ENVOD KINGDOM Shipping Services LLC — 25+ Years of Logistics Excellence | Exhibition Logistics, ATA Carnet, Customs Clearance & Freight in Saudi Arabia",
+          "إنفود كينغدوم لخدمات الشحن — أكثر من 25 عامًا من التميز اللوجستي | لوجستيات المعارض وكارنيه ATA والتخليص الجمركي والشحن في المملكة العربية السعودية",
         )}
       </h1>
 
@@ -229,7 +214,7 @@ export default function Home() {
       {/* ── Client Logo Marquee ── */}
       <ClientMarquee />
 
-      {/* ── Track Shipment ── */}
+      {/* ── Shipment Status Request ── */}
       <section className="py-20 border-y" style={{ background: "#F8FAFC", borderColor: "#E2E8F0" }}>
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
@@ -238,13 +223,16 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
-              {t("REAL-TIME TRACKING", "التتبع الفوري")}
+              {t("SHIPMENT STATUS SUPPORT", "دعم حالة الشحنات")}
             </p>
             <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: "#0A2342" }}>
-              {t("Track Your Cargo", "تتبع شحنتك")}
+              {t("Request a Shipment Status Update", "اطلب تحديثاً عن حالة الشحنة")}
             </h3>
             <p className="mb-6 text-sm" style={{ color: "#64748B" }}>
-              {t("Enter your tracking, reference, or invoice number.", "أدخل رقم التتبع أو المرجع أو الفاتورة.")}
+              {t(
+                "This page does not provide live online tracking. Enter your booking or shipment reference to request an update from our team.",
+                "لا توفر هذه الصفحة تتبعاً مباشراً للشحنات عبر الإنترنت. أدخل رقم الحجز أو مرجع الشحنة لطلب تحديث من فريقنا.",
+              )}
             </p>
             <form onSubmit={handleTrack} className="flex flex-col md:flex-row gap-2 max-w-xl mx-auto">
               <div className="relative flex-1">
@@ -252,12 +240,12 @@ export default function Home() {
                 <Input
                   value={tracking}
                   onChange={(e) => setTracking(e.target.value)}
-                  placeholder={t("e.g. ENVOD-2024-001", "مثال: ENVOD-2024-001")}
+                  placeholder={t("Booking or shipment reference", "رقم الحجز أو مرجع الشحنة")}
                   className={`bg-white border-[#E2E8F0] text-[#1A202C] placeholder:text-[#94A3B8] focus:border-secondary ${isRtl ? "pr-10" : "pl-10"} py-5`}
                 />
               </div>
               <Button type="submit" className="bg-secondary hover:bg-secondary/90 text-white py-5 px-7 shrink-0 shadow-md shadow-secondary/20 hover:-translate-y-0.5 transition-transform">
-                {t("Track", "تتبع")}
+                {t("Request status update", "اطلب تحديث الحالة")}
               </Button>
             </form>
           </motion.div>

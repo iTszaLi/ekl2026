@@ -92,13 +92,13 @@ export default function PillarSections({
             </p>
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
               {isRtl
-                ? "نُسلّم إلى أبرز مراكز المعارض في المملكة"
-                : "We deliver to Saudi Arabia's leading exhibition venues"}
+                ? "معلومات تخطيط مواقع المعارض في السعودية"
+                : "Planning for Saudi exhibition venues"}
             </h2>
             <p className="text-white/45 text-sm max-w-2xl mb-8">
               {isRtl
-                ? "تغطية على مستوى المملكة لكل مركز مؤتمرات ومعارض رئيسي."
-                : "Nationwide coverage to every major convention and exhibition centre."}
+                ? "تُذكر المواقع لأغراض التخطيط فقط؛ ويجب تأكيد الدخول ومواعيد التسليم والمقاولين والنطاق المتاح لكل فعالية."
+                : "Venue names are planning references only; access, delivery windows, contractors and available service scope must be confirmed for each event."}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {pillar.venues.map((v, i) => (
@@ -133,17 +133,17 @@ export default function PillarSections({
       {pillar.majorEvents.length > 0 && (
         <div className="container mx-auto px-4 py-16 max-w-5xl">
           <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
-            {isRtl ? "المعارض الكبرى" : "MAJOR EXHIBITIONS"}
+            {isRtl ? "فعاليات للبحث والتخطيط" : "EVENTS TO RESEARCH FOR PLANNING"}
           </p>
           <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
             {isRtl
-              ? "معارض ندعم العارضين فيها"
-              : "Exhibitions we support exhibitors at"}
+              ? "أمثلة فعاليات في السعودية"
+              : "Examples of Saudi events"}
           </h2>
           <p className="text-white/45 text-sm max-w-2xl mb-8">
             {isRtl
-              ? "خبرة ميدانية في أهم فعاليات المملكة عبر مختلف القطاعات."
-              : "On-the-ground experience at the Kingdom's flagship events across every sector."}
+              ? "تُذكر هذه الفعاليات كأمثلة بحثية فقط، ولا تعني تعيين إنفود أو مشاركتها السابقة."
+              : "These event names are planning references only; they do not imply ENVOD appointment or past participation."}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {pillar.majorEvents.map((e, i) => (

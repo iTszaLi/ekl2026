@@ -6,12 +6,13 @@ import {
   type GalleryItem,
   buildSrcSet,
   largestSrc,
-  categoryLabel,
+  galleryBadgeLabel,
   formatMonthYear,
   galleryTitle,
   galleryDescription,
   galleryLocation,
   galleryAltText,
+  galleryServicePath,
 } from "@/lib/gallery";
 
 interface GalleryLightboxProps {
@@ -27,6 +28,7 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
   const total = items.length;
   const [zoomed, setZoomed] = useState(false);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [imageFailed, setImageFailed] = useState(false);
   const dragState = useRef<{
     dragging: boolean;
     moved: boolean;
@@ -58,6 +60,7 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
   useEffect(() => {
     setZoomed(false);
     setPan({ x: 0, y: 0 });
+    setImageFailed(false);
   }, [index]);
 
   // Keyboard navigation + lock body scroll
@@ -201,8 +204,11 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
               sizes="100vw"
               width={item.width}
               height={item.height}
-              alt={galleryAltText(item, isRtl)}
+              alt={imageFailed ? "" : galleryAltText(item, isRtl)}
+              aria-hidden={imageFailed}
               draggable={false}
+              onLoad={() => setImageFailed(false)}
+              onError={() => setImageFailed(true)}
               onClick={handleImageClick}
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
@@ -212,7 +218,9 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="max-h-[72vh] max-w-full object-contain rounded-lg shadow-2xl"
+              className={`max-h-[72vh] max-w-full object-contain rounded-lg shadow-2xl ${
+                imageFailed ? "opacity-0" : "opacity-100"
+              }`}
               style={{
                 cursor: zoomed ? "grab" : "zoom-in",
                 transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoomed ? 2 : 1})`,
@@ -223,6 +231,15 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
               } as React.CSSProperties}
             />
           </AnimatePresence>
+          {imageFailed && (
+            <div
+              role="status"
+              aria-live="polite"
+              className="absolute inset-0 flex items-center justify-center px-6 text-center text-white/75"
+            >
+              {t("This image could not be loaded. Close the viewer or try another photo.", "تعذّر تحميل الصورة. أغلق العارض أو جرّب صورة أخرى.")}
+            </div>
+          )}
 
           {total > 1 && (
             <button
@@ -242,7 +259,7 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs sm:text-sm text-white/60 mb-2">
               <span className="flex items-center gap-1.5">
                 <Tag className="w-3.5 h-3.5 text-secondary" />
-                {categoryLabel(item.category, t)}
+                {galleryBadgeLabel(item, t)}
               </span>
               {location && (
                 <span className="flex items-center gap-1.5">
@@ -259,6 +276,14 @@ export function GalleryLightbox({ items, index, onClose, onNavigate }: GalleryLi
             </div>
             {description && (
               <p className="text-white/50 text-sm max-w-2xl mx-auto leading-relaxed">{description}</p>
+            )}
+            {item.servicePath && (
+              <a
+                href={galleryServicePath(item.servicePath, isRtl)}
+                className="mt-3 inline-flex items-center justify-center rounded-md px-3 py-2 text-sm font-semibold text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary/70"
+              >
+                {t("Explore related service", "استكشف الخدمة المرتبطة")}
+              </a>
             )}
           </div>
         </div>

@@ -10,9 +10,11 @@ import {
   Car, Stamp, ChevronDown,
   Gem, Snowflake, Box, Zap, Globe2,
 } from "lucide-react";
-import { SERVICE_META, SLUG_TO_ID, SERVICE_CATALOG, buildMailto } from "@/lib/service-data";
-import { SERVICE_IMAGES } from "@/lib/service-images";
+import { SERVICE_META, SLUG_TO_ID, SERVICE_CATALOG } from "@/lib/service-data";
+import { SERVICE_IMAGES, SERVICE_HERO_OPTIONS } from "@/lib/service-images";
+import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 import PillarSections from "@/components/service-pillar/PillarSections";
+import { ServicePreparation } from "@/components/ServicePreparation";
 
 function ServiceIcon({ name, className = "w-8 h-8", style }: { name: string; className?: string; style?: React.CSSProperties }) {
   const map: Record<string, React.ElementType> = {
@@ -76,6 +78,7 @@ export default function ServiceDetail() {
   const serviceName = isRtl ? service.nameAr : service.name;
   const serviceDesc = isRtl ? service.descriptionAr : service.description;
   const heroImage = serviceId ? SERVICE_IMAGES[serviceId] : undefined;
+  const heroOptions = serviceId ? SERVICE_HERO_OPTIONS[serviceId] : undefined;
 
   return (
     <div className="min-h-screen bg-background" dir={isRtl ? "rtl" : "ltr"}>
@@ -89,6 +92,11 @@ export default function ServiceDetail() {
           <div className="absolute inset-0 z-0" aria-hidden="true">
             <img
               src={heroImage}
+              width={heroOptions?.width}
+              height={heroOptions?.height}
+              {...getIntrinsicImageDimensions(heroImage)}
+              srcSet={heroOptions?.srcSet}
+              sizes={heroOptions?.sizes}
               alt=""
               loading="eager"
               fetchPriority="high"
@@ -140,7 +148,7 @@ export default function ServiceDetail() {
                 ENVOD KINGDOM SHIPPING SERVICES
               </motion.p>
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.12 }}
                 className="text-3xl md:text-5xl xl:text-6xl font-black text-white leading-tight tracking-tight max-w-3xl"
@@ -151,7 +159,7 @@ export default function ServiceDetail() {
           </div>
 
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.22 }}
             className="text-white/60 text-lg leading-relaxed max-w-2xl mb-10"
@@ -160,18 +168,18 @@ export default function ServiceDetail() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.32 }}
             className={`flex flex-wrap gap-4 ${isRtl ? "flex-row-reverse" : ""}`}
           >
-            <a
-              href={buildMailto(service.name, service.name + " — General Inquiry")}
+            <Link
+              href={`/contact?service=${meta.slug}`}
               className={`inline-flex items-center gap-2.5 bg-secondary hover:bg-secondary/85 text-white px-7 py-3.5 rounded-xl font-black text-sm uppercase tracking-wider transition-all shadow-lg shadow-secondary/20 hover:-translate-y-px ${isRtl ? "flex-row-reverse" : ""}`}
             >
               <Mail className="w-4 h-4" />
               {t("Request a Quote", "اطلب عرض سعر")}
-            </a>
+            </Link>
             <a
               href="https://wa.me/966502260256"
               target="_blank"
@@ -223,10 +231,10 @@ export default function ServiceDetail() {
             {t("SUB-SERVICES", "الخدمات الفرعية")}
           </p>
           <h2 className="text-2xl md:text-4xl font-black text-white mb-3">
-            {t("Complete", "كل ما تحتاجه")} <span className="text-secondary">{serviceName}</span> {t("Solutions", "من مكان واحد")}
+            {t("Service options for", "خيارات")} <span className="text-secondary">{serviceName}</span>
           </h2>
           <p className="text-white/45 text-sm max-w-xl">
-            {t("Click any sub-service to send us an inquiry — we'll respond within 2 hours.", "انقر على أي خدمة فرعية لإرسال استفساركم — سنرد في غضون ساعتين.")}
+            {t("Choose a sub-service to send an enquiry about your requirements. Response times depend on the enquiry and business hours.", "اختر خدمة فرعية لإرسال استفسار بمتطلباتك. تختلف مدة الرد حسب الاستفسار وساعات العمل.")}
           </p>
         </motion.div>
 
@@ -234,7 +242,7 @@ export default function ServiceDetail() {
           {meta.subServices.map((sub, i) => (
             <motion.a
               key={i}
-              href={buildMailto(service.name, isRtl ? sub.nameAr : sub.name)}
+              href={`/contact?service=${meta.slug}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -272,7 +280,7 @@ export default function ServiceDetail() {
         <section className="py-16 border-t border-white/6" style={{ background: "linear-gradient(180deg, hsl(var(--background)) 0%, #020d1c 100%)" }}>
           <div className="container mx-auto px-4">
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              initial={serviceId === 11 ? false : { opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className={`mb-12 ${isRtl ? "text-right" : "text-center"}`}
@@ -309,7 +317,7 @@ export default function ServiceDetail() {
       )}
 
       {/* ── Industries + Why ENVOD ── */}
-      <section className="py-20 container mx-auto px-4">
+      <section className="py-20 container mx-auto px-4 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20">
           {/* Industries */}
           <motion.div
@@ -328,7 +336,7 @@ export default function ServiceDetail() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 }}
-                  className={`flex items-center gap-3 ${isRtl ? "flex-row-reverse" : ""}`}
+                  className="flex items-center gap-3"
                 >
                   <div className="w-6 h-6 rounded-md flex items-center justify-center shrink-0" style={{ background: `${meta.accentHex}18` }}>
                     <CheckCircle2 className="w-3.5 h-3.5" style={{ color: meta.accentHex }} />
@@ -356,7 +364,7 @@ export default function ServiceDetail() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.07 }}
-                  className={`flex items-start gap-3 ${isRtl ? "flex-row-reverse" : ""}`}
+                  className="flex items-start gap-3"
                 >
                   <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-0.5 border" style={{ background: `${meta.accentHex}12`, borderColor: `${meta.accentHex}25` }}>
                     <CheckCircle2 className="w-4 h-4" style={{ color: meta.accentHex }} />
@@ -368,6 +376,8 @@ export default function ServiceDetail() {
           </motion.div>
         </div>
       </section>
+
+      <ServicePreparation slug={meta.slug} />
 
       {/* ── FAQ ── */}
       {meta.faq.length > 0 && (
@@ -386,7 +396,7 @@ export default function ServiceDetail() {
               {meta.faq.map((item, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={serviceId === 11 ? false : { opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
@@ -430,19 +440,19 @@ export default function ServiceDetail() {
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-5">{t("GET STARTED", "ابدأ الآن")}</p>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4 max-w-2xl mx-auto leading-tight">
-              {t("Ready to Ship?", "مستعد للشحن؟")} <span className="text-secondary">{t("Let's Talk.", "دعنا نتحدث.")}</span>
+              {t("Planning a shipment?", "هل تخطط لشحنة؟")} <span className="text-secondary">{t("Send an Enquiry.", "أرسل استفساراً.")}</span>
             </h2>
             <p className="text-white/45 max-w-lg mx-auto mb-10 text-sm leading-relaxed">
-              {t("Our logistics specialists will design a custom solution for your exact requirements.", "سيصمم متخصصو اللوجستيات لدينا حلاً مخصصاً لمتطلباتك الدقيقة.")}
+              {t("Share the cargo, route and timing so the requested scope and provider availability can be reviewed.", "أرسل تفاصيل البضاعة والمسار والتوقيت لمراجعة النطاق المطلوب وتوفر مقدم الخدمة.")}
             </p>
             <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isRtl ? "sm:flex-row-reverse" : ""}`}>
-              <a
-                href={buildMailto(service.name, service.name + " — Quote Request")}
+              <Link
+                href={`/contact?service=${meta.slug}`}
                 className={`inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white py-4 px-10 rounded-xl font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-secondary/20 ${isRtl ? "flex-row-reverse" : ""}`}
               >
                 <Mail className="w-4 h-4" />
                 {t("Get Free Quote", "احصل على عرض سعر")}
-              </a>
+              </Link>
               <Link
                 href="/services"
                 className={`inline-flex items-center justify-center gap-2 bg-white/[0.06] border border-white/12 hover:bg-white/[0.1] text-white py-4 px-10 rounded-xl font-bold text-sm uppercase tracking-wider transition-all ${isRtl ? "flex-row-reverse" : ""}`}

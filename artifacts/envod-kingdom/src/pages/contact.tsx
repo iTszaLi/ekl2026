@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 import { useLanguage } from "@/lib/language-context";
-import { buildQuoteMailto, CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP } from "@/lib/quote-mailto";
+import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP } from "@/lib/quote-mailto";
+import { EnquiryApiError, submitEnquiry } from "@/lib/enquiry-api";
+import { emitAnalyticsEvent } from "@/lib/analytics";
+import { SERVICE_CATALOG, SLUG_TO_ID } from "@/lib/service-data";
+import { CommonShipmentFields } from "@/components/CommonShipmentFields";
+import { ServiceRequirementFields } from "@/components/ServiceRequirementFields";
+import { EMPTY_COMMON_SHIPMENT, ENQUIRY_SERVICES, getEnquiryServiceById, getEnquiryServiceByValue, getEnquiryServiceForCatalogId, getEnquiryServiceFormLabel, OTHER_SERVICE_VALUE, validServiceDetails, type CommonShipmentValues } from "@/lib/enquiry-services";
+import { isQuoteCargoValid } from "@/lib/enquiry-cargo-validation";
 import {
   Select,
   SelectContent,
@@ -11,7 +19,6 @@ import {
 import {
   MapPin,
   Phone,
-  MessageCircle,
   Printer,
   Mail,
   CheckCircle2,
@@ -19,48 +26,77 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-type FieldKey = "name" | "company" | "email" | "phone" | "service" | "message";
+interface ContactValues {
+  name: string;
+  company: string;
+  email: string;
+  phone: string;
+  service: string;
+  requirementsText: string;
+  message: string;
+}
 
-const SERVICES: { value: string; en: string; ar: string }[] = [
-  { value: "Customs Clearance", en: "Customs Clearance", ar: "التخليص الجمركي" },
-  { value: "Ocean & Sea Freight", en: "Ocean & Sea Freight", ar: "الشحن البحري" },
-  { value: "Air Freight", en: "Air Freight", ar: "الشحن الجوي" },
-  { value: "GCC Transportation", en: "GCC Transportation", ar: "النقل داخل دول الخليج" },
-  { value: "Exhibition Logistics", en: "Exhibition Logistics", ar: "الخدمات اللوجستية للمعارض" },
-  { value: "ATA Carnet Services", en: "ATA Carnet Services", ar: "خدمات دفتر ATA" },
-  { value: "Project Cargo", en: "Project Cargo", ar: "شحن المشاريع" },
-  { value: "Warehousing & Distribution", en: "Warehousing & Distribution", ar: "التخزين والتوزيع" },
-  { value: "Freight Forwarding", en: "Freight Forwarding", ar: "التوكيل الملاحي" },
-  { value: "RoRo Shipping", en: "RoRo Shipping", ar: "الشحن الدحرجي (رورو)" },
-  { value: "Door-to-Door Logistics", en: "Door-to-Door Logistics", ar: "الخدمات من الباب إلى الباب" },
-  { value: "Cross-Border Transportation", en: "Cross-Border Transportation", ar: "النقل عبر الحدود" },
-  { value: "Temporary Import & Export", en: "Temporary Import & Export", ar: "الاستيراد والتصدير المؤقت" },
-  { value: "Event Logistics", en: "Event Logistics", ar: "الخدمات اللوجستية للفعاليات" },
-  { value: "Other", en: "Other", ar: "أخرى" },
-];
+type FieldKey = keyof ContactValues;
+type ValidationKey = FieldKey | "shipmentDetails";
 
-const EMPTY = { name: "", company: "", email: "", phone: "", service: "", message: "" };
+const EMPTY: ContactValues = {
+  name: "", company: "", email: "", phone: "", service: "",
+  requirementsText: "", message: "",
+};
 
 export default function Contact() {
-  const { t, isRtl } = useLanguage();
+  const { t, isRtl, language } = useLanguage();
 
-  const [values, setValues] = useState<Record<FieldKey, string>>({ ...EMPTY });
-  const [errors, setErrors] = useState<Partial<Record<FieldKey, string>>>({});
+  const [values, setValues] = useState<ContactValues>({ ...EMPTY });
+  const [errors, setErrors] = useState<Partial<Record<ValidationKey, string>>>({});
+  const [shipmentByService, setShipmentByService] = useState<Record<string, CommonShipmentValues>>({});
+  const [serviceDetailsByService, setServiceDetailsByService] = useState<Record<string, Record<string, string>>>({});
+  const serviceDetailsByServiceRef = useRef<Record<string, Record<string, string>>>({});
   const [honeypot, setHoneypot] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const submitLock = useRef(false);
+  const [submitError, setSubmitError] = useState("");
+  const formStarted = useRef(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get("service");
+    const selected = slug ? SERVICE_CATALOG.find((item) => item.id === SLUG_TO_ID[slug]) : undefined;
+    if (!selected) return;
+    const isDoorToDoorEnquiry =
+      slug === "freight-forwarding" && params.get("topic") === "door-to-door";
+    const option = getEnquiryServiceForCatalogId(selected.id) ?? getEnquiryServiceById("other")!;
+    setValues((previous) => ({
+      ...previous,
+      service: option.en,
+      requirementsText: previous.requirementsText.trim() ? previous.requirementsText : language === "ar"
+        ? isDoorToDoorEnquiry
+          ? "أرغب في الاستفسار عن تنسيق الشحن من الباب إلى الباب."
+          : `أرغب في الاستفسار عن: ${selected.nameAr}`
+        : isDoorToDoorEnquiry
+          ? "I would like to enquire about Door-to-Door Logistics."
+          : `I would like to enquire about ${selected.name}.`,
+    }));
+  }, [language]);
 
   const setField = (key: FieldKey, val: string) => {
     setValues((prev) => ({ ...prev, [key]: val }));
     setErrors((prev) => {
-      if (!prev[key]) return prev;
+      const cargoField = ["dimensions", "packageCount", "weightKg", "preferredShippingDate"].includes(key);
+      const clearOtherDescriptionError = key === "service" && val !== OTHER_SERVICE_VALUE && !!prev.requirementsText;
+      if (!prev[key] && !(cargoField && prev.shipmentDetails) && !clearOtherDescriptionError) return prev;
       const next = { ...prev };
       delete next[key];
+      if (cargoField) delete next.shipmentDetails;
+      if (clearOtherDescriptionError) delete next.requirementsText;
       return next;
     });
   };
 
   const validate = (): boolean => {
-    const e: Partial<Record<FieldKey, string>> = {};
+    const e: Partial<Record<ValidationKey, string>> = {};
     if (!values.name.trim()) e.name = t("Please enter your name.", "الرجاء إدخال اسمك.");
     if (!values.email.trim()) {
       e.email = t("Please enter your email address.", "الرجاء إدخال بريدك الإلكتروني.");
@@ -69,34 +105,105 @@ export default function Contact() {
     }
     if (!values.phone.trim()) e.phone = t("Please enter your phone number.", "الرجاء إدخال رقم هاتفك.");
     if (!values.service) e.service = t("Please select a service.", "الرجاء اختيار خدمة.");
-    if (!values.message.trim()) e.message = t("Please enter your message.", "الرجاء إدخال رسالتك.");
+    if (values.service === OTHER_SERVICE_VALUE && !values.requirementsText.trim()) {
+      e.requirementsText = t("Please describe the logistics service you need.", "يرجى وصف الخدمة اللوجستية التي تحتاج إليها.");
+    }
+    const serviceId = getEnquiryServiceByValue(values.service)?.id;
+    if (serviceId && !isQuoteCargoValid(shipmentByService[serviceId] ?? EMPTY_COMMON_SHIPMENT)) {
+      e.shipmentDetails = t(
+        "Check the shipment quantities, dimensions, weight and date.",
+        "راجع الكميات والأبعاد والوزن وتاريخ الشحنة.",
+      );
+    }
+    if (serviceId && !validServiceDetails(values.service, serviceDetailsByService[serviceId] ?? {})) {
+      e.service = t("Please check the optional service details.", "يرجى التحقق من تفاصيل الخدمة الاختيارية.");
+    }
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    if (honeypot) {
-      setShowSuccess(true);
+    if (submitLock.current || isSubmitting || showSuccess) return;
+    if (!validate()) return;
+    if (!privacyConsent) {
+      setSubmitError(
+        t(
+          "Please agree to the privacy notice before sending your enquiry.",
+          "يرجى الموافقة على إشعار الخصوصية قبل إرسال استفسارك.",
+        ),
+      );
       return;
     }
-    if (!validate()) return;
-    window.location.href = buildQuoteMailto([
-      { label: "Customer Name", value: values.name },
-      { label: "Company", value: values.company },
-      { label: "Email", value: values.email },
-      { label: "Phone", value: values.phone },
-      { label: "Service Required", value: values.service },
-      { label: "Message", value: values.message },
-    ]);
-    setShowSuccess(true);
+
+    const activeService = getEnquiryServiceByValue(values.service);
+    const serviceId = activeService?.id ?? "";
+    const shipmentValues = shipmentByService[serviceId] ?? EMPTY_COMMON_SHIPMENT;
+    const shipment = Object.fromEntries(
+      Object.entries(shipmentValues).filter(([, value]) => value.trim().length > 0),
+    ) as Partial<CommonShipmentValues>;
+    const activeServiceDetails = Object.fromEntries(
+      Object.entries(serviceDetailsByServiceRef.current[serviceId] ?? {})
+        .filter(([, value]) => value.trim().length > 0),
+    );
+
+    submitLock.current = true;
+    setIsSubmitting(true);
+    setSubmitError("");
+    try {
+      await submitEnquiry({
+        formType: "contact",
+        language,
+        name: values.name,
+        company: values.company,
+        email: values.email,
+        phone: values.phone,
+        service: values.service,
+        ...shipment,
+        requirementsText: values.requirementsText,
+        serviceDetails: activeServiceDetails,
+        message: values.message,
+        privacyConsent: true,
+        website: honeypot,
+      });
+      emitAnalyticsEvent("contact_form_submit_success", {
+        page_path: window.location.pathname,
+        language,
+        service_category: values.service,
+        cta_location: "contact_form",
+      });
+      setShowSuccess(true);
+    } catch (error) {
+      emitAnalyticsEvent("contact_form_submit_failure", {
+        page_path: window.location.pathname,
+        language,
+        service_category: values.service,
+        cta_location: "contact_form",
+      });
+      setSubmitError(
+        error instanceof EnquiryApiError && error.rateLimited
+          ? t("Too many attempts. Please wait before retrying, or contact us by phone or WhatsApp.", "محاولات كثيرة. يرجى الانتظار قبل المحاولة مجدداً، أو التواصل معنا هاتفياً أو عبر واتساب.")
+          : t(
+          "Your enquiry could not be sent. Please try again or contact us directly.",
+          "تعذر إرسال استفسارك. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.",
+        ),
+      );
+    } finally {
+      submitLock.current = false;
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
     setValues({ ...EMPTY });
     setErrors({});
+    setServiceDetailsByService({});
+    serviceDetailsByServiceRef.current = {};
     setHoneypot("");
     setShowSuccess(false);
+    setPrivacyConsent(false);
+    setSubmitError("");
+    formStarted.current = false;
   };
 
   const fieldClass = (hasError: boolean) =>
@@ -122,12 +229,6 @@ export default function Contact() {
       ltr: true,
     },
     {
-      icon: MessageCircle,
-      title: t("WhatsApp", "واتساب"),
-      lines: [CONTACT_WHATSAPP],
-      ltr: true,
-    },
-    {
       icon: Printer,
       title: t("Fax", "فاكس"),
       lines: ["+966 11 238 0517"],
@@ -142,7 +243,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="pt-24 pb-24 min-h-screen bg-background">
+    <div className="pt-32 pb-24 min-h-screen bg-background sm:pt-24">
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="max-w-3xl mx-auto text-center mb-14">
@@ -154,8 +255,8 @@ export default function Contact() {
           </h1>
           <p className="text-lg text-white/60">
             {t(
-              "Request a quote, ask a question, or tell us how we can support your logistics operations. Our team responds promptly.",
-              "اطلب عرض سعر، اطرح سؤالاً، أو أخبرنا كيف يمكننا دعم عملياتك اللوجستية. يستجيب فريقنا بسرعة.",
+              "Request a quote, ask a question, or share your shipment details for assessment.",
+              "اطلب عرض سعر أو اطرح سؤالاً أو أرسل تفاصيل شحنتك لتقييمها.",
             )}
           </p>
         </div>
@@ -192,16 +293,22 @@ export default function Contact() {
 
             <div className="mt-6 p-5 rounded-2xl bg-gradient-to-br from-secondary/15 to-transparent border border-secondary/20">
               <p className="text-white font-semibold text-[15px] mb-1">
-                {t("Working Hours", "ساعات العمل")}
+                {t("Office Hours", "ساعات عمل المكتب")}
               </p>
               <p className="text-white/60 text-[14px]">
-                {t("Sunday – Thursday · 8:00 AM – 6:00 PM", "الأحد – الخميس · 8:00 صباحاً – 6:00 مساءً")}
+                {t("Sunday–Thursday · 8:00 AM–6:00 PM", "الأحد–الخميس · 8:00 صباحاً–6:00 مساءً")}
               </p>
               <p className="text-white/60 text-[14px]">
-                {t("Saturday · 9:00 AM – 2:00 PM", "السبت · 9:00 صباحاً – 2:00 مساءً")}
+                {t("Saturday · 9:00 AM–2:00 PM", "السبت · 9:00 صباحاً–2:00 مساءً")}
               </p>
               <p className="text-white/60 text-[14px]">
-                {t("24/7 shipment tracking & support", "تتبع ودعم الشحنات على مدار الساعة")}
+                {t("Friday · Closed", "الجمعة · مغلق")}
+              </p>
+              <p className="text-white/45 text-[12px]">
+                {t("Saudi Arabia local time (AST, UTC+3)", "التوقيت المحلي للمملكة العربية السعودية (AST، UTC+3)")}
+              </p>
+              <p className="text-white/60 text-[14px]">
+                {t("Shipment status enquiries", "استفسارات حالة الشحنات")}
               </p>
             </div>
           </div>
@@ -215,16 +322,16 @@ export default function Contact() {
                     <CheckCircle2 className="w-8 h-8 text-green-400" />
                   </div>
                   <h2 className="text-2xl font-bold text-white mb-3">
-                    {t("Your Email Draft Is Ready", "مسودة بريدك الإلكتروني جاهزة")}
+                    {t("Your Enquiry Was Accepted", "تم قبول استفسارك")}
                   </h2>
                   <p className="text-white/60 max-w-md leading-relaxed mb-4">
                     {t(
-                      "An email draft with your enquiry details has been opened in your mail app — just press send and our team will get back to you as soon as possible.",
-                      "تم فتح مسودة بريد إلكتروني تحتوي على تفاصيل استفسارك في تطبيق البريد لديك — فقط اضغط إرسال وسيتواصل معك فريقنا في أقرب وقت ممكن.",
+                      "The email provider accepted your enquiry for processing. Acceptance does not confirm inbox delivery.",
+                      "قبل مزوّد البريد استفسارك للمعالجة. القبول لا يؤكد الوصول إلى صندوق البريد.",
                     )}
                   </p>
                   <p className="text-white/45 text-[14px] max-w-md leading-relaxed mb-8">
-                    {t("If it didn't open, email us directly at ", "إذا لم تُفتح المسودة، راسلنا مباشرة على ")}
+                    {t("You can also email us at ", "يمكنك أيضاً مراسلتنا على ")}
                     <a href={`mailto:${CONTACT_EMAIL}`} className="text-secondary hover:underline" dir="ltr">
                       {CONTACT_EMAIL}
                     </a>
@@ -250,7 +357,22 @@ export default function Contact() {
                     {t("Fields marked with * are required.", "الحقول المميزة بعلامة * مطلوبة.")}
                   </p>
 
-                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                    <form
+                      onSubmit={handleSubmit}
+                      onFocusCapture={() => {
+                        if (!formStarted.current) {
+                          formStarted.current = true;
+                          emitAnalyticsEvent("contact_form_start", {
+                            page_path: window.location.pathname,
+                            language,
+                            cta_location: "contact_form",
+                          });
+                        }
+                      }}
+                      noValidate
+                      className="space-y-5"
+                    >
+                    <h3 className="text-base font-bold text-white">{t("Contact details", "معلومات التواصل")}</h3>
                     {/* Honeypot — hidden from users, catches bots */}
                     <div className="absolute w-px h-px overflow-hidden -m-px p-0 border-0" aria-hidden="true">
                       <label htmlFor="company_website">Company website</label>
@@ -357,7 +479,7 @@ export default function Contact() {
                       <label htmlFor="service" className="block text-[13.5px] font-semibold text-white/85 mb-2">
                         {t("Service Interested In", "الخدمة المطلوبة")} <span className="text-secondary">*</span>
                       </label>
-                      <Select value={values.service} onValueChange={(v) => setField("service", v)}>
+                      <Select value={values.service} onValueChange={(v) => { if (v) setField("service", v); }}>
                         <SelectTrigger
                           id="service"
                           aria-invalid={!!errors.service}
@@ -367,16 +489,18 @@ export default function Contact() {
                           <SelectValue placeholder={t("Select a service", "اختر خدمة")} />
                         </SelectTrigger>
                         <SelectContent
-                          className="bg-[#0b1728] border-white/10 text-white rounded-xl max-h-72"
+                          className="bg-[#0b1728] border-white/10 text-white rounded-xl"
                           position="popper"
+                          sideOffset={4}
+                          collisionPadding={12}
                         >
-                          {SERVICES.map((s) => (
+                          {ENQUIRY_SERVICES.map((s) => (
                             <SelectItem
-                              key={s.value}
-                              value={s.value}
+                              key={s.id}
+                              value={s.en}
                               className="text-white/85 focus:bg-secondary/15 focus:text-white data-[state=checked]:text-white rounded-lg py-2.5 pl-3 pr-8 cursor-pointer"
                             >
-                              {t(s.en, s.ar)}
+                              {t(getEnquiryServiceFormLabel(s, "en"), getEnquiryServiceFormLabel(s, "ar"))}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -389,41 +513,152 @@ export default function Contact() {
                       )}
                     </div>
 
-                    <div>
-                      <label htmlFor="message" className="block text-[13.5px] font-semibold text-white/85 mb-2">
-                        {t("Message", "الرسالة")} <span className="text-secondary">*</span>
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={5}
-                        value={values.message}
-                        onChange={(e) => setField("message", e.target.value)}
-                        aria-invalid={!!errors.message}
-                        aria-describedby={errors.message ? "message-error" : undefined}
-                        placeholder={t(
-                          "Tell us about your shipment, origin & destination, cargo type, and timeline…",
-                          "أخبرنا عن شحنتك، نقطة المنشأ والوجهة، نوع البضاعة، والجدول الزمني…",
+                    <section aria-labelledby="shipment-details-heading" className="space-y-4">
+                      <h3 id="shipment-details-heading" className="text-base font-bold text-white">{t("Shipment or project details", "تفاصيل الشحنة أو المشروع")}</h3>
+                      {(() => {
+                        const selectedService = getEnquiryServiceByValue(values.service);
+                        if (!selectedService) {
+                          return <p className="text-sm text-white/45">{t("Select a service to see relevant optional questions.", "اختر الخدمة لعرض الأسئلة الاختيارية المناسبة.")}</p>;
+                        }
+                        const shipment = shipmentByService[selectedService.id] ?? EMPTY_COMMON_SHIPMENT;
+                        return (
+                          <>
+                            <CommonShipmentFields
+                              serviceId={selectedService.id}
+                              values={shipment}
+                              onChange={(key, value) => {
+                                setShipmentByService((previous) => ({
+                                  ...previous,
+                                  [selectedService.id]: { ...(previous[selectedService.id] ?? EMPTY_COMMON_SHIPMENT), [key]: value },
+                                }));
+                                setErrors((previous) => {
+                                  if (!previous.shipmentDetails) return previous;
+                                  const next = { ...previous };
+                                  delete next.shipmentDetails;
+                                  return next;
+                                });
+                              }}
+                              idPrefix="contact"
+                              fieldClass={fieldClass(false)}
+                              labelClass="block text-[13.5px] font-semibold text-white/85 mb-2"
+                              errorId={errors.shipmentDetails ? "contact-shipment-error" : undefined}
+                            />
+                            {errors.shipmentDetails && <p id="contact-shipment-error" role="alert" className="text-xs text-red-300">{errors.shipmentDetails}</p>}
+                            <ServiceRequirementFields
+                              serviceId={selectedService.id}
+                              values={serviceDetailsByService[selectedService.id] ?? {}}
+                              onChange={(fieldId, value) => {
+                                const next = {
+                                  ...serviceDetailsByServiceRef.current,
+                                  [selectedService.id]: {
+                                    ...(serviceDetailsByServiceRef.current[selectedService.id] ?? {}),
+                                    [fieldId]: value,
+                                  },
+                                };
+                                serviceDetailsByServiceRef.current = next;
+                                console.log("DETAILS_REF_CHANGE", selectedService.id, fieldId, value);
+                                setServiceDetailsByService(next);
+                                setErrors((previous) => {
+                                  if (!previous.service) return previous;
+                                  const next = { ...previous };
+                                  delete next.service;
+                                  return next;
+                                });
+                              }}
+                              idPrefix="contact-service"
+                              fieldClass={fieldClass(false)}
+                              labelClass="block text-[13.5px] font-semibold text-white/85 mb-2"
+                            />
+                          </>
+                        );
+                      })()}
+                    </section>
+
+                    <section aria-labelledby="additional-requirements-heading" className="space-y-4">
+                      <h3 id="additional-requirements-heading" className="text-base font-bold text-white">{t("Additional requirements", "متطلبات إضافية")}</h3>
+                      <div>
+                        <label htmlFor="requirementsText" className="block text-[13.5px] font-semibold text-white/85 mb-2">
+                          {t("Tell us about your requirements", "أخبرنا عن متطلباتك")}
+                          {values.service === OTHER_SERVICE_VALUE
+                            ? <span className="text-secondary"> *</span>
+                            : <span className="ml-1 font-normal text-white/45">({t("optional", "اختياري")})</span>}
+                        </label>
+                        <textarea
+                          id="requirementsText"
+                          name="requirementsText"
+                          rows={5}
+                          maxLength={4000}
+                          value={values.requirementsText}
+                          onChange={(event) => setField("requirementsText", event.target.value)}
+                          aria-invalid={!!errors.requirementsText}
+                          aria-describedby={errors.requirementsText ? "requirementsText-error" : undefined}
+                          placeholder={t(
+                            "Describe what you need, your cargo or goods, quantities, locations, deadlines, and any special requirements.",
+                            "اشرح ما تحتاج إليه، والبضائع والكميات والمواقع والمواعيد وأي متطلبات خاصة.",
+                          )}
+                          className={`w-full px-4 py-3 rounded-xl bg-[#0a1526] border text-white text-[15px] placeholder:text-white/30 outline-none focus:ring-2 transition-all duration-200 resize-y ${
+                            errors.requirementsText
+                              ? "border-red-500/60 focus:border-red-500/70 focus:ring-red-500/25"
+                              : "border-white/10 hover:border-white/20 focus:border-secondary/60 focus:ring-secondary/30"
+                          }`}
+                        />
+                        {errors.requirementsText && (
+                          <p id="requirementsText-error" role="alert" className="mt-1.5 text-[12.5px] text-red-400 flex items-center gap-1.5">
+                            <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                            {errors.requirementsText}
+                          </p>
                         )}
-                        className={`w-full px-4 py-3 rounded-xl bg-[#0a1526] border text-white text-[15px] placeholder:text-white/30 outline-none focus:ring-2 transition-all duration-200 resize-none ${
-                          errors.message
-                            ? "border-red-500/60 focus:border-red-500/70 focus:ring-red-500/25"
-                            : "border-white/10 hover:border-white/20 focus:border-secondary/60 focus:ring-secondary/30"
-                        }`}
+                      </div>
+                      <div>
+                        <label htmlFor="additional-notes" className="block text-[13.5px] font-semibold text-white/85 mb-2">
+                          {t("Additional notes or special instructions", "ملاحظات إضافية أو تعليمات خاصة")}
+                          <span className="ml-1 font-normal text-white/45">({t("optional", "اختياري")})</span>
+                        </label>
+                        <textarea
+                          id="additional-notes"
+                          name="message"
+                          rows={3}
+                          maxLength={4000}
+                          value={values.message}
+                          onChange={(event) => setField("message", event.target.value)}
+                          className="w-full px-4 py-3 rounded-xl bg-[#0a1526] border border-white/10 text-white text-[15px] placeholder:text-white/30 outline-none focus:ring-2 focus:border-secondary/60 focus:ring-secondary/30 transition-all duration-200 resize-y"
+                        />
+                      </div>
+                    </section>
+
+                    <label className="flex items-start gap-3 text-[13px] leading-relaxed text-white/60">
+                      <input
+                        type="checkbox"
+                        checked={privacyConsent}
+                        onChange={(event) => {
+                          setPrivacyConsent(event.target.checked);
+                          setSubmitError("");
+                        }}
+                        required
+                        className="mt-1 accent-secondary"
                       />
-                      {errors.message && (
-                        <p id="message-error" className="mt-1.5 text-[12.5px] text-red-400 flex items-center gap-1.5">
-                          <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                          {errors.message}
-                        </p>
-                      )}
-                    </div>
+                      <span>
+                        {t(
+                          "I agree that ENVOD KINGDOM may use these details to respond to my enquiry.",
+                          "أوافق على استخدام إنفود كينغدوم لهذه البيانات للرد على استفساري.",
+                        )}
+                      </span>
+                    </label>
+
+                    {submitError && (
+                      <p role="alert" className="text-[13px] text-red-300">
+                        {submitError}
+                      </p>
+                    )}
 
                     <button
                       type="submit"
-                      className="group w-full h-14 rounded-xl bg-secondary hover:bg-secondary/90 text-white font-bold text-[15px] tracking-wide uppercase flex items-center justify-center gap-2.5 shadow-lg shadow-secondary/25 hover:shadow-secondary/40 hover:-translate-y-0.5 transition-all duration-200"
+                      disabled={isSubmitting}
+                      className="group w-full h-14 rounded-xl bg-secondary hover:bg-secondary/90 disabled:opacity-60 disabled:cursor-wait text-white font-bold text-[15px] tracking-wide uppercase flex items-center justify-center gap-2.5 shadow-lg shadow-secondary/25 hover:shadow-secondary/40 hover:-translate-y-0.5 transition-all duration-200"
                     >
-                      {t("Send Message", "إرسال الرسالة")}
+                      {isSubmitting
+                        ? t("Sending…", "جارٍ الإرسال…")
+                        : t("Send Message", "إرسال الرسالة")}
                       <ArrowRight
                         className={`w-4 h-4 transition-transform duration-200 group-hover:translate-x-1 ${
                           isRtl ? "rotate-180 group-hover:-translate-x-1" : ""

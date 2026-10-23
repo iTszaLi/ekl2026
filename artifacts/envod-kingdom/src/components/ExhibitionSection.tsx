@@ -1,6 +1,7 @@
 import { type MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/language-context";
+import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 import {
   CheckCircle2,
   Check,
@@ -89,8 +90,8 @@ const PROCESS_STEPS: ProcessStep[] = [
     icon: PhoneCall,
     dEn: "We map your requirements — shipment size, venue, deadlines, and handling.",
     dAr: "نحدد متطلباتك: حجم الشحنة والموقع والمواعيد والمناولة الخاصة.",
-    tEn: "Within 24 Hours",
-    tAr: "خلال 24 ساعة",
+    tEn: "Shipment-Specific Plan",
+    tAr: "خطة بحسب الشحنة",
   },
   {
     num: "02",
@@ -117,10 +118,10 @@ const PROCESS_STEPS: ProcessStep[] = [
     en: "Transportation",
     ar: "النقل",
     icon: Truck,
-    dEn: "We move cargo safely by air, sea, or road with real-time tracking.",
-    dAr: "ننقل البضائع بأمان جواً أو بحراً أو براً مع تتبع مباشر.",
-    tEn: "Live Tracking Available",
-    tAr: "تتبع مباشر متاح",
+    dEn: "Freight options and event schedules are reviewed by route; request a manual shipment-status update.",
+    dAr: "تتم مراجعة خيارات الشحن وجداول الفعاليات حسب المسار؛ ويمكن طلب تحديث يدوي لحالة الشحنة.",
+    tEn: "Shipment Updates on Request",
+    tAr: "تحديثات الشحنة عند الطلب",
   },
   {
     num: "05",
@@ -155,17 +156,17 @@ const PROCESS_STEPS: ProcessStep[] = [
 ];
 
 const TRUST = [
-  { en: "ATA Carnet Specialists", ar: "متخصصو كارنيه ATA" },
-  { en: "Customs Clearance Experts", ar: "خبراء التخليص الجمركي" },
-  { en: "24/7 Shipment Tracking", ar: "تتبع الشحنات على مدار الساعة" },
-  { en: "On-Time Venue Delivery", ar: "تسليم في الموعد للموقع" },
-  { en: "Dedicated Project Manager", ar: "مدير مشروع مخصص" },
+  { en: "ATA Carnet Coordination", ar: "تنسيق كارنيه ATA" },
+  { en: "Customs Process Coordination", ar: "تنسيق الإجراءات الجمركية" },
+  { en: "Shipment Status Enquiries", ar: "استفسارات حالة الشحنة" },
+  { en: "Venue Delivery Planning", ar: "تخطيط التوصيل إلى الموقع" },
+  { en: "Project Contact", ar: "جهة اتصال للمشروع" },
 ];
 
 const STATS = [
-  { v: "25+",  en: "Years Serving\nSaudi Exhibitions",     ar: "عاماً في\nالمعارض السعودية" },
-  { v: "500+", en: "Events\nCoordinated",                  ar: "فعالية\nمنسقة" },
-  { v: "24hr", en: "ATA Carnet\nProcessing",               ar: "معالجة\nكارنيه ATA" },
+  { v: "KSA",  en: "Exhibition\nLogistics",                ar: "لوجستيات\nالمعارض" },
+  { v: "GCC",  en: "Event Freight\nCoordination",           ar: "تنسيق شحن\nالفعاليات" },
+  { v: "ATA",   en: "Carnet\nCoordination",                ar: "تنسيق\nكارنيه ATA" },
 ];
 
 function CategoryList({ items, label, labelAr, isRtl }: { items: typeof SERVICES_GROUP; label: string; labelAr: string; isRtl: boolean }) {
@@ -239,6 +240,7 @@ function EventCard({ event, index, isRtl }: { event: (typeof EVENTS)[number]; in
         <div className="relative mb-4 w-full h-16 md:h-[72px] rounded-xl bg-white flex items-center justify-center px-3.5 py-2.5 shadow-sm ring-1 ring-black/5 overflow-hidden transition-transform duration-[350ms] ease-out will-change-transform group-hover:scale-[1.04]">
           <img
             src={event.logo}
+            {...getIntrinsicImageDimensions(event.logo)}
             alt={`${event.name} logo`}
             loading="lazy"
             decoding="async"
@@ -404,8 +406,8 @@ export function ExhibitionSection() {
               className="text-white/58 text-base leading-[1.9] mb-10 max-w-lg"
             >
               {t(
-                "ENVOD KINGDOM has more than 25 years of experience supporting exhibitions, trade shows, sporting events, and international conferences across Saudi Arabia and the GCC — with ATA Carnet processing typically completed within 24 hours.",
-                "تمتلك انفود كينجدم أكثر من 25 عاماً من الخبرة في دعم المعارض والمؤتمرات والفعاليات الرياضية والأحداث الدولية عبر المملكة والخليج، مع معالجة كارنيه ATA التي تكتمل عادةً خلال 24 ساعة.",
+                "Exhibition, trade-show, sporting-event and conference enquiries can be reviewed for Saudi Arabia and GCC routes. Venue access, carrier capacity, service scope and any ATA Carnet eligibility depend on the shipment and must be confirmed with the relevant providers, issuing association and customs authorities.",
+                "يمكن مراجعة استفسارات المعارض والمؤتمرات والفعاليات الرياضية لمسارات السعودية والخليج. يعتمد دخول الموقع وسعة الناقل ونطاق الخدمة وأهلية كارنيه ATA على الشحنة، ويجب تأكيدها مع مقدمي الخدمة وجهة الإصدار والسلطات الجمركية المختصة.",
               )}
             </motion.p>
 

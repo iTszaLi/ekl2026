@@ -26,8 +26,8 @@ const INDUSTRIES: Industry[] = [
     bg: "bg-orange-500/10 group-hover:bg-orange-500/20",
     en: "Oil & Gas",
     ar: "النفط والغاز",
-    descEn: "Heavy-lift equipment, pipeline supplies, HAZMAT and project cargo for Saudi Aramco, SABIC and EPC contractors.",
-    descAr: "معدات ثقيلة وإمدادات خطوط الأنابيب وبضائع المشاريع لأرامكو وسابك والمقاولين.",
+    descEn: "Project cargo and industrial-supply enquiries; dimensions, route, permits and operator availability are reviewed per shipment.",
+    descAr: "استفسارات بضائع المشاريع والإمدادات الصناعية؛ وتتم مراجعة الأبعاد والمسار والتصاريح وتوفر المشغّل لكل شحنة.",
     tagEn: "Project Cargo",
     tagAr: "بضائع المشاريع",
   },
@@ -37,10 +37,10 @@ const INDUSTRIES: Industry[] = [
     bg: "bg-red-500/10 group-hover:bg-red-500/20",
     en: "Healthcare",
     ar: "الرعاية الصحية",
-    descEn: "Medical devices, hospital equipment and sensitive cargo with SFDA clearance and cold-chain management.",
-    descAr: "أجهزة طبية ومعدات مستشفيات مع تخليص هيئة الغذاء والدواء وإدارة سلسلة التبريد.",
-    tagEn: "SFDA Certified",
-    tagAr: "معتمد SFDA",
+    descEn: "Medical devices and healthcare cargo require product-specific documentation and approvals; temperature and handling conditions must be confirmed.",
+    descAr: "تتطلب الأجهزة الطبية وشحنات الرعاية الصحية مستندات وموافقات خاصة بالمنتج؛ ويجب تأكيد درجات الحرارة وظروف المناولة.",
+    tagEn: "Product Requirements",
+    tagAr: "متطلبات المنتج",
   },
   {
     icon: Pill,
@@ -48,10 +48,10 @@ const INDUSTRIES: Industry[] = [
     bg: "bg-blue-500/10 group-hover:bg-blue-500/20",
     en: "Pharmaceuticals",
     ar: "الأدوية",
-    descEn: "GDP-compliant cold chain, temperature-controlled air freight and pharmaceutical import clearance.",
-    descAr: "سلسلة برودة متوافقة مع GDP وشحن جوي مبرد وتخليص استيراد الأدوية.",
-    tagEn: "Cold Chain",
-    tagAr: "سلسلة التبريد",
+    descEn: "Temperature-sensitive cargo enquiries are reviewed against product conditions, route, carrier and required regulatory approvals.",
+    descAr: "تتم مراجعة استفسارات البضائع الحساسة للحرارة وفق ظروف المنتج والمسار والناقل والموافقات التنظيمية المطلوبة.",
+    tagEn: "Cargo Review",
+    tagAr: "مراجعة الشحنة",
   },
   {
     icon: ShoppingBasket,
@@ -59,10 +59,10 @@ const INDUSTRIES: Industry[] = [
     bg: "bg-green-500/10 group-hover:bg-green-500/20",
     en: "Food & Beverage",
     ar: "الغذاء والمشروبات",
-    descEn: "Reefer containers, SFDA & halal compliance, supermarket distribution and perishable goods handling.",
-    descAr: "حاويات مبردة وامتثال هيئة الغذاء والدواء وشهادة الحلال وتوزيع لمتاجر التجزئة.",
-    tagEn: "Halal Certified",
-    tagAr: "شهادة الحلال",
+    descEn: "Food-cargo enquiries may involve temperature, product, SFDA and halal documentation requirements; availability and scope must be confirmed.",
+    descAr: "قد تشمل استفسارات شحن الأغذية متطلبات الحرارة والمنتج ومستندات هيئة الغذاء والدواء والحلال؛ ويجب تأكيد التوفر والنطاق.",
+    tagEn: "Requirements Review",
+    tagAr: "مراجعة المتطلبات",
   },
   {
     icon: Car,
@@ -80,8 +80,8 @@ const INDUSTRIES: Industry[] = [
     bg: "bg-stone-500/10 group-hover:bg-stone-500/20",
     en: "Construction",
     ar: "البناء والإنشاء",
-    descEn: "Steel, cement, machinery, Vision 2030 project supplies and oversized construction equipment movement.",
-    descAr: "الصلب والإسمنت والآلات وإمدادات مشاريع رؤية 2030 والمعدات الضخمة.",
+    descEn: "Construction and infrastructure cargo enquiries, including equipment and oversized loads subject to route, permits and operator availability.",
+    descAr: "استفسارات شحنات البناء والبنية التحتية، بما فيها المعدات والحمولات الضخمة وفق المسار والتصاريح وتوفر المشغّل.",
     href: "/industries/construction-logistics",
   },
   {
@@ -90,8 +90,8 @@ const INDUSTRIES: Industry[] = [
     bg: "bg-purple-500/10 group-hover:bg-purple-500/20",
     en: "Mining",
     ar: "التعدين",
-    descEn: "Ma'aden and mining sector logistics — heavy equipment, chemicals, explosives and mineral export.",
-    descAr: "لوجستيات قطاع التعدين لمعادن والمناجم — معدات ثقيلة وكيماويات ومتفجرات وتصدير معادن.",
+    descEn: "Mining-sector cargo enquiries for equipment and materials; regulated chemicals or explosives require specific authority and carrier review.",
+    descAr: "استفسارات بضائع قطاع التعدين من معدات ومواد؛ وتتطلب المواد الكيميائية المنظمة أو المتفجرات مراجعة خاصة من السلطات والناقل.",
   },
   {
     icon: ShoppingBag,
@@ -197,8 +197,8 @@ export function IndustriesSection() {
             style={{ color: "#64748B" }}
           >
             {t(
-              "From Saudi Aramco's mega-projects to Qiddiya's entertainment cargo — ENVOD KINGDOM delivers specialised logistics solutions across 12 key industries.",
-              "من مشاريع أرامكو العملاقة إلى شحنات قدية الترفيهية — يقدم انفود كينجدم حلولاً لوجستية متخصصة عبر 12 قطاعاً رئيسياً.",
+              "Explore shipment and compliance considerations across sectors including energy, construction, events, retail, technology, and government.",
+              "استكشف اعتبارات الشحن والامتثال في قطاعات تشمل الطاقة والبناء والفعاليات والتجزئة والتقنية والجهات الحكومية.",
             )}
           </motion.p>
         </div>

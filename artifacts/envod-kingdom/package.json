@@ -4,10 +4,18 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --config vite.config.ts --host 0.0.0.0",
+    "dev": "tsx server/index.ts",
     "build": "vite build --config vite.config.ts && vite build --config vite.config.ts --ssr src/entry-server.tsx --outDir dist/server && node prerender.mjs",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "start": "NODE_ENV=production tsx server/index.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:counters": "node scripts/check-counter-prerender.mjs",
+    "test:image-dimensions": "node scripts/check-image-dimensions.mjs",
+    "test:service-catalog": "tsx --test server/service-catalog.test.ts",
+    "test:search-console": "tsx --test server/search-console/search-console.test.ts",
+    "test:enquiries": "tsx --test server/enquiries.test.ts",
+    "test:vercel-enquiries": "tsx --test server/vercel-enquiry-handler.test.ts",
+    "indexnow:submit": "node scripts/submit-indexnow.mjs"
   },
   "devDependencies": {
     "@radix-ui/react-select": "^2.1.7",
@@ -19,7 +27,9 @@
     "@replit/vite-plugin-runtime-error-modal": "catalog:",
     "@tailwindcss/typography": "^0.5.15",
     "@tailwindcss/vite": "catalog:",
+    "@types/compression": "^1.8.1",
     "@types/d3-geo": "^3.1.0",
+    "@types/express": "^5.0.6",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
@@ -31,6 +41,7 @@
     "d3-geo": "^3.1.1",
     "framer-motion": "catalog:",
     "lucide-react": "catalog:",
+    "pino-pretty": "^13.2.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "tailwind-merge": "catalog:",
@@ -42,7 +53,15 @@
     "wouter": "^3.3.5"
   },
   "dependencies": {
+    "@replit/connectors-sdk": "^0.4.3",
     "@studio-freight/lenis": "^1.0.42",
-    "gsap": "^3.15.0"
+    "@vercel/analytics": "^2.0.1",
+    "compression": "^1.8.2",
+    "express": "^5.3.0",
+    "gsap": "^3.15.0",
+    "pino": "^10.4.0",
+    "pino-http": "^11.0.0",
+    "tsx": "catalog:",
+    "zod": "catalog:"
   }
 }

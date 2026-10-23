@@ -27,64 +27,64 @@ const FEATURES = [
     icon: ShieldCheck,
     en: "Saudi Customs Expertise",
     ar: "خبرة في الجمارك السعودية",
-    descEn: "Licensed customs brokerage for smooth import and export clearance.",
-    descAr: "وساطة جمركية مرخّصة لتخليص استيراد وتصدير سلس.",
+    descEn: "Documentation and coordination support for import and export clearance.",
+    descAr: "دعم المستندات والتنسيق لتخليص شحنات الاستيراد والتصدير.",
   },
   {
     icon: BadgeCheck,
     en: "SABER Certification Support",
     ar: "دعم شهادة سابر",
-    descEn: "Product registration and SABER certification handled end to end.",
-    descAr: "تسجيل المنتجات وإصدار شهادات سابر من البداية إلى النهاية.",
+    descEn: "Discuss product-specific conformity steps; certificates and approvals follow the applicable process and authority.",
+    descAr: "ناقش خطوات المطابقة الخاصة بالمنتج؛ وتخضع الشهادات والموافقات للإجراء والجهة المختصة.",
   },
   {
     icon: ClipboardCheck,
     en: "SFDA Regulatory Support",
     ar: "دعم هيئة الغذاء والدواء (SFDA)",
-    descEn: "Regulatory clearance for food, pharmaceutical, and medical shipments.",
-    descAr: "تخليص تنظيمي لشحنات الغذاء والأدوية والمستلزمات الطبية.",
+    descEn: "Review document requirements for regulated food, pharmaceutical, and medical shipments; approvals depend on the product and authority.",
+    descAr: "مراجعة متطلبات مستندات شحنات الغذاء والأدوية والمستلزمات الطبية المنظمة؛ وتعتمد الموافقات على المنتج والجهة المختصة.",
   },
   {
     icon: Timer,
     en: "Temporary Import Clearance",
     ar: "تخليص الاستيراد المؤقت",
-    descEn: "Temporary admission handling for equipment, demos, and event cargo.",
-    descAr: "إدخال مؤقت للمعدات والعينات وبضائع الفعاليات.",
+    descEn: "Check temporary-admission options and eligibility for the goods and intended use.",
+    descAr: "التحقق من خيارات الإدخال المؤقت وأهلية البضائع والاستخدام المقصود.",
   },
   {
     icon: FileCheck,
     en: "ATA Carnet Processing",
     ar: "معالجة كارنيه ATA",
-    descEn: "Carnet documentation for duty-free temporary import and re-export.",
-    descAr: "وثائق الكارنيه للاستيراد المؤقت وإعادة التصدير دون رسوم.",
+    descEn: "Coordinate shipment information with the authorized issuing association; issuance and acceptance are determined by the responsible bodies.",
+    descAr: "تنسيق معلومات الشحنة مع جهة الإصدار المخوّلة؛ وتحدد الجهات المسؤولة الإصدار والقبول.",
   },
   {
     icon: Repeat2,
     en: "Re-Export Documentation",
     ar: "وثائق إعادة التصدير",
-    descEn: "Complete paperwork for returning cargo after projects and exhibitions.",
-    descAr: "أوراق كاملة لإعادة البضائع بعد المشاريع والمعارض.",
+    descEn: "Review re-export documents and deadlines against the original procedure and cargo.",
+    descAr: "مراجعة مستندات إعادة التصدير ومواعيدها وفق الإجراء الأصلي والبضاعة.",
   },
   {
     icon: Globe2,
     en: "Import / Export Compliance",
     ar: "امتثال الاستيراد والتصدير",
-    descEn: "Ongoing guidance across Saudi import and export regulations.",
-    descAr: "إرشاد مستمر حول أنظمة الاستيراد والتصدير السعودية.",
+    descEn: "Discuss shipment-document questions; current requirements and decisions remain with the relevant authorities.",
+    descAr: "ناقش استفسارات مستندات الشحنة؛ وتبقى المتطلبات والقرارات الحالية لدى الجهات المختصة.",
   },
   {
     icon: ScrollText,
-    en: "IEC Certificate Assistance",
-    ar: "المساعدة في شهادة IEC",
-    descEn: "Support for obtaining and managing Importer/Exporter Code documentation.",
-    descAr: "دعم في استخراج وإدارة وثائق رمز المستورد والمصدر (IEC).",
+    en: "Importer / Exporter Record Enquiry",
+    ar: "استفسار عن سجلات المستورد والمصدر",
+    descEn: "Confirm which registration or business records apply to the shipment and current procedure.",
+    descAr: "تأكيد التسجيل أو سجلات الأعمال المنطبقة على الشحنة والإجراء الحالي.",
   },
   {
     icon: Plane,
     en: "GACA Approvals",
     ar: "موافقات هيئة الطيران المدني",
-    descEn: "GACA approvals and documentation for air cargo and regulated aviation imports.",
-    descAr: "موافقات ووثائق الهيئة العامة للطيران المدني للشحن الجوي والواردات المنظمة.",
+    descEn: "Review air-cargo documents and determine whether a permit or aviation-authority approval applies.",
+    descAr: "مراجعة مستندات الشحن الجوي والتحقق مما إذا كان يلزم تصريح أو موافقة من جهة الطيران.",
   },
 ];
 
@@ -92,43 +92,43 @@ const STEPS = [
   {
     step: "01",
     icon: FileUp,
-    en: "Submit Documents",
-    ar: "تقديم المستندات",
-    descEn: "Upload invoices, packing lists, and shipment paperwork.",
-    descAr: "ارفع الفواتير وقوائم التعبئة ومستندات الشحنة.",
+    en: "Share Shipment Details",
+    ar: "مشاركة تفاصيل الشحنة",
+    descEn: "Prepare the invoice, packing list, cargo details, and requested gateway.",
+    descAr: "جهّز الفاتورة وقائمة التعبئة وتفاصيل البضاعة ومنفذ الدخول المطلوب.",
   },
   {
     step: "02",
     icon: ScanSearch,
-    en: "Customs Review",
-    ar: "مراجعة الجمارك",
-    descEn: "Authorities verify documentation and shipment compliance.",
-    descAr: "تتحقق الجهات المختصة من المستندات وامتثال الشحنة.",
+    en: "Requirements Review",
+    ar: "مراجعة المتطلبات",
+    descEn: "Check shipment documents, product-specific requirements, and the responsible operator.",
+    descAr: "تحقق من مستندات الشحنة ومتطلبات المنتج والجهة المشغّلة المسؤولة.",
   },
   {
     step: "03",
     icon: BadgeCheck,
-    en: "Approval Issued",
-    ar: "إصدار الموافقة",
-    descEn: "Customs approval is processed electronically.",
-    descAr: "تتم معالجة الموافقة الجمركية إلكترونياً.",
+    en: "Submission & Authority Review",
+    ar: "التقديم ومراجعة الجهة المختصة",
+    descEn: "Any declaration or application follows the current operator and authority process.",
+    descAr: "يتبع أي إقرار أو طلب الإجراء الحالي لدى المشغّل والجهة المختصة.",
   },
   {
     step: "04",
     icon: PackageCheck,
-    en: "Cargo Released",
-    ar: "الإفراج عن البضاعة",
-    descEn: "Shipment is cleared for final delivery.",
-    descAr: "يتم الإفراج عن الشحنة للتسليم النهائي.",
+    en: "Release or Next Step",
+    ar: "الفسح أو الخطوة التالية",
+    descEn: "The responsible authority determines release; inspections, documents, and approvals may affect timing.",
+    descAr: "تحدد الجهة المسؤولة الفسح؛ وقد تؤثر الفحوصات والمستندات والموافقات في المدة.",
   },
 ];
 
 const WHY_CHOOSE = [
-  { icon: Users,          en: "Experienced Saudi customs specialists",       ar: "متخصصون ذوو خبرة في الجمارك السعودية" },
-  { icon: FileCheck,      en: "Fast documentation processing",               ar: "معالجة سريعة للمستندات" },
-  { icon: ShieldCheck,    en: "Compliance with SABER & SFDA requirements",   ar: "الامتثال لمتطلبات سابر وهيئة الغذاء والدواء" },
-  { icon: MessagesSquare, en: "Transparent communication",                   ar: "تواصل شفاف" },
-  { icon: Headset,        en: "Dedicated customer support",                  ar: "دعم مخصص للعملاء" },
+  { icon: Users,          en: "Shipment-specific customs coordination",      ar: "تنسيق جمركي حسب الشحنة" },
+  { icon: FileCheck,      en: "Document and requirement review",              ar: "مراجعة المستندات والمتطلبات" },
+  { icon: ShieldCheck,    en: "Product-specific conformity questions reviewed", ar: "مراجعة استفسارات مطابقة المنتج" },
+  { icon: MessagesSquare, en: "Scope and responsible operator confirmed",      ar: "تأكيد النطاق والجهة المشغّلة المسؤولة" },
+  { icon: Headset,        en: "Release decisions remain with authorities",     ar: "تبقى قرارات الفسح لدى الجهات المختصة" },
 ];
 
 export function CustomsClearanceSection() {
@@ -168,7 +168,7 @@ export function CustomsClearanceSection() {
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
               {t("Customs Clearance", "التخليص الجمركي")}
               <br />
-              <span className="text-secondary">{t("Often Within 24 Hours", "غالباً خلال 24 ساعة")}</span>
+              <span className="text-secondary">{t("Timing Varies by Shipment", "تختلف المدة حسب الشحنة")}</span>
             </h2>
           </motion.div>
           <motion.p
@@ -179,8 +179,8 @@ export function CustomsClearanceSection() {
             className="text-white/55 max-w-xl mx-auto text-sm leading-relaxed"
           >
             {t(
-              "Direct relationships with the Saudi Customs Authority enable us to deliver fast, reliable customs clearance across the Kingdom.",
-              "علاقاتنا المباشرة مع هيئة الجمارك السعودية تمكّننا من تقديم تخليص جمركي سريع وموثوق في المملكة.",
+              "We can review document and logistics coordination for the requested cargo and gateway. Requirements, inspections, release decisions, and timing depend on the shipment and responsible authorities.",
+              "يمكننا مراجعة تنسيق المستندات والخدمات اللوجستية للبضاعة والمنفذ المطلوبين. وتعتمد المتطلبات والفحوصات وقرارات الفسح والمدة على الشحنة والجهات المسؤولة.",
             )}
           </motion.p>
         </div>
@@ -378,8 +378,8 @@ export function CustomsClearanceSection() {
                     </p>
                     <p className="text-white/60 text-[12.5px] leading-relaxed">
                       {t(
-                        "We work to clear customs as quickly as possible — many shipments clear within 24 hours — and we personally follow up with the Saudi Customs Authority on your behalf.",
-                        "نعمل على إنجاز التخليص الجمركي بأسرع وقت ممكن — وتُخلَّص العديد من الشحنات خلال 24 ساعة — ونتابع شخصياً مع هيئة الجمارك السعودية نيابةً عنك.",
+                        "We coordinate customs documentation and follow-up. Timing and requirements depend on the shipment, document readiness, customs procedures, and any required approvals.",
+                        "ننسق مستندات التخليص ومتابعة الإجراءات. وتعتمد المدة والمتطلبات على الشحنة وجاهزية المستندات والإجراءات الجمركية وأي موافقات لازمة.",
                       )}
                     </p>
                   </div>

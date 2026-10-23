@@ -13,6 +13,8 @@ import projectCargo from "@assets/image_1783174152080.webp";
 import relocation from "@assets/image_1783195652393.webp";
 import ecommerce from "@assets/image_1783197074233.webp";
 import exhibition from "@assets/image_1783173229953.webp";
+import exhibition1024 from "@assets/exhibition_hero_1024.webp";
+import exhibition1280 from "@assets/exhibition_hero_1280.webp";
 import medicalPharma from "@assets/image_1783176444016.webp";
 import foodFmcg from "@assets/image_1783195818421.webp";
 import petAnimal from "@assets/image_1783197631734.webp";
@@ -53,4 +55,19 @@ export const SERVICE_IMAGES: Record<number, string> = {
   22: packagingCrating, // Packaging & Crating Services
   23: expressCourier, // Express Courier Logistics
   24: crossTrade, // Cross Trade Shipping
+};
+
+/** Dedicated card photo for the Door-to-Door Logistics offering. */
+export const DOOR_TO_DOOR_IMAGE = `${import.meta.env.BASE_URL}media/door-to-door-delivery.webp`;
+
+// Derivatives of the same approved photo, not replacement photography.
+// Keep sufficient source width for the tall, object-cover mobile banner.
+export const SERVICE_HERO_OPTIONS: Record<number, {
+  width: number; height: number; srcSet: string; sizes: string;
+} | undefined> = {
+  11: {
+    width: 1536, height: 1024,
+    srcSet: `${exhibition1024} 1024w, ${exhibition1280} 1280w, ${exhibition} 1536w`,
+    sizes: "(max-width: 767px) 1024px, 100vw",
+  },
 };

@@ -1,7 +1,6 @@
 import { Link } from "wouter";
 import { useLanguage } from "@/lib/language-context";
 import { VISION_INTRO, VISION_SECTIONS, VISION_FAQ, type VisionSection } from "@/lib/vision-data";
-import { buildMailto } from "@/lib/service-data";
 import FAQCollapse from "@/components/FAQCollapse";
 import {
   ArrowRight, ChevronRight, CheckCircle2, Mail, Sparkles,
@@ -170,13 +169,13 @@ export default function Vision2030() {
             )}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href={buildMailto("Vision 2030 Logistics", "Vision 2030 Project — Quote Request")}
+            <Link
+              href="/contact?service=project-cargo"
               className="inline-flex items-center gap-2.5 bg-secondary hover:bg-secondary/85 text-white px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider transition-all shadow-lg shadow-secondary/20 hover:-translate-y-px"
             >
               <Mail className="w-4 h-4" />
               {t("Request a Quote", "اطلب عرض سعر")}
-            </a>
+            </Link>
             <Link href="/contact" className="inline-flex items-center gap-2 bg-white/[0.05] border border-white/15 hover:bg-white/[0.1] text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all">
               {t("Contact Us", "اتصلوا بنا")}
             </Link>

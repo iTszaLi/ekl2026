@@ -8,23 +8,23 @@ import type { ServicePillar } from "../service-data";
  *
  * Targets: exhibition logistics company, trade show logistics, event logistics
  * company, exhibition freight forwarding, best exhibition logistics.
- * All claims are consistent with existing site copy (25+ years; ATA Carnet 24h;
- * LEAP / Cityscape / Big 5 / Saudi Build / INDEX). Venues and events are real,
- * public KSA exhibition venues/shows; nationwide service is confirmed.
+ * Named venues and events provide planning context, not evidence of an
+ * appointment or completed project. Preserve the useful structure without
+ * unverified company-age, event-relationship or clearance-time claims.
  */
 export const EXHIBITION_PILLAR: ServicePillar = {
   seoTitle: "Exhibition Logistics Company in Saudi Arabia | ENVOD KINGDOM",
   seoDescription:
-    "Saudi Arabia's specialist exhibition & trade-show logistics company — ATA Carnet typically within 24 hours, on-site handling, temporary import and event freight forwarding to every major venue nationwide.",
+    "Exhibition logistics in Saudi Arabia (KSA): ENVOD reviews event enquiries for nationwide transport, customs-document support, venue delivery and on-site setup planning.",
 
   intro: [
     {
-      en: "When your stand has to be built, stocked and show-ready before the doors open, exhibition logistics is not something you can improvise. ENVOD KINGDOM SHIPPING SERVICES is a specialist exhibition logistics company in Saudi Arabia, moving exhibition cargo, booth structures and event equipment to every major trade show and venue in the Kingdom — on time, cleared through customs, and delivered directly to your stand.",
-      ar: "عندما يجب أن يكون جناحك جاهزاً بالكامل قبل فتح الأبواب، لا يمكن ارتجال لوجستيات المعارض. إنفود كينجدوم لخدمات الشحن شركة متخصصة في لوجستيات المعارض في المملكة العربية السعودية، تنقل شحنات المعارض وهياكل الأجنحة ومعدات الفعاليات إلى كل معرض تجاري ومكان رئيسي في المملكة — في الوقت المحدد، ومُخلَّصة جمركياً، ومُسلَّمة مباشرة إلى جناحك.",
+      en: "Businesses searching for leading exhibition logistics and service providers in KSA should compare confirmed transport capabilities, customs responsibilities, venue access and on-site scope. ENVOD KINGDOM SHIPPING SERVICES reviews exhibition logistics and event-handling enquiries across Saudi Arabia. Depending on the shipment and venue, requested coordination may include nationwide transport, customs-document support and clearance arrangements, venue delivery, and on-site setup planning for trade shows, expos and corporate events. Scope, routes and provider availability are confirmed before booking.",
+      ar: "ينبغي للشركات التي تبحث عن مزودي خدمات رائدين في لوجستيات المعارض والفعاليات بالمملكة مقارنة قدرات النقل المؤكدة ومسؤوليات الجمارك وإمكانية دخول المواقع ونطاق العمل الميداني. وتراجع إنفود كينجدوم لخدمات الشحن استفسارات لوجستيات المعارض ومناولة الفعاليات في السعودية. وقد يشمل التنسيق المطلوب، بحسب الشحنة والموقع، النقل إلى وجهات داخل المملكة ودعم المستندات وترتيبات التخليص الجمركي والتسليم للموقع والتخطيط للتجهيز الميداني للمعارض التجارية والفعاليات المؤسسية. ويتم تأكيد النطاق والمسارات وتوفر مقدمي الخدمة قبل الحجز.",
     },
     {
-      en: "For more than 25 years we have handled the freight forwarding, ATA Carnet processing, temporary import and on-site handling that keep exhibitors on schedule at events such as LEAP, Cityscape Global, Big 5 Construct Saudi, Saudi Build and INDEX. From a single crate of samples to a full multi-country pavilion, our team manages the entire journey so you can focus on the show floor — not the shipping.",
-      ar: "لأكثر من 25 عاماً، تولّينا أعمال الشحن ومعالجة كارنيه ATA والاستيراد المؤقت والمناولة الميدانية التي تُبقي العارضين على الموعد في فعاليات مثل LEAP وCityscape Global وBig 5 وSaudi Build وINDEX. من صندوق عينات واحد إلى جناح وطني متعدد الدول، يدير فريقنا الرحلة بالكامل لتتفرّغ لأرض المعرض — لا للشحن.",
+      en: "From a single crate of samples to a multi-country pavilion, confirm freight routing, itemized equipment lists, temporary-import eligibility, on-site responsibilities and return transport before booking. LEAP, Cityscape Global, Big 5 Construct Saudi, Saudi Build and INDEX are examples of events to research when preparing an exhibition shipment, not a claim of ENVOD's official appointment or past participation.",
+      ar: "من صندوق عينات واحد إلى جناح متعدد الدول، أكّد مسار الشحن وقائمة المعدات المفصّلة وأهلية الإدخال المؤقت ومسؤوليات الموقع ونقل العودة قبل الحجز. وتُذكر LEAP وCityscape Global وBig 5 Construct Saudi وSaudi Build وINDEX كأمثلة لفعاليات يُبحث عن متطلباتها عند التخطيط، لا كادعاء بتعيين إنفود رسمياً أو مشاركتها السابقة.",
     },
   ],
 
@@ -41,30 +41,30 @@ export const EXHIBITION_PILLAR: ServicePillar = {
           ar: "لوجستيات المعارض هي النقل المتخصص والتخليص الجمركي والمناولة الميدانية لكل ما يحتاجه العارض للمشاركة في معرض تجاري أو فعالية — هياكل الأجنحة، ومواد العرض، وعينات المنتجات، والمعدات السمعية والبصرية والتقنية، والمواد التسويقية والهدايا. وخلافاً للشحن العادي، تخضع لموعد نهائي لا يتغيّر: يجب أن تصل البضائع وتُخلَّص جمركياً وتصل إلى القاعة ورقم الجناح الصحيحين قبل انتهاء فترة التجهيز.",
         },
         {
-          en: "Because most exhibition goods leave the country again after the show, the process also relies on temporary-import instruments such as the ATA Carnet, which let goods enter Saudi Arabia duty-free for the duration of the event and return home without complications. Getting that documentation right is the difference between a stand that opens on time and cargo stuck in customs.",
-          ar: "ولأن معظم بضائع المعارض تغادر البلاد مجدداً بعد انتهاء الحدث، تعتمد العملية أيضاً على أدوات الاستيراد المؤقت مثل كارنيه ATA، الذي يتيح دخول البضائع إلى المملكة معفاة من الرسوم طوال مدة الفعالية وإعادتها دون تعقيدات. وضبط هذه الوثائق هو الفرق بين جناح يفتح في موعده وبضائع عالقة في الجمارك.",
+          en: "Some exhibition goods may qualify for temporary admission under an ATA Carnet or another procedure. Saudi acceptance depends on the goods, intended use and current authority requirements; confirm eligibility, endorsements, deadlines and any separate approvals before dispatch. A Carnet does not guarantee release or remove customs controls.",
+          ar: "قد تكون بعض بضائع المعارض مؤهلة للإدخال المؤقت بموجب كارنيه ATA أو إجراء آخر. ويعتمد القبول في السعودية على البضاعة والغرض من استخدامها ومتطلبات الجهات الحالية؛ لذا يجب تأكيد الأهلية والتصديقات والمواعيد وأي موافقات منفصلة قبل الإرسال. ولا يضمن الكارنيه الفسح أو يلغي الرقابة الجمركية.",
         },
       ],
       bullets: [
         {
-          en: "Inbound freight forwarding by air, sea and road to the show city",
-          ar: "الشحن الوارد جواً وبحراً وبراً إلى مدينة المعرض",
+          en: "Review air, sea or road freight options for the event route, subject to carrier acceptance",
+          ar: "مراجعة خيارات الشحن الجوي أو البحري أو البري لمسار الفعالية وفق قبول الناقل",
         },
         {
-          en: "Customs clearance and temporary import / ATA Carnet handling",
-          ar: "التخليص الجمركي والاستيراد المؤقت ومعالجة كارنيه ATA",
+          en: "Customs, temporary-admission and ATA Carnet document coordination, subject to eligibility",
+          ar: "تنسيق مستندات الجمارك والإدخال المؤقت وكارنيه ATA وفق الأهلية",
         },
         {
-          en: "Timed delivery to the venue, hall and stand number",
-          ar: "تسليم مُوقَّت إلى المكان والقاعة ورقم الجناح",
+          en: "Venue-delivery planning against organizer access rules and appointed contractors",
+          ar: "تخطيط التسليم للموقع وفق قواعد دخول المنظّم والمقاولين المعتمدين",
         },
         {
-          en: "On-site unloading, positioning, installation and dismantling",
-          ar: "التفريغ والتموضع والتركيب والتفكيك في الموقع",
+          en: "On-site unloading, installation or dismantling only where the venue permits and a provider is confirmed",
+          ar: "التفريغ أو التركيب أو التفكيك في الموقع فقط إذا سمح المكان وتم تأكيد مقدم الخدمة",
         },
         {
-          en: "Return logistics and re-export after the event closes",
-          ar: "اللوجستيات العكسية وإعادة التصدير بعد انتهاء الفعالية",
+          en: "Return-routing and re-export planning after the event",
+          ar: "تخطيط مسار العودة وإعادة التصدير بعد الفعالية",
         },
       ],
     },
@@ -76,29 +76,51 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       },
       paragraphs: [
         {
-          en: "Saudi Arabia now hosts one of the busiest exhibition calendars in the region, spread across Riyadh, Jeddah and the Eastern Province. ENVOD provides exhibition and event logistics nationwide, coordinating cargo into the Kingdom's leading convention and exhibition centres and synchronising every delivery window with the organiser's build-up schedule.",
-          ar: "تستضيف المملكة العربية السعودية اليوم أحد أكثر أجندات المعارض ازدحاماً في المنطقة، موزّعة على الرياض وجدة والمنطقة الشرقية. تقدّم إنفود لوجستيات المعارض والفعاليات على مستوى المملكة، وتنسّق دخول الشحنات إلى أبرز مراكز المؤتمرات والمعارض، وتُزامن كل نافذة تسليم مع جدول التجهيز الخاص بالمنظّم.",
+          en: "ENVOD KINGDOM is based in Al Malaz, Riyadh, and reviews exhibition-freight enquiries for Saudi venues. Depending on the shipment, the requested scope may include international show freight, customs-clearance arrangements at ports or airports, ATA Carnet eligibility and document coordination, door-to-door delivery planning, venue delivery, nationwide destination-delivery requests and on-site setup coordination. Each element is confirmed per shipment; local-provider availability, venue-appointed contractors, organizer rules, customs approval and site access can affect the scope.",
+          ar: "يقع مقر إنفود كينجدوم في حي الملز بالرياض، وتراجع الشركة استفسارات شحن المعارض إلى المواقع السعودية. وقد يشمل النطاق المطلوب، بحسب الشحنة، الشحن الدولي للمعارض وترتيبات التخليص الجمركي في الموانئ أو المطارات وأهلية كارنيه ATA وتنسيق مستنداته والتخطيط للتوصيل من الباب إلى الباب والتسليم للموقع وطلبات التوصيل إلى وجهات في أنحاء المملكة وتنسيق التركيب الميداني. ويُؤكد كل عنصر لكل شحنة؛ إذ قد يؤثر توفر مقدمي الخدمة المحليين ومقاولو الموقع المعتمدون وقواعد المنظّم والموافقات الجمركية وإمكانية الدخول في النطاق المتاح.",
         },
         {
-          en: "Whether you are a first-time exhibitor shipping a single pallet or a national pavilion organiser managing dozens of participants, we scale the same disciplined process: one point of contact, clear documentation, and a delivery plan mapped to each venue's access rules and move-in times.",
-          ar: "سواء كنت عارضاً لأول مرة تشحن منصة نقالة واحدة أو منظّم جناح وطني يدير عشرات المشاركين، نطبّق العملية المنضبطة ذاتها على أي حجم: نقطة تواصل واحدة، ووثائق واضحة، وخطة تسليم مرتبطة بقواعد الدخول ومواعيد الإدخال لكل مكان.",
+          en: "Requests can include exhibition cargo to Riyadh, Jeddah, Dammam and other Saudi destinations. The port or airport gateway, inland route, customs operator and local-delivery scope are confirmed for each shipment; city references do not imply venue appointment or fixed clearance timing.",
+          ar: "قد تشمل الاستفسارات شحن المعارض إلى الرياض وجدة والدمام وغيرها من الوجهات السعودية. ويتم تأكيد بوابة الميناء أو المطار والمسار الداخلي ومشغّل الجمارك ونطاق التسليم المحلي لكل شحنة؛ ولا يعني ذكر المدن وجود تعيين من الموقع أو توقيت ثابت للتخليص.",
+        },
+        {
+          en: "Planning references include Riyadh Front Exhibition & Conference Center (RFECC), Riyadh International Convention & Exhibition Center (RICEC), Malham Exhibition Centre, Jeddah International Exhibition & Convention Center, Jeddah Superdome and Jeddah Center for Forums & Events. These are possible destinations for planning only; the list does not imply venue or organizer appointment, or a completed ENVOD project at any location.",
+          ar: "تشمل مراجع التخطيط مركز واجهة الرياض للمعارض والمؤتمرات (RFECC)، ومركز الرياض الدولي للمؤتمرات والمعارض (RICEC)، ومركز معارض ملهم، ومركز جدة الدولي للمعارض والمؤتمرات، وقبة جدة، ومركز جدة للمنتديات والفعاليات. هذه وجهات محتملة لأغراض التخطيط فقط؛ ولا تعني القائمة وجود تعيين من أي موقع أو منظّم أو تنفيذ إنفود مشروعاً في أي منها.",
+        },
+        {
+          en: "For a single pallet or a multi-exhibitor pavilion, send the itemized cargo list, dimensions, weight, origin, event dates and venue instructions. The proposed freight, customs and on-site responsibilities can then be scoped; availability, partners and organizer approval are confirmed before booking.",
+          ar: "سواء كانت الشحنة منصة واحدة أو جناحاً يضم عدة عارضين، أرسل قائمة البضائع المفصلة والأبعاد والوزن والمنشأ وتواريخ الفعالية وتعليمات الموقع. عندها يمكن تحديد نطاق الشحن والجمارك والمسؤوليات الميدانية المقترحة؛ ويتم تأكيد الإتاحة والشركاء وموافقة المنظّم قبل الحجز.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Planning target: start 4–6 weeks before the event; for large events such as LEAP or Cityscape, allow 8 weeks or more where practical. This is guidance, not a guaranteed booking lead time.",
+          ar: "المدة التخطيطية المقترحة: ابدأ قبل الفعالية بأربعة إلى ستة أسابيع؛ وللفعاليات الكبيرة مثل LEAP أو Cityscape، يُفضّل إتاحة ثمانية أسابيع أو أكثر متى أمكن. هذه إرشادات وليست مهلة حجز مضمونة.",
+        },
+        {
+          en: "Before dispatch, check the commercial invoice, packing list, certificate of origin and any required attestations, permits or product documents against current requirements for the goods and route.",
+          ar: "قبل الإرسال، راجع الفاتورة التجارية وقائمة التعبئة وشهادة المنشأ وأي تصديقات أو تصاريح أو مستندات للمنتج مطلوبة، وفق المتطلبات الحالية للبضاعة والمسار.",
+        },
+        {
+          en: "For eligible goods, confirm ATA Carnet availability, the authorized issuing association, customs acceptance and re-export deadlines before dispatch.",
+          ar: "للبضائع المؤهلة، أكّد توفر كارنيه ATA والجهة المخوّلة بإصداره وقبوله الجمركي ومواعيد إعادة التصدير قبل الإرسال.",
         },
       ],
     },
     {
       id: "ata-carnet-temporary-import",
       heading: {
-        en: "ATA Carnet & temporary import — typically cleared within 24 hours",
-        ar: "كارنيه ATA والاستيراد المؤقت — تخليص عادةً خلال 24 ساعة",
+        en: "ATA Carnet & temporary-import preparation",
+        ar: "تجهيز كارنيه ATA والإدخال المؤقت",
       },
       paragraphs: [
         {
-          en: "The ATA Carnet is one of the fastest and simplest ways to bring exhibition goods into Saudi Arabia temporarily. It replaces multiple customs declarations with a single internationally recognised document, removes the need to pay import duties or deposits up front, and enables a straightforward re-export once the event is over.",
-          ar: "كارنيه ATA من أسرع وأبسط الطرق لإدخال بضائع المعارض إلى المملكة بصفة مؤقتة. فهو يستبدل عدة إقرارات جمركية بمستند واحد معترف به دولياً، ويُلغي الحاجة إلى دفع رسوم استيراد أو تأمينات مقدماً، ويتيح إعادة تصدير سلسة بعد انتهاء الفعالية.",
+          en: "Saudi Arabia accepts ATA Carnets for eligible exhibition goods under applicable procedures. Confirm the goods, intended use, current acceptance, any pre-approval, authorized issuing association and re-export deadline for each shipment. A Carnet does not remove customs controls, organizer rules or all issuing and handling costs.",
+          ar: "تقبل المملكة العربية السعودية كارنيهات ATA لبضائع المعارض المؤهلة وفق الإجراءات المعمول بها. أكّد نوع البضاعة والغرض من استخدامها والقبول الحالي وأي موافقة مسبقة وجهة الإصدار المخوّلة وموعد إعادة التصدير لكل شحنة. ولا يلغي الكارنيه الرقابة الجمركية أو قواعد المنظّم أو جميع تكاليف الإصدار والمناولة.",
         },
         {
-          en: "ENVOD offers ATA Carnet processing typically within 24 hours, and we also arrange temporary-import clearance directly through Saudi Customs when a Carnet is not available in the country of origin. Our team checks every line of your equipment list against the Carnet so nothing is held or penalised on arrival or return.",
-          ar: "تُوفّر إنفود معالجة كارنيه ATA عادةً خلال 24 ساعة، كما نُرتّب التخليص للاستيراد المؤقت مباشرة عبر الجمارك السعودية عندما لا يتوفّر الكارنيه في بلد المنشأ. ويُطابق فريقنا كل بند في قائمة معداتك مع الكارنيه حتى لا يُحتجز أي صنف أو يخضع لغرامة عند الوصول أو الإعادة.",
+          en: "ENVOD coordinates the equipment-list and shipment-document review. If a Carnet is unavailable or unsuitable, discuss the applicable temporary-import procedure with the responsible customs operator before dispatch. Customs clearance times vary depending on documentation, commodity type, inspection requirements, and regulatory approvals.",
+          ar: "تنسّق إنفود مراجعة قائمة المعدات ومستندات الشحنة. وإذا تعذّر استخدام الكارنيه أو لم يناسب البضاعة، فناقش إجراء الإدخال المؤقت المطبق مع مسؤول التخليص المختص قبل الإرسال. تختلف مدد التخليص الجمركي حسب المستندات ونوع البضاعة ومتطلبات الفحص والموافقات التنظيمية.",
         },
       ],
     },
@@ -110,12 +132,51 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       },
       paragraphs: [
         {
-          en: "Getting cargo to the venue is only half the job. Exhibition halls run tight, closely-marshalled move-in and move-out schedules, and a missed slot can mean waiting hours for the next access window. Our on-site teams take delivery at the loading dock, move your freight to the correct stand, and handle unpacking, positioning and empty-crate storage during the show.",
-          ar: "إيصال البضائع إلى المكان نصف المهمة فقط. تعمل قاعات المعارض وفق جداول دقيقة ومنظّمة للإدخال والإخراج، وقد يعني تفويت الموعد المخصص انتظار ساعات حتى نافذة الدخول التالية. تستلم فرقنا الميدانية الشحنة عند رصيف التحميل، وتنقلها إلى الجناح الصحيح، وتتولى فك التغليف والتموضع وتخزين الصناديق الفارغة أثناء المعرض.",
+          en: "Confirm who is authorized to receive cargo at the loading dock, move it to the stand, unpack it, position it and store empty crates. These tasks may be restricted to venue-appointed contractors and must be included in the confirmed service scope.",
+          ar: "أكّد الجهة المخولة باستلام البضائع عند رصيف التحميل ونقلها إلى الجناح وفك تغليفها وتموضعها وتخزين الصناديق الفارغة. وقد تقتصر هذه المهام على مقاولي الموقع المعتمدين، لذا يجب إدراجها ضمن نطاق الخدمة المؤكد.",
         },
         {
-          en: "When the event closes, we reverse the process — repacking, retrieving empties from storage, and preparing everything for return shipment or onward transport to your next show. A dedicated coordinator stays with your account from booking through re-export.",
-          ar: "وعند انتهاء الفعالية نعكس العملية — إعادة التغليف، واستعادة الصناديق الفارغة من التخزين، وتجهيز كل شيء لشحن العودة أو النقل إلى معرضك التالي. ويبقى منسّق مخصص مع حسابك من الحجز حتى إعادة التصدير.",
+          en: "The return plan should confirm the collection slot, repacking responsibility, stored-crate access, export documents and next destination. Assign a named event contact and confirm any coordinator or on-site support as part of the booking.",
+          ar: "ينبغي أن تحدد خطة العودة موعد الاستلام ومسؤولية إعادة التغليف والوصول إلى الصناديق المخزنة ومستندات التصدير والوجهة التالية. عيّن جهة تواصل للفعالية وأكّد أي تنسيق أو دعم ميداني ضمن الحجز.",
+        },
+      ],
+    },
+    {
+      id: "live-events-and-specialist-cargo",
+      heading: {
+        en: "Fairs, live events & specialist cargo",
+        ar: "المعارض والفعاليات الحية والبضائع المتخصصة",
+      },
+      paragraphs: [
+        {
+          en: "Alongside trade shows, event enquiries may involve concerts, sports tournaments, broadcast productions and high-value showcases. ENVOD can review the requested freight, customs-document, venue-delivery, temporary-storage and return or re-export scope. Cargo acceptance, organizer rules, venue access, schedules and operating partners are checked for each event.",
+          ar: "إلى جانب المعارض التجارية، قد تشمل استفسارات الفعاليات الحفلات الموسيقية والبطولات الرياضية والإنتاجات الإعلامية والعروض عالية القيمة. يمكن لإنفود مراجعة نطاق الشحن ومستندات الجمارك والتسليم للموقع والتخزين المؤقت والعودة أو إعادة التصدير. ويُراجع قبول البضائع وقواعد المنظّم ودخول الموقع والجدول وشركاء التشغيل لكل فعالية.",
+        },
+        {
+          en: "The categories below are examples of enquiries, not a guarantee of availability or a claim of special authorization. Any specialist provider, equipment, permit, security requirement or on-site role must be confirmed before booking. Relocation and warehousing requirements are assessed as separate service enquiries.",
+          ar: "الفئات أدناه أمثلة لأنواع الاستفسارات، وليست ضماناً للتوفر أو ادعاءً بوجود تفويض خاص. يجب تأكيد مقدم الخدمة المتخصص والمعدات والتصاريح ومتطلبات الأمن وأدوار الموقع قبل الحجز. وتُقيّم متطلبات الانتقال والتخزين كاستفسارات خدمات منفصلة.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Concert, sports and broadcast equipment: cargo lists, freight route, venue windows and on-site handling, where permitted and confirmed.",
+          ar: "معدات الحفلات والرياضة والبث: قوائم البضائع ومسار الشحن ومواعيد الموقع والمناولة الميدانية عند السماح والتأكيد.",
+        },
+        {
+          en: "Fine art, vehicles and high-value media equipment: packing, handling, route, carrier acceptance and required approvals are reviewed; specialist capability is confirmed separately.",
+          ar: "الأعمال الفنية والمركبات ومعدات الإعلام عالية القيمة: تُراجع متطلبات التغليف والمناولة والمسار وقبول الناقل والموافقات اللازمة؛ ويُؤكد توفر الخبرة المتخصصة بشكل منفصل.",
+        },
+        {
+          en: "Project cargo and oversized exhibits: dimensions, weight, route, permits, lifting or handling plans and equipment availability are assessed.",
+          ar: "بضائع المشاريع والمعروضات الضخمة: تُقيّم الأبعاد والوزن والمسار والتصاريح وخطط الرفع أو المناولة وتوفر المعدات.",
+        },
+        {
+          en: "Temporary storage and international removals: facility and provider availability, customs scope, access and timing are confirmed separately.",
+          ar: "التخزين المؤقت والنقل الدولي للأثاث: يُؤكد توفر المنشأة ومقدم الخدمة ونطاق الجمارك ودخول الموقع والتوقيت بشكل منفصل.",
+        },
+        {
+          en: "Government, defense or controlled-venue requests: eligibility, security and regulatory requirements must be reviewed before any service commitment.",
+          ar: "طلبات الجهات الحكومية أو الدفاعية أو المواقع الخاضعة للضوابط: يجب مراجعة الأهلية ومتطلبات الأمن واللوائح قبل أي التزام بتقديم الخدمة.",
         },
       ],
     },
@@ -127,30 +188,112 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       },
       paragraphs: [
         {
-          en: "Exhibitors choose ENVOD because we combine the customs expertise of a Saudi freight forwarder with the show-floor discipline of an events team. We know the venues, the organisers' deadlines and the paperwork Saudi Customs expects — and we plan backwards from your opening time so every step keeps a margin for the unexpected.",
-          ar: "يختار العارضون إنفود لأننا نجمع خبرة التخليص الجمركي لوكيل شحن سعودي مع انضباط فريق فعاليات على أرض المعرض. نعرف الأماكن، ومواعيد المنظّمين النهائية، والأوراق التي تتطلبها الجمارك السعودية — ونخطّط انطلاقاً من موعد افتتاحك إلى الوراء بحيث تحتفظ كل خطوة بهامش للطوارئ.",
+          en: "Before choosing an exhibition logistics provider, confirm who arranges the freight, who is responsible for customs, which venue contractor handles the cargo, and what happens if a schedule or inspection changes. ENVOD can review the requested shipment scope; any operator, venue access, on-site work and timing must be confirmed for the event.",
+          ar: "قبل اختيار مقدم لوجستيات المعارض، أكّد من يرتب الشحن ومن يتحمل مسؤولية الجمارك ومقاول الموقع الذي يناول البضائع وما الإجراء عند تغيّر الجدول أو الفحص. يمكن لإنفود مراجعة نطاق الشحنة المطلوبة؛ ويجب تأكيد المشغّل ودخول الموقع والعمل الميداني والتوقيت للفعالية المعنية.",
         },
       ],
       bullets: [
         {
-          en: "25+ years supporting Saudi Arabia's largest exhibitions and events",
-          ar: "أكثر من 25 عاماً في دعم أكبر معارض وفعاليات المملكة",
+          en: "Event-specific planning around venue access and organizer deadlines",
+          ar: "تخطيط خاص بالفعالية حسب دخول الموقع ومواعيد المنظم",
         },
         {
-          en: "ATA Carnet processing typically within 24 hours",
-          ar: "معالجة كارنيه ATA عادةً خلال 24 ساعة",
+          en: "ATA Carnet eligibility and documentation review",
+          ar: "مراجعة أهلية كارنيه ATA ومستنداته",
         },
         {
-          en: "Nationwide coverage — Riyadh, Jeddah, Dammam and every major venue",
-          ar: "تغطية على مستوى المملكة — الرياض وجدة والدمام وكل مكان رئيسي",
+          en: "Confirm routing and venue arrangements for your event location",
+          ar: "تأكيد المسار وترتيبات الموقع لوجهة فعاليتك",
         },
         {
-          en: "A dedicated on-site coordinator for the duration of your event",
-          ar: "منسّق مخصص في الموقع طوال مدة فعاليتك",
+          en: "On-site roles and support only when permitted, available and separately confirmed",
+          ar: "تُقدّم الأدوار والدعم الميداني عند السماح والتوفر والتأكيد بشكل منفصل",
         },
         {
-          en: "Integrated air, sea and road freight for time-critical cargo",
-          ar: "شحن جوي وبحري وبري متكامل للبضائع الحسّاسة للوقت",
+          en: "Freight mode and carrier options assessed against cargo, route and event deadlines",
+          ar: "تقييم وسيلة الشحن والناقل وفق البضاعة والمسار ومواعيد الفعالية",
+        },
+      ],
+    },
+    {
+      id: "event-transport-and-specialist-support",
+      heading: {
+        en: "Exhibition transport, packing & event-site support",
+        ar: "نقل المعارض والتغليف والدعم في موقع الفعالية",
+      },
+      paragraphs: [
+        {
+          en: "An event plan may combine GCC cross-border and domestic Saudi movements, international air or sea freight, temporary storage, packing, venue delivery and return routing. The route, carrier, customs operator, permits, service providers and event deadlines are assessed for the cargo and confirmed before booking.",
+          ar: "قد تجمع خطة الفعالية بين النقل عبر الحدود داخل دول مجلس التعاون والنقل المحلي داخل السعودية والشحن الدولي الجوي أو البحري والتخزين المؤقت والتغليف والتسليم للموقع ومسار العودة. ويُقيّم المسار والناقل ومشغّل الجمارك والتصاريح ومقدمو الخدمات ومواعيد الفعالية وفق البضاعة، ثم تُؤكد قبل الحجز.",
+        },
+        {
+          en: "For temperature-controlled or heavy equipment, share the required temperature range, weight, dimensions, handling instructions and schedule early. Suitable vehicles, monitoring, lifting equipment, permits and on-site teams are not assumed; they must be verified for the shipment and venue.",
+          ar: "للبضائع التي تتطلب تحكماً حرارياً أو للمعدات الثقيلة، أرسل نطاق الحرارة المطلوب والوزن والأبعاد وتعليمات المناولة والجدول مبكراً. ولا يُفترض توفر المركبات المناسبة أو المراقبة أو معدات الرفع أو التصاريح أو الفرق الميدانية؛ بل يجب التحقق منها للشحنة والموقع.",
+        },
+      ],
+      bullets: [
+        {
+          en: "GCC cross-border transport and domestic or multi-city KSA movements: route, border documents, carrier acceptance and local coverage are confirmed.",
+          ar: "النقل عبر الحدود داخل دول مجلس التعاون والنقل المحلي أو متعدد المدن في السعودية: يُؤكد المسار ومستندات الحدود وقبول الناقل والتغطية المحلية.",
+        },
+        {
+          en: "Temperature-controlled transport requests: confirm equipment, required range, monitoring, carrier acceptance and handover conditions.",
+          ar: "طلبات النقل المتحكم بدرجة حرارته: أكّد المعدات ونطاق الحرارة والمراقبة وقبول الناقل وشروط التسليم.",
+        },
+        {
+          en: "Heavy or oversized event equipment: review dimensions, weight, road restrictions, permits, lifting and handling plans.",
+          ar: "معدات الفعاليات الثقيلة أو كبيرة الحجم: تُراجع الأبعاد والوزن وقيود الطرق والتصاريح وخطط الرفع والمناولة.",
+        },
+        {
+          en: "Packing, custom cases or crates, fragile or high-value items, temporary storage and return transport: confirm the scope and any specialist provider.",
+          ar: "التغليف والصناديق أو الحاويات المصممة حسب الطلب والبضائع الهشة أو عالية القيمة والتخزين المؤقت ونقل العودة: يُؤكد النطاق وأي مقدم خدمة متخصص.",
+        },
+        {
+          en: "Booth, stage, décor and lighting design/build enquiries, transport, installation or teardown, and on-site project coordination: subject to qualified-provider availability, venue access, appointed contractors and confirmed responsibilities.",
+          ar: "استفسارات تصميم الأجنحة والمنصات والديكور والإضاءة أو تنفيذها ونقلها وتركيبها أو تفكيكها والتنسيق الميداني للمشروع: تخضع لتوفر مقدم خدمة مؤهل ودخول الموقع ومقاوليه المعتمدين وتأكيد المسؤوليات.",
+        },
+        {
+          en: "Door-to-door international air or sea freight, temporary-import/export documents and return or re-export planning: eligibility, route and customs requirements are checked for each shipment.",
+          ar: "الشحن الدولي الجوي أو البحري من الباب إلى الباب ومستندات الإدخال أو التصدير المؤقت وتخطيط العودة أو إعادة التصدير: تُراجع الأهلية والمسار والمتطلبات الجمركية لكل شحنة.",
+        },
+        {
+          en: "Fine-art, fragile and other high-value cargo: packing, crating, handling, insurance requirements and specialist-provider capability must be reviewed for the items and route.",
+          ar: "الأعمال الفنية والبضائع الهشة وغيرها من الشحنات عالية القيمة: تُراجع متطلبات التغليف والصناديق والمناولة والتأمين وقدرات مقدمي الخدمات المتخصصين حسب البضائع والمسار.",
+        },
+        {
+          en: "Temporary admission for overseas exhibitors without a Saudi commercial presence: the eligible importer or consignee, procedure and supporting documents must be confirmed with the responsible customs operator and authorities.",
+          ar: "الإدخال المؤقت للعارضين من خارج المملكة الذين لا يملكون حضوراً تجارياً سعودياً: يجب تأكيد المستورد أو المرسل إليه المؤهل والإجراء والمستندات الداعمة مع مشغّل الجمارك والجهات المختصة.",
+        },
+        {
+          en: "Aircraft or VIP charter and relocation meet-and-greet requests may be reviewed separately; licensed-operator availability, approvals, timing and exact scope must be confirmed before commitment.",
+          ar: "يمكن مراجعة طلبات استئجار الطائرات أو الرحلات الخاصة وخدمات الاستقبال المرتبطة بالانتقال بشكل منفصل؛ ويجب تأكيد توفر المشغّل المرخّص والموافقات والتوقيت والنطاق قبل الالتزام.",
+        },
+      ],
+    },
+    {
+      id: "event-logistics-coordination-benefits",
+      heading: {
+        en: "Benefits of coordinated event logistics",
+        ar: "مزايا تنسيق لوجستيات الفعاليات",
+      },
+      paragraphs: [
+        {
+          en: "Exhibition and event enquiries are coordinated by the same Riyadh logistics team that coordinates ENVOD KINGDOM’s freight, storage and delivery requests. A shipment-specific plan can bring these requirements together while you focus on the event; each service, provider and responsibility is confirmed before booking.",
+          ar: "يتولى الفريق اللوجستي نفسه في الرياض تنسيق استفسارات المعارض والفعاليات، وهو الفريق الذي ينسق طلبات الشحن والتخزين والتسليم لدى إنفود كينجدوم. ويمكن لخطة خاصة بالشحنة جمع هذه المتطلبات مع إتاحة تركيزك على الفعالية؛ ويُؤكد كلٌّ من الخدمة ومقدمها والمسؤولية قبل الحجز.",
+        },
+      ],
+      bullets: [
+        {
+          en: "A dedicated enquiry contact and coordination plan, with response timing and any on-site attendance agreed for the specific booking.",
+          ar: "جهة تواصل مخصصة للاستفسار وخطة تنسيق، مع الاتفاق على وقت الاستجابة وأي حضور ميداني للحجز المعني.",
+        },
+        {
+          en: "Shipment updates based on tracking and reporting supplied by the selected carrier or provider; visibility and update frequency vary by route and operator.",
+          ar: "تحديثات الشحنة وفق بيانات التتبع والتقارير التي يقدمها الناقل أو مقدم الخدمة المختار؛ إذ تختلف الرؤية وتكرار التحديث حسب المسار والمشغّل.",
+        },
+        {
+          en: "A tailored scope can coordinate available freight, customs-document support, packing, storage, venue delivery and return routing, with provider roles clarified before dispatch.",
+          ar: "يمكن للنطاق المصمم حسب الطلب تنسيق خدمات الشحن المتاحة ودعم المستندات الجمركية والتغليف والتخزين والتسليم للموقع ومسار العودة، مع توضيح أدوار مقدمي الخدمات قبل الإرسال.",
         },
       ],
     },
@@ -164,10 +307,22 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       cityAr: "الرياض",
     },
     {
-      name: "Riyadh Front Exhibition & Convention Center",
-      nameAr: "واجهة الرياض للمعارض والمؤتمرات",
+      name: "Riyadh Front Exhibition & Conference Center (RFECC)",
+      nameAr: "مركز واجهة الرياض للمعارض والمؤتمرات (RFECC)",
       city: "Riyadh",
       cityAr: "الرياض",
+    },
+    {
+      name: "Malham Exhibition Centre",
+      nameAr: "مركز معارض ملهم",
+      city: "Malham",
+      cityAr: "ملهم",
+    },
+    {
+      name: "Jeddah International Exhibition & Convention Center",
+      nameAr: "مركز جدة الدولي للمعارض والمؤتمرات",
+      city: "Jeddah",
+      cityAr: "جدة",
     },
     {
       name: "Jeddah Superdome",
@@ -201,9 +356,13 @@ export const EXHIBITION_PILLAR: ServicePillar = {
   ],
 
   relatedLinks: [
+    { label: "ATA Carnet Coordination", labelAr: "تنسيق كارنيه ATA", href: "/services/ata-carnet" },
     { label: "Air Freight for Urgent Cargo", labelAr: "الشحن الجوي للبضائع العاجلة", href: "/services/air-freight" },
+    { label: "Ocean Freight", labelAr: "الشحن البحري", href: "/services/ocean-freight" },
     { label: "Customs Clearance", labelAr: "التخليص الجمركي", href: "/services/customs-clearance" },
     { label: "Freight Forwarding", labelAr: "الشحن وإدارة النقل", href: "/services/freight-forwarding" },
     { label: "Project Cargo", labelAr: "شحن المشاريع", href: "/services/project-cargo" },
+    { label: "Warehousing & Distribution", labelAr: "التخزين والتوزيع", href: "/services/warehousing" },
+    { label: "House Moving & Relocation", labelAr: "نقل المنازل والانتقال", href: "/services/relocation" },
   ],
 };

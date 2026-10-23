@@ -1,0 +1,14 @@
+figure_or_phrase,claim,placement,review_copy_status,evidence_status,use_rule
+"10,000+",Shipments delivered,Homepage statistics,Removed from review counters,No operational evidence supplied; not independently verified,Use “Shipment Coordination” until owner provides records.
+500+,Corporate clients / clients served,Homepage statistics and trust block,Removed from review counters,No client ledger or corroborating source supplied; not explicitly selected as verified,Use “Business Logistics Support” until evidence is supplied.
+50+,Countries served,Homepage statistics,Removed from review counters,No country-level shipment record supplied; international capability copy is not evidence of 50 countries,Use “Worldwide Freight Options” without country count.
+99.8%,On-time delivery,Earlier second block,Replaced by 98% in review copy,Owner explicitly instructed the replacement to 98%,Use 98%; underlying methodology/report was not attached.
+98%,On-time delivery,Homepage and trust block,Retained in review copy,Owner marked verified and approved in response; no operations report attached,Owner-confirmed; attach measurement window and source before public substantiation.
+25+ years,Logistics experience,Homepage and trust block,Retained in review copy,Repeated owner-supplied brand statement; no incorporation/operating records attached,Owner-supplied; do not imply independent verification.
+24 hours,Customs clearance,Generic homepage statistic,Removed from generic statistics,Claim is scope-limited in project policy; no evidence for universal 24-hour clearance,Use documentation support generally; retain only in previously approved hero/featured-card wording.
+50+,Fleet vehicles,Trust block,Retained in review copy,Owner expressly selected as verified,Owner-confirmed; fleet inventory not attached.
+100%,Shipment tracking availability,Trust block,Retained in review copy,Owner expressly selected as verified,Owner-confirmed; scope/product evidence not attached.
+24/7,Customer support,Trust block,Retained in review copy,Owner expressly selected as verified,Owner-confirmed; service-hours evidence not attached.
+500+,Events coordinated,Exhibition featured card only,Retained only in approved featured-card scope,Owner previously confirmed exhibition-card metrics,Do not reuse as general client/event count elsewhere.
+24hr,ATA Carnet processing,Exhibition featured card only,Retained only in approved featured-card scope,Owner previously confirmed exhibition-card metrics,Do not imply issuing authority or guaranteed acceptance.
+Often within 24 hours,Customs clearance,Homepage hero / featured customs card only,"Retained in approved, scoped placements",Owner-approved wording; not a universal promise,Retain qualifying language and do not generalize.

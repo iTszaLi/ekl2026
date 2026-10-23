@@ -8,7 +8,8 @@ import {
   Maximize2, Car, CheckCircle2, ArrowRight,
 } from "lucide-react";
 import { type Service, SERVICE_CATALOG, SERVICE_META } from "@/lib/service-data";
-import { SERVICE_IMAGES } from "@/lib/service-images";
+import { DOOR_TO_DOOR_IMAGE, SERVICE_IMAGES } from "@/lib/service-images";
+import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 
 // ─── Icon resolver (catalog `icon` string → lucide component) ────────────────
 function ServiceIcon({ name, className = "w-6 h-6" }: { name: string; className?: string }) {
@@ -22,28 +23,100 @@ function ServiceIcon({ name, className = "w-6 h-6" }: { name: string; className?
   return <Icon className={className} />;
 }
 
-// Top-3 specialties, featured first with emphasis.
+// Featured specialties, ordered to match the owner's requested homepage sequence.
 const FEATURED_IDS = [11, 19, 4]; // Exhibition · ATA Carnet · Customs Clearance
-// Curated selection shown below (dual CTA leads to the full catalogue).
-const GRID_IDS = [8, 1, 2, 3, 5, 6, 15, 17, 12];
+// Remaining homepage services, in the owner's requested sequence.
+const MORE_SERVICE_IDS = [9, 2, 1, 8, 3, 5, 6, 15, 17, 12, 13, 21];
+const HOMEPAGE_SERVICE_IDS = new Set([...FEATURED_IDS, ...MORE_SERVICE_IDS]);
+const DISCOVERY_SERVICES = SERVICE_CATALOG.filter((service) => !HOMEPAGE_SERVICE_IDS.has(service.id));
+const DISCOVERY_HIGHLIGHT_IDS = [7, 16, 23]; // Supply chain · Dangerous goods · Express courier
 
 // Short proof-point bullets for the featured trio.
 const HERO_FEATURES: Record<number, { en: string[]; ar: string[] }> = {
   11: {
-    en: ["ATA Carnet & temporary import", "On-site stand delivery", "500+ events coordinated"],
-    ar: ["كارنيه ATA والاستيراد المؤقت", "التسليم داخل الجناح", "أكثر من 500 فعالية منسقة"],
+    en: ["Event freight planning", "Venue access requirements", "Return-routing enquiries"],
+    ar: ["تخطيط شحن الفعاليات", "متطلبات دخول الموقع", "استفسارات مسار العودة"],
   },
   19: {
-    en: ["Carnet processing often within 24 hours", "80+ country coverage", "Exhibitions, equipment & samples"],
-    ar: ["معالجة الكارنيه غالباً خلال 24 ساعة", "تغطية أكثر من 80 دولة", "معارض ومعدات وعينات"],
+    en: ["Eligibility & document coordination", "Country acceptance varies", "Exhibitions, equipment & samples"],
+    ar: ["تنسيق الأهلية والمستندات", "تختلف شروط القبول حسب الدولة", "معارض ومعدات وعينات"],
   },
   4: {
-    en: ["Customs clearance often within 24 hours", "SABER, SFDA & CITC approvals", "All commodity types"],
-    ar: ["تخليص جمركي غالباً خلال 24 ساعة", "موافقات سابر وSFDA وهيئة الاتصالات", "جميع أنواع البضائع"],
+    en: ["Shipment-specific document coordination", "Product approvals where applicable", "Requirements vary by commodity"],
+    ar: ["تنسيق المستندات حسب الشحنة", "الموافقات الخاصة بالمنتج عند انطباقها", "تختلف المتطلبات بحسب نوع البضاعة"],
   },
 };
 
 const byId = (id: number) => SERVICE_CATALOG.find((s) => s.id === id);
+
+function DiscoverMoreServicesCard({ index }: { index: number }) {
+  const { t, isRtl } = useLanguage();
+  const highlights = DISCOVERY_HIGHLIGHT_IDS
+    .map(byId)
+    .filter((service): service is Service => Boolean(service));
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: (index % 3) * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="h-full"
+    >
+      <motion.div
+        whileHover={{ y: -5 }}
+        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+        className="h-full"
+      >
+        <Link
+          href="/services"
+          data-testid="discover-more-services-card"
+          aria-label={t("Explore all logistics services", "استكشف جميع الخدمات اللوجستية")}
+          className={`group relative flex h-full min-h-[260px] flex-col overflow-hidden rounded-[16px] border border-[#DCE5EF] bg-white p-5 shadow-sm transition-all duration-300 hover:border-secondary/40 hover:shadow-[0_18px_44px_-16px_rgba(10,35,66,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 ${isRtl ? "text-right" : "text-left"}`}
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-16 -right-12 h-44 w-44 rounded-full bg-secondary/[0.06] transition-transform duration-500 group-hover:scale-125 rtl:right-auto rtl:-left-12"
+          />
+          <div className={`relative mb-4 flex items-center justify-between gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-secondary/10 bg-[#F8FAFC] text-secondary shadow-sm">
+              <Package className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <span className="rounded-full border border-secondary/15 bg-secondary/[0.06] px-2.5 py-1 text-[10px] font-bold tracking-wide text-secondary">
+              {t(`${DISCOVERY_SERVICES.length} More Services`, `${DISCOVERY_SERVICES.length} خدمات إضافية`)}
+            </span>
+          </div>
+
+          <h3 className="relative mb-2 text-base font-black leading-tight text-[#0A2342]">
+            {t("Discover More Logistics Services", "اكتشف المزيد من الخدمات اللوجستية")}
+          </h3>
+          <p className="relative mb-4 text-[12px] leading-relaxed text-[#475569]">
+            {t(
+              "Explore our complete range of freight, specialist cargo, transportation and logistics solutions for your shipment requirements.",
+              "استكشف مجموعة خدمات الشحن والبضائع المتخصصة والنقل والحلول اللوجستية لتلبية متطلبات شحنتك.",
+            )}
+          </p>
+
+          <div className={`relative mb-4 flex flex-wrap gap-1.5 ${isRtl ? "flex-row-reverse" : ""}`}>
+            {highlights.map((service) => (
+              <span
+                key={service.id}
+                className="rounded-full border border-[#E2E8F0] bg-[#F8FAFC] px-2.5 py-1 text-[10px] font-medium text-[#475569]"
+              >
+                {isRtl ? service.nameAr : service.name}
+              </span>
+            ))}
+          </div>
+
+          <span className={`relative mt-auto inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondary transition-all group-hover:gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
+            {t("Explore All Services", "استكشف جميع الخدمات")}
+            <ArrowRight className={`h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 ${isRtl ? "rotate-180 group-hover:-translate-x-0.5" : ""}`} />
+          </span>
+        </Link>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 // ─── Featured specialty card ─────────────────────────────────────────────────
 function FeaturedCard({ service, index }: { service: Service; index: number }) {
@@ -79,6 +152,7 @@ function FeaturedCard({ service, index }: { service: Service; index: number }) {
             <div className="relative h-44 overflow-hidden">
               <img
                 src={image}
+                {...getIntrinsicImageDimensions(image)}
                 alt={name}
                 loading="lazy"
                 decoding="async"
@@ -144,13 +218,82 @@ function FeaturedCard({ service, index }: { service: Service; index: number }) {
 }
 
 // ─── Compact service card ────────────────────────────────────────────────────
-function CompactCard({ service, index }: { service: Service; index: number }) {
+function CompactCard({ service, index, doorToDoor = false }: {
+  service: Service;
+  index: number;
+  doorToDoor?: boolean;
+}) {
   const { t, isRtl } = useLanguage();
   const meta = SERVICE_META[service.id];
   const slug = meta?.slug ?? "";
-  const name = isRtl ? service.nameAr : service.name;
-  const desc = isRtl ? service.descriptionAr : service.description;
-  const image = SERVICE_IMAGES[service.id];
+  const name = doorToDoor
+    ? t("Door-to-Door Logistics", "الخدمات اللوجستية من الباب إلى الباب")
+    : isRtl ? service.nameAr : service.name;
+  const desc = doorToDoor
+    ? t(
+      "A single enquiry for coordinated collection and delivery. Route, customs responsibilities, operators and service scope are confirmed for each shipment.",
+      "استفسار واحد لتنسيق الاستلام والتسليم. يُؤكد المسار ومسؤوليات الجمارك والجهات المشغّلة ونطاق الخدمة لكل شحنة.",
+    )
+    : isRtl ? service.descriptionAr : service.description;
+  const image = doorToDoor ? DOOR_TO_DOOR_IMAGE : SERVICE_IMAGES[service.id];
+  const detailHref = doorToDoor ? "/services/freight-forwarding" : `/services/${slug}`;
+
+  const content = (
+    <>
+      {/* photo header */}
+      {image && (
+        <div className="relative h-32 overflow-hidden">
+          <img
+            src={image}
+            {...getIntrinsicImageDimensions(image)}
+            alt={name}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
+        </div>
+      )}
+
+      {/* body */}
+      <div className="relative p-6 flex flex-col flex-1">
+        <motion.div
+          whileHover={{ rotate: 6, scale: 1.08 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${image ? "-mt-12 bg-white border border-secondary/10 shadow-[0_10px_24px_-10px_rgba(10,35,66,0.45)]" : "mb-5 bg-[#F1F5F9] group-hover:bg-secondary/12 transition-colors"}`}
+        >
+          <ServiceIcon name={doorToDoor ? "Truck" : service.icon} className="w-6 h-6 text-secondary" />
+        </motion.div>
+
+        <h3 className={`font-bold text-[15px] leading-tight mb-2 ${isRtl ? "text-right" : ""}`} style={{ color: "#0A2342" }}>
+          {name}
+        </h3>
+        <p className={`text-[13px] leading-relaxed mb-5 flex-1 line-clamp-3 ${isRtl ? "text-right" : ""}`} style={{ color: "#475569" }}>
+          {desc}
+        </p>
+
+        {doorToDoor ? (
+          <div className={`mt-auto flex flex-col items-start gap-2 ${isRtl ? "items-end text-right" : ""}`}>
+            <span className={`inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-secondary transition-all group-hover:gap-2.5 ${isRtl ? "flex-row-reverse" : ""}`}>
+              {t("Explore Service", "استكشف الخدمة")}
+              <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? "rotate-180" : ""}`} />
+            </span>
+            <Link
+              href="/contact?service=freight-forwarding&topic=door-to-door"
+              className="relative z-20 inline-flex min-h-8 items-center text-xs font-semibold text-[#475569] underline decoration-[#CBD5E1] underline-offset-4 transition-colors hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+            >
+              {t("Request a Door-to-Door Quote", "اطلب عرض سعر للشحن من الباب إلى الباب")}
+            </Link>
+          </div>
+        ) : (
+          <span className={`mt-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-secondary transition-all group-hover:gap-2.5 ${isRtl ? "flex-row-reverse" : ""}`}>
+            {t("Explore Service", "استكشف الخدمة")}
+            <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 ${isRtl ? "rotate-180 group-hover:-translate-x-0.5" : ""}`} />
+          </span>
+        )}
+      </div>
+    </>
+  );
 
   return (
     <motion.div
@@ -171,47 +314,24 @@ function CompactCard({ service, index }: { service: Service; index: number }) {
           className="absolute inset-0 rounded-[18px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{ background: "linear-gradient(135deg,#0A2342,#D62828)" }}
         />
-        <Link
-          href={`/services/${slug}`}
-          className="relative h-full rounded-[16px] bg-white flex flex-col overflow-hidden shadow-sm group-hover:shadow-[0_18px_44px_-16px_rgba(10,35,66,0.22)] transition-shadow duration-300"
-        >
-          {/* photo header */}
-          {image && (
-            <div className="relative h-32 overflow-hidden">
-              <img
-                src={image}
-                alt={name}
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent" />
-            </div>
-          )}
-
-          {/* body */}
-          <div className="relative p-6 flex flex-col flex-1">
-            <motion.div
-              whileHover={{ rotate: 6, scale: 1.08 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${image ? "-mt-12 bg-white border border-secondary/10 shadow-[0_10px_24px_-10px_rgba(10,35,66,0.45)]" : "mb-5 bg-[#F1F5F9] group-hover:bg-secondary/12 transition-colors"}`}
-            >
-              <ServiceIcon name={service.icon} className="w-6 h-6 text-secondary" />
-            </motion.div>
-
-            <h3 className={`font-bold text-[15px] leading-tight mb-2 ${isRtl ? "text-right" : ""}`} style={{ color: "#0A2342" }}>
-              {name}
-            </h3>
-            <p className={`text-[13px] leading-relaxed mb-5 flex-1 line-clamp-3 ${isRtl ? "text-right" : ""}`} style={{ color: "#475569" }}>
-              {desc}
-            </p>
-
-            <span className={`mt-auto inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-secondary transition-all group-hover:gap-2.5 ${isRtl ? "flex-row-reverse" : ""}`}>
-              {t("Explore Service", "استكشف الخدمة")}
-              <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 ${isRtl ? "rotate-180 group-hover:-translate-x-0.5" : ""}`} />
-            </span>
+        {doorToDoor ? (
+          <div className="group relative h-full rounded-[16px] bg-white flex flex-col overflow-hidden shadow-sm group-hover:shadow-[0_18px_44px_-16px_rgba(10,35,66,0.22)] transition-shadow duration-300">
+            {content}
+            <Link
+              href={detailHref}
+              aria-label={t("Door-to-Door Logistics service details", "تفاصيل خدمة الخدمات اللوجستية من الباب إلى الباب")}
+              data-testid="door-to-door-service-card-link"
+              className="absolute inset-0 z-10 rounded-[16px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
+            />
           </div>
-        </Link>
+        ) : (
+          <Link
+            href={detailHref}
+            className="relative h-full rounded-[16px] bg-white flex flex-col overflow-hidden shadow-sm group-hover:shadow-[0_18px_44px_-16px_rgba(10,35,66,0.22)] transition-shadow duration-300"
+          >
+            {content}
+          </Link>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -221,7 +341,7 @@ export function ServicesSection() {
   const { t, isRtl } = useLanguage();
 
   const featured = FEATURED_IDS.map(byId).filter((s): s is Service => Boolean(s));
-  const grid = GRID_IDS.map(byId).filter((s): s is Service => Boolean(s));
+  const grid = MORE_SERVICE_IDS.map(byId).filter((s): s is Service => Boolean(s));
 
   return (
     <section className="py-32 relative overflow-hidden" style={{ background: "#F8FAFC" }}>
@@ -262,14 +382,14 @@ export function ServicesSection() {
             style={{ color: "#475569" }}
           >
             {t(
-              "One trusted partner for every shipment — from ATA Carnet and exhibition logistics to customs clearance, project cargo and GCC freight, backed by 25+ years of Saudi expertise.",
-              "شريك واحد موثوق لكل شحنة — من كارنيه ATA ولوجستيات المعارض إلى التخليص الجمركي وبضائع المشاريع والشحن الخليجي، مدعوماً بأكثر من 25 عاماً من الخبرة السعودية.",
+              "Plan your request across customs clearance, exhibition logistics, ATA Carnet documentation, project cargo and GCC freight. Eligibility, route and service scope are confirmed for each shipment.",
+              "جهّز طلبك للتخليص الجمركي ولوجستيات المعارض ومستندات كارنيه ATA وشحن المشاريع والنقل الخليجي. وتُؤكد الأهلية والمسار ونطاق الخدمة لكل شحنة على حدة.",
             )}
           </motion.p>
         </div>
 
         {/* ── Featured specialties ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
           {featured.map((service, i) => (
             <FeaturedCard key={service.id} service={service} index={i} />
           ))}
@@ -289,6 +409,15 @@ export function ServicesSection() {
           {grid.map((service, i) => (
             <CompactCard key={service.id} service={service} index={i} />
           ))}
+          {byId(6) && (
+            <CompactCard
+              key="door-to-door"
+              service={byId(6)!}
+              index={grid.length}
+              doorToDoor
+            />
+          )}
+          <DiscoverMoreServicesCard index={grid.length + 1} />
         </div>
 
         {/* ── Dual CTA ── */}

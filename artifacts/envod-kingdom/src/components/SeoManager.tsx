@@ -13,6 +13,6 @@ import { getSeoForPath } from "@/lib/seo-config";
 export function SeoManager() {
   const [location] = useLocation();
   const { language } = useLanguage();
-  useSeo(getSeoForPath(location, location === "/about" ? language : undefined));
+  useSeo(getSeoForPath(location, language));
   return null;
 }

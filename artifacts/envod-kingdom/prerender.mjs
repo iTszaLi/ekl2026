@@ -8,14 +8,14 @@ const SERVER_ENTRY = path.join(__dirname, "dist", "server", "entry-server.js");
 
 const { render, getSeoForPath, CONTENT_ROUTES, SITE_URL, OG_IMAGE, toAbsolute } =
   await import(SERVER_ENTRY);
+const PRERENDER_ROUTES = [...CONTENT_ROUTES];
 
 const rawTemplate = await readFile(path.join(DIST, "index.html"), "utf-8");
 
 // Build-time security meta tags (production HTML only — dev index.html is
 // untouched, so Vite HMR/react-refresh keep working). frame-ancestors and
-// X-Frame-Options cannot be expressed via <meta>; those are sent as real HTTP
-// headers by hosts that support them (see public/_headers for Cloudflare
-// Pages) and by the API server for /api responses.
+// X-Frame-Options cannot be expressed via <meta>; Vercel sends it as an HTTP
+// header via vercel.json, and Cloudflare Pages can use public/_headers.
 const SECURITY_META = [
   `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https://storage.googleapis.com; media-src 'self'; connect-src 'self' https://storage.googleapis.com; frame-src https://maps.google.com https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />`,
   `<meta name="referrer" content="strict-origin-when-cross-origin" />`,
@@ -24,38 +24,6 @@ if (!rawTemplate.includes("</head>")) {
   throw new Error("prerender: index.html template has no </head> — cannot inject security meta");
 }
 const template = rawTemplate.replace("</head>", `  ${SECURITY_META}\n  </head>`);
-
-// --- Guard: the hand-maintained artifact.toml rewrite list must stay in sync
-// with CONTENT_ROUTES. Every prerendered content route (except "/", served as
-// the root index.html) needs an explicit /foo -> /foo/index.html rewrite before
-// the SPA catch-all; otherwise that route falls through to spa.html and ships
-// the neutral, non-canonical shell head instead of its prerendered SEO. This
-// throws on drift in either direction so a missed edit fails the build loudly. ---
-{
-  const tomlPath = path.join(__dirname, ".replit-artifact", "artifact.toml");
-  const toml = await readFile(tomlPath, "utf-8");
-  const rewriteFroms = new Set(
-    [...toml.matchAll(/from\s*=\s*"([^"]+)"/g)].map((m) => m[1]),
-  );
-  const expected = CONTENT_ROUTES.filter((r) => r !== "/");
-  const missing = expected.filter((r) => !rewriteFroms.has(r));
-  if (missing.length > 0) {
-    throw new Error(
-      `prerender: artifact.toml is missing rewrites for prerendered routes: ${missing.join(", ")}. ` +
-        `Add [[services.production.rewrites]] "${missing[0]}" -> "${missing[0]}/index.html" (and any others) before the "/*" catch-all.`,
-    );
-  }
-  const orphans = [...rewriteFroms].filter((f) => f !== "/*" && !expected.includes(f));
-  if (orphans.length > 0) {
-    throw new Error(
-      `prerender: artifact.toml has rewrites with no matching CONTENT_ROUTES entry: ${orphans.join(", ")}. ` +
-        `Remove them or add the route to CONTENT_ROUTES.`,
-    );
-  }
-  if (!rewriteFroms.has("/*")) {
-    throw new Error('prerender: artifact.toml is missing the "/*" -> "/spa.html" SPA catch-all rewrite.');
-  }
-}
 
 function esc(s) {
   return String(s)
@@ -92,6 +60,8 @@ function replaceOnce(html, pattern, replacement, label) {
 function buildHead(seo, canonicalAbs) {
   const image = seo.image ? toAbsolute(seo.image) : OG_IMAGE;
   const tags = [
+    `<meta property="og:locale" content="${esc(seo.locale || "en_SA")}" />`,
+    `<meta property="og:locale:alternate" content="${esc(seo.alternateLocale || "ar_SA")}" />`,
     `<meta property="og:title" content="${esc(seo.title)}" />`,
     `<meta property="og:description" content="${esc(seo.description)}" />`,
     `<meta property="og:type" content="${esc(seo.type || "website")}" />`,
@@ -121,15 +91,22 @@ function buildHead(seo, canonicalAbs) {
 }
 
 let count = 0;
-for (const route of CONTENT_ROUTES) {
+for (const route of PRERENDER_ROUTES) {
   const seo = getSeoForPath(route);
   const canonicalPath = seo.canonicalPath || route;
   const canonicalAbs = canonicalPath.startsWith("http")
     ? canonicalPath
     : `${SITE_URL}${canonicalPath}`;
-  const appHtml = render(route);
+  const isArabic = route === "/ar" || route.startsWith("/ar/");
+  const appHtml = await render(route);
 
   let html = template;
+  html = replaceOnce(
+    html,
+    /<html lang="en">/,
+    `<html lang="${isArabic ? "ar" : "en"}" dir="${isArabic ? "rtl" : "ltr"}">`,
+    "html language and direction",
+  );
   html = replaceOnce(
     html,
     /<title>[\s\S]*?<\/title>/,
@@ -148,6 +125,14 @@ for (const route of CONTENT_ROUTES) {
     `<link rel="canonical" href="${esc(canonicalAbs)}" />`,
     "canonical",
   );
+  if (seo.robots) {
+    html = replaceOnce(
+      html,
+      /<meta name="robots" content="[^"]*"\s*\/>/,
+      `<meta name="robots" content="${esc(seo.robots)}" />`,
+      "robots",
+    );
+  }
   html = replaceOnce(html, "<!--seo-head-->", buildHead(seo, canonicalAbs), "seo-head marker");
   html = replaceOnce(
     html,
@@ -162,8 +147,8 @@ for (const route of CONTENT_ROUTES) {
   count += 1;
 }
 
-// Clean SPA shell for the catch-all rewrite (client-routed pages like /track,
-// /admin, and any unknown URL). It has no server-rendered appHtml and no
+// Clean SPA shell for browser-side development fallback and the static-host
+// fallback. It has no server-rendered appHtml and no
 // data-ssr-path, so main.tsx uses createRoot (pure client render) and crawlers
 // never see home content/canonical bleeding onto non-content routes. The
 // default <title>/description/canonical from index.html stay; client-side
@@ -188,29 +173,42 @@ for (const route of CONTENT_ROUTES) {
     `<meta name="description" content="ENVOD KINGDOM Shipping Services LLC — logistics, customs clearance, and freight forwarding across Saudi Arabia and the GCC." />`,
     "description (spa shell)",
   );
+  shell = replaceOnce(
+    shell,
+    /<meta name="robots" content="[^"]*"\s*\/>/,
+    '<meta name="robots" content="noindex, nofollow" />',
+    "robots (spa shell)",
+  );
   await writeFile(path.join(DIST, "spa.html"), shell, "utf-8");
 }
 
-// --- sitemap.xml is generated from CONTENT_ROUTES so it stays aligned with
-// prerendered pages. The About page is published in both English and Arabic,
-// with reciprocal hreflang annotations; client-only routes remain excluded. ---
+// --- Sitemap includes the canonical English/Arabic pairs and their reciprocal
+// hreflang annotations. ---
 {
-  const lastmod = new Date().toISOString().slice(0, 10);
   const sitemapMeta = (route) => {
-    if (route === "/") return { priority: "1.0", changefreq: "weekly" };
-    if (route === "/services") return { priority: "0.9", changefreq: "monthly" };
-    if (route === "/gallery") return { priority: "0.7", changefreq: "weekly" };
-    if (route === "/about" || route === "/ar/about") return { priority: "0.7", changefreq: "monthly" };
-    if (route === "/contact") return { priority: "0.8", changefreq: "monthly" };
-    return { priority: "0.8", changefreq: "monthly" }; // /services/<detail>
+    const englishRoute =
+      route === "/ar" || route.startsWith("/ar/") ? route.slice(3) || "/" : route;
+    if (englishRoute === "/") return { priority: "1.0", changefreq: "weekly" };
+    if (englishRoute === "/services") return { priority: "0.9", changefreq: "monthly" };
+    if (englishRoute === "/gallery") return { priority: "0.7", changefreq: "weekly" };
+    if (englishRoute === "/about") return { priority: "0.7", changefreq: "monthly" };
+    if (englishRoute === "/contact") return { priority: "0.8", changefreq: "monthly" };
+    if (englishRoute.startsWith("/privacy") || englishRoute.startsWith("/terms") || englishRoute.startsWith("/cookie")) {
+      return { priority: "0.2", changefreq: "yearly" };
+    }
+    return { priority: "0.8", changefreq: "monthly" };
   };
   const urls = CONTENT_ROUTES.map((route) => {
     const loc = route === "/" ? `${SITE_URL}/` : `${SITE_URL}${route}`;
+    const englishRoute =
+      route === "/ar" || route.startsWith("/ar/") ? route.slice(3) || "/" : route;
+    const englishLoc =
+      englishRoute === "/" ? `${SITE_URL}/` : `${SITE_URL}${englishRoute}`;
+    const arabicRoute =
+      englishRoute === "/" ? "/ar" : `/ar${englishRoute}`;
+    const arabicLoc = `${SITE_URL}${arabicRoute}`;
     const { priority, changefreq } = sitemapMeta(route);
-    const aboutAlternates = route === "/about" || route === "/ar/about"
-      ? `\n    <xhtml:link rel="alternate" hreflang="en-SA" href="${esc(`${SITE_URL}/about`)}" />\n    <xhtml:link rel="alternate" hreflang="ar-SA" href="${esc(`${SITE_URL}/ar/about`)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${esc(`${SITE_URL}/about`)}" />`
-      : "";
-    return `  <url>\n    <loc>${esc(loc)}</loc>${aboutAlternates}\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    return `  <url>\n    <loc>${esc(loc)}</loc>\n    <xhtml:link rel="alternate" hreflang="en-SA" href="${esc(englishLoc)}" />\n    <xhtml:link rel="alternate" hreflang="ar-SA" href="${esc(arabicLoc)}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${esc(englishLoc)}" />\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
   }).join("\n");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`;
   await writeFile(path.join(DIST, "sitemap.xml"), xml, "utf-8");

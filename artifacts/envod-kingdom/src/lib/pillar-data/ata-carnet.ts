@@ -8,23 +8,23 @@ import type { ServicePillar } from "../service-data";
  *
  * Targets: ATA Carnet Saudi Arabia, ATA Carnet processing, temporary import
  * Saudi Arabia, carnet for exhibitions / professional equipment / commercial
- * samples. Claims are consistent with existing site copy (24-hour processing;
- * temporary duty-free admission; 80+ countries in the ATA Carnet system).
+ * samples. Issuance belongs to authorized associations; coordination and
+ * destination customs review do not imply a fixed clearance time.
  * venues / majorEvents intentionally left empty (not relevant to this page).
  */
 export const ATA_CARNET_PILLAR: ServicePillar = {
-  seoTitle: "ATA Carnet Saudi Arabia — Typically Within 24 Hours | ENVOD KINGDOM",
+  seoTitle: "ATA Carnet Saudi Arabia & Temporary Import | ENVOD KINGDOM",
   seoDescription:
-    "ATA Carnet processing in Saudi Arabia typically within 24 hours — the international customs passport for temporary duty-free admission of exhibition goods, professional equipment and commercial samples across 80+ countries.",
+    "ATA Carnet and temporary-import coordination in Saudi Arabia: equipment lists, customs endorsements, eligibility checks and re-export planning for exhibition cargo.",
 
   intro: [
     {
-      en: "An ATA Carnet is the international customs document that lets goods cross borders temporarily without paying import duties or taxes. ENVOD KINGDOM SHIPPING SERVICES issues, processes and manages ATA Carnets for companies moving exhibition displays, professional equipment and commercial samples into and out of Saudi Arabia — typically cleared within 24 hours so your cargo is never the reason a stand opens late or a project slips.",
-      ar: "كارنيه ATA هو المستند الجمركي الدولي الذي يتيح عبور البضائع للحدود مؤقتاً دون دفع رسوم أو ضرائب استيراد. تُصدر إنفود كينجدوم لخدمات الشحن كارنيهات ATA وتعالجها وتديرها للشركات التي تنقل معروضات المعارض والمعدات المهنية والعينات التجارية من وإلى المملكة العربية السعودية — بتخليص عادةً خلال 24 ساعة حتى لا تكون بضائعك سبباً في تأخر افتتاح جناح أو تعثر مشروع.",
+      en: "An ATA Carnet is an international customs document for eligible goods moving temporarily under the ATA guarantee system. ENVOD KINGDOM SHIPPING SERVICES coordinates shipment documentation, customs endorsements and re-export planning for exhibition cargo entering or leaving Saudi Arabia. Carnets are issued by authorized associations, not automatically by the freight forwarder; confirm the goods, intended use and destination requirements before dispatch.",
+      ar: "كارنيه ATA مستند جمركي دولي للبضائع المؤهلة التي تُنقل مؤقتاً ضمن نظام الضمان الخاص بالكارنيه. تنسّق إنفود كينجدوم لخدمات الشحن مستندات الشحنة والتصديقات الجمركية وخطة إعادة التصدير لشحنات المعارض الداخلة إلى السعودية أو الخارجة منها. تُصدر الكارنيهات جهات مخوّلة، وليس وكيل الشحن تلقائياً؛ لذا تحقق من البضائع والغرض من استخدامها ومتطلبات الوجهة قبل الإرسال.",
     },
     {
-      en: "Known as the \"passport for goods\", a single Carnet replaces the temporary-import paperwork that would otherwise be required at every border, guarantees the duties to customs on your behalf, and lets the same goods leave and return without complication. For more than 25 years our customs team has handled that documentation for exhibitors, broadcasters, contractors and manufacturers — so the goods move, the deadlines hold, and nothing gets stuck at the border.",
-      ar: "يُعرف كارنيه ATA بـ«جواز سفر البضائع»، إذ يحل كارنيه واحد محل أوراق الاستيراد المؤقت التي كانت ستُطلب عند كل حدود، ويضمن الرسوم للجمارك نيابة عنك، ويتيح لنفس البضائع المغادرة والعودة دون تعقيد. لأكثر من 25 عاماً تولّى فريق التخليص لدينا هذه الوثائق للعارضين وشركات البث والمقاولين والمصنّعين — فتتحرك البضائع، وتُحترم المواعيد، ولا يعلق شيء عند الحدود.",
+      en: "Known as the \"passport for goods\", a Carnet works through an international guarantee chain. The holder remains responsible for accurate item descriptions, values and serial numbers, correct customs endorsements, and re-export within the period customs permits, which can be earlier than the Carnet expiry date. Issuance, pre-approval, inspection and release depend on the responsible authorities; no fixed processing time or claim-free outcome is promised.",
+      ar: "يُعرف الكارنيه بـ«جواز سفر البضائع» ويعمل عبر سلسلة ضمان دولية. ويظل حامله مسؤولاً عن دقة أوصاف الأصناف وقيمها وأرقامها التسلسلية، وصحة التصديقات الجمركية، وإعادة التصدير ضمن المهلة التي تسمح بها الجمارك، وقد تكون أقصر من صلاحية الكارنيه. ويعتمد الإصدار والموافقة المسبقة والفحص والفسح على الجهات المختصة، دون وعد بمدة معالجة ثابتة أو خلوّ العملية من المطالبات.",
     },
   ],
 
@@ -37,26 +37,26 @@ export const ATA_CARNET_PILLAR: ServicePillar = {
       },
       paragraphs: [
         {
-          en: "An ATA Carnet is an international customs and temporary-export/import document accepted in more than 80 countries and territories. It allows goods to enter a country duty-free and tax-free for up to one year, provided the same goods are re-exported unchanged before the Carnet expires. The name comes from the French and English \"Admission Temporaire / Temporary Admission\".",
-          ar: "كارنيه ATA مستند جمركي دولي للتصدير والاستيراد المؤقت مقبول في أكثر من 80 دولة وإقليماً. يتيح دخول البضائع إلى بلدٍ ما معفاة من الرسوم والضرائب لمدة تصل إلى عام واحد، شريطة إعادة تصدير البضائع نفسها دون تغيير قبل انتهاء صلاحية الكارنيه. ويأتي الاسم من العبارة الفرنسية والإنجليزية «القبول المؤقت».",
+          en: "An ATA Carnet is an international customs document used for eligible temporary movements of goods under the ATA system. Country acceptance, permitted purpose, validity and guarantee terms depend on the issuing terms and authorities. For Saudi Arabia, confirm the current accepted use and shipment eligibility before relying on a Carnet.",
+          ar: "كارنيه ATA مستند جمركي دولي يُستخدم للحركات المؤقتة المؤهلة للبضائع ضمن نظام ATA. ويعتمد قبول البلدان والغرض المسموح به والصلاحية وشروط الضمان على شروط الإصدار والسلطات. وفي السعودية، يجب تأكيد الاستخدام المقبول حالياً وأهلية الشحنة قبل الاعتماد على الكارنيه.",
         },
         {
-          en: "Instead of lodging a separate temporary-import bond and clearance at each customs post, the holder presents one Carnet that has already guaranteed any potential duties. This removes cash deposits at the border, standardises the paperwork across countries, and dramatically speeds up clearance both on the way in and on the way back out.",
-          ar: "بدلاً من تقديم كفالة استيراد مؤقت وتخليص منفصلين عند كل نقطة جمركية، يقدّم الحامل كارنيهاً واحداً يكون قد ضمن مسبقاً أي رسوم محتملة. وهذا يلغي الودائع النقدية عند الحدود، ويوحّد الأوراق عبر الدول، ويسرّع التخليص بشكل كبير عند الدخول والخروج معاً.",
+          en: "Where the authorities accept a Carnet for the specific goods and use, its guarantee mechanism may apply under the relevant terms. Issuing-association fees or security requirements can still apply. Customs controls, prior approvals, examination and other cargo-specific permits remain separate requirements.",
+          ar: "عندما تقبل السلطات الكارنيه للبضاعة والاستخدام المحددين، قد تنطبق آلية الضمان وفق الشروط ذات الصلة. وقد تظل رسوم جهة الإصدار أو متطلبات التأمين قائمة. وتبقى الرقابة الجمركية والموافقات المسبقة والفحص والتصاريح الخاصة بالبضاعة متطلبات منفصلة.",
         },
       ],
       bullets: [
         {
-          en: "Duty-free and tax-free temporary admission for up to 12 months",
-          ar: "قبول مؤقت معفى من الرسوم والضرائب لمدة تصل إلى 12 شهراً",
+          en: "Temporary admission only where the goods and intended use are eligible",
+          ar: "إدخال مؤقت فقط عند أهلية البضاعة والغرض المقصود",
         },
         {
-          en: "One document accepted across 80+ countries and territories",
-          ar: "مستند واحد مقبول في أكثر من 80 دولة وإقليماً",
+          en: "Country acceptance and permitted use vary; confirm before dispatch",
+          ar: "يختلف قبول البلدان والاستخدام المسموح؛ أكّد ذلك قبل الإرسال",
         },
         {
-          en: "No cash deposit or separate bond required at each border",
-          ar: "دون وديعة نقدية أو كفالة منفصلة عند كل حدود",
+          en: "A recognized guarantee mechanism, subject to shipment acceptance and issuing terms",
+          ar: "آلية ضمان معترف بها، وفق قبول الشحنة وشروط جهة الإصدار",
         },
         {
           en: "Covers multiple trips and multiple countries on a single Carnet",
@@ -72,8 +72,8 @@ export const ATA_CARNET_PILLAR: ServicePillar = {
       },
       paragraphs: [
         {
-          en: "The ATA Carnet system covers three broad categories of goods that leave a country temporarily and come back unchanged. It does not apply to consumables, giveaways or anything that will be sold, used up or left behind — those follow standard import and customs clearance.",
-          ar: "يغطي نظام كارنيه ATA ثلاث فئات عامة من البضائع التي تغادر البلد مؤقتاً وتعود دون تغيير. ولا ينطبق على المواد الاستهلاكية أو الهدايا أو أي شيء سيُباع أو يُستهلك أو يُترك — فتلك تخضع للاستيراد والتخليص الجمركي المعتاد.",
+          en: "International ATA guidance describes broad categories such as exhibition goods, professional equipment and commercial samples. That global description does not establish Saudi eligibility for every category: confirm the destination, intended use and specific items with the authorized issuing association and customs authorities. Consumables, giveaways or goods to be sold or left behind may require another import procedure.",
+          ar: "تذكر الإرشادات الدولية لكارنيه ATA فئات عامة مثل بضائع المعارض والمعدات المهنية والعينات التجارية. ولا تثبت هذه الفئات العالمية أهلية جميع الأصناف في السعودية؛ لذا أكّد الوجهة والغرض والأصناف المحددة مع جهة الإصدار المخوّلة والسلطات الجمركية. وقد تحتاج المواد الاستهلاكية والهدايا والبضائع المعدة للبيع أو التي ستُترك إلى إجراء استيراد آخر.",
         },
       ],
       bullets: [
@@ -98,13 +98,13 @@ export const ATA_CARNET_PILLAR: ServicePillar = {
     {
       id: "how-envod-processes-ata-carnets",
       heading: {
-        en: "How ENVOD processes your ATA Carnet — typically within 24 hours",
-        ar: "كيف تعالج إنفود كارنيه ATA — عادةً خلال 24 ساعة",
+        en: "How ENVOD coordinates your ATA Carnet shipment",
+        ar: "كيف تنسّق إنفود شحنتك بكارنيه ATA",
       },
       paragraphs: [
         {
-          en: "Carnets fail at the border for predictable reasons — an item missing from the general list, a mismatched serial number, an expired validity date, or an endorsement skipped on exit. Our team builds the Carnet correctly the first time and stays with it through every customs endorsement, so the document that leaves is the document that comes back closed and discharged.",
-          ar: "تفشل الكارنيهات عند الحدود لأسباب متوقعة — صنف مفقود من القائمة العامة، أو رقم تسلسلي غير مطابق، أو تاريخ صلاحية منتهٍ، أو تصديق فائت عند الخروج. يُعدّ فريقنا الكارنيه بشكل صحيح من المرة الأولى ويرافقه في كل تصديق جمركي، فيكون المستند الذي يغادر هو نفسه الذي يعود مُغلقاً ومُبرَّأً.",
+          en: "Before dispatch, check that the item list, values and serial numbers match the goods, and confirm the validity period, required endorsements and re-export deadline. ENVOD can coordinate shipment information and document checks; the holder remains responsible for the Carnet, while the issuing association and customs authorities determine issuance, acceptance and discharge.",
+          ar: "قبل الإرسال، تحقّق من تطابق قائمة الأصناف والقيم والأرقام التسلسلية مع البضائع، وأكّد مدة الصلاحية والتصديقات المطلوبة وموعد إعادة التصدير. يمكن لإنفود تنسيق معلومات الشحنة ومراجعة المستندات؛ ويظل حامل الكارنيه مسؤولاً عنه، بينما تحدد جهة الإصدار والسلطات الجمركية الإصدار والقبول والإبراء.",
         },
       ],
       bullets: [
@@ -113,16 +113,16 @@ export const ATA_CARNET_PILLAR: ServicePillar = {
           ar: "مراجعة الأهلية وإعداد قائمة عامة دقيقة للبضائع بقيمها",
         },
         {
-          en: "Carnet issuance and guarantee arranged — typically within 24 hours",
-          ar: "إصدار الكارنيه وترتيب الضمان — عادةً خلال 24 ساعة",
+          en: "Issuance and guarantee requirements confirmed with the authorized association",
+          ar: "تأكيد متطلبات الإصدار والضمان مع الجهة المخوّلة",
         },
         {
           en: "Customs endorsement at export, import, re-export and re-import",
           ar: "التصديق الجمركي عند التصدير والاستيراد وإعادة التصدير وإعادة الاستيراد",
         },
         {
-          en: "Discharge tracking so the Carnet is closed cleanly with no claims",
-          ar: "متابعة الإبراء لإغلاق الكارنيه بشكل سليم دون أي مطالبات",
+          en: "Keep endorsement and re-export evidence for the issuing association's discharge review",
+          ar: "الاحتفاظ بإثباتات التصديق وإعادة التصدير لمراجعة الإبراء لدى جهة الإصدار",
         },
       ],
     },
@@ -134,22 +134,22 @@ export const ATA_CARNET_PILLAR: ServicePillar = {
       },
       paragraphs: [
         {
-          en: "As a Saudi customs specialist, ENVOD KINGDOM pairs Carnet expertise with the freight forwarding and on-the-ground clearance that a temporary import actually needs. That means one team handles the document, the shipment and the customs endorsements — a fast, low-risk way to keep temporary goods moving.",
-          ar: "بوصفها متخصصة في الجمارك السعودية، تجمع إنفود كينجدوم بين خبرة الكارنيه والشحن والتخليص الميداني الذي يتطلبه الاستيراد المؤقت فعلياً. وهذا يعني أن فريقاً واحداً يتولى المستند والشحنة والتصديقات الجمركية — وهي طريقة سريعة ومنخفضة المخاطر لإبقاء البضائع المؤقتة في حركة.",
+          en: "An ATA shipment involves separate responsibilities for the holder, issuing association, carrier, customs broker and authorities. ENVOD can review the requested transport and document-coordination scope; confirm who issues the Carnet, who files declarations and who obtains any approvals before booking.",
+          ar: "تتضمن شحنة ATA مسؤوليات منفصلة لحامل الكارنيه وجهة الإصدار والناقل والمخلّص والسلطات. يمكن لإنفود مراجعة نطاق النقل وتنسيق المستندات المطلوب؛ أكّد جهة إصدار الكارنيه والجهة التي تقدم الإقرارات وتحصل على أي موافقات قبل الحجز.",
         },
       ],
       bullets: [
         {
-          en: "Carnet processing typically within 24 hours for time-critical shipments",
-          ar: "معالجة الكارنيه عادةً خلال 24 ساعة للشحنات الحسّاسة للوقت",
+          en: "Documentation and deadline planning for time-critical shipments",
+          ar: "تخطيط المستندات والمواعيد للشحنات الحسّاسة للوقت",
         },
         {
-          en: "End-to-end handling: document, freight and customs under one team",
-          ar: "مناولة متكاملة: المستند والشحن والجمارك تحت فريق واحد",
+          en: "Shipment, customs and document responsibilities scoped before booking",
+          ar: "تحديد مسؤوليات الشحنة والجمارك والمستندات قبل الحجز",
         },
         {
-          en: "Deep Saudi Customs relationships and temporary-import know-how",
-          ar: "علاقات عميقة مع الجمارك السعودية وخبرة في الاستيراد المؤقت",
+          en: "Coordination with the authorized issuing association and responsible authorities",
+          ar: "التنسيق مع جهة الإصدار المخوّلة والسلطات المسؤولة",
         },
         {
           en: "Integrated air, sea and road freight to and from the venue or site",

@@ -70,8 +70,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "تشمل لوجستيات السيارات نقل المركبات الكاملة وقطع الغيار والإطارات والبطاريات ومعدات الورش إلى داخل المملكة وعبرها. يعتمد القطاع على تنسيق دقيق: فالوكلاء يحتاجون مخزون المعارض في موعده، والورش تحتاج القطع بسرعة، والمستوردون يحتاجون مستندات جمركية سليمة لكل رقم هيكل.",
       },
       {
-        en: "We handle RoRo bookings for driveable units, containerised shipments for parts and accessories, and SABER conformity coordination for regulated automotive products. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "نتولى حجوزات سفن الدحرجة للمركبات القابلة للقيادة، والشحنات المحواة لقطع الغيار والإكسسوارات، وتنسيق شهادات مطابقة سابر للمنتجات الخاضعة للتنظيم. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We handle RoRo bookings for driveable units, containerised shipments for parts and accessories, and SABER conformity coordination for regulated automotive products. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "نتولى حجوزات سفن الدحرجة للمركبات القابلة للقيادة، والشحنات المحواة لقطع الغيار والإكسسوارات، وتنسيق شهادات مطابقة سابر للمنتجات الخاضعة للتنظيم. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [
@@ -85,7 +85,7 @@ export const INDUSTRY_META: IndustryMeta[] = [
       { titleEn: "Spare Parts Air Freight", titleAr: "الشحن الجوي لقطع الغيار", descEn: "Air freight for urgent parts and workshop equipment — air freight is the fastest mode of international shipping.", descAr: "شحن جوي للقطع العاجلة ومعدات الورش — الشحن الجوي هو أسرع وسائل الشحن الدولي.", serviceSlug: "air-freight" },
       { titleEn: "Customs & SABER Coordination", titleAr: "التخليص الجمركي وتنسيق سابر", descEn: "Import clearance, VIN documentation, and conformity certificate coordination for automotive products.", descAr: "تخليص الاستيراد ومستندات أرقام الهياكل وتنسيق شهادات المطابقة لمنتجات السيارات.", serviceSlug: "customs-clearance" },
       { titleEn: "Parts Warehousing & Distribution", titleAr: "تخزين وتوزيع قطع الغيار", descEn: "Storage, inventory management, and scheduled replenishment to dealer and workshop networks.", descAr: "تخزين وإدارة مخزون وتجديد مجدول لشبكات الوكلاء والورش.", serviceSlug: "warehousing" },
-      { titleEn: "Express Courier for Critical Parts", titleAr: "بريد سريع للقطع الحرجة", descEn: "Same-day and next-day delivery options for vehicle-off-road situations.", descAr: "خيارات توصيل في نفس اليوم واليوم التالي لحالات توقف المركبات.", serviceSlug: "express-courier" },
+      { titleEn: "Express Courier for Critical Parts", titleAr: "بريد سريع للقطع الحرجة", descEn: "Urgent delivery options for vehicle-off-road situations, subject to route and service availability.", descAr: "خيارات توصيل عاجل للقطع اللازمة لتشغيل المركبات، بحسب توفر المسار والخدمة.", serviceSlug: "express-courier" },
     ],
     relatedServiceSlugs: ["roro-shipping", "air-freight", "customs-clearance", "warehousing", "express-courier"],
     faq: [
@@ -118,18 +118,18 @@ export const INDUSTRY_META: IndustryMeta[] = [
     gradient: G("#1c1206", "#0A2342"),
     nameEn: "Construction Logistics",
     nameAr: "لوجستيات البناء والإنشاء",
-    shortEn: "Building materials, heavy equipment, and project cargo delivered to construction sites across the Kingdom.",
-    shortAr: "مواد البناء والمعدات الثقيلة وبضائع المشاريع تصل إلى مواقع الإنشاء في أنحاء المملكة.",
-    introEn: "Saudi Arabia is building at an extraordinary pace. ENVOD KINGDOM moves building materials, machinery, and oversized components for contractors and suppliers working on projects across the Kingdom — from city developments to Vision 2030 giga-project supply chains.",
-    introAr: "تشهد السعودية نهضة عمرانية استثنائية. تنقل إنفود كينجدم مواد البناء والآلات والمكونات الضخمة للمقاولين والموردين العاملين في مشاريع المملكة — من التطويرات الحضرية إلى سلاسل إمداد مشاريع رؤية 2030 الكبرى.",
+    shortEn: "Construction-project cargo enquiries covering materials, equipment, routes and site-delivery requirements.",
+    shortAr: "استفسارات بضائع مشاريع البناء وتشمل المواد والمعدات والمسارات ومتطلبات التسليم للمواقع.",
+    introEn: "Construction projects may involve building materials, machinery and oversized components moving to multiple sites. Share cargo dimensions, origin, destination, site constraints and timing so the route, permits, qualified operators and available scope can be reviewed.",
+    introAr: "قد تشمل مشاريع البناء مواد بناء وآلات ومكونات ضخمة تُنقل إلى مواقع متعددة. أرسل أبعاد البضاعة والمنشأ والوجهة وقيود الموقع والتوقيت لمراجعة المسار والتصاريح والمشغّلين المؤهلين والنطاق المتاح.",
     overview: [
       {
         en: "Construction logistics is about sequence: steel, cement, MEP equipment, and finishing materials must arrive in the right order, at the right laydown area, with the right paperwork. Delays ripple through project schedules, so reliable inland transport and clean import clearance matter as much as price.",
         ar: "لوجستيات البناء تقوم على التسلسل: يجب أن يصل الحديد والأسمنت ومعدات الكهروميكانيك ومواد التشطيب بالترتيب الصحيح إلى منطقة التخزين الصحيحة وبالمستندات الصحيحة. فالتأخير ينعكس على جداول المشاريع، لذا فإن موثوقية النقل الداخلي وسلامة التخليص لا تقل أهمية عن السعر.",
       },
       {
-        en: "We support contractors and building-material suppliers with project cargo handling, out-of-gauge transport for plant and machinery, breakbulk shipments, and scheduled deliveries to site — including remote locations. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "ندعم المقاولين وموردي مواد البناء بمناولة بضائع المشاريع والنقل خارج الأبعاد للمعدات والآلات وشحنات البضائع العامة والتسليم المجدول إلى المواقع — بما فيها المواقع النائية. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "Enquiries may cover project cargo, out-of-gauge transport, breakbulk, site delivery and customs-document requirements. Route surveys, permits, equipment, qualified-provider availability and customs scope must be confirmed for each shipment. Customs timing depends on documentation, procedures and any approvals.",
+        ar: "قد تشمل الاستفسارات بضائع المشاريع والنقل خارج القياس وبريك بالك والتسليم للموقع ومتطلبات المستندات الجمركية. يجب تأكيد مسح المسار والتصاريح والمعدات وتوفر مقدم الخدمة المؤهل ونطاق الجمارك لكل شحنة. وتعتمد مدة الجمارك على المستندات والإجراءات والموافقات.",
       },
     ],
     challenges: [
@@ -149,21 +149,21 @@ export const INDUSTRY_META: IndustryMeta[] = [
     faq: [
       {
         q: "Can you deliver to remote construction sites?",
-        a: "Yes. We plan routes, permits, and delivery schedules for sites across the Kingdom, including newly developed and remote project locations, and coordinate laydown-area access with your site team.",
-        qAr: "هل يمكنكم التوصيل إلى مواقع إنشاء نائية؟",
-        aAr: "نعم. نخطط الطرق والتصاريح وجداول التسليم للمواقع في أنحاء المملكة، بما فيها المواقع النائية وحديثة التطوير، وننسق الوصول إلى مناطق التخزين مع فريق موقعكم.",
+        a: "Share the site address, cargo, access restrictions and requested date. Route, permits, remote-site coverage, receiving windows and qualified-provider availability must be verified before a delivery plan is agreed.",
+        qAr: "ما المعلومات المطلوبة لتخطيط التسليم لموقع إنشاء؟",
+        aAr: "أرسل عنوان الموقع والبضاعة وقيود الدخول والتاريخ المطلوب. يجب التحقق من المسار والتصاريح وتغطية المواقع النائية ونوافذ الاستلام وتوفر مقدم الخدمة المؤهل قبل الاتفاق على خطة التسليم.",
       },
       {
         q: "Do you move heavy construction machinery?",
-        a: "We handle out-of-gauge and heavy-lift moves — excavators, cranes, generators, batching plants — including lowbed transport, escort coordination, and lifting supervision.",
-        qAr: "هل تنقلون معدات البناء الثقيلة؟",
-        aAr: "نتولى النقل خارج الأبعاد والرفع الثقيل — الحفارات والرافعات والمولدات ومحطات الخلط — بما يشمل النقل بالمقطورات المنخفضة وتنسيق المرافقة والإشراف على الرفع.",
+        a: "Oversized and heavy equipment may require route surveys, permits, escorts, lifting plans and specialized trailers. Share dimensions, weight, origin, destination and site details so availability and qualified-provider responsibilities can be checked.",
+        qAr: "ما متطلبات نقل معدات البناء الثقيلة؟",
+        aAr: "قد تتطلب المعدات الضخمة والثقيلة مسح المسار والتصاريح والمرافقة وخطط الرفع والمقطورات المتخصصة. أرسل الأبعاد والوزن والمنشأ والوجهة وتفاصيل الموقع للتحقق من التوفر ومسؤوليات مقدم الخدمة المؤهل.",
       },
       {
         q: "Can you support giga-project suppliers?",
-        a: "We support suppliers and subcontractors delivering into Vision 2030 programmes with import clearance, warehousing, and scheduled site deliveries aligned to their contractors' requirements.",
-        qAr: "هل تدعمون موردي المشاريع الكبرى؟",
-        aAr: "ندعم الموردين ومقاولي الباطن الذين يوردون لبرامج رؤية 2030 من خلال التخليص والتخزين والتسليم المجدول للمواقع وفق متطلبات مقاوليهم.",
+        a: "Suppliers should confirm tender terms, approved-vendor conditions, import responsibilities, site access and delivery scope with the contracting entity. Share the project requirements for an initial logistics-scope review; no programme appointment or past-project role is implied.",
+        qAr: "ما الذي ينبغي على موردي المشاريع الكبرى التحقق منه؟",
+        aAr: "ينبغي للموردين تأكيد شروط المناقصة ومتطلبات المورد المعتمد ومسؤوليات الاستيراد ودخول الموقع ونطاق التسليم مع الجهة المتعاقدة. أرسل متطلبات المشروع لمراجعة أولية للنطاق اللوجستي؛ ولا يعني ذلك تعيين إنفود في البرنامج أو مشاركتها السابقة.",
       },
     ],
     seoTitle: "Construction Logistics in Saudi Arabia | ENVOD KINGDOM",
@@ -186,8 +186,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "تمتد لوجستيات التجزئة في السعودية من السلع الاستهلاكية المستوردة إلى التسليم للمولات ذات ساعات الاستلام المحددة، والذروات الموسمية في رمضان والعودة للمدارس، والتداخل المتنامي مع تلبية طلبات التجارة الإلكترونية. والنجاح يعتمد على دقة المخزون ودورات تجديد موثوقة.",
       },
       {
-        en: "We provide import consolidation, bonded and standard warehousing, pick-and-pack, and scheduled store deliveries — plus e-commerce fulfilment when your channels converge. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "نوفر تجميع الواردات والتخزين العادي والجمركي والتجهيز والتغليف والتسليم المجدول للمتاجر — إضافة إلى تلبية طلبات التجارة الإلكترونية عند تقاطع قنواتكم. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We provide import consolidation, bonded and standard warehousing, pick-and-pack, and scheduled store deliveries — plus e-commerce fulfilment when your channels converge. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "نوفر تجميع الواردات والتخزين العادي والجمركي والتجهيز والتغليف والتسليم المجدول للمتاجر — إضافة إلى تلبية طلبات التجارة الإلكترونية عند تقاطع قنواتكم. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [
@@ -244,8 +244,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "لوجستيات الأزياء تحكمها الرزنامة: مجموعات الربيع/الصيف والخريف/الشتاء والإصدارات الخاصة ومجموعات رمضان وتجديد مواسم التخفيضات كلها تصل في نوافذ ضيقة. والملابس تحتاج مناولة بعناية — إدارة الكراتين بما يحفظ جاهزية العرض والتغليف.",
       },
       {
-        en: "We combine air freight for launch-critical stock with ocean freight for volume replenishment, plus warehousing, quality-check support, and boutique-level distribution. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "نمزج الشحن الجوي للبضائع الحرجة للإطلاق مع الشحن البحري لتجديد الكميات، إضافة إلى التخزين ودعم الفحص والتوزيع على مستوى البوتيكات. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We combine air freight for launch-critical stock with ocean freight for volume replenishment, plus warehousing, quality-check support, and boutique-level distribution. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "نمزج الشحن الجوي للبضائع الحرجة للإطلاق مع الشحن البحري لتجديد الكميات، إضافة إلى التخزين ودعم الفحص والتوزيع على مستوى البوتيكات. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [
@@ -298,18 +298,18 @@ export const INDUSTRY_META: IndustryMeta[] = [
     introAr: "تجمع الإلكترونيات بين القيمة العالية والحساسية ومتطلبات المطابقة الصارمة. تنقل إنفود كينجدم الأجهزة الاستهلاكية والمكونات والإلكترونيات الصناعية إلى السعودية بمناولة واقية وتوثيق دقيق.",
     overview: [
       {
-        en: "Electronics logistics demands secure, traceable handling from origin to shelf: high-value cartons attract pilferage risk, lithium batteries carry dangerous-goods rules, and regulated devices need SABER/CITC-related conformity paperwork managed before arrival.",
-        ar: "تتطلب لوجستيات الإلكترونيات مناولة آمنة وقابلة للتتبع من المنشأ إلى الرف: فالكراتين عالية القيمة معرضة لمخاطر السرقة، وبطاريات الليثيوم تخضع لقواعد البضائع الخطرة، والأجهزة المنظمة تحتاج إدارة مستندات المطابقة قبل الوصول.",
+        en: "Electronics logistics calls for secure, traceable handling: lithium batteries are subject to dangerous-goods rules, and some regulated devices may require SABER or CST-related conformity documents depending on the product and intended use.",
+        ar: "تتطلب لوجستيات الإلكترونيات مناولة آمنة وقابلة للتتبع: وتخضع بطاريات الليثيوم لقواعد البضائع الخطرة، وقد تحتاج بعض الأجهزة الخاضعة للتنظيم إلى مستندات مطابقة مرتبطة بإجراءات SABER أو هيئة الاتصالات والفضاء والتقنية (CST) بحسب المنتج والاستخدام المقصود.",
       },
       {
-        en: "We provide protective packing, secure warehousing, DG-compliant battery shipping, and coordinated conformity documentation. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "نوفر تغليفاً واقياً وتخزيناً آمناً وشحن بطاريات متوافقاً مع اشتراطات البضائع الخطرة وتنسيقاً لمستندات المطابقة. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We provide protective packing, secure warehousing, DG-compliant battery shipping, and coordinated conformity documentation. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "نوفر تغليفاً واقياً وتخزيناً آمناً وشحن بطاريات متوافقاً مع اشتراطات البضائع الخطرة وتنسيقاً لمستندات المطابقة. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [
       { en: "Lithium battery dangerous-goods compliance (UN3480/UN3481)", ar: "الامتثال لاشتراطات بطاريات الليثيوم (UN3480/UN3481)" },
       { en: "High-value cargo security through the supply chain", ar: "أمن البضائع عالية القيمة عبر سلسلة الإمداد" },
-      { en: "Conformity certificates for regulated devices", ar: "شهادات المطابقة للأجهزة الخاضعة للتنظيم" },
+      { en: "Product-conformity documents for regulated devices, where applicable", ar: "مستندات مطابقة المنتجات للأجهزة الخاضعة للتنظيم عند انطباقها" },
       { en: "Fragile products needing shock-protected packing", ar: "منتجات حساسة تتطلب تغليفاً مقاوماً للصدمات" },
     ],
     solutions: [
@@ -360,8 +360,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "تنقسم لوجستيات الطيران إلى مهمتين مختلفتين: قطع غيار عاجلة للطائرات المتوقفة تتطلب سرعة من الباب إلى الباب مع تتبع كامل، ونقل مخطط للمحركات ومعدات الهبوط ومعدات الدعم الأرضي يتطلب تصنيداً متخصصاً ومراقبة للميل ورفعاً بعناية.",
       },
       {
-        en: "Saudi Arabia's aviation ambitions — new carriers, expanding airports, and events like the World Defense Show — are growing demand for both. We support suppliers with express spares handling, project moves, and ATA Carnet processing for demo equipment. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "طموحات المملكة في الطيران — ناقلات جديدة ومطارات متوسعة وفعاليات مثل معرض الدفاع العالمي — تزيد الطلب على النوعين. ندعم الموردين بمناولة سريعة لقطع الغيار ونقل المشاريع ومعالجة كارنيه ATA لمعدات العرض. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "Saudi Arabia's aviation ambitions — new carriers, expanding airports, and events like the World Defense Show — are growing demand for both. We support suppliers with express spares handling, project moves, and ATA Carnet processing for demo equipment. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "طموحات المملكة في الطيران — ناقلات جديدة ومطارات متوسعة وفعاليات مثل معرض الدفاع العالمي — تزيد الطلب على النوعين. ندعم الموردين بمناولة سريعة لقطع الغيار ونقل المشاريع ومعالجة كارنيه ATA لمعدات العرض. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [
@@ -418,8 +418,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "تبلغ لوجستيات الضيافة ذروتها قبل الافتتاح: مئات الحاويات من الأثاث والتجهيزات والمعدات ومستلزمات التشغيل تصل من عشرات الموردين، وكلها تحتاج تجميعاً وتخزيناً مرحلياً وتسليماً متسلسلاً للموقع مع اكتمال الطوابق.",
       },
       {
-        en: "We consolidate vendor shipments, manage staged warehousing, and deliver room-by-room with unpacking, placement, and debris removal — the white glove standard hotel openings demand. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "نجمع شحنات الموردين وندير التخزين المرحلي ونسلم غرفة بغرفة مع الفك والتموضع وإزالة المخلفات — وهو معيار الخدمة الفاخرة الذي تتطلبه افتتاحات الفنادق. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We consolidate vendor shipments, manage staged warehousing, and deliver room-by-room with unpacking, placement, and debris removal — the white glove standard hotel openings demand. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "نجمع شحنات الموردين وندير التخزين المرحلي ونسلم غرفة بغرفة مع الفك والتموضع وإزالة المخلفات — وهو معيار الخدمة الفاخرة الذي تتطلبه افتتاحات الفنادق. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [
@@ -476,8 +476,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "تجمع لوجستيات الأثاث بين اقتصاديات الشحن بالحجم والتنفيذ الدقيق للمرحلة الأخيرة. فالخطوط المفككة تُنقل بكفاءة في الحاويات، بينما تحتاج القطع المجمعة والتصميمية لفاً بالبطانيات وتصنيداً وتوصيلاً داخلياً بفريق مزدوج لتصل دون خدش.",
       },
       {
-        en: "We handle container imports, showroom and DC warehousing, scheduled store distribution, and white glove home delivery with assembly. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "نتولى الاستيراد بالحاويات وتخزين المعارض ومراكز التوزيع والتوزيع المجدول للمتاجر والتوصيل المنزلي الفاخر مع التجميع. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We handle container imports, showroom and DC warehousing, scheduled store distribution, and white glove home delivery with assembly. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "نتولى الاستيراد بالحاويات وتخزين المعارض ومراكز التوزيع والتوزيع المجدول للمتاجر والتوصيل المنزلي الفاخر مع التجميع. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [
@@ -524,18 +524,18 @@ export const INDUSTRY_META: IndustryMeta[] = [
     gradient: G("#1c0606", "#0A2342"),
     nameEn: "Chemical Logistics",
     nameAr: "لوجستيات الكيماويات",
-    shortEn: "Compliant dangerous goods handling, documentation, and transport for chemical producers and importers.",
-    shortAr: "مناولة متوافقة للبضائع الخطرة وتوثيق ونقل لمنتجي ومستوردي الكيماويات.",
-    introEn: "Chemicals demand discipline: correct classification, compliant packing, and complete documentation at every step. ENVOD KINGDOM moves industrial chemicals, coatings, and laboratory reagents for producers, importers, and distributors in Saudi Arabia.",
-    introAr: "الكيماويات تتطلب انضباطاً: تصنيف صحيح وتغليف متوافق وتوثيق كامل في كل خطوة. تنقل إنفود كينجدم الكيماويات الصناعية والدهانات والكواشف المخبرية للمنتجين والمستوردين والموزعين في السعودية.",
+    shortEn: "Shipment-specific dangerous-goods document, carrier and operator requirements for chemical cargo enquiries.",
+    shortAr: "مراجعة متطلبات مستندات البضائع الخطرة والناقل والمشغّل حسب شحنة الكيماويات.",
+    introEn: "Chemical shipments require product-specific classification, packaging, documentation and carrier checks. Share the safety data sheet, UN number, origin, destination and intended transport mode so applicable requirements and qualified-provider availability can be reviewed.",
+    introAr: "تتطلب شحنات الكيماويات مراجعة التصنيف والتعبئة والمستندات وقبول الناقل حسب المنتج. أرسل نشرة بيانات السلامة ورقم الأمم المتحدة والمنشأ والوجهة ووسيلة النقل المطلوبة لمراجعة المتطلبات المنطبقة وتوفر مقدم خدمة مؤهل.",
     overview: [
       {
         en: "Chemical logistics is governed by classification: the UN number, packing group, and hazard class of each product determine how it may be packed, documented, stowed, and moved. Errors cause rejected bookings, port holds, and safety risk.",
         ar: "تحكم لوجستيات الكيماويات قواعد التصنيف: فرقم الأمم المتحدة ومجموعة التعبئة وفئة الخطورة لكل منتج تحدد طريقة تعبئته وتوثيقه وتستيفه ونقله. والأخطاء تسبب رفض الحجوزات واحتجاز الشحنات في الموانئ ومخاطر على السلامة.",
       },
       {
-        en: "Our team manages MSDS review, DG declarations, compliant packing, and coordination with SFDA, SASO, or other authority requirements where applicable. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "يدير فريقنا مراجعة نشرات سلامة المواد وإقرارات البضائع الخطرة والتغليف المتوافق والتنسيق مع متطلبات الجهات المختصة عند الانطباق. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "A shipment review may cover safety-data documents, classification, declarations, packaging and authority requirements. Responsibilities, provider qualifications, acceptance and customs scope must be confirmed for the specific shipment; clearance timing depends on documents, procedures, inspections and approvals.",
+        ar: "قد تشمل مراجعة الشحنة مستندات بيانات السلامة والتصنيف والإقرارات والتعبئة ومتطلبات الجهات. يجب تأكيد المسؤوليات ومؤهلات مقدم الخدمة والقبول ونطاق الجمارك للشحنة المحددة؛ وتعتمد مدة التخليص على المستندات والإجراءات والفحص والموافقات.",
       },
     ],
     challenges: [
@@ -545,35 +545,35 @@ export const INDUSTRY_META: IndustryMeta[] = [
       { en: "Temperature-sensitive formulations in Gulf heat", ar: "تركيبات حساسة للحرارة في مناخ الخليج" },
     ],
     solutions: [
-      { titleEn: "Dangerous Goods Shipping", titleAr: "شحن البضائع الخطرة", descEn: "IMDG/IATA-compliant handling, declarations, and booking for classified chemicals.", descAr: "مناولة وإقرارات وحجوزات متوافقة مع IMDG/IATA للكيماويات المصنفة.", serviceSlug: "dangerous-goods" },
-      { titleEn: "Compliant Packing", titleAr: "التغليف المتوافق", descEn: "UN-specification packaging, labelling, and marking for hazardous products.", descAr: "عبوات وملصقات وعلامات وفق مواصفات الأمم المتحدة للمنتجات الخطرة.", serviceSlug: "packaging-crating" },
-      { titleEn: "Temperature-Controlled Transport", titleAr: "النقل المبرد", descEn: "Reefer solutions for heat-sensitive formulations and specialty chemicals.", descAr: "حلول مبردة للتركيبات الحساسة للحرارة والكيماويات المتخصصة.", serviceSlug: "temperature-controlled-logistics" },
+      { titleEn: "Dangerous Goods Shipping Enquiry", titleAr: "استفسار شحن البضائع الخطرة", descEn: "Review classification, documents, packaging, carrier acceptance and qualified-operator availability.", descAr: "مراجعة التصنيف والمستندات والتعبئة وقبول الناقل وتوفر المشغّل المؤهل.", serviceSlug: "dangerous-goods" },
+      { titleEn: "Packaging Requirements Review", titleAr: "مراجعة متطلبات التعبئة", descEn: "Confirm applicable UN packaging, marking and provider qualifications for the substance and mode.", descAr: "تأكيد متطلبات التعبئة والعلامات ومؤهلات مقدم الخدمة للمادة ووسيلة النقل.", serviceSlug: "packaging-crating" },
+      { titleEn: "Temperature-Controlled Transport Enquiry", titleAr: "استفسار نقل بدرجة حرارة مضبوطة", descEn: "Confirm the product range, equipment, monitoring and route options with a qualified operator.", descAr: "تأكيد نطاق المنتج والمعدات والمراقبة وخيارات المسار مع مشغّل مؤهل.", serviceSlug: "temperature-controlled-logistics" },
       { titleEn: "Import Clearance & Permits", titleAr: "تخليص الاستيراد والتصاريح", descEn: "HS classification, authority coordination, and clearance for chemical imports.", descAr: "التصنيف الجمركي والتنسيق مع الجهات والتخليص لواردات الكيماويات.", serviceSlug: "customs-clearance" },
       { titleEn: "Bulk & Project Moves", titleAr: "النقل بالجملة ونقل المشاريع", descEn: "IBC, drum, and ISO-tank coordination plus plant-equipment project cargo.", descAr: "تنسيق الحاويات الوسيطة والبراميل وصهاريج ISO وبضائع معدات المصانع.", serviceSlug: "project-cargo" },
     ],
     relatedServiceSlugs: ["dangerous-goods", "customs-clearance", "temperature-controlled-logistics", "packaging-crating", "project-cargo"],
     faq: [
       {
-        q: "Which hazard classes can you handle?",
-        a: "We handle the common industrial classes — including flammables, corrosives, oxidisers, and miscellaneous class 9 — subject to carrier acceptance and applicable regulations. Share your MSDS and we will confirm routing options.",
-        qAr: "ما فئات الخطورة التي تتعاملون معها؟",
-        aAr: "نتعامل مع الفئات الصناعية الشائعة — بما فيها القابلة للاشتعال والأكّالة والمؤكسدات والفئة 9 — وفق قبول الناقل واللوائح المعمول بها. شاركونا نشرة سلامة المادة وسنؤكد خيارات النقل.",
+        q: "What should I provide for a dangerous-goods enquiry?",
+        a: "Provide the safety data sheet, UN number and hazard class if known, packing group, package type, origin, destination, quantity and requested dates. Acceptance, packaging, permits and qualified-provider availability must be checked before booking.",
+        qAr: "ما المعلومات المطلوبة لاستفسار البضائع الخطرة؟",
+        aAr: "أرسل نشرة بيانات السلامة ورقم الأمم المتحدة وفئة الخطر إن عُرفت ومجموعة التعبئة ونوع العبوة والمنشأ والوجهة والكمية والتواريخ المطلوبة. يجب التحقق من القبول والتعبئة والتصاريح وتوفر مقدم خدمة مؤهل قبل الحجز.",
       },
       {
         q: "Do you review our MSDS documentation?",
-        a: "Yes. We review MSDS sheets to confirm UN numbers, packing groups, and documentation requirements before booking, reducing the risk of rejections and holds.",
+        a: "The available document-review scope should be confirmed for each request. The shipper and qualified dangerous-goods provider remain responsible for accurate classification and required declarations.",
         qAr: "هل تراجعون نشرات سلامة المواد لدينا؟",
         aAr: "نعم. نراجع النشرات للتأكد من أرقام الأمم المتحدة ومجموعات التعبئة ومتطلبات التوثيق قبل الحجز، لتقليل مخاطر الرفض والاحتجاز.",
       },
       {
         q: "Can you transport heat-sensitive chemicals in summer?",
-        a: "We arrange temperature-controlled transport and storage for formulations that degrade in Gulf summer conditions, maintaining your specified range end to end.",
+        a: "Share the product temperature range, route and dates. Equipment, storage, monitoring, provider qualifications and availability must be confirmed for the shipment before any temperature-controlled arrangement is booked.",
         qAr: "هل تنقلون كيماويات حساسة للحرارة صيفاً؟",
         aAr: "نرتب نقلاً وتخزيناً مبردين للتركيبات التي تتأثر بحرارة صيف الخليج، مع الحفاظ على النطاق المحدد من البداية للنهاية.",
       },
     ],
     seoTitle: "Chemical Logistics in Saudi Arabia | ENVOD KINGDOM",
-    seoDescription: "Chemical & dangerous goods logistics in Saudi Arabia — IMDG/IATA-compliant DG shipping, UN-spec packing, temperature-controlled transport, and chemical import clearance.",
+    seoDescription: "Chemical shipment enquiries in Saudi Arabia: review dangerous-goods classification, packaging, documents, carrier acceptance and route-specific requirements.",
   },
   {
     slug: "telecommunications-logistics",
@@ -582,9 +582,9 @@ export const INDUSTRY_META: IndustryMeta[] = [
     gradient: G("#04211d", "#0A2342"),
     nameEn: "Telecommunications Logistics",
     nameAr: "لوجستيات الاتصالات",
-    shortEn: "Network equipment, tower components, and data-centre hardware logistics for operators and integrators.",
+    shortEn: "Telecom and data-centre shipment enquiries covering equipment, site access and handling requirements.",
     shortAr: "لوجستيات معدات الشبكات ومكونات الأبراج وأجهزة مراكز البيانات للمشغلين والمتكاملين.",
-    introEn: "Network rollouts live or die on site-ready kit. ENVOD KINGDOM moves telecom equipment — from radio units and antennas to racks and data-centre hardware — for operators, vendors, and system integrators across Saudi Arabia.",
+    introEn: "Telecom and data-centre moves can involve radio equipment, antennas, racks and network hardware. Share the equipment list, route, site-access rules, handling instructions and delivery schedule so carrier and qualified-provider options can be reviewed.",
     introAr: "نجاح نشر الشبكات يعتمد على جاهزية المعدات في الموقع. تنقل إنفود كينجدم معدات الاتصالات — من وحدات الراديو والهوائيات إلى الخزائن وأجهزة مراكز البيانات — للمشغلين والموردين والمتكاملين في السعودية.",
     overview: [
       {
@@ -592,8 +592,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "تجمع لوجستيات الاتصالات بين مناولة الإلكترونيات عالية القيمة والتوصيل الميداني الموزع: آلاف المواقع وموجات نشر مرحلية وبرامج استبدال تولّد لوجستيات عكسية. وتضيف مشاريع مراكز البيانات خزائن ثقيلة وحساسة تتطلب مناولة متخصصة ومراقبة للميل.",
       },
       {
-        en: "We provide import clearance with conformity coordination, staged warehousing by rollout wave, site deliveries, and return-unit consolidation. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "نوفر تخليص الواردات مع تنسيق المطابقة والتخزين المرحلي حسب موجات النشر والتوصيل للمواقع وتجميع الوحدات المرتجعة. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "Potential scope may include import-document review, storage, site deliveries and return-unit handling. Conformity responsibilities, facility and system availability, site access, provider qualifications and customs scope must be confirmed per request.",
+        ar: "قد يشمل النطاق المحتمل مراجعة مستندات الاستيراد والتخزين والتسليم للمواقع ومناولة الوحدات المرتجعة. يجب تأكيد مسؤوليات المطابقة وتوفر المنشأة والأنظمة ودخول الموقع ومؤهلات مقدم الخدمة ونطاق الجمارك لكل طلب.",
       },
     ],
     challenges: [
@@ -613,19 +613,19 @@ export const INDUSTRY_META: IndustryMeta[] = [
     faq: [
       {
         q: "Can you deliver to remote tower sites?",
-        a: "Yes. We plan field-delivery routes for tower sites across the Kingdom, including remote and desert locations, coordinating access and offloading with your rollout teams.",
-        qAr: "هل توصلون إلى مواقع أبراج نائية؟",
-        aAr: "نعم. نخطط مسارات التوصيل الميداني لمواقع الأبراج في أنحاء المملكة، بما فيها المواقع النائية والصحراوية، بالتنسيق مع فرق النشر لديكم.",
+        a: "Provide the site location, equipment dimensions, access restrictions and requested date. Coverage, permits, vehicle suitability, offloading responsibilities and qualified-provider availability need confirmation for that location.",
+        qAr: "ما المعلومات المطلوبة لتوصيل المعدات إلى مواقع الأبراج؟",
+        aAr: "أرسل موقع الموقع وأبعاد المعدات وقيود الدخول والتاريخ المطلوب. يجب تأكيد التغطية والتصاريح وملاءمة المركبة ومسؤوليات التفريغ وتوفر مقدم الخدمة المؤهل لذلك الموقع.",
       },
       {
         q: "How do you handle data-centre rack deliveries?",
-        a: "Racks move on air-ride, tilt-monitored transport with white glove positioning into the data hall — including ramp access checks and final placement.",
+        a: "Share rack dimensions, weight, handling tolerances, route and data-hall access details. Suspension, shock/tilt monitoring, indoor placement, crew qualification and provider availability must be agreed before booking.",
         qAr: "كيف تتعاملون مع تسليم خزائن مراكز البيانات؟",
         aAr: "تُنقل الخزائن بنقل مراقب للميل وبتعليق هوائي مع تموضع فاخر داخل قاعة البيانات — بما يشمل فحص المنحدرات والتموضع النهائي.",
       },
       {
         q: "Do you manage return and swap-out units?",
-        a: "We consolidate removed units from sites, manage serial-level reconciliation, and arrange storage, redeployment, or re-export as required.",
+        a: "Returns and swap-outs may require serial records, reverse transport, storage, redeployment or export documents. Confirm facility availability, inventory systems and the responsible providers for the requested scope.",
         qAr: "هل تديرون الوحدات المرتجعة والمستبدلة؟",
         aAr: "نجمع الوحدات المزالة من المواقع وندير المطابقة التسلسلية ونرتب التخزين أو إعادة النشر أو إعادة التصدير حسب الحاجة.",
       },
@@ -650,8 +650,8 @@ export const INDUSTRY_META: IndustryMeta[] = [
         ar: "اللوجستيات الحكومية تبدأ بالمستندات: إشعارات تسليم مطابقة لأوامر الشراء وشحنات جاهزة للفحص وإجراءات استلام تختلف بين الجهات. والموردون الفائزون بالمناقصات العامة يحتاجون شريكاً لوجستياً يتعامل مع المستندات بجدية النقل نفسها.",
       },
       {
-        en: "We support tender suppliers with import clearance, compliant documentation, secure warehousing, and coordinated deliveries to ministries, universities, hospitals, and public projects — including event and exhibition logistics for government-hosted programmes. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "ندعم موردي المناقصات بتخليص الواردات والتوثيق المتوافق والتخزين الآمن والتسليم المنسق للوزارات والجامعات والمستشفيات والمشاريع العامة — بما يشمل لوجستيات الفعاليات والمعارض للبرامج الحكومية. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We support tender suppliers with import clearance, compliant documentation, secure warehousing, and coordinated deliveries to ministries, universities, hospitals, and public projects — including event and exhibition logistics for government-hosted programmes. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "ندعم موردي المناقصات بتخليص الواردات والتوثيق المتوافق والتخزين الآمن والتسليم المنسق للوزارات والجامعات والمستشفيات والمشاريع العامة — بما يشمل لوجستيات الفعاليات والمعارض للبرامج الحكومية. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     challenges: [

@@ -1,0 +1,266 @@
+{
+  "measured_at": "2026-10-17T15:28:34.771Z",
+  "settings": {
+    "viewport": "402x874",
+    "latency_ms": 40,
+    "download_bytes_per_second": 200000,
+    "cpu_slowdown": 4,
+    "cold_samples_per_page": 3
+  },
+  "inp": "Not measured; field interaction data is unavailable",
+  "no_javascript_service_content_check": "passed",
+  "samples": [
+    {
+      "path": "/contact",
+      "lcp_ms": 2936,
+      "lcp_element": {
+        "tag": "H1",
+        "text": "Let's Move Your Business Forward",
+        "image_path": null
+      },
+      "cls_sample": 0.0008446572299614464,
+      "script_resources": [
+        {
+          "name": "/assets/index-CfP_kqX3.js",
+          "encoded_body_bytes": 313394
+        },
+        {
+          "name": "/assets/contact-CbnZ0TZO.js",
+          "encoded_body_bytes": 18999
+        },
+        {
+          "name": "/assets/chevron-down-B71558Ga.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/check-BRPmGF55.js",
+          "encoded_body_bytes": 120
+        },
+        {
+          "name": "/assets/circle-alert-B8HU1awR.js",
+          "encoded_body_bytes": 251
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 49640
+        }
+      ],
+      "note": "Local cold-context lab sample; no field p75, production network, or INP result.",
+      "sample": 1
+    },
+    {
+      "path": "/contact",
+      "lcp_ms": 1808,
+      "lcp_element": {
+        "tag": "H1",
+        "text": "Let's Move Your Business Forward",
+        "image_path": null
+      },
+      "cls_sample": 0.0008446572299614464,
+      "script_resources": [
+        {
+          "name": "/assets/index-CfP_kqX3.js",
+          "encoded_body_bytes": 313394
+        },
+        {
+          "name": "/assets/contact-CbnZ0TZO.js",
+          "encoded_body_bytes": 18999
+        },
+        {
+          "name": "/assets/chevron-down-B71558Ga.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/check-BRPmGF55.js",
+          "encoded_body_bytes": 120
+        },
+        {
+          "name": "/assets/circle-alert-B8HU1awR.js",
+          "encoded_body_bytes": 251
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 49640
+        }
+      ],
+      "note": "Local cold-context lab sample; no field p75, production network, or INP result.",
+      "sample": 2
+    },
+    {
+      "path": "/contact",
+      "lcp_ms": 1824,
+      "lcp_element": {
+        "tag": "H1",
+        "text": "Let's Move Your Business Forward",
+        "image_path": null
+      },
+      "cls_sample": 0.0008446572299614464,
+      "script_resources": [
+        {
+          "name": "/assets/index-CfP_kqX3.js",
+          "encoded_body_bytes": 313394
+        },
+        {
+          "name": "/assets/contact-CbnZ0TZO.js",
+          "encoded_body_bytes": 18999
+        },
+        {
+          "name": "/assets/chevron-down-B71558Ga.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/check-BRPmGF55.js",
+          "encoded_body_bytes": 120
+        },
+        {
+          "name": "/assets/circle-alert-B8HU1awR.js",
+          "encoded_body_bytes": 251
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 49640
+        }
+      ],
+      "note": "Local cold-context lab sample; no field p75, production network, or INP result.",
+      "sample": 3
+    },
+    {
+      "path": "/services/exhibition-logistics",
+      "lcp_ms": 3840,
+      "lcp_element": {
+        "tag": "IMG",
+        "text": "",
+        "image_path": "/assets/image_1783173229953-CSw6I9Br.webp"
+      },
+      "cls_sample": 0.005649532500768729,
+      "script_resources": [
+        {
+          "name": "/assets/index-CfP_kqX3.js",
+          "encoded_body_bytes": 313394
+        },
+        {
+          "name": "/assets/service-detail-Cf-RTyuI.js",
+          "encoded_body_bytes": 17340
+        },
+        {
+          "name": "/assets/service-images-C1NxKacY.js",
+          "encoded_body_bytes": 1881
+        },
+        {
+          "name": "/assets/zap-Fv9vsCIG.js",
+          "encoded_body_bytes": 504
+        },
+        {
+          "name": "/assets/car-BVN4YuOv.js",
+          "encoded_body_bytes": 403
+        },
+        {
+          "name": "/assets/triangle-alert-BbsSNHID.js",
+          "encoded_body_bytes": 266
+        },
+        {
+          "name": "/assets/chevron-down-B71558Ga.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 49640
+        }
+      ],
+      "note": "Local cold-context lab sample; no field p75, production network, or INP result.",
+      "sample": 1
+    },
+    {
+      "path": "/services/exhibition-logistics",
+      "lcp_ms": 3804,
+      "lcp_element": {
+        "tag": "IMG",
+        "text": "",
+        "image_path": "/assets/image_1783173229953-CSw6I9Br.webp"
+      },
+      "cls_sample": 0.00014639570279490285,
+      "script_resources": [
+        {
+          "name": "/assets/index-CfP_kqX3.js",
+          "encoded_body_bytes": 313394
+        },
+        {
+          "name": "/assets/service-detail-Cf-RTyuI.js",
+          "encoded_body_bytes": 17340
+        },
+        {
+          "name": "/assets/service-images-C1NxKacY.js",
+          "encoded_body_bytes": 1881
+        },
+        {
+          "name": "/assets/zap-Fv9vsCIG.js",
+          "encoded_body_bytes": 504
+        },
+        {
+          "name": "/assets/car-BVN4YuOv.js",
+          "encoded_body_bytes": 403
+        },
+        {
+          "name": "/assets/triangle-alert-BbsSNHID.js",
+          "encoded_body_bytes": 266
+        },
+        {
+          "name": "/assets/chevron-down-B71558Ga.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 49640
+        }
+      ],
+      "note": "Local cold-context lab sample; no field p75, production network, or INP result.",
+      "sample": 2
+    },
+    {
+      "path": "/services/exhibition-logistics",
+      "lcp_ms": 3796,
+      "lcp_element": {
+        "tag": "IMG",
+        "text": "",
+        "image_path": "/assets/image_1783173229953-CSw6I9Br.webp"
+      },
+      "cls_sample": 0.00014639570279490285,
+      "script_resources": [
+        {
+          "name": "/assets/index-CfP_kqX3.js",
+          "encoded_body_bytes": 313394
+        },
+        {
+          "name": "/assets/service-detail-Cf-RTyuI.js",
+          "encoded_body_bytes": 17340
+        },
+        {
+          "name": "/assets/service-images-C1NxKacY.js",
+          "encoded_body_bytes": 1881
+        },
+        {
+          "name": "/assets/zap-Fv9vsCIG.js",
+          "encoded_body_bytes": 504
+        },
+        {
+          "name": "/assets/car-BVN4YuOv.js",
+          "encoded_body_bytes": 403
+        },
+        {
+          "name": "/assets/triangle-alert-BbsSNHID.js",
+          "encoded_body_bytes": 266
+        },
+        {
+          "name": "/assets/chevron-down-B71558Ga.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 49640
+        }
+      ],
+      "note": "Local cold-context lab sample; no field p75, production network, or INP result.",
+      "sample": 3
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "research_date": "2026-10-17",
+  "sources": [
+    {
+      "key": "live-site",
+      "title": "ENVOD KINGDOM public website and sitemap",
+      "url": "https://www.envodkingdom.net/",
+      "tier": 3,
+      "access": "Direct HTTP inspection on 2026-10-17",
+      "evidence": "research/sources/live-site-audit.md",
+      "caveat": "Company-owned content; public deployment differed from the current workspace."
+    },
+    {
+      "key": "serpok-owner-snapshot",
+      "title": "Owner-provided SerpOK metrics snapshot",
+      "url": null,
+      "tier": 4,
+      "access": "Supplied by the owner; not independently queried",
+      "evidence": "research/seo-audit.md",
+      "caveat": "Tool output only; date, configuration, and backlink quality were not independently verified."
+    },
+    {
+      "key": "bing-serp",
+      "title": "Bing English/Arabic logistics query samples",
+      "url": "https://www.bing.com/search",
+      "tier": 3,
+      "access": "Public result samples captured 2026-10-17",
+      "evidence": "research/sources/ksa-search-intent/serp-samples.md",
+      "caveat": "Highly irrelevant results; not a representative Saudi SERP or ranking dataset."
+    },
+    {
+      "key": "zatca-import",
+      "title": "ZATCA Import Instructions",
+      "url": "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17; page updated 2026-08-26",
+      "evidence": "research/sources/ksa-customs-ports/01-zatca-import-instructions.md",
+      "caveat": "General import guidance; commodity and regulator requirements vary."
+    },
+    {
+      "key": "zatca-journey",
+      "title": "ZATCA Customs Journey",
+      "url": "https://zatca.gov.sa/en/HelpCenter/CustomerJourney/Pages/customs-journey.aspx",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17; page updated 2025-07-30",
+      "evidence": "research/sources/ksa-customs-ports/02-zatca-customs-journey.md",
+      "caveat": "Describes authorization and process; not a complete liability opinion."
+    },
+    {
+      "key": "zatca-brokers",
+      "title": "ZATCA Customs Brokers",
+      "url": "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/CustomsClearance.aspx",
+      "tier": 1,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-search-intent/zatca-customs-brokers.md",
+      "caveat": "Page body was sparse; used only as Saudi terminology evidence."
+    },
+    {
+      "key": "tga-index",
+      "title": "Transport General Authority regulations and legislation index",
+      "url": "https://tga.gov.sa/ar/regulations",
+      "tier": 1,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-customs-ports/03-tga-regulations-portal.md",
+      "caveat": "Index only; individual GCC road-transport rules were not inspected."
+    },
+    {
+      "key": "icc-ata",
+      "title": "ICC ATA Carnet",
+      "url": "https://iccwbo.org/business-solutions/ata-carnet/",
+      "tier": 2,
+      "access": "Fetched 2026-10-17; published 2023-01-20, modified 2026-08-27",
+      "evidence": "research/sources/ksa-search-intent/icc-ata-carnet.md",
+      "caveat": "Global terminology and overview, not Saudi-specific eligibility or issuing-authority proof."
+    },
+    {
+      "key": "icc-saudi-ata",
+      "title": "ICC: Saudi Arabia and the Philippines to launch ATA operations in 2024",
+      "url": "https://iccwbo.org/news-publications/news/saudi-arabia-and-the-philippines-to-launch-ata-operations-in-2024/",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17; published 2024-04-22",
+      "evidence": "research/sources/exhibition-ata/01-icc-saudi-ata-launch.md",
+      "caveat": "Saudi scope described for eligible Annex B1 event goods; confirm individual goods and current procedures."
+    },
+    {
+      "key": "spa-fsc",
+      "title": "Saudi Press Agency: ZATCA and Federation of Saudi Chambers agreement",
+      "url": "https://www.spa.gov.sa/w1851565",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17; published 2023-02-08",
+      "evidence": "research/sources/exhibition-ata/02-spa-zatca-federation-agreement.md",
+      "caveat": "Reports the agreement and FSC role; not current application requirements, fees, or shipment-specific acceptance."
+    },
+    {
+      "key": "scega-calendar",
+      "title": "Saudi Conventions and Exhibitions General Authority events schedule",
+      "url": "https://www.scega.gov.sa/h-events-list",
+      "tier": 1,
+      "access": "Checked 2026-10-17; current event records were not available in static HTML",
+      "evidence": "research/sources/exhibition-ata/03-official-event-calendars.md",
+      "caveat": "Dynamic event page; verify event date and venue with the organizer."
+    },
+    {
+      "key": "rec-calendar",
+      "title": "Riyadh Exhibitions Company events calendar",
+      "url": "http://www.recexpo.com/en/index.asp",
+      "tier": 2,
+      "access": "Organizer listing captured 2026-10-17",
+      "evidence": "research/sources/exhibition-ata/03-official-event-calendars.md",
+      "caveat": "Organizer's date listing; venue was not specified and dates may change."
+    },
+    {
+      "key": "maersk-ocean",
+      "title": "Maersk Ocean Transport",
+      "url": "https://www.maersk.com/transportation-services/ocean-transport",
+      "tier": 3,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-search-intent/maersk-ocean-transport.md",
+      "caveat": "Company marketing page; used only for observed commercial page/CTA structure."
+    },
+    {
+      "key": "dsv-sa",
+      "title": "DSV Saudi Arabia country page",
+      "url": "https://www.dsv.com/en/countries/saudi-arabia",
+      "tier": 3,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-competitors/company-page-evidence.md",
+      "caveat": "Company-owned service claims; not independently validated."
+    },
+    {
+      "key": "dsv-sea",
+      "title": "DSV Sea Freight",
+      "url": "https://www.dsv.com/en/our-solutions/modes-of-transport/sea-freight",
+      "tier": 3,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-competitors/company-page-evidence.md",
+      "caveat": "Company-owned service claims; not independently validated."
+    },
+    {
+      "key": "dsv-customs",
+      "title": "DSV Customs Clearance — MENA",
+      "url": "https://www.dsv.com/en-ae/our-solutions/modes-of-transport/value-added-services/customs-clearance",
+      "tier": 3,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-competitors/company-page-evidence.md",
+      "caveat": "Company-owned service claims; not independently validated."
+    },
+    {
+      "key": "dsv-project",
+      "title": "DSV Project Logistics — MENA",
+      "url": "https://www.dsv.com/en-ae/our-solutions/modes-of-transport/project-transport",
+      "tier": 3,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-competitors/company-page-evidence.md",
+      "caveat": "Company-owned service claims; not independently validated."
+    },
+    {
+      "key": "dsv-road",
+      "title": "DSV Road Transport",
+      "url": "https://www.dsv.com/en/our-solutions/modes-of-transport/road-transport",
+      "tier": 3,
+      "access": "Fetched 2026-10-17",
+      "evidence": "research/sources/ksa-competitors/company-page-evidence.md",
+      "caveat": "Company-owned service claims; not independently validated."
+    },
+    {
+      "key": "google-localized",
+      "title": "Google Search Central: Localized versions",
+      "url": "https://developers.google.com/search/docs/specialty/international/localized-versions",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17",
+      "evidence": "research/sources/search-ai-guidance/google-localized-versions.md",
+      "caveat": "Guidance explains language/region variants; does not guarantee indexing."
+    },
+    {
+      "key": "google-ai",
+      "title": "Google Search Central: AI features and your website",
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17",
+      "evidence": "research/sources/search-ai-guidance/google-ai-features.md",
+      "caveat": "Eligibility and best-practice guidance; no ranking or citation promise."
+    },
+    {
+      "key": "google-sitemap",
+      "title": "Google Search Central: Build and submit a sitemap",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17",
+      "evidence": "research/sources/google-sitemap-lastmod.md",
+      "caveat": "Google uses lastmod only when it is consistently and verifiably accurate."
+    },
+    {
+      "key": "openai-bots",
+      "title": "OpenAI crawler documentation",
+      "url": "https://platform.openai.com/docs/bots",
+      "tier": 1,
+      "access": "Fetched and read 2026-10-17",
+      "evidence": "research/sources/search-ai-guidance/openai-crawlers.md",
+      "caveat": "Describes crawler controls; does not promise citation frequency."
+    }
+  ]
+}

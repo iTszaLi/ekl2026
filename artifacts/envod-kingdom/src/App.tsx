@@ -1,26 +1,35 @@
 import { Switch, Route, Router as WouterRouter, Redirect, useLocation } from "wouter";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
+import { routePages } from "@/lib/route-pages";
 import { getLocaleBase, LanguageProvider } from "@/lib/language-context";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { SeoManager } from "@/components/SeoManager";
 
-import Home from "@/pages/home";
-import Track from "@/pages/track";
-import Services from "@/pages/services";
-import Contact from "@/pages/contact";
-import About from "@/pages/about";
-import Gallery from "@/pages/gallery/index";
-import ServiceDetail from "@/pages/service-detail";
-import Industries from "@/pages/industries";
-import IndustryDetail from "@/pages/industry-detail";
-import Vision2030 from "@/pages/vision-2030";
+const SearchConsoleDashboard = import.meta.env.DEV
+  ? lazy(() => import("@/pages/admin/SearchConsoleDashboard"))
+  : null;
+
+const Home = routePages.home.Page;
+const Track = routePages.track.Page;
+const Services = routePages.services.Page;
+const Contact = routePages.contact.Page;
+const About = routePages.about.Page;
+const Gallery = routePages.gallery.Page;
+const ServiceDetail = routePages.service.Page;
+const Industries = routePages.industries.Page;
+const IndustryDetail = routePages.industry.Page;
+const Vision2030 = routePages.vision.Page;
+const NotFound = routePages.notFound.Page;
 
 function ScrollToTop() {
   const [location] = useLocation();
   useEffect(() => {
+    // A linked guide handles its fragment after the lazy route has rendered.
+    // A delayed unconditional reset would otherwise override that position.
+    if (window.location.hash) return;
     let cancelled = false;
     void import("@/lib/scroll-engine").then((m) => {
       if (!cancelled) m.scrollToTop(true);
@@ -30,6 +39,18 @@ function ScrollToTop() {
     };
   }, [location]);
   return null;
+}
+
+function AdminRouteLoading() {
+  return (
+    <main
+      className="grid min-h-screen place-items-center bg-[#f3f6fb] p-6 text-[#142238]"
+      aria-busy="true"
+      aria-live="polite"
+    >
+      <p className="text-sm font-medium">Loading the private Search Console dashboard…</p>
+    </main>
+  );
 }
 
 function Router() {
@@ -67,6 +88,13 @@ function Router() {
       <Route path="/contact">
         <MainLayout><Contact /></MainLayout>
       </Route>
+      {SearchConsoleDashboard ? (
+        <Route path="/admin/search-console">
+          <Suspense fallback={<AdminRouteLoading />}>
+            <SearchConsoleDashboard />
+          </Suspense>
+        </Route>
+      ) : null}
       <Route>
         <MainLayout><NotFound /></MainLayout>
       </Route>
@@ -93,6 +121,7 @@ function App({ ssrPath }: { ssrPath?: string }) {
 
   return (
     <LanguageProvider initialLanguage={initialLanguage}>
+      <Analytics />
       <TooltipProvider>
         <WouterRouter base={getLocaleBase(initialLanguage)} ssrPath={ssrPath}>
           <ScrollToTop />

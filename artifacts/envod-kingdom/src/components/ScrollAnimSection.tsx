@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import logoIcon from "@assets/image_1780532431289.png";
+import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 
 export interface AnimChapter {
   startProgress: number;
@@ -12,6 +13,8 @@ export interface AnimChapter {
   subtitleAr?: string;
   features?: string[];
   featuresAr?: string[];
+  documentSupport?: string[];
+  documentSupportAr?: string[];
 }
 
 interface Props {
@@ -23,16 +26,22 @@ interface Props {
 }
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const READABLE_PLAYBACK_RATE = 0.86;
 
 /* ── Floating particles ── */
+function particleNoise(index: number, salt: number): number {
+  const value = Math.sin((index + 1) * 127.1 + salt * 311.7) * 43758.5453;
+  return value - Math.floor(value);
+}
+
 const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
   id: i,
-  left:     `${5 + Math.random() * 90}%`,
-  top:      `${5 + Math.random() * 90}%`,
-  size:     1 + Math.random() * 2,
-  delay:    Math.random() * 8,
-  duration: 6 + Math.random() * 10,
-  opacity:  0.06 + Math.random() * 0.12,
+  left: `${5 + particleNoise(i, 1) * 90}%`,
+  top: `${5 + particleNoise(i, 2) * 90}%`,
+  size: 1 + particleNoise(i, 3) * 2,
+  delay: particleNoise(i, 4) * 8,
+  duration: 6 + particleNoise(i, 5) * 10,
+  opacity: 0.06 + particleNoise(i, 6) * 0.12,
 }));
 
 export function ScrollAnimSection({
@@ -95,6 +104,7 @@ export function ScrollAnimSection({
     if (!v || !started) return;
     if (isVisible) {
       v.muted = true;
+      v.playbackRate = READABLE_PLAYBACK_RATE;
       const p = v.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
     } else {
@@ -142,6 +152,7 @@ export function ScrollAnimSection({
   const chapter     = chapters[chapterIdx];
   const titleParts  = chapter?.title.split(". ").filter(Boolean) ?? [];
   const features    = isRtl ? chapter?.featuresAr : chapter?.features;
+  const documentSupport = isRtl ? chapter?.documentSupportAr : chapter?.documentSupport;
 
   return (
     <motion.section
@@ -220,7 +231,7 @@ export function ScrollAnimSection({
               boxShadow: "0 0 24px rgba(214,40,40,.35), 0 0 52px rgba(214,40,40,.15), inset 0 0 10px rgba(0,0,0,.25)",
             }}
           >
-            <img src={logoIcon} alt="ENVOD KINGDOM" className="w-full h-full object-cover" />
+            <img {...getIntrinsicImageDimensions(logoIcon)} src={logoIcon} alt="ENVOD KINGDOM" className="w-full h-full object-cover" />
             <div
               className="absolute inset-0 rounded-full pointer-events-none"
               style={{ background: "radial-gradient(circle at 50% 50%,transparent 55%,rgba(0,0,0,.30) 100%)" }}
@@ -249,17 +260,17 @@ export function ScrollAnimSection({
             {chapter && (
               <motion.div
                 key={chapterIdx}
-                initial={{ opacity: 0, y: 48 }}
+                initial={{ opacity: 0, y: 36 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -24 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
                 className={isRtl ? "text-right" : "text-left"}
               >
                 {/* Eyebrow */}
                 <motion.p
                   initial={{ opacity: 0, x: isRtl ? 20 : -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1, duration: 0.5 }}
+                  transition={{ delay: 0.15, duration: 0.65 }}
                   className="text-secondary text-xs font-bold tracking-[0.35em] uppercase mb-5"
                 >
                   ENVOD KINGDOM SHIPPING SERVICES LLC
@@ -271,7 +282,7 @@ export function ScrollAnimSection({
                     <motion.span
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15, duration: 0.7, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+                      transition={{ delay: 0.2, duration: 0.9, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
                       className="block"
                     >
                       {chapter.titleAr}
@@ -283,7 +294,7 @@ export function ScrollAnimSection({
                         className="block overflow-hidden"
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15 + i * 0.12, duration: 0.7, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
+                        transition={{ delay: 0.2 + i * 0.16, duration: 0.9, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
                       >
                         {i === 1 ? (
                           <span className="text-secondary">{part}.</span>
@@ -300,7 +311,7 @@ export function ScrollAnimSection({
                   <motion.p
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.38, duration: 0.6 }}
+                    transition={{ delay: 0.5, duration: 0.75 }}
                     className="mt-6 text-base md:text-lg text-white/65 max-w-2xl font-light leading-relaxed"
                   >
                     {isRtl && chapter.subtitleAr ? chapter.subtitleAr : chapter.subtitle}
@@ -313,7 +324,7 @@ export function ScrollAnimSection({
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
-                    className={`mt-8 flex flex-wrap gap-3 ${isRtl ? "justify-end" : ""}`}
+                    className={`mt-5 flex flex-wrap gap-2 md:mt-8 md:gap-3 ${isRtl ? "justify-end" : ""}`}
                   >
                     {features.map((feat, i) => (
                       <motion.div
@@ -321,12 +332,45 @@ export function ScrollAnimSection({
                         initial={{ opacity: 0, x: isRtl ? 16 : -16 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.55 + i * 0.07, duration: 0.45 }}
-                        className={`flex items-center gap-2 bg-white/[0.07] backdrop-blur-md border border-white/15 rounded-full px-4 py-2 ${isRtl ? "flex-row-reverse" : ""}`}
+                        className={`flex items-center gap-1.5 bg-white/[0.07] backdrop-blur-md border border-white/15 rounded-full px-3 py-1.5 md:gap-2 md:px-4 md:py-2 ${isRtl ? "flex-row-reverse" : ""}`}
                       >
                         <CheckCircle2 className="w-3.5 h-3.5 text-secondary flex-none" />
-                        <span className="text-white/85 text-xs font-semibold whitespace-nowrap">{feat}</span>
+                        <span className="text-white/85 text-[11px] md:text-xs font-semibold whitespace-nowrap">{feat}</span>
                       </motion.div>
                     ))}
+                  </motion.div>
+                )}
+
+                {documentSupport && documentSupport.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.55, duration: 0.4 }}
+                    className={`mt-4 md:mt-5 ${isRtl ? "text-right" : "text-left"}`}
+                    role="group"
+                    aria-label={isRtl ? "دعم إعداد المستندات حسب الاقتضاء" : "Applicable document preparation support"}
+                  >
+                    <div className="mb-2 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[10px] font-bold tracking-[0.16em] uppercase">
+                      <span className="text-white/80">
+                        {isRtl ? "دعم إعداد المستندات" : "DOCUMENT PREPARATION SUPPORT"}
+                      </span>
+                      <span className="font-medium tracking-normal normal-case text-[9px] text-white/60">
+                        {isRtl ? "حسب ما ينطبق" : "where applicable"}
+                      </span>
+                    </div>
+                    <div dir="ltr" className="flex w-fit max-w-full flex-wrap gap-1 md:gap-2">
+                      {documentSupport.map((standard, i) => (
+                        <motion.span
+                          key={standard}
+                          initial={{ opacity: 0, scale: 0.85 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.6 + i * 0.02, duration: 0.2 }}
+                          className="inline-flex size-9 md:size-11 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/[0.12] text-[9px] md:text-[10px] font-bold tracking-tight text-white ring-1 ring-white/20 transition-colors hover:border-secondary/70 hover:bg-secondary/20"
+                        >
+                          {standard}
+                        </motion.span>
+                      ))}
+                    </div>
                   </motion.div>
                 )}
               </motion.div>
@@ -357,7 +401,7 @@ export function ScrollAnimSection({
         }
         @keyframes float-particle {
           0%   { transform: translate(0, 0) scale(1); }
-          100% { transform: translate(${Math.random() > 0.5 ? "" : "-"}${8 + Math.floor(Math.random() * 16)}px, ${Math.random() > 0.5 ? "" : "-"}${8 + Math.floor(Math.random() * 12)}px) scale(${0.8 + Math.random() * 0.6}); }
+          100% { transform: translate(12px, -10px) scale(1.12); }
         }
       `}</style>
     </motion.section>

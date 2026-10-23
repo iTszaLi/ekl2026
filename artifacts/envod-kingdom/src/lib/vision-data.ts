@@ -164,8 +164,8 @@ export const VISION_SECTIONS: VisionSection[] = [
         ar: "إلى جانب المشاريع العملاقة، تمول رؤية 2030 موجة من البنية التحتية: توسعات مطارات وخطوط قطارات ومترو وترقية موانئ ومحطات طاقة متجددة وشبكات مياه ومدن صناعية جديدة. وكل برنامج يستقطب معدات وآلات ومواد مستوردة تحتاج تخليصاً متوافقاً وتسليماً منضبطاً لمواقع عمل نشطة.",
       },
       {
-        en: "We move infrastructure cargo — transformers, generators, pipes, cable drums, structural steel — with breakbulk and out-of-gauge expertise, route surveys, and permits. Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
-        ar: "ننقل بضائع البنية التحتية — محولات ومولدات وأنابيب وبكرات كابلات وحديداً إنشائياً — بخبرة في البضائع العامة وخارج الأبعاد ومسوحات الطرق والتصاريح. ويُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+        en: "We move infrastructure cargo — transformers, generators, pipes, cable drums, structural steel — with breakbulk and out-of-gauge expertise, route surveys, and permits. Customs-clearance timing and requirements vary by shipment, documentation, customs procedures, and any regulatory approvals.",
+        ar: "ننقل بضائع البنية التحتية — محولات ومولدات وأنابيب وبكرات كابلات وحديداً إنشائياً — بخبرة في البضائع العامة وخارج الأبعاد ومسوحات الطرق والتصاريح. وتعتمد متطلبات التخليص الجمركي ومدته على نوع الشحنة والمستندات والإجراءات الجمركية وأي موافقات تنظيمية لازمة.",
       },
     ],
     points: [
@@ -194,18 +194,18 @@ export const VISION_SECTIONS: VisionSection[] = [
         ar: "تهدف الاستراتيجية الوطنية للنقل والخدمات اللوجستية ضمن رؤية 2030 إلى جعل المملكة مركزاً لوجستياً عالمياً — والرقمنة في صميمها. فمنصات الجمارك مثل فسح ونظام سابر للمطابقة وأنظمة مجتمع الموانئ تحول المستندات إلى تدفقات بيانات تكافئ الشاحنين المستعدين جيداً.",
       },
       {
-        en: "We work digitally by default: electronic customs submissions, shipment tracking through our online portal, proactive milestone updates, and clean data handovers to your systems — so your team always knows where cargo is and what happens next.",
-        ar: "نعمل رقمياً افتراضياً: تقديمات جمركية إلكترونية وتتبع للشحنات عبر بوابتنا الإلكترونية وتحديثات استباقية للمراحل وتسليم بيانات منظم لأنظمتكم — ليعرف فريقكم دائماً أين البضاعة وما الخطوة التالية.",
+        en: "For shipment status, contact the team with your reference; available updates depend on the carrier and other shipment parties. This is a status-enquiry service, not a live tracking portal or continuous GPS feed.",
+        ar: "للاستفسار عن حالة الشحنة، تواصل مع الفريق وأرسل رقم المرجع؛ وتعتمد التحديثات المتاحة على الناقل والجهات المعنية. هذه خدمة استفسار عن الحالة وليست بوابة تتبع مباشر أو بثاً مستمراً لموقع GPS.",
       },
     ],
     points: [
-      { en: "Online shipment tracking portal", ar: "بوابة إلكترونية لتتبع الشحنات" },
-      { en: "Electronic customs and FASAH submissions", ar: "تقديمات إلكترونية للجمارك ومنصة فسح" },
-      { en: "Proactive milestone and exception alerts", ar: "تنبيهات استباقية للمراحل والاستثناءات" },
-      { en: "Data-ready reporting for your supply chain team", ar: "تقارير جاهزة للبيانات لفريق سلسلة الإمداد" },
+      { en: "Shipment-status enquiries through the support team", ar: "استفسارات حالة الشحنة عبر فريق الدعم" },
+      { en: "Updates depend on carrier and authority information", ar: "تعتمد التحديثات على معلومات الناقل والجهات المختصة" },
+      { en: "Customs-document coordination where applicable", ar: "تنسيق مستندات الجمارك عند الحاجة" },
+      { en: "Shipment information prepared for handover", ar: "تهيئة معلومات الشحنة للتسليم" },
     ],
     links: [
-      { href: "/track", labelEn: "Track Your Shipment", labelAr: "تتبع شحنتك" },
+      { href: "/track", labelEn: "Request Shipment Status", labelAr: "طلب تحديث حالة الشحنة" },
       { href: "/services/supply-chain", labelEn: "Supply Chain Management", labelAr: "إدارة سلسلة الإمداد" },
       { href: "/services/customs-clearance", labelEn: "Customs Clearance", labelAr: "التخليص الجمركي" },
     ],
@@ -227,9 +227,9 @@ export const VISION_FAQ = [
   },
   {
     q: "How long does customs clearance take for project shipments?",
-    a: "Customs clearance completed as quickly as possible, with many shipments typically cleared within 24 hours depending on shipment type, documentation, customs requirements, and regulatory approvals.",
+    a: "Customs-clearance timing varies with the shipment, required documents, customs procedures, and any regulatory approvals. Share the cargo and route details so the relevant requirements can be checked.",
     qAr: "كم يستغرق التخليص الجمركي لشحنات المشاريع؟",
-    aAr: "يُنجز التخليص الجمركي بأسرع وقت ممكن، إذ تُخلَّص العديد من الشحنات عادةً خلال 24 ساعة حسب نوع الشحنة والمستندات والمتطلبات الجمركية والموافقات التنظيمية.",
+    aAr: "تختلف مدة التخليص الجمركي بحسب الشحنة والمستندات المطلوبة والإجراءات الجمركية وأي موافقات تنظيمية لازمة. أرسل تفاصيل البضاعة والمسار للتحقق من المتطلبات ذات الصلة.",
   },
   {
     q: "Do you handle oversized cargo for these projects?",
@@ -240,7 +240,7 @@ export const VISION_FAQ = [
 ];
 
 export const VISION_SEO = {
-  title: "Vision 2030 Logistics — NEOM, Red Sea, Qiddiya & Diriyah Project Support | ENVOD KINGDOM",
+  title: "Vision 2030 Logistics in Saudi Arabia | ENVOD KINGDOM",
   description:
-    "Logistics support for Vision 2030 suppliers & contractors — NEOM logistics, Red Sea Project logistics, Qiddiya, Diriyah, infrastructure cargo, and smart logistics solutions across Saudi Arabia.",
+    "Logistics support for suppliers and contractors working on Saudi Arabia's Vision 2030 projects, including infrastructure and project cargo.",
 };

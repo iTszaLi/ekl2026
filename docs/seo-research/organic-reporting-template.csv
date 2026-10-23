@@ -1,0 +1,8 @@
+period_start,period_end,cadence,market,language,service,page,metric,value,source,status,notes
+,,Weekly,Saudi Arabia,All,All,,Implementation progress,,Repository and test results,Await reporting period,Track shipped changes separately from traffic effects
+,,Weekly,Saudi Arabia,All,All,,Indexing and canonical issues,,Authorized Search Console,Access unavailable,Do not invent indexing results from a local build
+,,Monthly,Saudi Arabia,en,All,,Organic clicks,,Authorized Search Console,Access unavailable,Compare consistent 28-day windows with device and query filters
+,,Monthly,Saudi Arabia,ar,All,,Organic clicks,,Authorized Search Console,Access unavailable,Keep Arabic and English segments separate
+,,Monthly,Saudi Arabia,All,All,,Relevant new referring domains,,Verified publication records and authorized provider,No submissions made,Not outreach emails or membership enquiries
+,,Monthly,Saudi Arabia,All,All,,Qualified organic enquiries,,Private lead workflow and authorized analytics,Access unavailable,Aggregate only; exclude contact names and shipment identifiers
+,,Monthly,Saudi Arabia,All,All,,Qualified enquiry conversion rate,,Private lead workflow and authorized analytics,Access unavailable,Define denominator before calculation

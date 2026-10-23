@@ -1,54 +1,54 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
-import { motion, useInView } from "framer-motion";
-import { CheckCircle2, Package, Building2, Award, Clock, Globe2, Flame, Radio, UtensilsCrossed, HeartPulse, Factory, Cog, HardHat, Briefcase, Truck, Sparkles, Trophy, Car, Plane, Landmark, Store } from "lucide-react";
+import { motion } from "framer-motion";
+import { CheckCircle2, Package, Building2, Clock, Globe2, Flame, Radio, UtensilsCrossed, HeartPulse, Factory, Cog, HardHat, Briefcase, Truck, Sparkles, Trophy, Car, Plane, Landmark, Store, FileCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 
-import stcLogo from "@assets/logo_stc.webp";
-import aramcoLogo from "@assets/logo_aramco.webp";
-import asiaCupLogo from "@assets/logo_asiacup.webp";
-import katerraLogo from "@assets/logo_katerra.webp";
-import coopMedicalLogo from "@assets/logo_coop_medical.webp";
-import olayanLogo from "@assets/logo_olayan.webp";
-import wataniaLogo from "@assets/logo_watania.webp";
-import kaprelLogo from "@assets/logo_kaprel.webp";
-import porscheLogo from "@assets/logo_porsche.webp";
 import aafLogo from "@assets/logo_aaf.webp";
-import mobilyLogo from "@assets/logo_mobily.webp";
-import sabicLogo from "@assets/logo_sabic.webp";
-import golfSaudiLogo from "@assets/logo_golfsaudi.webp";
-import athLogo from "@assets/logo_ath.webp";
-import mssLogo from "@assets/logo_mss.webp";
-import boulevardLogo from "@assets/logo_boulevard.webp";
-import bmtcLogo from "@assets/logo_bmtc.webp";
 import alredwanLogo from "@assets/logo_alredwan.webp";
-import sulindaLogo from "@assets/logo_sulinda.webp";
-import cityflowerLogo from "@assets/logo_cityflower.webp";
+import aramcoLogo from "@assets/logo_aramco.webp";
+import athLogo from "@assets/logo_ath.webp";
+import asiaCupLogo from "@assets/logo_asiacup.webp";
+import bmtcLogo from "@assets/logo_bmtc.webp";
+import boulevardLogo from "@assets/logo_boulevard.webp";
+import cityFlowerLogo from "@assets/logo_cityflower.webp";
+import coopMedicalLogo from "@assets/logo_coop_medical.webp";
+import golfSaudiLogo from "@assets/logo_golfsaudi.webp";
+import kaprelLogo from "@assets/logo_kaprel.webp";
+import katerraLogo from "@assets/logo_katerra.webp";
+import mobilyLogo from "@assets/logo_mobily.webp";
+import mssLogo from "@assets/logo_mss.webp";
+import olayanLogo from "@assets/logo_olayan.webp";
+import porscheLogo from "@assets/logo_porsche.webp";
+import sabicLogo from "@assets/logo_sabic.webp";
 import sitcoLogo from "@assets/logo_sitco.webp";
+import stcLogo from "@assets/logo_stc.webp";
+import sulindaLogo from "@assets/logo_sulinda.webp";
+import wataniaLogo from "@assets/logo_watania.webp";
 
-/* ─────────────────────────── Client logos (keyed by client name) ─────────────────────────── */
 const CLIENT_LOGOS: Record<string, string> = {
-  "STC":                        stcLogo,
-  "Saudi Aramco":               aramcoLogo,
+  "STC": stcLogo,
+  "Saudi Aramco": aramcoLogo,
   "Saudi Asian Cup Jeddah 2025": asiaCupLogo,
-  "Katerra":                    katerraLogo,
-  "Operation Medical Est.":     coopMedicalLogo,
-  "Olayan Group":               olayanLogo,
-  "Watania":                    wataniaLogo,
-  "Kaprel":                     kaprelLogo,
-  "Porsche":                    porscheLogo,
-  "AAF International":          aafLogo,
-  "Mobily":                     mobilyLogo,
-  "SABIC":                      sabicLogo,
-  "Golf Saudi":                 golfSaudiLogo,
-  "Arabian Trade House":        athLogo,
+  "Katerra": katerraLogo,
+  "Operation Medical Est.": coopMedicalLogo,
+  "Olayan Group": olayanLogo,
+  "Watania": wataniaLogo,
+  "Kaprel": kaprelLogo,
+  "Porsche": porscheLogo,
+  "AAF International": aafLogo,
+  "Mobily": mobilyLogo,
+  "SABIC": sabicLogo,
+  "Golf Saudi": golfSaudiLogo,
+  "Arabian Trade House": athLogo,
   "Medical Solutions Services": mssLogo,
-  "The Boulevard Riyadh":       boulevardLogo,
-  "BMTC":                       bmtcLogo,
+  "The Boulevard Riyadh": boulevardLogo,
+  "BMTC": bmtcLogo,
   "Al Redwan Medical Services": alredwanLogo,
-  "Sulinda":                    sulindaLogo,
-  "City Flower":                cityflowerLogo,
-  "SITCO Pharma":               sitcoLogo,
+  "Sulinda": sulindaLogo,
+  "City Flower": cityFlowerLogo,
+  "SITCO Pharma": sitcoLogo,
 };
 
 /* ─────────────────────────── Data ─────────────────────────── */
@@ -56,34 +56,30 @@ interface Client {
   id: number;
   name: string;
   industry: string | null;
-  logoUrl?: string | null;
-  website?: string | null;
-  sortOrder: number;
-  isActive: boolean;
 }
 
 const FALLBACK_CLIENTS: Client[] = [
-  { id: 1,  name: "STC",                       industry: "Telecommunications", logoUrl: null, website: null, sortOrder: 1,  isActive: true },
-  { id: 2,  name: "Saudi Aramco",              industry: "Oil & Gas",          logoUrl: null, website: null, sortOrder: 2,  isActive: true },
-  { id: 3,  name: "Saudi Asian Cup Jeddah 2025", industry: "Sports",           logoUrl: null, website: null, sortOrder: 3,  isActive: true },
-  { id: 4,  name: "Katerra",                   industry: "Construction",       logoUrl: null, website: null, sortOrder: 4,  isActive: true },
-  { id: 5,  name: "Operation Medical Est.",    industry: "Healthcare",         logoUrl: null, website: null, sortOrder: 5,  isActive: true },
-  { id: 6,  name: "Olayan Group",              industry: "Conglomerate",       logoUrl: null, website: null, sortOrder: 6,  isActive: true },
-  { id: 7,  name: "Watania",                   industry: "Food & Beverage",    logoUrl: null, website: null, sortOrder: 7,  isActive: true },
-  { id: 8,  name: "Kaprel",                    industry: "Interiors",          logoUrl: null, website: null, sortOrder: 8,  isActive: true },
-  { id: 9,  name: "Porsche",                   industry: "Automotive",         logoUrl: null, website: null, sortOrder: 9,  isActive: true },
-  { id: 10, name: "AAF International",         industry: "Manufacturing",      logoUrl: null, website: null, sortOrder: 10, isActive: true },
-  { id: 11, name: "Mobily",                    industry: "Telecommunications", logoUrl: null, website: null, sortOrder: 11, isActive: true },
-  { id: 12, name: "SABIC",                     industry: "Oil & Gas",          logoUrl: null, website: null, sortOrder: 12, isActive: true },
-  { id: 13, name: "Golf Saudi",                industry: "Sports",             logoUrl: null, website: null, sortOrder: 13, isActive: true },
-  { id: 14, name: "Arabian Trade House",       industry: "Trading",            logoUrl: null, website: null, sortOrder: 14, isActive: true },
-  { id: 15, name: "Medical Solutions Services", industry: "Healthcare",        logoUrl: null, website: null, sortOrder: 15, isActive: true },
-  { id: 16, name: "The Boulevard Riyadh",      industry: "Entertainment",      logoUrl: null, website: null, sortOrder: 16, isActive: true },
-  { id: 17, name: "BMTC",                      industry: "Industrial",         logoUrl: null, website: null, sortOrder: 17, isActive: true },
-  { id: 19, name: "Al Redwan Medical Services", industry: "Healthcare",        logoUrl: null, website: null, sortOrder: 19, isActive: true },
-  { id: 20, name: "Sulinda",                   industry: "Trading",            logoUrl: null, website: null, sortOrder: 20, isActive: true },
-  { id: 21, name: "City Flower",               industry: "Retail",             logoUrl: null, website: null, sortOrder: 21, isActive: true },
-  { id: 22, name: "SITCO Pharma",              industry: "Pharmaceuticals",    logoUrl: null, website: null, sortOrder: 22, isActive: true },
+  { id: 1, name: "STC", industry: "Telecommunications" },
+  { id: 2, name: "Saudi Aramco", industry: "Oil & Gas" },
+  { id: 3, name: "Saudi Asian Cup Jeddah 2025", industry: "Sports" },
+  { id: 4, name: "Katerra", industry: "Construction" },
+  { id: 5, name: "Operation Medical Est.", industry: "Healthcare" },
+  { id: 6, name: "Olayan Group", industry: "Conglomerate" },
+  { id: 7, name: "Watania", industry: "Food & Beverage" },
+  { id: 8, name: "Kaprel", industry: "Interiors" },
+  { id: 9, name: "Porsche", industry: "Automotive" },
+  { id: 10, name: "AAF International", industry: "Manufacturing" },
+  { id: 11, name: "Mobily", industry: "Telecommunications" },
+  { id: 12, name: "SABIC", industry: "Oil & Gas" },
+  { id: 13, name: "Golf Saudi", industry: "Sports" },
+  { id: 14, name: "Arabian Trade House", industry: "Trading" },
+  { id: 15, name: "Medical Solutions Services", industry: "Healthcare" },
+  { id: 16, name: "The Boulevard Riyadh", industry: "Entertainment" },
+  { id: 17, name: "BMTC", industry: "Industrial" },
+  { id: 19, name: "Al Redwan Medical Services", industry: "Healthcare" },
+  { id: 20, name: "Sulinda", industry: "Trading" },
+  { id: 21, name: "City Flower", industry: "Retail" },
+  { id: 22, name: "SITCO Pharma", industry: "Pharmaceuticals" },
 ];
 
 /* ─────────────────────────── Palette ─────────────────────────── */
@@ -111,27 +107,6 @@ const DEFAULT_PALETTE = { accent: "#D62828", glow: "rgba(214,40,40,0.15)", tag: 
 
 function getPalette(industry: string | null | undefined) {
   return PALETTE[industry ?? ""] ?? DEFAULT_PALETTE;
-}
-
-/* ─────────────────────────── Animated counter ─────────────────────────── */
-function AnimCounter({ to, suffix = "" }: { to: number; suffix?: string }) {
-  const [val, setVal] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  useEffect(() => {
-    if (!inView) return;
-    let start = 0;
-    const step = to / 60;
-    const id = setInterval(() => {
-      start += step;
-      if (start >= to) { setVal(to); clearInterval(id); }
-      else setVal(Math.floor(start));
-    }, 20);
-    return () => clearInterval(id);
-  }, [inView, to]);
-
-  return <span ref={ref}>{val.toLocaleString()}{suffix}</span>;
 }
 
 /* ─────────────────────────── Industry mark (no letter icon) ─────────────────────────── */
@@ -170,12 +145,12 @@ function IndustryMark({ industry }: { industry: string | null | undefined }) {
 /* ─────────────────────────── Glass card ─────────────────────────── */
 function ClientCard({ client }: { client: Client }) {
   const p = getPalette(client.industry);
-  const logo = client.logoUrl || CLIENT_LOGOS[client.name];
+  const logo = CLIENT_LOGOS[client.name];
   return (
     <motion.div
       whileHover={{ y: -4, scale: 1.02 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="cm-card flex-none relative group cursor-default select-none min-w-[185px] sm:min-w-[220px] mr-3"
+      className="cm-card flex-none relative group cursor-default select-none min-w-[270px] sm:min-w-[300px] mr-3"
     >
       {/* Hover glow ring */}
       <div
@@ -202,7 +177,6 @@ function ClientCard({ client }: { client: Client }) {
           (e.currentTarget as HTMLElement).style.boxShadow = "none";
         }}
       >
-        {/* Logo tile (falls back to industry icon) */}
         {logo ? (
           <div
             className="flex-none w-[62px] h-11 rounded-lg bg-white flex items-center justify-center px-1.5 transition-transform duration-300 group-hover:scale-105"
@@ -210,6 +184,7 @@ function ClientCard({ client }: { client: Client }) {
           >
             <img
               src={logo}
+              {...getIntrinsicImageDimensions(logo)}
               alt={client.name}
               loading="lazy"
               className="max-h-8 max-w-full object-contain"
@@ -226,7 +201,7 @@ function ClientCard({ client }: { client: Client }) {
 
         {/* Text */}
         <div className="min-w-0">
-          <p className="font-bold text-white text-[14px] leading-tight truncate">
+          <p className="font-bold text-white text-[14px] leading-tight whitespace-normal break-words">
             {client.name}
           </p>
           {client.industry && (
@@ -265,24 +240,24 @@ function MarqueeTrack({ clients, reverse = false, paused }: { clients: Client[];
   );
 }
 
-/* ─────────────────────────── Stats strip ─────────────────────────── */
-const STATS = [
-  { icon: Package,   to: 5000, suffix: "+", label: "Shipments Completed",  labelAr: "شحنة مكتملة"      },
-  { icon: Building2, to: 100,  suffix: "+", label: "Corporate Clients",    labelAr: "عميل مؤسسي"        },
-  { icon: Award,     to: 25,   suffix: "+", label: "Years of Excellence",  labelAr: "عاماً من التميز"   },
-  { icon: Clock,     to: 99,   suffix: "%", label: "On-Time Delivery",     labelAr: "دقة في التسليم"    },
-  { icon: Globe2,    to: 50,   suffix: "+", label: "Countries Served",     labelAr: "دولة نخدمها"       },
+/* ─────────────────────────── Shipment-planning topics ─────────────────────────── */
+const INFO_ITEMS = [
+  { icon: Package, en: "Cargo & dimensions", ar: "البضاعة والأبعاد" },
+  { icon: Globe2, en: "Origin & destination", ar: "المنشأ والوجهة" },
+  { icon: Clock, en: "Schedule & deadlines", ar: "الجدول والمواعيد" },
+  { icon: FileCheck, en: "Documents & approvals", ar: "المستندات والموافقات" },
+  { icon: Truck, en: "Carrier & route options", ar: "خيارات الناقل والمسار" },
 ];
 
 /* ─────────────────────────── Trust strip ─────────────────────────── */
 const TRUST = [
-  { en: "ISO Quality Standards",          ar: "معايير الجودة ISO"              },
-  { en: "Customs Clearance Experts",      ar: "خبراء التخليص الجمركي"          },
-  { en: "Project Logistics Specialists",  ar: "متخصصو لوجستيات المشاريع"       },
-  { en: "Temperature-Controlled Cargo",   ar: "شحن بدرجات حرارة متحكم بها"     },
-  { en: "Dangerous Goods Certified",      ar: "معتمد للبضائع الخطرة"            },
-  { en: "ATA Carnet Handling",            ar: "معالجة كارنيه ATA"               },
-  { en: "Breakbulk & Oversized Cargo",    ar: "البضائع السائبة والبضائع الضخمة" },
+  { en: "Customs-document questions", ar: "استفسارات المستندات الجمركية" },
+  { en: "Exhibition & event planning", ar: "تخطيط المعارض والفعاليات" },
+  { en: "GCC road-freight requests", ar: "طلبات الشحن البري الخليجي" },
+  { en: "Project cargo enquiries", ar: "استفسارات بضائع المشاريع" },
+  { en: "Temperature requirements", ar: "متطلبات درجات الحرارة" },
+  { en: "Dangerous-goods enquiries", ar: "استفسارات البضائع الخطرة" },
+  { en: "ATA Carnet eligibility", ar: "أهلية كارنيه ATA" },
 ];
 
 /* ─────────────────────────── Main section ─────────────────────────── */
@@ -291,7 +266,7 @@ export function ClientMarquee() {
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
-  const items: Client[] = FALLBACK_CLIENTS.filter((c: Client) => c.isActive !== false);
+  const items: Client[] = FALLBACK_CLIENTS;
 
   const half = Math.ceil(items.length / 2);
   const row1 = items.slice(0, half);
@@ -326,12 +301,12 @@ export function ClientMarquee() {
         <div className="absolute top-2/3 -right-32 w-64 h-px opacity-10" style={{ background: "linear-gradient(to left, transparent, rgba(100,150,255,0.5), transparent)", animation: "light-streak 12s ease-in-out 2s infinite reverse" }} />
       </div>
 
-      {/* ── Stats strip ── */}
+      {/* ── Shipment-planning topics ── */}
       <div className="container mx-auto px-6 mb-16 relative z-10">
         <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 ${isRtl ? "direction-rtl" : ""}`}>
-          {STATS.map((s, i) => (
+          {INFO_ITEMS.map((item, i) => (
             <motion.div
-              key={i}
+              key={item.en}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -341,15 +316,12 @@ export function ClientMarquee() {
             >
               <div className={`flex items-center gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
                 <div className="w-9 h-9 rounded-lg bg-secondary/10 border border-secondary/15 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-secondary/20 group-hover:scale-110">
-                  <s.icon className="w-4.5 h-4.5 text-secondary" aria-hidden="true" />
+                  <item.icon className="w-4.5 h-4.5 text-secondary" aria-hidden="true" />
                 </div>
-                <span className="text-[26px] font-black text-white tracking-tight leading-none">
-                  <AnimCounter to={s.to} suffix={s.suffix} />
+                <span className="text-[12px] font-bold text-white tracking-tight leading-snug">
+                  {isRtl ? item.ar : item.en}
                 </span>
               </div>
-              <span className="text-[11px] text-white/50 font-semibold uppercase tracking-widest leading-tight group-hover:text-white/70 transition-colors">
-                {isRtl ? s.labelAr : s.label}
-              </span>
             </motion.div>
           ))}
         </div>
@@ -363,7 +335,7 @@ export function ClientMarquee() {
           viewport={{ once: true }}
           className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3"
         >
-          {t("POWERING SAUDI ARABIA'S TOP ENTERPRISES", "نُشغِّل كبرى المؤسسات السعودية")}
+          {t("SAUDI SHIPMENT PLANNING", "تخطيط الشحنات في السعودية")}
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 14 }}
@@ -372,7 +344,7 @@ export function ClientMarquee() {
           transition={{ delay: 0.08 }}
           className="text-3xl md:text-[2.75rem] font-black text-white leading-tight"
         >
-          {t("Trusted by Saudi Arabia's", "تثق بنا")} <span className="text-secondary">{t("Leading Enterprises", "أبرز المؤسسات السعودية")}</span>
+          {t("Logistics enquiries for", "استفسارات لوجستية لـ")} <span className="text-secondary">{t("Businesses across sectors", "أنشطة تجارية متنوعة")}</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -382,8 +354,8 @@ export function ClientMarquee() {
           className="mt-4 text-white/45 text-[14px] max-w-2xl mx-auto leading-relaxed"
         >
           {t(
-            "From mega-projects and government contractors to FMCG, healthcare, oil & gas, retail and manufacturing — ENVOD delivers logistics solutions trusted across the Kingdom.",
-            "من المشاريع العملاقة والمقاولين الحكوميين إلى السلع الاستهلاكية والرعاية الصحية والنفط والغاز والتجزئة والتصنيع — إنفود تقدم حلول لوجستية موثوقة في أنحاء المملكة.",
+            "Common enquiry types include imports and exports, exhibition freight, manufacturing cargo, project shipments, retail distribution and freight forwarding. Scope and availability are checked for each request.",
+            "تشمل أنواع الاستفسارات الشائعة الواردات والصادرات وشحن المعارض وبضائع التصنيع وشحنات المشاريع وتوزيع التجزئة وتنسيق الشحن. ويتم التحقق من النطاق والتوفر لكل طلب.",
           )}
         </motion.p>
       </div>
@@ -397,6 +369,9 @@ export function ClientMarquee() {
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
+        <p dir={isRtl ? "rtl" : "ltr"} className="text-center text-secondary text-[10px] font-bold tracking-[0.28em] uppercase mb-1">
+          {t("Companies we’ve served or worked with", "شركات خدمناها أو تعاونّا معها")}
+        </p>
         <MarqueeTrack clients={row1} paused={paused} />
         <MarqueeTrack clients={row2} reverse paused={paused} />
       </div>
@@ -434,8 +409,8 @@ export function ClientMarquee() {
           className="text-center text-white/25 text-[13px] leading-relaxed max-w-2xl mx-auto mt-10 italic"
         >
           {t(
-            "Every shipment represents trust. From urgent air freight to complex project cargo, ENVOD supports Saudi Arabia's most demanding supply chains with precision and reliability.",
-            "كل شحنة تمثل ثقة. من الشحن الجوي العاجل إلى البضائع المعقدة، تدعم إنفود سلاسل التوريد الأكثر تطلباً في المملكة بدقة وموثوقية.",
+            "Share the cargo, route, schedule and any special requirements so the requested coordination scope can be reviewed.",
+            "أرسل تفاصيل البضاعة والمسار والجدول وأي متطلبات خاصة لمراجعة نطاق التنسيق المطلوب.",
           )}
         </motion.p>
       </div>

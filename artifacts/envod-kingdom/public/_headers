@@ -1,6 +1,6 @@
 # Security headers for hosts that support this file (e.g. Cloudflare Pages).
-# Inert on Replit static hosting (where the same CSP/referrer policy is
-# injected as <meta> tags at build time by prerender.mjs).
+# Vercel applies the equivalent response headers from vercel.json.
+# CSP and referrer meta tags are also injected at build time by prerender.mjs.
 # NOTE: if the API is ever hosted on a different origin than the site,
 # add that origin to connect-src.
 /*

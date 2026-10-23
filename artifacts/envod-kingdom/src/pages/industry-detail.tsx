@@ -2,8 +2,9 @@ import { useParams, Link } from "wouter";
 import { useLanguage } from "@/lib/language-context";
 import { INDUSTRY_BY_SLUG, INDUSTRY_META } from "@/lib/industry-data";
 import { INDUSTRY_BG } from "@/lib/industry-images";
+import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 import vision2030Logo from "@assets/logo_vision2030.webp";
-import { SLUG_TO_ID, SERVICE_CATALOG, buildMailto } from "@/lib/service-data";
+import { SLUG_TO_ID, SERVICE_CATALOG } from "@/lib/service-data";
 import FAQCollapse from "@/components/FAQCollapse";
 import {
   ArrowRight, ChevronRight, CheckCircle2, Mail, AlertTriangle,
@@ -51,6 +52,7 @@ export default function IndustryDetail() {
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
             <img
               src={INDUSTRY_BG[ind.slug]}
+              {...getIntrinsicImageDimensions(INDUSTRY_BG[ind.slug])}
               alt=""
               className="w-full h-full object-cover opacity-30"
             />
@@ -90,6 +92,7 @@ export default function IndustryDetail() {
             <div className="hidden sm:block ml-auto shrink-0 bg-white rounded-xl px-4 py-3 shadow-lg shadow-black/30">
               <img
                 src={vision2030Logo}
+                {...getIntrinsicImageDimensions(vision2030Logo)}
                 alt={t("Saudi Vision 2030", "رؤية السعودية 2030")}
                 className="h-12 lg:h-16 w-auto object-contain"
               />
@@ -101,13 +104,13 @@ export default function IndustryDetail() {
           </p>
 
           <div className={`flex flex-wrap gap-4 ${isRtl ? "flex-row-reverse" : ""}`}>
-            <a
-              href={buildMailto(ind.nameEn, `${ind.nameEn} — General Inquiry`)}
+            <Link
+              href="/contact"
               className={`inline-flex items-center gap-2.5 bg-secondary hover:bg-secondary/85 text-white px-7 py-3.5 rounded-xl font-black text-sm uppercase tracking-wider transition-all shadow-lg shadow-secondary/20 hover:-translate-y-px ${isRtl ? "flex-row-reverse" : ""}`}
             >
               <Mail className="w-4 h-4" />
               {t("Request a Quote", "اطلب عرض سعر")}
-            </a>
+            </Link>
             <a
               href="https://wa.me/966502260256"
               target="_blank"
@@ -280,18 +283,18 @@ export default function IndustryDetail() {
           </h2>
           <p className="text-white/50 text-base mb-8 max-w-xl mx-auto">
             {t(
-              "Tell us what you ship and where it needs to be — our team responds within 2 hours during business hours.",
-              "أخبرونا بما تشحنون وإلى أين — يرد فريقنا خلال ساعتين في أوقات العمل.",
+              "Tell us what you ship and where it needs to go. We’ll review the requested scope and availability.",
+              "أخبرونا بنوع البضاعة والوجهة المطلوبة. سنراجع نطاق الخدمة المطلوب ومدى توفره.",
             )}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href={buildMailto(ind.nameEn, `${ind.nameEn} — Quote Request`)}
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2.5 bg-secondary hover:bg-secondary/85 text-white px-8 py-4 rounded-xl font-black text-sm uppercase tracking-wider transition-all shadow-lg shadow-secondary/20 hover:-translate-y-px"
             >
               <Mail className="w-4 h-4" />
               {t("Request a Quote", "اطلب عرض سعر")}
-            </a>
+            </Link>
             <Link href="/contact" className="inline-flex items-center gap-2 bg-white/[0.05] border border-white/15 hover:bg-white/[0.1] text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-wider transition-all">
               {t("Contact Us", "اتصلوا بنا")}
             </Link>

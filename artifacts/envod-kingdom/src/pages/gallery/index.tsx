@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Camera, Images, ArrowRight, MapPin, Calendar } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
-import { useJsonLd } from "@/lib/seo";
-import { SITE_URL } from "@/lib/seo-config";
+import { GALLERY_ITEMS } from "@/lib/gallery-content";
 import {
   type GalleryItem,
   buildSrcSet,
@@ -11,21 +10,24 @@ import {
   largestSrc,
   GRID_SIZES,
   GALLERY_CATEGORIES,
-  categoryLabel,
+  galleryBadgeLabel,
   formatMonthYear,
   groupByMonth,
   galleryTitle,
   galleryDescription,
   galleryLocation,
   galleryAltText,
+  galleryServicePath,
 } from "@/lib/gallery";
 import { GalleryLightbox } from "@/components/gallery/GalleryLightbox";
 
 /* ─────────────────────── Animated counter ─────────────────────── */
 function useCounter(target: number, duration = 2000) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const [started, setStarted] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const reduceMotion = shouldReduceMotion ?? false;
 
   useEffect(() => {
     const el = ref.current;
@@ -45,17 +47,23 @@ function useCounter(target: number, duration = 2000) {
 
   useEffect(() => {
     if (!started) return;
-    let current = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else setCount(Math.floor(current));
-    }, 16);
-    return () => clearInterval(timer);
-  }, [started, target, duration]);
+    if (reduceMotion) {
+      setCount(target);
+      return;
+    }
+    setCount(0);
+    const start = performance.now();
+    let frame = 0;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(target * eased));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+      else setCount(target);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [started, target, duration, reduceMotion]);
 
   return { count, ref };
 }
@@ -73,29 +81,22 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
   );
 }
 
-function StaticStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="text-center">
-      <div className="text-3xl md:text-4xl font-black text-secondary mb-1">{value}</div>
-      <div className="text-[11px] font-semibold text-white/45 uppercase tracking-widest">{label}</div>
-    </div>
-  );
-}
-
 /* ─────────────────────── Gallery card ─────────────────────── */
 function GalleryCard({ item, onOpen, t, isRtl }: { item: GalleryItem; onOpen: () => void; t: (en: string, ar: string) => string; isRtl: boolean }) {
   const [loaded, setLoaded] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
   const monthLabel = formatMonthYear(item.monthYear);
   const title = galleryTitle(item, isRtl);
   const description = galleryDescription(item, isRtl);
   const location = galleryLocation(item, isRtl);
 
   return (
-    <button
-      onClick={onOpen}
-      className="group relative block w-full overflow-hidden rounded-xl bg-[#0c1a30] mb-4 break-inside-avoid text-left focus:outline-none focus:ring-2 focus:ring-secondary/70"
-      aria-label={title}
-    >
+    <article className="mb-4 break-inside-avoid">
+      <button
+        onClick={onOpen}
+        className="group relative block w-full overflow-hidden rounded-xl bg-[#0c1a30] text-left focus:outline-none focus:ring-2 focus:ring-secondary/70"
+        aria-label={t(`Open photo: ${title}`, `عرض الصورة: ${title}`)}
+      >
       <div
         className="relative w-full"
         style={{
@@ -111,18 +112,32 @@ function GalleryCard({ item, onOpen, t, isRtl }: { item: GalleryItem; onOpen: ()
           sizes={GRID_SIZES}
           width={item.width}
           height={item.height}
-          alt={galleryAltText(item, isRtl)}
+          alt={imageFailed ? "" : galleryAltText(item, isRtl)}
           loading="lazy"
           decoding="async"
-          onLoad={() => setLoaded(true)}
+          onLoad={() => {
+            setLoaded(true);
+            setImageFailed(false);
+          }}
+          onError={() => setImageFailed(true)}
+          aria-hidden={imageFailed}
           className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
-            loaded ? "opacity-100" : "opacity-0"
+            loaded && !imageFailed ? "opacity-100" : "opacity-0"
           }`}
         />
+        {imageFailed && (
+          <div
+            role="status"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-[#0c1a30] text-center text-xs text-white/65"
+          >
+            <Camera className="h-6 w-6 text-secondary/80" aria-hidden="true" />
+            <span>{t("Image temporarily unavailable", "الصورة غير متاحة مؤقتاً")}</span>
+          </div>
+        )}
 
         {/* Category badge */}
         <span className="absolute top-3 left-3 z-10 text-[10px] font-black uppercase tracking-wider bg-black/45 backdrop-blur-sm text-white/90 px-2.5 py-1 rounded-full border border-white/15">
-          {categoryLabel(item.category, t)}
+          {galleryBadgeLabel(item, t)}
         </span>
 
         {/* Hover overlay */}
@@ -147,7 +162,18 @@ function GalleryCard({ item, onOpen, t, isRtl }: { item: GalleryItem; onOpen: ()
           )}
         </div>
       </div>
-    </button>
+      </button>
+      {item.servicePath && (
+        <a
+          href={galleryServicePath(item.servicePath, isRtl)}
+          aria-label={t(`Explore service: ${title}`, `استكشف الخدمة: ${title}`)}
+          className="mt-2 inline-flex items-center gap-2 rounded-md px-1 py-1 text-xs font-semibold text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary/70"
+        >
+          {t("Explore related service", "استكشف الخدمة المرتبطة")}
+          <ArrowRight aria-hidden="true" className={`h-3.5 w-3.5 ${isRtl ? "rotate-180" : ""}`} />
+        </a>
+      )}
+    </article>
   );
 }
 
@@ -157,8 +183,7 @@ export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  // Static build: no CMS-backed gallery items; the curated empty state renders.
-  const items = useMemo<GalleryItem[]>(() => [], []);
+  const items = GALLERY_ITEMS;
 
   const presentCategories = useMemo(() => {
     const present = new Set(items.map((i) => i.category));
@@ -171,45 +196,6 @@ export default function Gallery() {
   );
 
   const monthGroups = useMemo(() => groupByMonth(items).slice(0, 3), [items]);
-
-  // Page-level title/description/canonical + breadcrumb come from SeoManager
-  // (getSeoForPath). Here we only contribute the dynamic, gallery-specific
-  // structured data (WebPage + ImageGallery) that a static config can't build.
-  const jsonLd = useMemo<Array<Record<string, unknown>>>(() => {
-    const origin = SITE_URL;
-    const pageUrl = `${origin}${import.meta.env.BASE_URL}gallery`.replace(/([^:]\/)\/+/g, "$1");
-    const blocks: Array<Record<string, unknown>> = [
-      {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        name: "Operations Gallery — ENVOD KINGDOM",
-        url: pageUrl,
-        description:
-          "A visual showcase of ENVOD KINGDOM's real logistics operations: customs clearance, exhibitions, project cargo, warehousing, and freight forwarding across Saudi Arabia and the GCC.",
-      },
-    ];
-
-    if (items.length) {
-      blocks.push({
-        "@context": "https://schema.org",
-        "@type": "ImageGallery",
-        name: "ENVOD KINGDOM Operations Gallery",
-        url: pageUrl,
-        associatedMedia: items.map((item) => ({
-          "@type": "ImageObject",
-          contentUrl: `${origin}${largestSrc(item)}`.replace(/([^:]\/)\/+/g, "$1"),
-          name: galleryTitle(item, isRtl),
-          description: galleryDescription(item, isRtl) || galleryAltText(item, isRtl),
-          width: item.width,
-          height: item.height,
-        })),
-      });
-    }
-
-    return blocks;
-  }, [items, isRtl]);
-
-  useJsonLd(jsonLd);
 
   return (
     <div dir={isRtl ? "rtl" : "ltr"} className="bg-[#050c18] min-h-screen">
@@ -240,33 +226,29 @@ export default function Gallery() {
             </h1>
             <p className="text-white/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
               {t(
-                "A behind-the-scenes look at ENVOD KINGDOM's real operations — customs clearance, exhibitions, project cargo, warehousing, and freight moving across Saudi Arabia and beyond.",
-                "نظرة من الداخل على عمليات إنفود كينغدوم الحقيقية — التخليص الجمركي والمعارض وبضائع المشاريع والتخزين والشحن عبر المملكة وخارجها.",
+                "A selection of ENVOD-provided photos showing freight transport, warehouse handling, project cargo, and exhibition equipment. Captions describe only what is visible; customer names, locations, and project details are omitted unless approved.",
+                "مجموعة من الصور التي قدمتها إنفود كينغدوم وتُظهر نقل الشحنات ومناولة المستودعات وشحنات المشاريع ومعدات المعارض. تصف التعليقات ما يظهر فقط، ولا تذكر أسماء العملاء أو المواقع أو تفاصيل المشاريع إلا بعد الموافقة.",
               )}
             </p>
           </motion.div>
-
-          {/* Stats */}
-          <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
-            <StatItem value={25} suffix="+" label={t("Years", "سنة")} />
-            <StatItem value={12000} suffix="+" label={t("Shipments", "شحنة")} />
-            <StatItem value={250} suffix="+" label={t("Clients", "عميل")} />
-            <StatItem value={15} suffix="+" label={t("Cities", "مدينة")} />
-            <StaticStat value="24/7" label={t("Support", "دعم")} />
-          </div>
         </div>
       </section>
 
       {/* Filters + grid */}
       <section className="container mx-auto px-4 py-14">
         {presentCategories.length > 1 && (
-          <div className="flex flex-wrap justify-center gap-2.5 mb-10">
+          <div
+            role="group"
+            aria-label={t("Filter gallery by category", "تصفية المعرض حسب الفئة")}
+            className="flex flex-wrap justify-center gap-2.5 mb-10"
+          >
             {presentCategories.map((cat) => {
               const active = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
+                  aria-pressed={active}
                   className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border ${
                     active
                       ? "bg-secondary text-white border-secondary shadow-lg shadow-secondary/25"
@@ -281,7 +263,7 @@ export default function Gallery() {
         )}
 
         {items.length === 0 ? (
-          <EmptyState t={t} />
+          <EmptyState t={t} isRtl={isRtl} />
         ) : filtered.length === 0 ? (
           <div className="text-center py-20 text-white/40">
             {t("No photos in this category yet.", "لا توجد صور في هذه الفئة بعد.")}
@@ -370,29 +352,59 @@ export default function Gallery() {
 }
 
 /* ─────────────────────── Empty state ─────────────────────── */
-function EmptyState({ t }: { t: (en: string, ar: string) => string }) {
+function EmptyState({
+  t,
+  isRtl,
+}: {
+  t: (en: string, ar: string) => string;
+  isRtl: boolean;
+}) {
   return (
-    <div className="max-w-xl mx-auto text-center py-20">
-      <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-secondary/10 mb-8">
-        <div className="absolute inset-0 rounded-full bg-secondary/10 animate-ping opacity-40" />
-        <Camera className="w-11 h-11 text-secondary relative z-10" />
+    <div className="relative isolate max-w-5xl mx-auto overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#102039] via-[#0a1628] to-[#07111f] p-7 sm:p-10 md:p-14 shadow-2xl shadow-black/20">
+      <div
+        aria-hidden="true"
+        className="absolute -top-28 -right-20 h-72 w-72 rounded-full bg-secondary/10 blur-3xl"
+      />
+      <div className="relative grid gap-7 md:grid-cols-[auto_minmax(0,1fr)] md:items-start md:gap-10">
+        <div
+          aria-hidden="true"
+          className="flex h-16 w-16 items-center justify-center rounded-2xl border border-secondary/25 bg-secondary/10 text-secondary shadow-lg shadow-secondary/5"
+        >
+          <Camera className="h-7 w-7" />
+        </div>
+        <div className="max-w-3xl">
+          <p className="mb-3 text-xs font-black uppercase tracking-[0.24em] text-secondary">
+            {t("Verified photography only", "صور موثّقة فقط")}
+          </p>
+          <h2 className="mb-4 text-2xl font-black leading-tight text-white sm:text-3xl md:text-4xl">
+            {t("Our Gallery Is Being Curated", "يجري إعداد معرضنا")}
+          </h2>
+          <p className="mb-8 max-w-2xl leading-relaxed text-white/65">
+            {t(
+              "No verified ENVOD operation photos are published here yet. We will add images only after confirming they represent ENVOD work and are approved for public use.",
+              "لا توجد صور موثّقة لعمليات إنفود كينغدوم منشورة هنا حتى الآن. لن نضيف الصور إلا بعد التأكد من أنها توثّق أعمال الشركة والحصول على موافقة نشرها.",
+            )}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`${import.meta.env.BASE_URL}contact`.replace(/\/+/g, "/")}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-secondary px-5 py-3 font-bold text-white transition-colors hover:bg-secondary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a1628]"
+            >
+              {t("Discuss Your Shipment", "ناقش شحنتك")}
+              <ArrowRight
+                aria-hidden="true"
+                className={`h-4 w-4 transition-transform ${isRtl ? "rotate-180" : ""}`}
+              />
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}services`.replace(/\/+/g, "/")}
+              className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/15 px-5 py-3 font-semibold text-white/85 transition-colors hover:border-white/30 hover:bg-white/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a1628]"
+            >
+              {t("Explore Services", "استكشف الخدمات")}
+            </a>
+          </div>
+        </div>
       </div>
-      <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
-        {t("Our Gallery Is Being Curated", "جارٍ إعداد معرضنا")}
-      </h2>
-      <p className="text-white/55 leading-relaxed mb-8">
-        {t(
-          "We're preparing a visual showcase of ENVOD KINGDOM's operations across customs, exhibitions, project cargo, and warehousing. Check back soon to see logistics in action.",
-          "نعمل على إعداد عرض بصري لعمليات إنفود كينغدوم في التخليص الجمركي والمعارض وبضائع المشاريع والتخزين. عد قريباً لمشاهدة الخدمات اللوجستية أثناء العمل.",
-        )}
-      </p>
-      <a
-        href={`${import.meta.env.BASE_URL}contact`.replace(/\/+/g, "/")}
-        className="inline-flex items-center gap-2 text-secondary font-bold hover:gap-3 transition-all"
-      >
-        {t("Request a Quote", "اطلب عرض سعر")}
-        <ArrowRight className="w-4 h-4" />
-      </a>
     </div>
   );
 }

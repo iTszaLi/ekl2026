@@ -13,6 +13,9 @@ export interface GalleryItem {
   altText?: string | null;
   altTextAr?: string | null;
   category: string;
+  badgeLabel?: string | null;
+  badgeLabelAr?: string | null;
+  servicePath?: string | null;
   location?: string | null;
   locationAr?: string | null;
   monthYear?: string | null;
@@ -25,9 +28,17 @@ export interface GalleryItem {
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-/** Public URL for a specific responsive WebP variant of a gallery image. */
+/**
+ * Static Vercel-compatible asset path for a responsive WebP variant.
+ * Place files in public/gallery/<objectKey>/<width>.webp.
+ */
 export function mediaUrl(objectKey: string, width: number): string {
-  return `${BASE}/api/gallery/media/${objectKey}/${width}.webp`;
+  const safeKey = objectKey
+    .split("/")
+    .filter(Boolean)
+    .map((segment) => encodeURIComponent(segment))
+    .join("/");
+  return `${BASE}/gallery/${safeKey}/${width}.webp`;
 }
 
 /** Build a responsive srcset string from an item's available widths. */
@@ -68,10 +79,11 @@ export const GALLERY_CATEGORIES: GalleryCategory[] = [
   { id: "all", en: "All", ar: "الكل" },
   { id: "operations", en: "Operations", ar: "العمليات" },
   { id: "customs", en: "Customs Clearance", ar: "التخليص الجمركي" },
-  { id: "exhibitions", en: "Exhibitions", ar: "المعارض" },
-  { id: "project-cargo", en: "Project Cargo", ar: "بضائع المشاريع" },
-  { id: "warehousing", en: "Warehousing", ar: "التخزين" },
-  { id: "freight", en: "Freight", ar: "الشحن" },
+  { id: "exhibitions", en: "Exhibition & Event Logistics", ar: "لوجستيات المعارض والفعاليات" },
+  { id: "project-cargo", en: "Project & Breakbulk Cargo", ar: "بضائع المشاريع والشحنات غير التقليدية" },
+  { id: "warehousing", en: "Warehousing & Cargo Handling", ar: "التخزين ومناولة الشحنات" },
+  { id: "freight", en: "Road Transportation & Freight", ar: "النقل البري والشحن" },
+  { id: "relocation", en: "House Moving & Relocation", ar: "نقل المنازل والانتقال" },
 ];
 
 /** Categories the admin can assign on upload (excludes the "all" pseudo-filter). */
@@ -81,6 +93,17 @@ export function categoryLabel(id: string, t: (en: string, ar: string) => string)
   const found = GALLERY_CATEGORIES.find((c) => c.id === id);
   if (found) return t(found.en, found.ar);
   return id.replace(/[-_]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/** Localized category badge, with an optional per-photo label override. */
+export function galleryBadgeLabel(
+  item: Pick<GalleryItem, "category" | "badgeLabel" | "badgeLabelAr">,
+  t: (en: string, ar: string) => string,
+): string {
+  if (item.badgeLabel?.trim()) {
+    return t(item.badgeLabel, item.badgeLabelAr?.trim() || item.badgeLabel);
+  }
+  return categoryLabel(item.category, t);
 }
 
 /**
@@ -133,6 +156,12 @@ export function galleryAltText(
   isRtl: boolean,
 ): string {
   return localized(item.altText, item.altTextAr, isRtl) ?? galleryTitle(item, isRtl);
+}
+
+/** Preserve the active language when linking from a gallery entry to a service. */
+export function galleryServicePath(servicePath: string, isRtl: boolean): string {
+  const normalizedPath = servicePath.startsWith("/") ? servicePath : `/${servicePath}`;
+  return isRtl ? `/ar${normalizedPath}` : normalizedPath;
 }
 
 /** Format a `YYYY-MM` month key into a readable label, e.g. "March 2026". */

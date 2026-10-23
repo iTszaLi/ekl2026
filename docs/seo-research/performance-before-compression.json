@@ -1,0 +1,85 @@
+{
+  "measured_at": "2026-10-17T13:38:13.951Z",
+  "settings": {
+    "viewport": "402x874",
+    "latency_ms": 40,
+    "download_bytes_per_second": 200000,
+    "cpu_slowdown": 4
+  },
+  "inp": "Not measured; field interaction data is unavailable",
+  "no_javascript_service_content_check": "passed",
+  "samples": [
+    {
+      "path": "/contact",
+      "lcp_ms": 4928,
+      "cls_sample": 0.0008446572299614464,
+      "script_resources": [
+        {
+          "name": "/assets/index-C9lj3S3B.js",
+          "encoded_body_bytes": 990428
+        },
+        {
+          "name": "/assets/contact-CKGT43TZ.js",
+          "encoded_body_bytes": 53974
+        },
+        {
+          "name": "/assets/chevron-down-B5g9gdtW.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/check-DXObEiKa.js",
+          "encoded_body_bytes": 120
+        },
+        {
+          "name": "/assets/circle-alert-ENA3AuYs.js",
+          "encoded_body_bytes": 251
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 125838
+        }
+      ],
+      "note": "One local cold-context lab sample; no field p75, production network, or INP result."
+    },
+    {
+      "path": "/services/exhibition-logistics",
+      "lcp_ms": 5324,
+      "cls_sample": 0.00014639570279490285,
+      "script_resources": [
+        {
+          "name": "/assets/index-C9lj3S3B.js",
+          "encoded_body_bytes": 990428
+        },
+        {
+          "name": "/assets/service-detail-CzEIYU39.js",
+          "encoded_body_bytes": 42290
+        },
+        {
+          "name": "/assets/service-images-LmfMSS3D.js",
+          "encoded_body_bytes": 4277
+        },
+        {
+          "name": "/assets/zap-baDUXbJy.js",
+          "encoded_body_bytes": 1105
+        },
+        {
+          "name": "/assets/car-CIrvS4bT.js",
+          "encoded_body_bytes": 403
+        },
+        {
+          "name": "/assets/triangle-alert-CAPRDGSn.js",
+          "encoded_body_bytes": 266
+        },
+        {
+          "name": "/assets/chevron-down-B5g9gdtW.js",
+          "encoded_body_bytes": 129
+        },
+        {
+          "name": "/assets/scroll-engine-CeJ16f2e.js",
+          "encoded_body_bytes": 125838
+        }
+      ],
+      "note": "One local cold-context lab sample; no field p75, production network, or INP result."
+    }
+  ]
+}

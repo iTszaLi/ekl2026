@@ -1,0 +1,9 @@
+{
+  "supplied_benchmark_rows": 40,
+  "benchmark_dispositions": 40,
+  "opportunity_rows": 109,
+  "english_pages_audited": 46,
+  "built_pages": 92,
+  "claims_candidates_for_review": 45,
+  "metrics_note": "SAL estimates are user-supplied; no ENVOD ranking or performance inferred."
+}

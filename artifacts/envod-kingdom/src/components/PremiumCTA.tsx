@@ -4,10 +4,10 @@ import { useLanguage } from "@/lib/language-context";
 import { ArrowRight, Phone } from "lucide-react";
 
 const BADGES = [
-  { en: "25+ Years Experience",           ar: "أكثر من 25 عاماً" },
+  { en: "Saudi Logistics Support",         ar: "دعم لوجستي في السعودية" },
   { en: "GCC Coverage",                   ar: "تغطية خليجية" },
-  { en: "24/7 Support",                   ar: "دعم 24/7" },
-  { en: "Licensed Customs Broker",        ar: "وسيط جمركي مرخّص" },
+  { en: "Shipment Enquiries",             ar: "استفسارات الشحن" },
+  { en: "Customs Coordination",           ar: "تنسيق التخليص الجمركي" },
   { en: "Fast Customs Clearance",         ar: "تخليص جمركي سريع" },
   { en: "Exhibition Logistics Experts",   ar: "خبراء لوجستيات المعارض" },
 ];
@@ -59,11 +59,11 @@ export function PremiumCTA() {
           transition={{ delay: 0.08, duration: 0.7 }}
           className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6 max-w-5xl mx-auto"
         >
-          {t("Saudi Arabia's Trusted", "الشريك الموثوق للوجستيات")}
+          {t("Logistics Coordination", "تنسيق الخدمات اللوجستية")}
           <br />
-          <span className="text-secondary">{t("Logistics & Customs Clearance", "والتخليص الجمركي")}</span>
+          <span className="text-secondary">{t("and Customs Support", "ودعم التخليص الجمركي")}</span>
           <br />
-          {t("Partner", "في المملكة العربية السعودية")}
+          {t("in Saudi Arabia", "في المملكة العربية السعودية")}
         </motion.h2>
 
         {/* Subheading */}
