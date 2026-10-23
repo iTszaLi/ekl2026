@@ -58,4 +58,6 @@ Add these values through the Replit Secrets flow, never in chat, source files, f
 
 ## Deployment limitation
 
-No production deployment or Vercel change has been made. The encrypted token file is workspace-local and is not a durable deployment database. Before any approved deployment, configure durable private storage, a production-safe callback, the authorized administrator identity, and HTTPS session behavior for that deployment. Do not copy the development callback or the local token file into production by assumption.
+The website is deployed on Vercel, but this Search Console dashboard and its OAuth routes are not. The encrypted token file is workspace-local and is not a durable deployment database. Before enabling the dashboard in production, configure durable private storage, a production-safe callback, the authorized administrator identity, and HTTPS session behavior for that deployment. Do not copy the development callback or the local token file into production by assumption.
+
+The current Vercel deployment serves the static site and enquiry function, not these Search Console routes. See the repository-level `docs/production-environment-variables.md` for the variable names and deployment boundary; adding OAuth secrets alone will not make this filesystem-backed dashboard available on Vercel.

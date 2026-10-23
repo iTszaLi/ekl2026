@@ -36,6 +36,12 @@ The existing recipient remains **info@envodkingdom.net**. Public submissions can
 
 There is deliberately no fallback sender, sandbox-recipient substitution, mailto success fallback or simulated production provider.
 
+### Vercel serverless endpoint
+
+The Vercel function at `artifacts/envod-kingdom/api/enquiries.ts` uses server-side environment variables, rather than the Replit-managed Resend connection used by the Express deployment. Configure `RESEND_API_KEY` in Vercel's encrypted project environment settings before enabling production email. `RESEND_FROM_EMAIL` is optional and must be an owner-approved, verified sender; otherwise the function uses the default sender documented above.
+
+Keep these values out of Git, chat, browser code and `VITE_` variables. Add them only to the Vercel environments that need them (Production, and Preview if preview submissions should send). The same-origin Vercel frontend does not need `VITE_API_BASE_URL`. See [production environment variables](production-environment-variables.md) for the full deployment matrix.
+
 ## Deployment: same-origin frontend and backend
 
 Keep the existing prerendered frontend and run the small Express server alongside it. From the workspace root:
