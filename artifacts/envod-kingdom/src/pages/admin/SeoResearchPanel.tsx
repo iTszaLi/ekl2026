@@ -195,7 +195,77 @@ export default function SeoResearchPanel({ onUnauthorized }: { onUnauthorized: (
       <div className="sc-research-summary" aria-label="Research coverage summary">
         <article data-testid="stat-prioritized-services"><small>PRIORITIZED SERVICES</small><b>{seoIntelligenceResearch.services.length}</b><span>Owner-approved P1–P25 sequence</span></article>
         <article data-testid="stat-keyword-candidates"><small>KEYWORD CANDIDATES</small><b>{seoIntelligenceResearch.keywordCandidateRows}</b><span>Research rows; not search volume</span></article>
-        <article dverage status</th><th>Observed public-page content</th><th>Limitations</th><th>Sources</th><th>Next research</th></tr></thead>
+        <article data-testid="stat-research-sources"><small>REGISTERED SOURCES</small><b>{seoIntelligenceResearch.sourceRecords}</b><span>Evidence register records</span></article>
+        <article data-testid="stat-measured-rankings"><small>MEASURED RANKINGS</small><b>Not available</b><span>No rank-tracking dataset connected</span></article>
+      </div>
+
+      <div className="sc-opportunity-caveat" role="note" data-testid="notice-research-limitations">
+        <span><b>Research, not measured performance.</b> Keyword phrases are candidates only. Search volume, difficulty, organic rank, competitor rank and AI-search citations are not inferred or fabricated. Market observations describe sampled public pages, not market share.</span>
+      </div>
+
+      <div className="sc-research-toolbar">
+        <div className="sc-research-tabs" role="tablist" aria-label="SEO intelligence views">
+          {VIEWS.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              role="tab"
+              aria-selected={view === item.key}
+              className={view === item.key ? "active" : ""}
+              onClick={() => setView(item.key)}
+              data-testid={`tab-research-${item.key}`}
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <label className="sc-table-filter sc-research-filter">
+          <Search size={14} aria-hidden="true" />
+          <input
+            type="search"
+            value={filter}
+            onChange={(event) => setFilter(event.target.value)}
+            placeholder="Filter services, phrases or evidence"
+            aria-label="Filter SEO research"
+            data-testid="input-filter-research"
+          />
+        </label>
+      </div>
+
+      <div role="tabpanel" className="sc-research-body" data-testid={`content-research-${view}`}>
+        {view === "keywords" && <>
+          <div className="sc-research-view-head">
+            <div><b>Service-to-keyword map</b><span>25 prioritized service targets · all demand and rank fields remain unmeasured</span></div>
+            <label className="sc-research-language">Candidate language
+              <select value={language} onChange={(event) => setLanguage(event.target.value as LanguageView)} aria-label="Candidate keyword language" data-testid="select-research-language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+              </select>
+            </label>
+          </div>
+          <div className="sc-table-scroll sc-research-table-wrap">
+            <table className="sc-research-table">
+              <thead><tr><th>Priority</th><th>Service</th><th>Candidate phrase</th><th>Target page</th><th>Market scope</th><th>Volume</th><th>Rank</th><th>Evidence</th></tr></thead>
+              <tbody>{services.map((row) => <tr key={row.priority} data-testid={`row-keyword-${row.priority}`}>
+                <td><b>{row.priority}</b></td>
+                <td>{row.service}</td>
+                <td dir={language === "ar" ? "rtl" : "auto"}>{language === "ar" ? row.queryAr : row.queryEn}</td>
+                <td><code>{row.targetUrlEn}<br />{row.targetUrlAr}</code></td>
+                <td>{row.ksaScope}</td>
+                <td>{row.searchVolume || "Not measured"}</td>
+                <td>{row.envodRank || "Not measured"}</td>
+                <td><EvidenceLinks priority={row.priority} research={seoIntelligenceResearch} /></td>
+              </tr>)}</tbody>
+            </table>
+            {!services.length && <div className="sc-empty-inline"><strong>No matching services</strong><span>Clear the filter to view the full candidate map.</span></div>}
+          </div>
+        </>}
+
+        {view === "competitors" && <>
+          <div className="sc-research-view-head"><div><b>Competitor intelligence by service</b><span>Public-page observations only; no backlink counts, rankings or market-share claims</span></div></div>
+          <div className="sc-table-scroll sc-research-table-wrap">
+            <table className="sc-research-table">
+              <thead><tr><th>Service</th><th>Coverage status</th><th>Observed public-page content</th><th>Limitations</th><th>Sources</th><th>Next research</th></tr></thead>
               <tbody>{competitors.map((row) => <tr key={row.priority} data-testid={`row-competitor-${row.priority}`}>
                 <td><b>{row.priority}</b><br />{row.service}</td>
                 <td>{row.competitorCoverage}</td>
