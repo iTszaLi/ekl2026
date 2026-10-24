@@ -1,4 +1,4 @@
-import express from "express";
+import express, { type RequestHandler } from "express";
 import { createSearchConsoleRouter } from "../../server/search-console/router.js";
 import { EncryptedVercelBlobSearchConsoleStore } from "../../server/search-console/vercel-blob-store.js";
 
@@ -22,10 +22,11 @@ app.use(
   }),
 );
 
-app.use((_req, res) => {
+const notFoundHandler: RequestHandler = (_req, res) => {
   res.setHeader("Cache-Control", "no-store");
   res.status(404).json({ error: "search_console_route_not_found" });
-});
+};
+app.use(notFoundHandler);
 
 // Express owns body parsing inside the function so the request stream remains
 // available to express.json() for the dashboard's small JSON mutations.
