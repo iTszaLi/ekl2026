@@ -1,4 +1,4 @@
-import express, { type RequestHandler } from "express";
+import express from "express";
 import { createSearchConsoleRouter } from "../../server/search-console/router.js";
 import { EncryptedVercelBlobSearchConsoleStore } from "../../server/search-console/vercel-blob-store.js";
 
@@ -22,7 +22,15 @@ app.use(
   }),
 );
 
-const notFoundHandler: RequestHandler = (_req, res) => {
+const notFoundHandler = (
+  _req: unknown,
+  res: {
+    setHeader: (name: string, value: string) => unknown;
+    status: (code: number) => {
+      json: (body: { error: string }) => unknown;
+    };
+  },
+) => {
   res.setHeader("Cache-Control", "no-store");
   res.status(404).json({ error: "search_console_route_not_found" });
 };
