@@ -12,6 +12,7 @@ import express, {
 import type {} from "pino-http";
 import { z } from "zod";
 import { crawlEnvodKingdom } from "./crawler.js";
+import { seoIntelligenceResearch } from "../../src/data/seo-intelligence-research.js";
 import {
   exchangeAuthorizationCode,
   fetchGoogleUserInfo,
@@ -857,6 +858,18 @@ export function createSearchConsoleRouter(options: Options) {
     clearAdminSessionCookie(_req, res);
     res.json({ ok: true });
   });
+
+  router.get(
+    "/research",
+    (_req, res, next) => {
+      res.setHeader("Cache-Control", "private, no-store");
+      next();
+    },
+    requireAdmin,
+    (_req, res) => {
+    res.json(seoIntelligenceResearch);
+    },
+  );
 
   router.get("/properties", requireAdmin, async (req, res) => {
     try {

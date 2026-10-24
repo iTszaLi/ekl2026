@@ -12,6 +12,7 @@ import {
   type SearchConsoleProperty, type SearchConsoleStatus, type SiteAudit,
   type UrlInspection,
 } from "@/lib/search-console-api";
+import SeoResearchPanel from "@/pages/admin/SeoResearchPanel";
 import "./SearchConsoleDashboard.css";
 
 type DatePreset = "7" | "28" | "90" | "180" | "365" | "custom";
@@ -305,6 +306,7 @@ export default function SearchConsoleDashboard() {
   const [inspection, setInspection] = useState<UrlInspection[] | null>(null);
   const [inspectInput, setInspectInput] = useState("");
   const [auditError, setAuditError] = useState("");
+  const [activeAdminTab, setActiveAdminTab] = useState<"performance" | "research">("performance");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mounted = useRef(true);
   const initialStatusLoaded = useRef(false);
@@ -535,7 +537,7 @@ export default function SearchConsoleDashboard() {
           <div>
             <div className="sc-kicker"><span className="sc-kicker-dot" /> SEARCH CONSOLE / ADMIN</div>
             <h1>Search <em>visibility.</em></h1>
-            <p>Performance from Google Search, alongside a read-only site crawl audit.</p>
+            <p>{activeAdminTab === "performance" ? "Performance from Google Search, alongside a read-only site crawl audit." : "Bilingual service-keyword candidates, sampled competitor evidence and market coverage. Unmeasured fields are labelled."}</p>
           </div>
           <div className="sc-heading-controls">
             <button className="sc-button sc-button-outline" onClick={() => void refreshAll()} disabled={pageState === "loading" || !!busy}><RefreshCw size={15} className={busy === "performance" ? "sc-spin" : ""} /> Refresh</button>
@@ -552,7 +554,11 @@ export default function SearchConsoleDashboard() {
           </div>
         </section>
 
-        <div className="sc-source-line"><span><Globe2 size={14} /> Source: Google Search Console</span><i /> <span>Range: {dateLabel}</span>{status?.lastSyncedAt && <><i /><span>Last sync: {fmtDate(status.lastSyncedAt)}</span></>}</div>
+        <div className="sc-source-line">
+          {pageState === "connected" && activeAdminTab === "research"
+            ? <><span><Globe2 size={14} /> Source: curated project research register</span><i /><span>Not live performance data</span></>
+            : <><span><Globe2 size={14} /> Source: Google Search Console</span><i /><span>Range: {dateLabel}</span>{status?.lastSyncedAt && <><i /><span>Last sync: {fmtDate(status.lastSyncedAt)}</span></>}</>}
+        </div>
 
         {providerError && <div className="sc-alert sc-alert-error" role="alert"><AlertCircle size={17} /><div><b>Search Console request failed</b><span>{providerError}</span></div><button onClick={() => void loadStatus()} aria-label="Retry"><RefreshCw size={15} /> Retry</button><button className="sc-alert-close" onClick={() => setProviderError("")} aria-label="Dismiss"><X size={15} /></button></div>}
 
@@ -569,6 +575,15 @@ export default function SearchConsoleDashboard() {
         </>}
 
         {pageState === "connected" && <>
+          <nav className="sc-dashboard-tabs" aria-label="Search administration sections" data-testid="nav-search-admin-sections">
+            <button type="button" aria-pressed={activeAdminTab === "performance"} className={activeAdminTab === "performance" ? "active" : ""} onClick={() => setActiveAdminTab("performance")} data-testid="tab-admin-performance">
+              <BarChart3 size={15} /> Search performance &amp; site audit
+            </button>
+            <button type="button" aria-pressed={activeAdminTab === "research"} className={activeAdminTab === "research" ? "active" : ""} onClick={() => setActiveAdminTab("research")} data-testid="tab-admin-research">
+              <Search size={15} /> SEO intelligence research
+            </button>
+          </nav>
+          {activeAdminTab === "performance" && <>
           <section className="sc-controls">
             <div className="sc-property-control">
               <label htmlFor="sc-property">PROPERTY</label>
@@ -632,6 +647,8 @@ export default function SearchConsoleDashboard() {
             </div>}
           </section>
           <footer className="sc-footer"><span><ShieldCheck size={14} /> Read-only Search Console reporting</span><span>Search Console data may be delayed by Google. No indexing requests or website edits are made.</span>{status?.connected && <button onClick={() => void disconnect()} disabled={!!busy}><Unplug size={13} /> Disconnect Google</button>}</footer>
+          </>}
+          {activeAdminTab === "research" && <SeoResearchPanel onUnauthorized={handleError} />}
         </>}
       </div>
     </main>

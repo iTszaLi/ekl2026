@@ -1,0 +1,531 @@
+{
+  "generatedAt": "2026-10-24",
+  "method": "Deduplicated public-source evidence from five market/crawler reviews and two targeted gap-fills. Snippet-only entries are explicitly marked; no source is a keyword-volume or ranking dataset.",
+  "count": 52,
+  "items": [
+    {
+      "title": "Freight Forwarding Services in Dubai | AGS Logistics | UAE",
+      "url": "https://agslog.com/freight-forwarding",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/UAE-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "agslog.com-freight-forwarding-services-in-dubai-ags-logistics-uae",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Exhibition & Event Cargo | Brightway",
+      "url": "https://brightwaylogistic.com/exhibition-event-cargo/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "brightwaylogistic.com-exhibition-event-cargo-brightway",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Getting started with Cards | Docs | Twitter Developer Platform",
+      "url": "https://developer.x.com/en/docs/x-for-websites/cards/guides/getting-started",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/AI-GAP-03-x-twitterbot-cards-snippet.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "developer.x.com-getting-started-with-cards-docs-twitter-developer-platf",
+      "dateMentionedInRecord": "2026-10-24"
+    },
+    {
+      "title": "Meta Web Crawlers | Developer Documentation",
+      "url": "https://developers.facebook.com/documentation/sharing/webmasters/web-crawlers",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/AI-GAP-02-meta-webindexer-robots.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "developers.facebook.com-meta-web-crawlers-developer-documentation",
+      "dateMentionedInRecord": "2026-10-24"
+    },
+    {
+      "title": "Google for Developers, “Google’s common crawlers",
+      "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/CRAWLERS-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "developers.google.com-google-for-developers-google-s-common-crawlers",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Google Search Central, “Robots Meta Tags Specifications",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/CRAWLERS-01-google-robots-meta.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "developers.google.com-google-search-central-robots-meta-tags-specifications",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "OpenAI, “Overview of OpenAI Crawlers",
+      "url": "https://developers.openai.com/api/docs/bots",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/CRAWLERS-02-openai-bots.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "developers.openai.com-openai-overview-of-openai-crawlers",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Kuwait Government Online: Custom Clearances",
+      "url": "https://e.gov.kw/sites/kgoenglish/Pages/Services/MOCI/ReleasesCustoms.aspx",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "e.gov.kw-kuwait-government-online-custom-clearances",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Freight Forwarder in Oman | GCCFreights",
+      "url": "https://gccfreights.com/freight-forwarder-in-oman",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "gccfreights.com-freight-forwarder-in-oman-gccfreights",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "ATA Carnet in your country",
+      "url": "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "iccwbo.org-ata-carnet-in-your-country",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "ATA Carnet in your country – ICC",
+      "url": "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country/",
+      "tier": 1,
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-research/research/sources/ATA-GAP-02-icc-saudi-association.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "iccwbo.org-ata-carnet-in-your-country-icc",
+      "dateMentionedInRecord": "2026-10-24"
+    },
+    {
+      "title": "خدمات النقل البري - شركة مساندة الإمداد الدولية ش.ش.و",
+      "url": "https://issc.sa/services/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D9%82%D9%84-%D8%A7%D9%84%D8%A8%D8%B1%D9%8A",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "issc.sa",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "شركة KDL للخدمات اللوجستية | الشحن الجوي والبحري والنقل البري والتخليص الجمركي",
+      "url": "https://kdl.com.sa/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-NN-kdl-arabic-homepage.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "kdl.com.sa-kdl",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Our Foundation (King Fahd Causeway Authority)",
+      "url": "https://kfca.sa/en/aboutus",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "kfca.sa-our-foundation-king-fahd-causeway-authority",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Exhibition Logistics Services in Saudi Arabia | Khelogix",
+      "url": "https://khelogix.com/service/exhibition-event-logistics/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "khelogix.com-exhibition-logistics-services-in-saudi-arabia-khelogix",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Road Transport Law",
+      "url": "https://misa.gov.sa/app/uploads/2025/07/Road-Transport-Law.pdf",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/UAE-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "misa.gov.sa-road-transport-law",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "International Movers | GAC",
+      "url": "https://moving.gac.com/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "moving.gac.com-international-movers-gac",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "MSLC | Reliable Freight & Cargo Services in Saudi Arabia",
+      "url": "https://mslc.com.sa/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "mslc.com.sa-mslc-reliable-freight-cargo-services-in-saudi-arabia",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Road Freight & Land Transport Across Saudi Arabia & GCC | OFL International",
+      "url": "https://oflsa.com/road-freight",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/GCC-03-ofl-gcc-road-freight.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "oflsa.com-road-freight-land-transport-across-saudi-arabia-gcc-ofl",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Anthropic Privacy Center, “Does Anthropic crawl data from the web, and how can site owners block the crawler?",
+      "url": "https://privacy.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/CRAWLERS-03-anthropic-crawlers.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "privacy.claude.com-anthropic-privacy-center-does-anthropic-crawl-data-from",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "عن Shipping Middle East | وكيل شحن في المملكة العربية السعودية",
+      "url": "https://shippingmiddleeast.com/ar/about-us-ar",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "shippingmiddleeast.com-shipping-middle-east",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Roadways",
+      "url": "https://u.ae/en/information-and-services/transportation/roadways",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/UAE-02-uae-roadways-regulation.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "u.ae-roadways",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "GCC Unified Guide for Customs Procedures at First Points of Entry",
+      "url": "https://www.adcustoms.gov.ae/-/media/Project/ADCustom/ADCustom/UnifiedGuide/GCC-Unifed-Guide.pdf",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/UAE-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "adcustoms.gov.ae-gcc-unified-guide-for-customs-procedures-at-first-point",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Temporary Expansion Works at Abu Samra Border Crossing Completed",
+      "url": "https://www.ashghal.gov.qa/en/MediaHub/News/Pages/Temporary-Expansion-Works-at-Abu-Samra-Border-Crossing-Completed.aspx",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "ashghal.gov.qa-temporary-expansion-works-at-abu-samra-border-crossing",
+      "dateMentionedInRecord": "2021-11-29"
+    },
+    {
+      "title": "How to add IndexNow to your website | Bing Webmaster Tools",
+      "url": "https://www.bing.com/indexnow/getstarted",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/AI-GAP-01-bing-indexnow-url-notification.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "bing.com-how-to-add-indexnow-to-your-website-bing-webmaster-tool",
+      "dateMentionedInRecord": "2026-10-24"
+    },
+    {
+      "title": "Bing Webmaster Tools, “URL Submission",
+      "url": "https://www.bing.com/webmasters/help/URL-Submission-62f2860b",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/CRAWLERS-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "bing.com-bing-webmaster-tools-url-submission",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Bing Webmaster Tools, “Webmaster Guidelines",
+      "url": "https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/CRAWLERS-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "bing.com-bing-webmaster-tools-webmaster-guidelines",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Unified Guide for Customs Procedures at First Points of Entry",
+      "url": "https://www.customs.gov.om/media/gu0p51wd/unified-guide-for-customs-procedures-at-fpoe.pdf",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/GCC-02-oman-unified-customs-guide.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "customs.gov.om-unified-guide-for-customs-procedures-at-first-points-of",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "ENVOD KINGDOM, live robots.txt",
+      "url": "https://www.envodkingdom.net/robots.txt",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/CRAWLERS-04-envod-live-robots.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "envodkingdom.net-envod-kingdom-live-robots-txt",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Relocation Services",
+      "url": "https://www.expressarabia.com/relocation-services",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "expressarabia.com-relocation-services",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "نقل الأثاث والشحن والخدمات اللوجستية في السعودية | شركة الجهات الأربع السعودية",
+      "url": "https://www.fourwinds-ksa.com/arabic/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-NN-fourwinds-arabic-services.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "fourwinds-ksa.com",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Exhibition & Event Logistics in Saudi Arabia | Four Winds Saudi Arabia",
+      "url": "https://www.fourwinds-ksa.com/exhibitions-and-events",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-02-four-winds-exhibitions-events.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "fourwinds-ksa.com-exhibition-event-logistics-in-saudi-arabia-four-winds-s",
+      "dateMentionedInRecord": "2026-10-24"
+    },
+    {
+      "title": "Fairs & Events - GES Logistics - Saudi Arabia",
+      "url": "https://www.gesksa.com/en-sa/solutions/fairs-events",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "gesksa.com-fairs-events-ges-logistics-saudi-arabia",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "ILS — International Logistics Services | Dubai-Based Freight Forwarder",
+      "url": "https://www.ilsmtc.com/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/UAE-04-ils-dubai-service-claims.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "ilsmtc.com-ils-international-logistics-services-dubai-based-freigh",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Jadeer Logistics | Integrated Logistics",
+      "url": "https://www.jadeerlogistics.com/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "jadeerlogistics.com-jadeer-logistics-integrated-logistics",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "شركة لوجستية في الرياض | سعد اللوجستية — الخدمات المتكاملة",
+      "url": "https://www.saadlogistic.com/logistics-company-riyadh",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-NN-saad-riyadh-page.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "saadlogistic.com",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "الشحن البحري وتخليص الموانئ السعودية | سعد للوجستيات",
+      "url": "https://www.saadlogistic.com/sea-freight-saudi-arabia",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "saadlogistic.com-2",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Al Batha Border Crossing: Trucking UAE to Saudi Arabia",
+      "url": "https://www.safehandsshippingline.com.sa/en/freight/land/al-batha",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/UAE-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "safehandsshippingline.com.sa-al-batha-border-crossing-trucking-uae-to-saudi-arabia",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "التخليص الجمركي - Safe Hands",
+      "url": "https://www.safehandsshippingline.com/ar/services/customs-clearance",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "safehandsshippingline.com-safe-hands",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "لوجستيات المعارض والمؤتمرات",
+      "url": "https://www.smilogistics.com/ar/fairs-exhibition-logistics",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "smilogistics.com",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Relocation & Freight Services in Saudi Arabia | SMI Logistics",
+      "url": "https://www.smilogistics.com/relocation-services",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-03-smi-relocation-services.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "smilogistics.com-relocation-freight-services-in-saudi-arabia-smi-logisti",
+      "dateMentionedInRecord": "2026-10-24"
+    },
+    {
+      "title": "Saudi Commerce Chambers Launches ATA Carnet for Temporary Import of Goods",
+      "url": "https://www.spa.gov.sa/en/N2178366",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/KSA-AR-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "spa.gov.sa-saudi-commerce-chambers-launches-ata-carnet-for-tempora",
+      "dateMentionedInRecord": "2024-09-26"
+    },
+    {
+      "title": "Saudi Arabia and Kuwait Advance Customs Link and Railway Projects",
+      "url": "https://www.spa.gov.sa/en/N2645454",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "spa.gov.sa-saudi-arabia-and-kuwait-advance-customs-link-and-railwa",
+      "dateMentionedInRecord": "2026-08-01"
+    },
+    {
+      "title": "United Arab Emirates - Import Requirements and Documentation",
+      "url": "https://www.trade.gov/country-commercial-guides/united-arab-emirates-import-requirements-and-documentation",
+      "tier": 2,
+      "evidencePath": "docs/seo-research/research/sources/UAE-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "trade.gov-united-arab-emirates-import-requirements-and-documentat",
+      "dateMentionedInRecord": "2025-08-25"
+    },
+    {
+      "title": "Leading Freight Forwarder in Saudi Arabia | Transworld Saudi Logistics",
+      "url": "https://www.transworld.com/transworld-saudi-logistics/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/UAE-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "transworld.com-leading-freight-forwarder-in-saudi-arabia-transworld-sa",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Warehousing & Distribution Services in Dammam",
+      "url": "https://www.velologsa.com/warehousing-distribution/",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "velologsa.com-warehousing-distribution-services-in-dammam",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Road Freight to Bahrain | Waytrans",
+      "url": "https://www.way-trans.com/road-freight-bahrain",
+      "tier": 3,
+      "evidencePath": "docs/seo-research/research/sources/GCC-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "way-trans.com-road-freight-to-bahrain-waytrans",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "الإدخال المؤقت (كارنيه)",
+      "url": "https://zatca.gov.sa/ar/eServices/Pages/eServices-294.aspx",
+      "tier": 1,
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-research/research/sources/ATA-GAP-01-zatca-arabic-e-service.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "zatca.gov.sa",
+      "dateMentionedInRecord": "2026-10-24"
+    },
+    {
+      "title": "ZATCA Issues the Regulating Controls for Customs Procedures",
+      "url": "https://zatca.gov.sa/en/MediaCenter/News/Pages/news-1174.aspx",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/GCC-04-zatca-customs-procedure-controls.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "zatca.gov.sa-zatca-issues-the-regulating-controls-for-customs-proced",
+      "dateMentionedInRecord": "2023-12-29"
+    },
+    {
+      "title": "ZATCA to Begin Accepting ATA Carnets",
+      "url": "https://zatca.gov.sa/en/MediaCenter/News/Pages/news-1245.aspx",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-snippets.md",
+      "evidenceMode": "snippet",
+      "retrievedAt": "2026-10-24",
+      "key": "zatca.gov.sa-zatca-to-begin-accepting-ata-carnets",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Rules of Practicing Customs Clearance Profession",
+      "url": "https://zatca.gov.sa/en/RulesRegulations/Taxes/Documents/Practicing%20the%20Profiession.pdf",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/UAE-03-saudi-customs-clearance-profession-rules.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "key": "zatca.gov.sa-rules-of-practicing-customs-clearance-profession",
+      "dateMentionedInRecord": "undated"
+    },
+    {
+      "title": "Import Instructions",
+      "url": "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+      "tier": 1,
+      "evidencePath": "docs/seo-research/research/sources/KSA-EN-01-zatca-import-instructions.md",
+      "evidenceMode": "fetched_page",
+      "retrievedAt": "2026-10-24",
+      "alsoSavedAt": [
+        "docs/seo-research/research/sources/KSA-EN-01-zatca-import-instructions.md",
+        "docs/seo-research/research/sources/UAE-01-saudi-zatca-import-instructions.md"
+      ],
+      "key": "zatca.gov.sa-import-instructions",
+      "dateMentionedInRecord": "2026-10-24"
+    }
+  ]
+}

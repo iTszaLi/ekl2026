@@ -153,6 +153,12 @@ test("Vercel handler serves a safe unconfigured session and rejects cross-origin
     const sessionBody = (await session.json()) as { configured: boolean };
     assert.equal(sessionBody.configured, false);
 
+    const research = await fetch(`${baseUrl}/api/search-console/research`);
+    assert.equal(research.status, 401);
+    assert.equal(research.headers.get("cache-control"), "private, no-store");
+    const researchBody = (await research.json()) as { services?: unknown[] };
+    assert.equal(researchBody.services, undefined);
+
     const logout = await fetch(`${baseUrl}/api/search-console/logout`, {
       method: "POST",
       headers: {

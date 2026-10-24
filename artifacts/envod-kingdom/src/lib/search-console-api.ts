@@ -102,6 +102,57 @@ export interface UrlInspection {
   error?: string;
 }
 
+export interface SeoResearchSource {
+  title: string;
+  url: string;
+  tier: number;
+  evidenceMode: string;
+  evidencePath: string;
+}
+
+export interface SeoResearchService {
+  priority: string;
+  service: string;
+  queryEn: string;
+  queryAr: string;
+  targetUrlEn: string;
+  targetUrlAr: string;
+  routeType: string;
+  journeyFocus: string;
+  ksaScope: string;
+  cityScope: string;
+  uaeScope: string;
+  gccScope: string;
+  searchVolume: string;
+  keywordDifficulty: string;
+  envodRank: string;
+  competitorRank: string;
+  aiCitationStatus: string;
+  technicalStatus: string;
+  nextAction: string;
+  competitorCoverage: string;
+  competitorObservation: string;
+  competitorLimitations: string;
+  competitorNextResearch: string;
+  effortEstimate: string;
+  confidence: string;
+  recommendedChange: string;
+  testMethod: string;
+  actualOutcome: string;
+  evidence: SeoResearchSource[];
+}
+
+export interface SeoIntelligenceResearch {
+  researchDate: string;
+  keywordCandidateRows: number;
+  sourceRecords: number;
+  measuredKeywordVolume: boolean;
+  measuredRank: boolean;
+  measuredAiCitations: boolean;
+  services: SeoResearchService[];
+  markets: Array<Record<string, string>>;
+}
+
 export class SearchConsoleApiError extends Error {
   constructor(
     message: string,
@@ -139,6 +190,7 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
 
 export const searchConsoleApi = {
   getStatus: () => request<SearchConsoleStatus>("/session"),
+  getResearch: () => request<SeoIntelligenceResearch>("/research"),
   listProperties: () =>
     request<SearchConsolePropertiesResponse>("/properties"),
   selectProperty: (siteUrl: string) =>
