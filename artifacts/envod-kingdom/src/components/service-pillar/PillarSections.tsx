@@ -142,8 +142,8 @@ export default function PillarSections({
           </h2>
           <p className="text-white/45 text-sm max-w-2xl mb-8">
             {isRtl
-              ? "تُذكر هذه الفعاليات كأمثلة بحثية فقط، ولا تعني تعيين إنفود أو مشاركتها السابقة."
-              : "These event names are planning references only; they do not imply ENVOD appointment or past participation."}
+                ? "تُذكر هذه الفعاليات كأمثلة بحثية فقط، ولا تعني تعيين إنفود أو مشاركتها السابقة. تختلف مواعيد كل نسخة وموقعها وتعليمات الشحن؛ لذا أكّد التفاصيل الحالية ومواعيد الدخول والخروج مع المنظّم والموقع."
+                : "These event names are planning references only; they do not imply ENVOD appointment or past participation. Dates, venues and cargo instructions vary by edition, so confirm current details and move-in/out deadlines with the organizer and venue."}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {pillar.majorEvents.map((e, i) => (

@@ -1,0 +1,1527 @@
+uploads = []
+
+[[generated]]
+id = "WcEEUR_TAiVJKisajGSnO"
+uri = "file://artifacts/envod-kingdom/src/assets/blog-1.png"
+type = "image"
+title = "container airplane loading"
+
+[[generated]]
+id = "x1kCUsDB54dw_sXxHJBpP"
+uri = "file://artifacts/envod-kingdom/src/assets/blog-2.png"
+type = "image"
+title = "logistics truck convoy night"
+
+[[generated]]
+id = "KXq8LZpbwW7-5qgo3Y8hC"
+uri = "file://attached_assets/generated_images/white_glove_daytime_ksa.png"
+type = "image"
+title = "white glove delivery villa"
+
+[[generated]]
+id = "TXH4dkvoxa_amclw0uanD"
+uri = "file://attached_assets/generated_images/reefer_truck_daytime_ksa.png"
+type = "image"
+title = "reefer truck desert highway"
+
+[[generated]]
+id = "TWle7_Eyq4w-FkV-qSpCx"
+uri = "file://attached_assets/generated_images/packaging_crating_daytime_ksa.png"
+type = "image"
+title = "wooden crates workshop daylight"
+
+[[generated]]
+id = "3IvMr3x3Q9O7WLkjaKPGn"
+uri = "file://attached_assets/generated_images/express_courier_daytime_ksa.png"
+type = "image"
+title = "courier van Riyadh street"
+
+[[generated]]
+id = "lAaeUKcfm81KE6ZJhvLJs"
+uri = "file://attached_assets/generated_images/cross_trade_daytime_ksa.png"
+type = "image"
+title = "white container seaport daylight"
+
+[[outputs]]
+id = "IXbb7xlRB48mk8-4P8nOo"
+uri = "file://attached_assets/stock_images/envod_operations_1.jpg"
+type = "image"
+title = "container port terminal crane loading cargo ship logistics operations at sunset"
+logical_id = "5a42ebef-c4ab-495e-b76e-95cd0b2d988a"
+
+[[outputs]]
+id = "4h7jJ_YhxaUNfvtZdkqea"
+uri = "file://attached_assets/stock_images/envod_operations_2.jpg"
+type = "image"
+title = "container port terminal crane loading cargo ship logistics operations at sunset"
+logical_id = "008195d3-08e8-444b-9a81-e77adccea2e3"
+
+[[outputs]]
+id = "nbmv4WTKy3Zxe645m_M4V"
+uri = "file://attached_assets/stock_images/envod_operations_3.jpg"
+type = "image"
+title = "container port terminal crane loading cargo ship logistics operations at sunset"
+logical_id = "dafe9614-88d5-4ccc-af06-297a60dfe791"
+
+[[outputs]]
+id = "kjSIHZ9ZGhyibfhbLLMyb"
+uri = "file://attached_assets/stock_images/envod_operations_4.jpg"
+type = "image"
+title = "container port terminal crane loading cargo ship logistics operations at sunset"
+logical_id = "e3edece0-feac-4c4a-9b0f-26e78cd492af"
+
+[[outputs]]
+id = "UgcW152PZoI97rSaXCwlL"
+uri = "file://attached_assets/stock_images/envod_customs_1.jpg"
+type = "image"
+title = "customs clearance inspection warehouse officer checking cargo documents shipping containers"
+logical_id = "fe30f0c8-12b2-467e-be22-ca15838841d9"
+
+[[outputs]]
+id = "eiiJJ0b-EG0GGKQZr5g-p"
+uri = "file://attached_assets/stock_images/envod_customs_2.jpg"
+type = "image"
+title = "customs clearance inspection warehouse officer checking cargo documents shipping containers"
+logical_id = "4411ea8f-ad47-417a-9272-60d0b632e2bd"
+
+[[outputs]]
+id = "IzONEHp_YcQJhQ6zy6Bwq"
+uri = "file://attached_assets/stock_images/envod_customs_3.jpg"
+type = "image"
+title = "customs clearance inspection warehouse officer checking cargo documents shipping containers"
+logical_id = "1cde8ea5-1ae5-4e65-96f5-d7a30a24f708"
+
+[[outputs]]
+id = "_3zBJfaUIu8fjVo74GIi9"
+uri = "file://attached_assets/stock_images/envod_exhibitions_1.jpg"
+type = "image"
+title = "trade show exhibition hall booth setup logistics event cargo handling"
+logical_id = "ffd7c701-be31-4082-9f0d-b22c73d75329"
+
+[[outputs]]
+id = "ahlUlZ3DZhPsLURXdVeMC"
+uri = "file://attached_assets/stock_images/envod_exhibitions_2.jpg"
+type = "image"
+title = "trade show exhibition hall booth setup logistics event cargo handling"
+logical_id = "6a6ff4e8-6444-4c23-a8bc-bd41ac196cb4"
+
+[[outputs]]
+id = "JglJrocO9OTmXVqrPKLUM"
+uri = "file://attached_assets/stock_images/envod_exhibitions_3.jpg"
+type = "image"
+title = "trade show exhibition hall booth setup logistics event cargo handling"
+logical_id = "7927e44d-922b-4a07-bdfb-814970a838c5"
+
+[[outputs]]
+id = "pcV2UJJI0-0mqNNgfCVfz"
+uri = "file://attached_assets/stock_images/envod_project-cargo_1.jpg"
+type = "image"
+title = "heavy project cargo oversized industrial equipment transport flatbed truck crane lifting"
+logical_id = "5ac280c2-37aa-42d9-8fbf-6324d31675b5"
+
+[[outputs]]
+id = "3bGpru4zmzvGs93-wagYS"
+uri = "file://attached_assets/stock_images/envod_project-cargo_2.jpg"
+type = "image"
+title = "heavy project cargo oversized industrial equipment transport flatbed truck crane lifting"
+logical_id = "3a004b53-dd3f-4248-aeda-0a1de9e0023b"
+
+[[outputs]]
+id = "ZCmE-dRf7ep2D12I4u0sz"
+uri = "file://attached_assets/stock_images/envod_project-cargo_3.jpg"
+type = "image"
+title = "heavy project cargo oversized industrial equipment transport flatbed truck crane lifting"
+logical_id = "e116fb6c-a73a-40e4-840a-ea2e5902dc05"
+
+[[outputs]]
+id = "NfcdmYIMv6-ARsutlkYls"
+uri = "file://attached_assets/stock_images/envod_project-cargo_4.jpg"
+type = "image"
+title = "heavy project cargo oversized industrial equipment transport flatbed truck crane lifting"
+logical_id = "76296287-085b-44c7-be41-082bef60cb12"
+
+[[outputs]]
+id = "U87kXjK6cSaiMsw8dAIBp"
+uri = "file://attached_assets/stock_images/envod_warehousing_1.jpg"
+type = "image"
+title = "modern logistics warehouse interior forklift shelving pallets distribution center"
+logical_id = "4f4bf6f5-6a2e-41b3-9d92-f67f7ad7b069"
+
+[[outputs]]
+id = "8T2OGi5y3Z5SwaKgInM83"
+uri = "file://attached_assets/stock_images/envod_warehousing_2.jpg"
+type = "image"
+title = "modern logistics warehouse interior forklift shelving pallets distribution center"
+logical_id = "3f00f8a6-6d20-4630-9904-07d8e703b665"
+
+[[outputs]]
+id = "HKTaWuQxuhIWqyaa-hHDZ"
+uri = "file://attached_assets/stock_images/envod_warehousing_3.jpg"
+type = "image"
+title = "modern logistics warehouse interior forklift shelving pallets distribution center"
+logical_id = "654e6b6d-f14a-4403-8443-49e33f8d2986"
+
+[[outputs]]
+id = "2fSsM1idrHkQsPZRLox0C"
+uri = "file://attached_assets/stock_images/envod_warehousing_4.jpg"
+type = "image"
+title = "modern logistics warehouse interior forklift shelving pallets distribution center"
+logical_id = "7eb2670b-3a36-4971-a6d4-f4f057b99f3f"
+
+[[outputs]]
+id = "QQMX0B8KIvUtVSRNoZS0C"
+uri = "file://attached_assets/stock_images/envod_freight_1.jpg"
+type = "image"
+title = "freight forwarding cargo airplane truck fleet highway international shipping"
+logical_id = "aeb7d86e-d115-4f6c-96ac-4887629eb18c"
+
+[[outputs]]
+id = "bsleuwnwFGIVlObceH3O4"
+uri = "file://attached_assets/stock_images/envod_freight_2.jpg"
+type = "image"
+title = "freight forwarding cargo airplane truck fleet highway international shipping"
+logical_id = "6ab6842e-066b-43c7-b6c3-a8afdcfeeba1"
+
+[[outputs]]
+id = "Llx5cvfL5GJ2FOKP-DSi-"
+uri = "file://attached_assets/stock_images/envod_freight_3.jpg"
+type = "image"
+title = "freight forwarding cargo airplane truck fleet highway international shipping"
+logical_id = "0f44441b-00ef-4c54-9d0b-69768ecf0aab"
+
+[[outputs]]
+id = "cclN7fJjPiGW3kKAll_B2"
+uri = "file://attached_assets/stock_images/envod_freight_4.jpg"
+type = "image"
+title = "freight forwarding cargo airplane truck fleet highway international shipping"
+logical_id = "c5b6e7df-40c0-4a3c-b911-ad99b58b1744"
+
+[[outputs]]
+id = "xRKmWfyo3EFx9dbu9FYjR"
+uri = "file://attached_assets/stock_images/industry_automotive.jpg"
+type = "image"
+title = "row of new cars being loaded onto car transporter truck"
+logical_id = "dbb90a82-fe94-4ad9-ab6c-7205cf45ef0f"
+
+[[outputs]]
+id = "Z-WgJXe3x-8NfehqmjVrx"
+uri = "file://attached_assets/stock_images/industry_construction.jpg"
+type = "image"
+title = "construction site with tower cranes at dusk"
+logical_id = "3b80f67b-5fd3-4673-92ef-a89b7c28b81a"
+
+[[outputs]]
+id = "gcD-qRKBxHA-_PUw6yeJp"
+uri = "file://attached_assets/stock_images/industry_retail.jpg"
+type = "image"
+title = "retail distribution warehouse with packed shelves"
+logical_id = "60d8354f-5a2a-4d5c-9edc-351fd09af038"
+
+[[outputs]]
+id = "2zuAYqzu0xa15evfSByKl"
+uri = "file://attached_assets/stock_images/industry_fashion.jpg"
+type = "image"
+title = "clothing garments hanging on racks in fashion warehouse"
+logical_id = "913750ac-5ec6-4fb4-91fc-824c5008aa65"
+
+[[outputs]]
+id = "xkH_nytZdR1feqfjijIbZ"
+uri = "file://attached_assets/stock_images/industry_electronics.jpg"
+type = "image"
+title = "electronics circuit board close up manufacturing"
+logical_id = "4360025d-eb08-4326-9667-7ea630ff282b"
+
+[[outputs]]
+id = "2WROoPu97dpgZL2vgBsc-"
+uri = "file://attached_assets/stock_images/industry_aerospace.jpg"
+type = "image"
+title = "commercial aircraft in maintenance hangar"
+logical_id = "6e13ec3f-9626-4ee2-a98c-55d6f0a7f006"
+
+[[outputs]]
+id = "WbCPMmb5sUUBLDh0GZ48n"
+uri = "file://attached_assets/stock_images/industry_hospitality.jpg"
+type = "image"
+title = "luxury hotel lobby interior elegant"
+logical_id = "e731c6ea-7791-458c-8913-6e396e4c189c"
+
+[[outputs]]
+id = "ZFVQpQNNJ9_Xfgt-DBnP9"
+uri = "file://attached_assets/stock_images/industry_furniture.jpg"
+type = "image"
+title = "modern furniture showroom with sofas"
+logical_id = "1e4a4977-cc04-4c6f-a6b9-295219dd37c6"
+
+[[outputs]]
+id = "OoIfKsR95k6_dDlLKCly_"
+uri = "file://attached_assets/stock_images/industry_chemical.jpg"
+type = "image"
+title = "industrial chemical plant storage tanks pipes"
+logical_id = "39ce6b60-c39e-4f3c-a786-28fbd0eb1c5d"
+
+[[outputs]]
+id = "YSpAnmVWI0Tuk9iGyUyO8"
+uri = "file://attached_assets/stock_images/industry_telecom.jpg"
+type = "image"
+title = "telecommunications tower with antennas against sky"
+logical_id = "ae02145c-377b-4616-bb56-f7ecc991604a"
+
+[[outputs]]
+id = "evcHJpeMMAB5avllfxdnX"
+uri = "file://attached_assets/stock_images/industry_government.jpg"
+type = "image"
+title = "modern government ministry building architecture"
+logical_id = "463837a2-eb67-4dd6-b7ef-ef62988502a0"
+
+[[outputs]]
+id = "leR_77NhWdzYj7HD5GxP8"
+uri = "file://envod-kingdom-cloudflare.zip"
+type = "unspecified"
+title = "ENVOD KINGDOM — standalone Cloudflare Pages project"
+logical_id = "762fcd3b-12cc-4456-a528-ce8fbec68c63"
+
+[[outputs]]
+id = "oyLj0VT3pYogFgH-941Qb"
+uri = "file://generated-artifacts/envod-seo-research.zip"
+type = "unspecified"
+title = "Updated ENVOD SEO implementation package"
+description = "19 files: current implementation report, 109-row bilingual keyword database, all 35 service dispositions, competitor research, 90-day roadmap and measured performance results."
+logical_id = "1fed08a4-62fa-4ba7-bee6-a798e8b59cf2"
+content_hash = "sha256:f3742e748afa9cf886a8ad9548553e73bf081fae5a4085bbb4882fa7dd959ea5"
+size = 56060
+mtime_ms = 1792244650777
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/1fed08a4-62fa-4ba7-bee6-a798e8b59cf2/cf1db011-8f34-44cb-896b-4c6c4d58960f"
+storage_version_token = "1792244696289261"
+content_type = "application/octet-stream"
+
+[[outputs]]
+id = "MIwg0Hp0Qo52ENoM-mEH4"
+uri = "file://generated-artifacts/envod-organic-growth/keyword-explorer.html"
+type = "html"
+title = "Searchable EN/AR keyword explorer"
+description = "Offline explorer for 149 evidence-labelled opportunities, including 40 unmeasured research candidates. Filter by language, service, priority or phrase and export the matching CSV."
+logical_id = "2a7026d0-a58c-43b9-b973-391052a75a78"
+content_hash = "sha256:91997c2065f7cf524ef3fb7515a5d3728da5b62bc3bd0cf0490dc90580341e02"
+size = 223521
+mtime_ms = 1792245781636
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/2a7026d0-a58c-43b9-b973-391052a75a78/90347b26-e32f-40a6-917b-9f792a353b06"
+storage_version_token = "1792246100169245"
+content_type = "text/html"
+
+[[outputs]]
+id = "hbAGr_HUD9SHkjkFdIx9h"
+uri = "file://generated-artifacts/envod-organic-growth-package.zip"
+type = "unspecified"
+title = "ENVOD organic-growth research and outreach package"
+description = "36 research files plus the searchable explorer: separate EN/AR keyword maps, backlink opportunity tracker, source evidence, local audit, linkable-resource plan, reporting templates, 90-day plan and implementation/testing report. No outreach or public deployment performed."
+logical_id = "15efb386-85e0-4a71-85ee-4fef2bcff456"
+content_hash = "sha256:3efafb7fb45b1ac3de2c1da39df2a7215641369fdae281605cc6fe3401902934"
+size = 109422
+mtime_ms = 1792245968244
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/15efb386-85e0-4a71-85ee-4fef2bcff456/e6544da1-b356-47af-9d44-00c97b2d619c"
+storage_version_token = "1792246101469561"
+content_type = "application/octet-stream"
+
+[[outputs]]
+id = "_9BGgy3wGJulV0su-X1qG"
+uri = "file://generated-artifacts/envod-controlled-seo-report.html"
+type = "html"
+title = "Controlled SEO/AEO/GEO stages report"
+description = "Completed audit, Saudi EN/AR research, priority-page corrections, preservation and form-event test results, verified backup details and outstanding issues. No rankings or growth results are invented."
+logical_id = "c407fea0-7ab6-4fdd-bb90-601ed27bd4e9"
+content_hash = "sha256:82a8aaa4c071acdfc214db35520da2a9017e4df3e27f8f11f6fe4d73b4ed1fe4"
+size = 11501
+mtime_ms = 1792247566537
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/c407fea0-7ab6-4fdd-bb90-601ed27bd4e9/a9cb9f47-2f7a-4bb3-82dc-96e6d7fddb70"
+storage_version_token = "1792247618327217"
+content_type = "text/html"
+
+[[outputs]]
+id = "KHwV3o3zPwQsPAe0bBsCK"
+uri = "file://generated-artifacts/envod-controlled-seo-package.zip"
+type = "unspecified"
+title = "Complete controlled-stage research and audit package"
+description = "43 research and audit files, the report, searchable 149-row keyword explorer and backup manifest. Includes before/after 92-route inventories, source observations, EN/AR maps, backlink tracker and publisher-specific drafts. No submissions or public deployment performed."
+logical_id = "22098d56-c961-411f-b061-5d3320850ef1"
+content_hash = "sha256:99cb387db956cb1653eb03e8c3ac7a80ed6388d95c08c313c272ee86116a3c57"
+size = 463559
+mtime_ms = 1792247566812
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/22098d56-c961-411f-b061-5d3320850ef1/b3760bd8-925a-45ed-9565-0b09a75b3da3"
+storage_version_token = "1792247619642992"
+content_type = "application/octet-stream"
+
+[[outputs]]
+id = "zfomuWVl91odPtoVqh84M"
+uri = "file://generated-artifacts/envod-email-delivery-report.html"
+type = "html"
+title = "Updated email delivery report — live test result"
+description = "One authorized live attempt received provider-integration HTTP 403 and website HTTP 502. Acceptance and inbox delivery remain unconfirmed; no retry was made."
+logical_id = "27b9c972-43c7-470b-a029-982ff3054545"
+content_hash = "sha256:6dd88a867ce627082ed9800098759e668185d697d9a547b6f9ac0d39bcf4d62f"
+size = 14011
+mtime_ms = 1792249331155
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/27b9c972-43c7-470b-a029-982ff3054545/b4798546-4427-41d2-92b0-56a0423d1569"
+storage_version_token = "1792249351520242"
+content_type = "text/html"
+
+[[outputs]]
+id = "l7O7buB6X98z22iZTHcaQ"
+uri = "file://generated-artifacts/envod-master-brief-stage-report.html"
+type = "html"
+title = "SEO implementation — loading stage and remaining scope"
+description = "Measured before/after results, preservation checks, backup details, all eight phases' current status, and unresolved blockers."
+logical_id = "10612420-f2f6-4952-88c2-5a9f785f4cd6"
+content_hash = "sha256:3a421a50e97785fa4ccd1723962bcf2603ff3519128e2f00ea7a15f95c5e910a"
+size = 12664
+mtime_ms = 1792251609329
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/10612420-f2f6-4952-88c2-5a9f785f4cd6/9650c91b-6032-46d6-9003-d5a837940cc4"
+storage_version_token = "1792251647632299"
+content_type = "text/html"
+
+[[outputs]]
+id = "7VJboeT2qiWPYAGo1QBcP"
+uri = "file://generated-artifacts/envod-master-brief-stage-handover.zip"
+type = "unspecified"
+title = "SEO research and stage handover package"
+description = "50 files containing research, keyword maps, plans, raw performance samples, email deployment guidance and the latest stage report. No credentials included."
+logical_id = "0808a93f-7ebd-4537-93dd-2f65bcc4c398"
+content_hash = "sha256:0dce1eac31dad5aa740a13d3dc12ab803171d5219e523a6641ec28b506497d6b"
+size = 463108
+mtime_ms = 1792251609907
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/0808a93f-7ebd-4537-93dd-2f65bcc4c398/2d1862ef-2d44-4b13-a4e3-832e4082fab4"
+storage_version_token = "1792251648887079"
+content_type = "application/octet-stream"
+
+[[outputs]]
+id = "ytYlRpYDYm_dYW7X7PWw4"
+uri = "file://generated-artifacts/enquiry-final-desktop.png"
+type = "image"
+title = "Final enquiry email — desktop layout preview"
+description = "Local browser rendering of the refined template with fictitious placeholder data. Not a screenshot from Gmail, Outlook, or a recipient inbox."
+logical_id = "17bd864d-9e66-4ce1-9311-576282f99df4"
+content_hash = "sha256:8f6270369b7be1afaa00f138c245fb1e9e2a3453c5528f4079a6bfea2aca11c6"
+size = 84815
+mtime_ms = 1792254634967
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/17bd864d-9e66-4ce1-9311-576282f99df4/208e12ca-7aea-40bb-b6c0-63cc9b63aab5"
+storage_version_token = "1792254828282886"
+content_type = "image/png"
+
+[[outputs]]
+id = "TLr4-CrFH_Fo8oKruT9lI"
+uri = "file://generated-artifacts/enquiry-final-mobile.png"
+type = "image"
+title = "Final enquiry email — mobile layout preview"
+description = "Local 402px browser rendering of the [TEST]-marked version using reserved example data. It confirms the responsive stacked layout; not an inbox-client screenshot."
+logical_id = "8912eeea-092f-4c2f-a4f1-7ae453dc1d20"
+content_hash = "sha256:f1e330005a30446dc9df47900d16bc88a16add86705ab1a08e3c26276c79f947"
+size = 90940
+mtime_ms = 1792254634187
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/8912eeea-092f-4c2f-a4f1-7ae453dc1d20/7a9ad22b-49cf-45fc-a853-b7aa191d89a9"
+storage_version_token = "1792254829606892"
+content_type = "image/png"
+
+[[outputs]]
+id = "amdwGan_1vVsYPkVvNT89"
+uri = "file://research/notes.md"
+type = "text"
+title = "Research Notes: ENVOD KINGDOM SEO/AEO/GEO Audit"
+description = "Research plan, evidence checklist, and running findings log for the Saudi-focused audit."
+logical_id = "3711c842-15df-4698-8377-242479e3ca61"
+content_hash = "sha256:8cf2d71ed5c7a5aba96f0daa5559b775085d7cac6516136f14a3d73d17c24b19"
+size = 3233
+mtime_ms = 1792258840429
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/3711c842-15df-4698-8377-242479e3ca61/9dbcae30-6494-4027-8a7e-84455e3566e0"
+storage_version_token = "1792258856642580"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "CbqaCpX_i_90y896eT7_k"
+uri = "file://envodkingdom-seo-aeo-geo-audit.md"
+type = "text"
+title = "ENVOD KINGDOM SEO/AEO/GEO Audit"
+description = "Complete evidence-based production audit; local Markdown report, not deployed or committed."
+logical_id = "2e996263-e47a-4c69-b2fd-f337bdeb1c17"
+content_hash = "sha256:d05136c1ca21e9b3855dfa74438f45f2e6c902a54c21972e84e93f2c49e389b4"
+size = 80376
+mtime_ms = 1792266134201
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/2e996263-e47a-4c69-b2fd-f337bdeb1c17/0d5d88eb-3d71-4bec-b9d5-03db4fadaa70"
+storage_version_token = "1792266198815175"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "QYA6MFORoTpZunSgEugvU"
+uri = "file://envodkingdom-service-keyword-research.md"
+type = "text"
+title = "ENVOD KINGDOM Service Keyword Research"
+description = "Research-first Saudi/GCC keyword, AEO/GEO, competitor, and content-plan report. No website changes made."
+logical_id = "49b3087e-09c6-4c29-b769-d7f60a141dc0"
+content_hash = "sha256:daec9c01610f2899d782338d005722d9573b2795dee8339aca6fad72fde9ca5b"
+size = 52420
+mtime_ms = 1792266862693
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/49b3087e-09c6-4c29-b769-d7f60a141dc0/80e54131-0560-40d7-82b4-76c61e9da9c7"
+storage_version_token = "1792266901761240"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "h7-gSfnbAr8XHJDIWqzSj"
+uri = "file://envodkingdom-keyword-database.csv"
+type = "table"
+title = "ENVOD Kingdom Keyword Database — 2,935 Rows"
+description = "Expanded bilingual candidate master. The 1,306 pre-import rows are preserved; 1,629 owner-provided candidate records were added. Search volume and ranking are not measured."
+logical_id = "38551433-14a0-44be-9fb8-c80b4286a853"
+content_hash = "sha256:ebca967f9a773233e28ba8cdfd2f3aa4db78c458a8e5e462423c2771ce80ba89"
+size = 5242372
+mtime_ms = 1792608501994
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/38551433-14a0-44be-9fb8-c80b4286a853/2172f08b-a945-4df5-bd73-8c870e3d6fcd"
+storage_version_token = "1792609040291839"
+content_type = "text/csv"
+
+[[outputs]]
+id = "wpFUZGSlNhmJgQbmKb7XQ"
+uri = "file://generated-artifacts/envodkingdom-keyword-database-additions-2026-10-21.csv"
+type = "table"
+title = "Keyword additions only"
+description = "788 validated candidate rows added to the existing database; unmeasured fields remain marked not measured."
+logical_id = "0bf43702-e280-41f8-bb85-fbf57a11f413"
+content_hash = "sha256:240d4998d6420cbde7c40e61c93d0344dd92361f84a288f3e8394591b2f3ea74"
+size = 904615
+mtime_ms = 1792603718227
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/0bf43702-e280-41f8-bb85-fbf57a11f413/cbacd3fd-203b-4c98-88a3-809468ba42e4"
+storage_version_token = "1792603780178540"
+content_type = "text/csv"
+
+[[outputs]]
+id = "S-rHTQLcD9cv22GW6oEyg"
+uri = "file://generated-artifacts/envodkingdom-keyword-db-expansion-report-2026-10-21.html"
+type = "html"
+title = "Keyword expansion audit report"
+description = "Sources, per-page English/Arabic counts, deduplication, validation results, and research limitations."
+logical_id = "798bfd3c-33d2-48a2-aed9-3ddab7366d9d"
+content_hash = "sha256:82b5a14cb0a39ccd7e321594883152399ce58dfccd420d567bc95db645c0eb49"
+size = 9063
+mtime_ms = 1792603718254
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/798bfd3c-33d2-48a2-aed9-3ddab7366d9d/2149161e-383d-4e59-b427-8fc6f0f960ee"
+storage_version_token = "1792603781532421"
+content_type = "text/html"
+
+[[outputs]]
+id = "DAdjPzK_HhWy5mIE7a-5D"
+uri = "file://generated-artifacts/keyword-database-research/envodkingdom-keyword-database-additions-2026-10-21.csv"
+type = "table"
+title = "100 new keyword rows only"
+description = "Additions-only CSV with 37 Google autocomplete suggestions and 63 clearly labeled unverified candidates."
+logical_id = "31c7ae67-3876-459b-a529-b8ed3f4aa28d"
+content_hash = "sha256:72831ca933b6a583d615323d92d23437b53ab52981b55ad42d6d067074c59973"
+size = 119041
+mtime_ms = 1792605325471
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/31c7ae67-3876-459b-a529-b8ed3f4aa28d/81ed8eed-9630-4d37-a2d9-7677702caafa"
+storage_version_token = "1792605823955652"
+content_type = "text/csv"
+
+[[outputs]]
+id = "O6lMQk2k3Q2yQK1V4KHGB"
+uri = "file://generated-artifacts/keyword-database-research/ENVOD-25-offering-keyword-expansion-report-2026-10-21.html"
+type = "html"
+title = "25-offering SEO keyword audit report"
+description = "Coverage counts, research sources and limits, data integrity checks, and the 93 legacy Arabic URL mapping issue."
+logical_id = "71b89ba6-8542-4796-b80a-82ea4fd24d2a"
+content_hash = "sha256:1ac59c8282729cbfb519a38f0f19dafff02c54c045998dc3a448dc17d6f9de4f"
+size = 13621
+mtime_ms = 1792605680219
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/71b89ba6-8542-4796-b80a-82ea4fd24d2a/d7e9649c-9b08-483c-aa78-2dd6b254fef4"
+storage_version_token = "1792605825313234"
+content_type = "text/html"
+
+[[outputs]]
+id = "rYk71EC1hl-exxnJJ66wF"
+uri = "file://generated-artifacts/keyword-database-research/2026-10-21-google-suggest-25-services.json"
+type = "unspecified"
+title = "Raw English and Arabic autocomplete research"
+description = "102 Saudi-locale query records with seeds, source URLs, locales, dates, and suggestion results."
+logical_id = "a9347558-4bda-4a1a-89e7-8c0c4587152a"
+content_hash = "sha256:2d1da240e79335172ff6e384f99fe1d08d59b456ef35fd15d1bad16221409156"
+size = 57934
+mtime_ms = 1792604662368
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/a9347558-4bda-4a1a-89e7-8c0c4587152a/f04debd4-ba30-4103-b641-76e7036da6e0"
+storage_version_token = "1792605826611811"
+content_type = "application/octet-stream"
+
+[[outputs]]
+id = "Q6n2cYqoDdrddMn2Kmj9j"
+uri = "file://generated-artifacts/keyword-database-backups/envodkingdom-keyword-database.pre-25-offering-expansion.2026-10-21.csv"
+type = "table"
+title = "Original keyword database backup"
+description = "Byte-identical backup of the original 1,014-row CSV, taken before adding records."
+logical_id = "31cfc14f-3b03-4970-84aa-15030c2fb314"
+content_hash = "sha256:dadf295223acc50ead75857ebd49338180a026ca2ecfddd2a5cb3cd5a3b6330a"
+size = 1090648
+mtime_ms = 1792604086140
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/31cfc14f-3b03-4970-84aa-15030c2fb314/54d9fb22-80bc-49d4-b03f-05f608ccc1a2"
+storage_version_token = "1792605828013620"
+content_type = "text/csv"
+
+[[outputs]]
+id = "t6yGKR0IH_uJYZQXcXTKu"
+uri = "file://generated-artifacts/keyword-database-research/envodkingdom-keyword-database-all-additions-2026-10-21.csv"
+type = "table"
+title = "All keyword additions — 292 rows"
+description = "Additions-only CSV for both expansion passes: 37 Google Suggest phrases and 255 unverified candidates."
+logical_id = "4b838ba3-3ca2-4172-8868-c224d90df0d0"
+content_hash = "sha256:069f9d2817f7cba83589cf68046285ccc910877c9024060cb5ec1cfa1dffa19b"
+size = 388246
+mtime_ms = 1792606321414
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/4b838ba3-3ca2-4172-8868-c224d90df0d0/d83cfedc-8bb2-4619-8e48-ae104d982bad"
+storage_version_token = "1792606359425989"
+content_type = "text/csv"
+
+[[outputs]]
+id = "x5c5sM0I-NIJlwYP_aXQF"
+uri = "file://generated-artifacts/keyword-database-research/ENVOD-25-offering-keyword-expansion-final-report-2026-10-21.html"
+type = "html"
+title = "Final keyword expansion report"
+description = "Coverage by service and language, evidence limitations, duplicate filtering, preserved data, and outstanding SEO data issues."
+logical_id = "8a92d97d-7b85-47d2-860b-96c79f3fd110"
+content_hash = "sha256:cc77a2c1ea1594a4cd84798bb5efb4dafbed64bb0cf8ca9570135aba4055ceab"
+size = 10574
+mtime_ms = 1792606321428
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/8a92d97d-7b85-47d2-860b-96c79f3fd110/fe312c70-6b47-4803-9b0c-5ec8631a1ded"
+storage_version_token = "1792606360739996"
+content_type = "text/html"
+
+[[outputs]]
+id = "v8Cqx2jRWYvoEmDeGXiz2"
+uri = "file://generated-artifacts/keyword-database-backups/envodkingdom-keyword-database.pre-keyword-prompt-2.2026-10-21.csv"
+type = "table"
+title = "Pre-expansion safety backup — 1,114 rows"
+description = "Byte-identical snapshot created immediately before the latest additive keyword pass."
+logical_id = "f366ef4c-1110-4328-b177-f077d6b96fa5"
+content_hash = "sha256:d210c17134a322080ca9c518ce112dafd29cd65907ad640f8b892abdd56cf73a"
+size = 1209345
+mtime_ms = 1792605993831
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/f366ef4c-1110-4328-b177-f077d6b96fa5/804964de-93c3-4505-855b-3820bc4c3291"
+storage_version_token = "1792606362127570"
+content_type = "text/csv"
+
+[[outputs]]
+id = "NBiZnc9tkpGXcGWTFMNut"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/research/notes.md"
+type = "text"
+title = "ENVOD Saudi SEO research notes"
+description = "Scope, five research areas, verification checklist, and working limitations for the current deep audit."
+logical_id = "890cbaea-2849-4e55-a5b4-149031f1589e"
+content_hash = "sha256:e3659ba8ca5764c167aced003f9d25379bd2e16a150b0c249c82d7f7a86ed872"
+size = 3759
+mtime_ms = 1792606495682
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/890cbaea-2849-4e55-a5b4-149031f1589e/f7f5d263-494c-4e93-9613-5c4b1e9991ca"
+storage_version_token = "1792606517266948"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "I5f4WcIJW8OX8LxeqsUFO"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Saudi-SEO-Research-Overview.html"
+type = "html"
+title = "ENVOD Saudi SEO Research Overview"
+description = "Updated bilingual SEO/AEO/GEO research summary. Includes the 2,935-row candidate database expansion, measured-data limitations, and production indexing gaps."
+logical_id = "4b43f905-a023-47c8-a4a7-7c2f80142762"
+content_hash = "sha256:f60b55525320bd43c95d66c894548223b09a9e0daab2b2dda244b412b5eca0db"
+size = 3552
+mtime_ms = 1792608791470
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/4b43f905-a023-47c8-a4a7-7c2f80142762/b4a7425f-d87f-4058-962a-864377e2b668"
+storage_version_token = "1792609038874131"
+content_type = "text/html"
+
+[[outputs]]
+id = "cg639EpKdK9V2eCYranrY"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Saudi-SEO-Research-Report.md"
+type = "text"
+title = "Full SEO/AEO/GEO research report"
+description = "Detailed bilingual Saudi-market audit, technical findings, evidence citations and limitations."
+logical_id = "f3be9a6a-67dd-44e9-8fab-eb5025ab2e51"
+content_hash = "sha256:e283d1c3e31cc76a36c6244d408f677659a427df730961625ea291c40622232a"
+size = 17253
+mtime_ms = 1792607715272
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/f3be9a6a-67dd-44e9-8fab-eb5025ab2e51/df32991b-73d7-44e7-b775-07bcde7d0c68"
+storage_version_token = "1792607849514885"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "Fo9T-rU9k_7_rNE6ccTqi"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Keyword-Master-Enriched.csv"
+type = "table"
+title = "Enriched keyword master — 1,306 rows"
+description = "Canonical English/Arabic candidate database with original fields preserved and evidence/measurement status added."
+logical_id = "5e1808e7-bb67-4cfb-a88c-9c6402cadbf1"
+content_hash = "sha256:e776d97bfbe9b2f907e8997abdba5ee24264008915e710d4ca19cfeac8bcd78c"
+size = 2042701
+mtime_ms = 1792607681054
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/5e1808e7-bb67-4cfb-a88c-9c6402cadbf1/7ce51a89-eaa0-41af-9129-edef4b5a18b3"
+storage_version_token = "1792607851251359"
+content_type = "text/csv"
+
+[[outputs]]
+id = "NwW0C_6O5omcJXFiBZR0u"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Keyword-Research-Additions-292-Historical.csv"
+type = "table"
+title = "Historical keyword additions — 292 rows"
+description = "Exact delta from the preserved 1,014-row baseline; these are already in the current master."
+logical_id = "a049463e-aac1-432c-bd11-6451237ed8e3"
+content_hash = "sha256:2447acb10ac671dd42bc92db00a99433c234ffe5fe0e228ec0864278a5277263"
+size = 379380
+mtime_ms = 1792607681058
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/a049463e-aac1-432c-bd11-6451237ed8e3/3299943a-06aa-4be7-bdc9-4b3920086e4d"
+storage_version_token = "1792607852643679"
+content_type = "text/csv"
+
+[[outputs]]
+id = "lqv1tfDwRFuXYz26wKgFE"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Uploaded-Keyword-Candidates-2400.csv"
+type = "table"
+title = "Uploaded bilingual keyword candidates — 2,400 rows"
+description = "Preserved separately; candidate phrases, not measured search demand."
+logical_id = "0e07b403-c07b-4579-9e4b-38da25230fb0"
+content_hash = "sha256:400cdbd5d28b6f6e1a8273053dec43bdbaa23d6bb98319a25507d2dd7da84e39"
+size = 1258970
+mtime_ms = 1792607681102
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/0e07b403-c07b-4579-9e4b-38da25230fb0/3c4b14c2-7e22-45e0-b2fc-6c897de38d30"
+storage_version_token = "1792607853985325"
+content_type = "text/csv"
+
+[[outputs]]
+id = "roKHYZ5R90AjWK5hLPbBs"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Keyword-Planner-Upload-Seed-2395.csv"
+type = "table"
+title = "Keyword Planner seed list — 2,395 phrases"
+description = "One-column upload seed; it does not contain Keyword Planner results or metrics."
+logical_id = "65dcd97e-92bf-452a-94db-171228d99091"
+content_hash = "sha256:598c516149459ccaa162628fe1808cfdf6a5c993053a7e96135c6ccd8c1c4045"
+size = 376576
+mtime_ms = 1792607681114
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/65dcd97e-92bf-452a-94db-171228d99091/584a2898-388e-4927-b689-42507429f5f3"
+storage_version_token = "1792607855391105"
+content_type = "text/csv"
+
+[[outputs]]
+id = "ZIWgP2ZjUpm77yYK2UANl"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Page-by-Page-Keyword-Map.csv"
+type = "table"
+title = "Bilingual page-by-page keyword map"
+description = "Maps EN/AR candidate themes to the existing service and industry URLs and public status."
+logical_id = "4ceb95a6-a91b-4943-adc2-5453443da2eb"
+content_hash = "sha256:39f6ad610a710b11d3a08f18d52ac9bd07055b14580cf8a269a99154249d2ce5"
+size = 47292
+mtime_ms = 1792607681178
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/4ceb95a6-a91b-4943-adc2-5453443da2eb/c8704a6c-b08c-40c3-b976-6483759c5134"
+storage_version_token = "1792607856686120"
+content_type = "text/csv"
+
+[[outputs]]
+id = "lKy4mdV4anxxzGds5luzZ"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Source-Evidence-Register.csv"
+type = "table"
+title = "Source and evidence register"
+description = "57 dated source records with evidence class, access notes and limitations."
+logical_id = "3902ec49-2abf-4691-b41c-d7f70157e7c8"
+content_hash = "sha256:71154d6b73184c48cad60ab2433b38ac3edfbecf69fdb890776ca2194555d01d"
+size = 21177
+mtime_ms = 1792607715270
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/3902ec49-2abf-4691-b41c-d7f70157e7c8/b5e8fb14-bd41-49ef-b530-84872f3e152e"
+storage_version_token = "1792607857986819"
+content_type = "text/csv"
+
+[[outputs]]
+id = "zzvlpQ8GRg73bE0bWMuc1"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-SEO-Implementation-Roadmap.md"
+type = "text"
+title = "Prioritized SEO implementation roadmap"
+description = "Staged recommendations and acceptance checks; no site changes were made as part of this research."
+logical_id = "afba322c-f943-414b-9c0c-86d95eec9b72"
+content_hash = "sha256:76211b1f5c4405672f79561b51e251b4b5352a1453dd4228b06bead8403c198e"
+size = 5301
+mtime_ms = 1792607681372
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/afba322c-f943-414b-9c0c-86d95eec9b72/26135a3f-19ba-455d-b23a-387fe9c81fb0"
+storage_version_token = "1792607859276785"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "qghaGTvF7NZtME7Km86qa"
+uri = "file://generated-artifacts/saudi-seo-deep-research-2026-10-21/ENVOD-Uploaded-Candidate-Import-Crosswalk.csv"
+type = "table"
+title = "ENVOD 2,400-Row Candidate Import Crosswalk"
+description = "Row-by-row source reconciliation showing existing matches, appended records, corrected existing routes, and flagged cross-route phrase overlaps."
+logical_id = "e40b6439-be0f-4350-8556-a8c642f1a05f"
+content_hash = "sha256:9971c153d5337936d97115e03ffb8d8b9a458a68fa03ca975967cac9584e4394"
+size = 1524545
+mtime_ms = 1792608502214
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/e40b6439-be0f-4350-8556-a8c642f1a05f/a88a6a0a-343d-48e2-bd20-524832072107"
+storage_version_token = "1792609041676104"
+content_type = "text/csv"
+
+[[outputs]]
+id = "JSatcQdCMS24n_Hror_VK"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/executive-report.md"
+type = "text"
+title = "ENVOD Saudi SEO/AEO/GEO executive report"
+description = "Research findings, production route gaps, keyword evidence, competitor observations, technical SEO and prioritized next steps."
+logical_id = "71d03b04-8c4b-4223-abb6-81d668ba98fe"
+content_hash = "sha256:69dd050c69f10296b876be22e01dd9e71e5f03b8a6fa5a49703caaa8ccd1a7be"
+size = 18298
+mtime_ms = 1792609974356
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/71d03b04-8c4b-4223-abb6-81d668ba98fe/eb576984-c6a3-4eaa-9fc6-de83121db656"
+storage_version_token = "1792609990288710"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "0-ZvadV4R_id2Z2ykUzvz"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/keyword-master-enriched.csv"
+type = "table"
+title = "Bilingual keyword master — 2,935 records"
+description = "Current 35 source columns plus normalized research fields; numeric demand, difficulty and rank remain blank where not measured."
+logical_id = "30fd9e64-5325-4f0d-8f17-5a4bcbbf5248"
+content_hash = "sha256:b7c95bc99004043c7573ea8f8e9e3897afe0c5208bacbcb7eaa4dd48c06386bf"
+size = 9133335
+mtime_ms = 1792609974672
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/30fd9e64-5325-4f0d-8f17-5a4bcbbf5248/4623acd8-307e-44cf-9e3c-44257e998cdd"
+storage_version_token = "1792609991695568"
+content_type = "text/csv"
+
+[[outputs]]
+id = "tPbAF8KgpQYd0-i1e-TQs"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/url-inventory.csv"
+type = "table"
+title = "Production and local URL inventory"
+description = "92 local build routes reconciled with live sitemap checks: 43 listed URLs returned 200; 49 checked routes returned 404."
+logical_id = "02133912-3bbd-4cb2-8c55-43b21fff567a"
+content_hash = "sha256:34fd5f13e34cca23f790dcfea3ad4fe48bf78ff6384c58bae51a9eaf85c0dfb0"
+size = 95181
+mtime_ms = 1792609974357
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/02133912-3bbd-4cb2-8c55-43b21fff567a/9b72507b-7866-4c33-beab-472cd82f4984"
+storage_version_token = "1792609992986056"
+content_type = "text/csv"
+
+[[outputs]]
+id = "h70hNn1fFuPNyFQ8og1-w"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/keyword-data-quality-report.csv"
+type = "table"
+title = "Keyword data quality and reconciliation"
+description = "Baseline preservation, appended-candidate counts, duplicate flags and missing measured search data."
+logical_id = "7cdc50bf-7823-457e-b5ec-1e0bf82c6fab"
+content_hash = "sha256:2ed15f343f5cb3d8d8f1f40bbc464996c5311a32323e63ce8127b901fcaeb862"
+size = 2578
+mtime_ms = 1792609974412
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/7cdc50bf-7823-457e-b5ec-1e0bf82c6fab/f8d50ed8-7140-463f-b952-db2b60058543"
+storage_version_token = "1792609994422199"
+content_type = "text/csv"
+
+[[outputs]]
+id = "W7w0wEJhS3KtPYYp2Tukv"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/implementation-roadmap.csv"
+type = "table"
+title = "SEO implementation roadmap"
+description = "Prioritized actions with evidence, dependencies, risks, verification and measurement methods."
+logical_id = "79f5dae5-3941-4ff6-9d0d-e19763ac4c48"
+content_hash = "sha256:95e7be3393ec4783e888ae8406539f667e27461684854bea24b9cf2a2f9c7c7a"
+size = 7357
+mtime_ms = 1792609974738
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/79f5dae5-3941-4ff6-9d0d-e19763ac4c48/e16d0e82-5563-4b11-bd3a-d47f738d0506"
+storage_version_token = "1792609995691674"
+content_type = "text/csv"
+
+[[outputs]]
+id = "T066G8z8-LHFABlsRhwjd"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/README.md"
+type = "text"
+title = "Research package index"
+description = "Index of the 19 required deliverables and the 16 CSV worksheet equivalents."
+logical_id = "b9f4aae4-6b2f-4f05-a695-a7ac5c1b59aa"
+content_hash = "sha256:e02081f11fc5d45f241adb5bbc8d75d14238122908690d015264a4fefded132e"
+size = 2460
+mtime_ms = 1792609974740
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/b9f4aae4-6b2f-4f05-a695-a7ac5c1b59aa/16b31fca-c855-4ed0-b1eb-1e5f38ca1222"
+storage_version_token = "1792609997328918"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "FQQNupdKhirb80pSHbBRA"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/serpok-addendum/serpok-export-inventory.csv"
+type = "table"
+title = "SerpOK export inventory"
+description = "Shows which reports are available, missing, or represented only by the owner-supplied snapshot."
+logical_id = "fc2dc9b9-ad80-4fb7-b5bb-99d6112ae3d9"
+content_hash = "sha256:25603e6e3e71f44c08724422e0c95a6a2c64f6ba38e6ef448780fb50d5e870e7"
+size = 5323
+mtime_ms = 1792610209425
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/fc2dc9b9-ad80-4fb7-b5bb-99d6112ae3d9/bd91b36b-3608-4ec9-81fa-d61c669e6cc4"
+storage_version_token = "1792610243032675"
+content_type = "text/csv"
+
+[[outputs]]
+id = "P5iXEehyxFPIV0b43ZhcO"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/serpok-addendum/serpok-envod-domain-research.csv"
+type = "table"
+title = "SerpOK snapshot values for ENVOD"
+description = "Raw values from the undated owner-supplied snapshot, clearly marked as unverified third-party estimates."
+logical_id = "984c9cd5-344d-47a5-a484-7fb7cfe267cd"
+content_hash = "sha256:59e573ea9910c12eeba2d44cf61365bc76c5ee13492975994e7e8089e19006d7"
+size = 6559
+mtime_ms = 1792610209424
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/984c9cd5-344d-47a5-a484-7fb7cfe267cd/e6444168-cab2-470e-b5ac-098a55e3dee9"
+storage_version_token = "1792610244325661"
+content_type = "text/csv"
+
+[[outputs]]
+id = "UguqFHr9YSk-tUMqf4lOn"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-complete/serpok-addendum/serpok-data-limitations.md"
+type = "text"
+title = "SerpOK data limitations and export checklist"
+description = "Explains why account research could not be accessed and specifies the dated exports needed to complete it."
+logical_id = "0298d73c-e7fa-4b3f-9e67-285d444b771b"
+content_hash = "sha256:6284dceeb19a32dfc6409f79d6836b5c17b2eb26c5b1d935c717fc6113f0fd3f"
+size = 3680
+mtime_ms = 1792610209425
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/0298d73c-e7fa-4b3f-9e67-285d444b771b/dbe64d50-11dc-4ed0-95e0-b049c6f95838"
+storage_version_token = "1792610246126431"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "3t4LULx60zQbtXWpDcLCu"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-final-validation-v1/FINAL-VALIDATION.html"
+type = "html"
+title = "ENVOD final SEO research validation"
+description = "Readable report with source reconciliation, verified versus unverified findings, and remaining data requirements."
+logical_id = "a605a7f6-7d59-40ef-a20a-575bc5045ab9"
+content_hash = "sha256:07ceb577fcc28d54a9adc13393fc623b94972d7ccdd414b0062cb3d84abfaca1"
+size = 4038
+mtime_ms = 1792612173785
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/a605a7f6-7d59-40ef-a20a-575bc5045ab9/399fab02-b088-4e7b-88c9-410ff30098ff"
+storage_version_token = "1792612237962654"
+content_type = "text/html"
+
+[[outputs]]
+id = "sSdZIwZp3rkEDthkSkQJL"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-final-validation-v1/keyword-master-normalized-v2.csv"
+type = "table"
+title = "Validated bilingual keyword master — 2,935 records"
+description = "Preserves all records and IDs, separates narrative destinations from URL paths, and leaves unmeasured numeric fields blank."
+logical_id = "1b6e50c2-2925-46ee-b540-1486b915c78c"
+content_hash = "sha256:b057bce5f08a98e63a2aa701b9c020adbeca837fb3daf28ebf31775ba51ec55d"
+size = 9610973
+mtime_ms = 1792612173711
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/1b6e50c2-2925-46ee-b540-1486b915c78c/9dce04e2-22e3-4799-9899-a09a0029e120"
+storage_version_token = "1792612239388075"
+content_type = "text/csv"
+
+[[outputs]]
+id = "VSdWB06pFLNEtEC6CSx40"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-final-validation-v1/exact-overlap-review.csv"
+type = "table"
+title = "Exact keyword overlap review — 779 source rows"
+description = "Shows the 774 unique exact keyword-language pairs, their mapped routes, and the source import action without deleting any records."
+logical_id = "c5734a84-4dde-4fce-845c-02500b523507"
+content_hash = "sha256:741d0ab7cf6c4c4f9e202a9f07558746ba371b268d9bf1d540f5cb258bb1d46f"
+size = 238289
+mtime_ms = 1792612173523
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/c5734a84-4dde-4fce-845c-02500b523507/b51fbe79-404a-451d-bc7b-dd1690e53132"
+storage_version_token = "1792612240705385"
+content_type = "text/csv"
+
+[[outputs]]
+id = "hNskBVCyF6YnpqKtZiTwZ"
+uri = "file://generated-artifacts/envod-saudi-seo-2026-10-21-final-validation-v1/technical-findings-validation.csv"
+type = "table"
+title = "Technical findings: evidence and limitations"
+description = "Separates dated public observations from unverified indexing, Webmaster, performance, and production-source questions."
+logical_id = "0c4eb30e-29bd-4c36-a7db-720ed2ba7ba3"
+content_hash = "sha256:6717cddad70ebdae8756b44ebc656c6fbb390be0507a21a91f52cb14a9410081"
+size = 5301
+mtime_ms = 1792612173717
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/0c4eb30e-29bd-4c36-a7db-720ed2ba7ba3/dd44350f-ff10-4d35-bab9-10997f5d76ff"
+storage_version_token = "1792612242201543"
+content_type = "text/csv"
+
+[[outputs]]
+id = "GwDb6qfXvkydVVAWhYzPl"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/README.md"
+type = "text"
+title = "ENVOD SEO audit overview"
+description = "Executive audit summary, verified production findings, review-copy status, limitations, and links to the complete deliverables."
+logical_id = "37420f86-8f0f-4bd5-9396-498c38b34932"
+content_hash = "sha256:520c5814cbad68610e3d928f026a5ee3e2fb6051384ab73195f928da1779510b"
+size = 18144
+mtime_ms = 1792667158629
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/37420f86-8f0f-4bd5-9396-498c38b34932/2ddaf272-39bf-4692-8dce-7246f8d28ead"
+storage_version_token = "1792667212897848"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "S2XDdZcyeEQ56ht8Wz4kO"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/seo-remediation-report.md"
+type = "text"
+title = "Full SEO/AEO/GEO remediation report"
+description = "Baseline, competitor observations, implemented review-copy changes, production findings, and release priorities."
+logical_id = "1a9873ef-f28a-4e81-b1fe-1ffd7c428bcd"
+content_hash = "sha256:bbf1a631e361947359544aa20f9d4f83c03063cadd99463ce7b1104480a733be"
+size = 14334
+mtime_ms = 1792667161009
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/1a9873ef-f28a-4e81-b1fe-1ffd7c428bcd/c9c733ae-9fc1-49e2-b7ec-3b0ff0efdc7c"
+storage_version_token = "1792667214293307"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "98EgDhb8jXUUQwrdwltrp"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/production-parity-audit.md"
+type = "text"
+title = "Production and review-copy parity audit"
+description = "Route-level comparison and safe release boundary between the Vercel source and isolated Replit copy."
+logical_id = "f7824d42-6b36-4b7b-8740-b01fb9c1ce18"
+content_hash = "sha256:a6fb45a80e478049b64cc87d2608b33272a404335b2ba4a38ab116d806dbabb2"
+size = 15535
+mtime_ms = 1792664977870
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/f7824d42-6b36-4b7b-8740-b01fb9c1ce18/8ecf5b30-f143-4857-bb96-2cf5f1700f3e"
+storage_version_token = "1792667215668013"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "8CDyjEzmB7PnsGHnwHIyz"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/production-parity-route-inventory.csv"
+type = "table"
+title = "ENVOD KINGDOM route-by-route parity inventory"
+description = "All 92 checked routes with production responses, canonicals, language metadata, sitemap membership, review-build output, hreflang, and approval notes."
+logical_id = "e835671b-ea0b-49b2-936d-f3da700db034"
+content_hash = "sha256:9df682a99d7c382948f02d76b3b6f2fe0ba08feb60d5e0832cdae0ad00c74e79"
+size = 82700
+mtime_ms = 1792664833186
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/e835671b-ea0b-49b2-936d-f3da700db034/e462549e-6a5c-4716-b701-d751661ac74c"
+storage_version_token = "1792664997279885"
+content_type = "text/csv"
+
+[[outputs]]
+id = "Ui9qIGBTICDjrv8GNnDQN"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/addendum-2-analysis.md"
+type = "text"
+title = "Addendum 2 SEO evidence report"
+description = "Findings from the GSC, backlink, bilingual keyword, SerpOK, and source-file review."
+logical_id = "6a12678e-5bd7-4213-b3ae-f52e766a8d2f"
+content_hash = "sha256:68ef100435d07088e61837ff209194cf5fc8ff3f2a24d5b76e13452a1ad75290"
+size = 10100
+mtime_ms = 1792666647339
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/6a12678e-5bd7-4213-b3ae-f52e766a8d2f/0b52d023-1ff9-4e6c-981e-da6932ebd965"
+storage_version_token = "1792666841556252"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "tKueoVQxAh69NV0OWQcI-"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/source-file-inventory.csv"
+type = "table"
+title = "Source-file inventory"
+description = "Exact source paths, sizes, hashes, row counts, fields, availability, and evidence limits."
+logical_id = "032cae78-2f78-450a-89f3-bb08225d4fe8"
+content_hash = "sha256:11441133d980a066ba642091a59ad79382f03863336dbfdd4b7fd1f63bd6c452"
+size = 27298
+mtime_ms = 1792666736846
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/032cae78-2f78-450a-89f3-bb08225d4fe8/3338dcd3-fbb6-4829-94c2-4ff976002b13"
+storage_version_token = "1792666842843868"
+content_type = "text/csv"
+
+[[outputs]]
+id = "1uob0-akHMI216Sq8IupU"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/keyword-source-reconciliation.csv"
+type = "table"
+title = "Keyword source reconciliation"
+description = "Separates missing e1/e2 inputs from the available candidate, planner, and derived datasets."
+logical_id = "6e07dda7-07c9-4868-9526-bff884d824b7"
+content_hash = "sha256:95041705e0ea52c32827947cd09555b274d875489631d1e255db8bac91d4a845"
+size = 4878
+mtime_ms = 1792666453871
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/6e07dda7-07c9-4868-9526-bff884d824b7/2f8d8e86-a365-4e36-b9fe-12181a1e687d"
+storage_version_token = "1792666844100649"
+content_type = "text/csv"
+
+[[outputs]]
+id = "8YO4GaDMunfGSOW1JtiIP"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/keyword-map.csv"
+type = "table"
+title = "Bilingual keyword map"
+description = "2,935 candidate mappings with source identity, production route status, and measured-data limits."
+logical_id = "3674caa3-19cb-444a-b99f-bd9cfe4f8bcf"
+content_hash = "sha256:1949daed941a83d486de2fc928a1d58a38fba9cd1fbcbfef7a134ec66eb1d74c"
+size = 5789331
+mtime_ms = 1792666454214
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/3674caa3-19cb-444a-b99f-bd9cfe4f8bcf/cb69e6ac-5d2f-47de-98ef-126a2acf24b8"
+storage_version_token = "1792666845551273"
+content_type = "text/csv"
+
+[[outputs]]
+id = "Y1gy1XsZ_B2doFu-g9Rvw"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/target-query-strategy.csv"
+type = "table"
+title = "Target query and route strategy"
+description = "Existing English and Arabic route candidates, actual route status, and evidence gates."
+logical_id = "f9ecf0e6-c375-4161-ba69-a9063efc1626"
+content_hash = "sha256:6dd8cf0f5bc4df8a298dba0431937ab7beebf61babcf25e072c5d52a13c1030b"
+size = 10417
+mtime_ms = 1792666576173
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/f9ecf0e6-c375-4161-ba69-a9063efc1626/a69ddb8e-762f-487e-a110-f9755153fde8"
+storage_version_token = "1792666846836768"
+content_type = "text/csv"
+
+[[outputs]]
+id = "7XwuiG0Fs8qiFdj3x7XgJ"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/gsc-opportunity-analysis.csv"
+type = "table"
+title = "GSC query opportunity analysis"
+description = "Owner-reported query samples kept separate from unverified actual GSC metrics and landing pages."
+logical_id = "772c36af-2e73-4ba6-b358-592468e3c8e7"
+content_hash = "sha256:8dca084ca38ebe798b258fc68f28c651410158ee030ba8dcd08d79d4a7f3587f"
+size = 4379
+mtime_ms = 1792666453872
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/772c36af-2e73-4ba6-b358-592468e3c8e7/44fbb8b7-b1ae-4f9a-9732-e7ec645f9ef0"
+storage_version_token = "1792666848085388"
+content_type = "text/csv"
+
+[[outputs]]
+id = "RhfnbbH_azkjOu8attceN"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/backlink-risk-review.md"
+type = "text"
+title = "Backlink risk review"
+description = "Unverified summary findings, manual-action status, and safe next steps; no links were classified."
+logical_id = "7f09351c-a3df-48fa-8cef-d658c7a77c60"
+content_hash = "sha256:32d5b63e84dd5b8ec814da0c28d96a0dd8c3417bf83430298aae4b4d6b1c3536"
+size = 3344
+mtime_ms = 1792666678378
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/7f09351c-a3df-48fa-8cef-d658c7a77c60/c7637a13-3933-4eb8-bff9-28ff18474e88"
+storage_version_token = "1792666849772140"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "U5ePo0g7FBHRu7NhLtbVx"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/owner-data-request.md"
+type = "text"
+title = "Owner data request checklist"
+description = "Exact GSC, backlink, keyword, SerpOK, and Screaming Frog inputs needed to finish the analysis."
+logical_id = "336434ee-4b14-4bd2-8e70-dc7b89eba39c"
+content_hash = "sha256:1bd0219b69084abd8b1d9047aab830cb1d5a90946108ac083cedc8d8aea04635"
+size = 2551
+mtime_ms = 1792666655201
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/336434ee-4b14-4bd2-8e70-dc7b89eba39c/19cb9440-d9b1-4e3b-b0fd-ede3c5178d3c"
+storage_version_token = "1792666851049215"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "1Fm60XEHBWXo-VmvoV0iK"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/backlink-review.csv"
+type = "table"
+title = "Backlink review template"
+description = "Empty review schema prepared for the original export; contains zero fabricated link rows."
+logical_id = "6cb3b5d3-495a-4d78-8e0f-65bff9783fd0"
+content_hash = "sha256:6ff00af54af4749df25852b3e304918d1d1b36c1763d83d27c4a9cdf07fadb05"
+size = 545
+mtime_ms = 1792666454215
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/6cb3b5d3-495a-4d78-8e0f-65bff9783fd0/491c93fc-8a24-4006-82fb-00f739b88743"
+storage_version_token = "1792666876074595"
+content_type = "text/csv"
+
+[[outputs]]
+id = "T5Diz_Mit9oKojVAOVRLU"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/source-evidence-register.csv"
+type = "table"
+title = "SEO evidence register"
+description = "Sources, observation dates, verification status, and limits for the audit findings."
+logical_id = "fe360bf5-febb-4d44-aca8-284ad05567ea"
+content_hash = "sha256:d568f517b0c0e531fbfaafb9764594ddcfd440df9d774bf617497c4622bf6e11"
+size = 8091
+mtime_ms = 1792666736848
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/fe360bf5-febb-4d44-aca8-284ad05567ea/f3c2f98c-cdcb-4dda-aeab-56c99368dcfc"
+storage_version_token = "1792666877395896"
+content_type = "text/csv"
+
+[[outputs]]
+id = "WBmzllVHkUKGYrY0JTcWa"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/serpok-reported-keyword-estimates.csv"
+type = "table"
+title = "SerpOK estimate reconciliation"
+description = "Three distinct owner-supplied estimates for one query, kept separate from Google metrics."
+logical_id = "28083049-feba-4aad-9753-dc93a051361f"
+content_hash = "sha256:1ba32963533e75c5914d453b5ce409a058e61d6576391a4320f9ab78d6df4d49"
+size = 1162
+mtime_ms = 1792666453872
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/28083049-feba-4aad-9753-dc93a051361f/b88bf07e-5ef5-4219-9949-ab2d9f2292f9"
+storage_version_token = "1792666878689967"
+content_type = "text/csv"
+
+[[outputs]]
+id = "9yw91BVH580q44Y79PjOh"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/seo-remediation-plan.md"
+type = "text"
+title = "Integrated SEO remediation plan"
+description = "Prioritized technical, content, source-data, route, and safety actions with verification gates."
+logical_id = "8876dc41-1cb9-4ec5-8884-d455027e212a"
+content_hash = "sha256:8bfbf71c8d5c4f1d7d72d0a8faacda198b8c6bf0397d9f82884cefa62f0150da"
+size = 10664
+mtime_ms = 1792666687987
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/8876dc41-1cb9-4ec5-8884-d455027e212a/4d389675-2e57-4d28-a0c2-67b8594d1b0a"
+storage_version_token = "1792666879982032"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "wYAL22u29m7FrIX2nqVhY"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/implementation-results.md"
+type = "text"
+title = "Implementation and validation results"
+description = "What was changed and verified, what remains unverified, and the production safety boundary."
+logical_id = "c4655b75-2e4d-4ebb-a7de-55e312d0d040"
+content_hash = "sha256:35d0563ee2a7285e1041b1ad166c784e8cd55a304d6541d2ea80a82ceba5a4ab"
+size = 12610
+mtime_ms = 1792666697231
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/c4655b75-2e4d-4ebb-a7de-55e312d0d040/5961244a-5208-4f6d-b8fe-bb3b28b9400c"
+storage_version_token = "1792666881300376"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "OTY7ehXXwEMg70QsBqgtG"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/seo-validation-results.md"
+type = "text"
+title = "SEO implementation validation report"
+description = "Build, tests, route checks, browser review, production crawl, and unavailable external checks."
+logical_id = "6a5815ca-a5e9-4839-840f-126700b5b919"
+content_hash = "sha256:7fc47248e28678119d7c0e4a2a055fa58919ae81b914b1d5a2984347b6f85d01"
+size = 6938
+mtime_ms = 1792659075931
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/6a5815ca-a5e9-4839-840f-126700b5b919/259f7e9f-0cfa-43fd-9866-7025f820feb9"
+storage_version_token = "1792667217406381"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "3l82uXsoA0gzWz7SCqthX"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/seo-competitor-gap-analysis.md"
+type = "text"
+title = "Competitor gap analysis"
+description = "Direct competitor observations and content opportunities with evidence limits."
+logical_id = "55a2df03-aec1-489a-abb4-294d112b989c"
+content_hash = "sha256:bc9e8c6a6e835bfc66064d9ce0c16e471ab29b8b1b611b2872c666921601dd36"
+size = 8117
+mtime_ms = 1792658861491
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/55a2df03-aec1-489a-abb4-294d112b989c/7bb83e2b-5431-4e9e-8f4b-7af7de14f19e"
+storage_version_token = "1792667219030148"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "p0Ax73zqO_HFApCak4a8u"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/seo-url-inventory.csv"
+type = "table"
+title = "SEO URL inventory"
+description = "Existing and candidate English/Arabic routes, metadata, and production status."
+logical_id = "b52ca811-1f0c-4049-945c-9ad120c96449"
+content_hash = "sha256:9afc53c092b89590ec1ccfd47443891902840bba4d2be8f1d085f7ea45ccd080"
+size = 99632
+mtime_ms = 1792658537407
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/b52ca811-1f0c-4049-945c-9ad120c96449/0036740f-20c5-4808-9602-b519c891a1e3"
+storage_version_token = "1792667220541986"
+content_type = "text/csv"
+
+[[outputs]]
+id = "oFfRTWFe0h86OrBgff5oU"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/seo-keyword-opportunity-matrix.csv"
+type = "table"
+title = "SEO keyword-to-page matrix"
+description = "Candidate English/Arabic keyword clusters mapped to existing pages with unmeasured metrics left blank."
+logical_id = "fa31ee2b-95d7-43c8-a5a9-bd7a16a72332"
+content_hash = "sha256:0718bcf234bf1be7966d50cfc0acab51d3be9d0c8eb281592b7855deec1f0fc1"
+size = 4201039
+mtime_ms = 1792658763700
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/fa31ee2b-95d7-43c8-a5a9-bd7a16a72332/44c4461d-7c79-49ce-9222-7e9f54e5ad84"
+storage_version_token = "1792667222039968"
+content_type = "text/csv"
+
+[[outputs]]
+id = "VXuw7EuJAgnmIN7U4gD-2"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/seo-metadata-inventory.csv"
+type = "table"
+title = "SEO metadata inventory"
+description = "Production and review-copy page titles, descriptions, and route metadata."
+logical_id = "222567da-456e-4445-b77b-623c6ec16091"
+content_hash = "sha256:9f0fa00209f74cadd36390d1539263a80e03f18e9a966848f8ad1ceebdc3b593"
+size = 60388
+mtime_ms = 1792658537408
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/222567da-456e-4445-b77b-623c6ec16091/54ebe302-e14d-4354-9eb4-4d5a6dce1837"
+storage_version_token = "1792667223896616"
+content_type = "text/csv"
+
+[[outputs]]
+id = "uCIlOUfoqA36Y3Z37_-6G"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/competitor-research-addendum-3.md"
+type = "text"
+title = "ENVOD — Current competitor research addendum"
+description = "Direct competitor-page findings, bilingual SERP access limits, SerpOK reconciliation, and the QTR Pages link check."
+logical_id = "4c79f579-681c-4aa4-b704-888c3ae85045"
+content_hash = "sha256:3416a6858946cb3ea9e858303cc2ae265a2203b474eab98a1afe316af2c5cad5"
+size = 9810
+mtime_ms = 1792668214544
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/4c79f579-681c-4aa4-b704-888c3ae85045/3719eb2f-ab3a-42d1-964a-3a5806d9e2ed"
+storage_version_token = "1792668250815128"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "M1jPrdR5U_lFdjGcTzju7"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/serpok-metric-reconciliation.csv"
+type = "table"
+title = "SerpOK competitor metric reconciliation"
+description = "Source-preserving comparison of the supplied Shaker and Globus keyword estimates."
+logical_id = "c3768b63-5ab9-405f-9ab4-1ca9cb2028eb"
+content_hash = "sha256:6bb1dcf3611b03f744cb7956e57193963d6ce87313a55b17420d4bfad5b23a13"
+size = 2414
+mtime_ms = 1792668141716
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/c3768b63-5ab9-405f-9ab4-1ca9cb2028eb/008949ee-0bcc-4096-a5cd-b1f875fb2693"
+storage_version_token = "1792668252182433"
+content_type = "text/csv"
+
+[[outputs]]
+id = "8h-kRgVF3XCOtEG2hqZ35"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/ksa-search-access-log.csv"
+type = "table"
+title = "Saudi English and Arabic search access log"
+description = "Twelve dated Google and Bing query attempts with request URLs and access/localization limits."
+logical_id = "b18ed062-87f9-47cc-90af-99b08dfbd11f"
+content_hash = "sha256:47f8b223edb112d3c76c96beb2bdf9c8bb352b24509a626b7def2c55b80708a6"
+size = 5291
+mtime_ms = 1792668084166
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/b18ed062-87f9-47cc-90af-99b08dfbd11f/a9be73fe-377b-43b7-a0f1-5b350f6a84c8"
+storage_version_token = "1792668253571716"
+content_type = "text/csv"
+
+[[outputs]]
+id = "U6oqEcwqt5vUJ4idTMGtR"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/qtrpages-link-review.csv"
+type = "table"
+title = "QTR Pages to Globus link review"
+description = "Observed English and Arabic links, target status, and the unverified seven-link SerpOK summary."
+logical_id = "fd384381-7caa-4946-8d61-08d69a47f061"
+content_hash = "sha256:266c81e250390739c93f4566b2ea0bb0a9c292627a9081d480bed38d8c06c081"
+size = 1742
+mtime_ms = 1792667985979
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/fd384381-7caa-4946-8d61-08d69a47f061/7436fc51-034f-4f50-a427-6cd9e9fe87b6"
+storage_version_token = "1792668254895714"
+content_type = "text/csv"
+
+[[outputs]]
+id = "RyC_mnaUNaJmIKf8kHwMA"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/animated-counter-regression-report.md"
+type = "text"
+title = "ENVOD Animated Counter Audit"
+description = "Production-vs-review findings, bilingual accessibility and animation checks, verified claim limits, and remaining production issues."
+logical_id = "a77dc5ab-4c81-44f9-84e6-eb290e949793"
+content_hash = "sha256:38983271a5f3687bb7088ce212efdbe76635fda03bbf7e12a81c6dd706bef521"
+size = 6237
+mtime_ms = 1792670694718
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/a77dc5ab-4c81-44f9-84e6-eb290e949793/5d09e161-7192-4d6c-89c8-63a5ab3005ce"
+storage_version_token = "1792670741915889"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "AWgSLbPG9u6YtMkhz1xCz"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/animated-counter-inventory.csv"
+type = "table"
+title = "ENVOD Counter and Trust-Metric Inventory"
+description = "English and Arabic counter values, approved placement limits, excluded claims, live zero placeholders, and static catalog counts."
+logical_id = "8cfbc836-3efa-423e-9d24-6fc18ad629f8"
+content_hash = "sha256:179bc702237b997352b7452de67bcee48adbed3147fe16bb3fe716b5dca80bfa"
+size = 9114
+mtime_ms = 1792670629109
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/8cfbc836-3efa-423e-9d24-6fc18ad629f8/e837b721-f850-4bdf-9ff7-e1d59b523c4e"
+storage_version_token = "1792670743333462"
+content_type = "text/csv"
+
+[[outputs]]
+id = "CL7I-9iMq4kCqTtorwSxv"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/screaming-frog-remediation-2026-10-22.md"
+type = "text"
+title = "ENVOD KINGDOM SEO Remediation Audit"
+description = "Evidence reconciliation, review-copy fixes, test results, and production release blockers. No production changes were made."
+logical_id = "8f47f7ba-c138-41d1-8e5b-10f6cc84b0ee"
+content_hash = "sha256:1df86b44c889fb60596a15372e9c71fda4ee76d24831cbd3f1ca59c65a95cad8"
+size = 14056
+mtime_ms = 1792675690031
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/8f47f7ba-c138-41d1-8e5b-10f6cc84b0ee/5de2750b-5c9f-47ad-a0eb-4421a013057c"
+storage_version_token = "1792675709463547"
+content_type = "text/markdown"
+
+[[outputs]]
+id = "NNbD7aqeneuu8Pgekp3uX"
+uri = "file://generated-artifacts/services-section-before-desktop.jpg"
+type = "image"
+title = "Before — desktop"
+description = "Previous homepage services order, recreated in a temporary browser snapshot; 3 featured cards and the original 10-card grid."
+logical_id = "94dc5356-4525-4f15-bdb5-806396a70fb5"
+content_hash = "sha256:6b9f0c53753bd83bc926b12c61cdf4b71d8f4f7003280ea36407dabdc68c09ad"
+size = 507369
+mtime_ms = 1792677541135
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/94dc5356-4525-4f15-bdb5-806396a70fb5/e8d05d1b-382d-4056-801d-ec7ba5e8fa5c"
+storage_version_token = "1792677793626156"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "4knXF6cCd4OE6RbDtC45f"
+uri = "file://generated-artifacts/services-section-after-desktop.jpg"
+type = "image"
+title = "After — desktop"
+description = "Updated homepage services section with the requested 16-card order."
+logical_id = "15f3ca4e-b44f-483c-8269-664f857532f2"
+content_hash = "sha256:ad02d5c0442de6c8ef60ce56dfe93a06611346f43e854db6332514a2b7dc134b"
+size = 606312
+mtime_ms = 1792677551879
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/15f3ca4e-b44f-483c-8269-664f857532f2/85909b9e-2136-4c5d-ab8e-61d896745e15"
+storage_version_token = "1792677795042630"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "d05NFSFEQCAGDG4R6ghm_"
+uri = "file://generated-artifacts/services-section-before-tablet.jpg"
+type = "image"
+title = "Before — tablet"
+description = "Previous homepage services order and tablet layout, recreated in a temporary browser snapshot."
+logical_id = "2a3ddf20-582f-481e-b39a-651998b6aeaa"
+content_hash = "sha256:629572fc24745d4af18800d83f1a29ccf0375378b42803e8912fdbd3cea544d3"
+size = 438618
+mtime_ms = 1792677544271
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/2a3ddf20-582f-481e-b39a-651998b6aeaa/50aa5138-70b5-4263-b87a-0fc9ee0b2c1b"
+storage_version_token = "1792677796836328"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "dXb6LD_7k9pcRD3u3GuV4"
+uri = "file://generated-artifacts/services-section-after-tablet.jpg"
+type = "image"
+title = "After — tablet"
+description = "Updated tablet layout with two columns and the requested 16-card order."
+logical_id = "509214b4-09b4-47ef-b8f9-2300517ef7f1"
+content_hash = "sha256:221fdbb095d5697a1e21049f97788e8bf7b047a20fe72ed6e77a0bab9c09656e"
+size = 547434
+mtime_ms = 1792677555063
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/509214b4-09b4-47ef-b8f9-2300517ef7f1/da72a236-163a-41fa-aeb1-6b586e549bdb"
+storage_version_token = "1792677798288983"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "JGVEBMit6MToOpL8iSUFv"
+uri = "file://generated-artifacts/services-section-before-mobile.jpg"
+type = "image"
+title = "Before — mobile"
+description = "Previous homepage services order, recreated in a temporary browser snapshot."
+logical_id = "17f12945-5d25-460d-a1b2-7ab7bc4f35c4"
+content_hash = "sha256:b57c1bde18971f50aff426eadfc29d257bafb622eb665bb1734d175071cdee6f"
+size = 460185
+mtime_ms = 1792677547763
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/17f12945-5d25-460d-a1b2-7ab7bc4f35c4/d804794c-92d1-4931-9048-ad33e564e0e9"
+storage_version_token = "1792677799672645"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "PYBRe74u4xyFrnpf6M8WW"
+uri = "file://generated-artifacts/services-section-after-mobile.jpg"
+type = "image"
+title = "After — mobile"
+description = "Updated single-column mobile layout with the requested 16-card order."
+logical_id = "0e0a465d-f36a-43ab-b311-e4f799503374"
+content_hash = "sha256:f219d17d650644dc778632e1f49139d5235b07923ea1c62138c96b30193304e6"
+size = 543058
+mtime_ms = 1792677558695
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/0e0a465d-f36a-43ab-b311-e4f799503374/66f81d74-523e-4ef1-871f-01934489f047"
+storage_version_token = "1792677801047602"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "I5Vajea50ZHWckdJrJrlv"
+uri = "file://generated-artifacts/services-section-after-arabic-mobile.jpg"
+type = "image"
+title = "After — Arabic mobile"
+description = "Arabic homepage services section in RTL, with the same requested ordering."
+logical_id = "d641092a-474d-4b76-b554-93dd623eb0e1"
+content_hash = "sha256:e3aa6a0808be9133c0e4eec6f7e6cb0e2afe8aa87003d2a8f9f9b4f2d178fdca"
+size = 490659
+mtime_ms = 1792677562331
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/d641092a-474d-4b76-b554-93dd623eb0e1/10a44051-f156-42b3-9b1e-1da96792eb94"
+storage_version_token = "1792677802374782"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "COINYbjHq8mEob7FlyfwU"
+uri = "file://generated-artifacts/door-to-door-home-card-view.jpg"
+type = "image"
+title = "Door-to-Door card — homepage desktop"
+description = "The homepage card now uses the supplied delivery photo."
+logical_id = "581795eb-8028-42ec-95ef-08a5d880d25c"
+content_hash = "sha256:22abb2064a03c80b77206c31bad4614e8c2e2c74d0764ad3a7a44515a64b8ff4"
+size = 144142
+mtime_ms = 1792678175091
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/581795eb-8028-42ec-95ef-08a5d880d25c/4d96f61a-19a0-4618-873b-352fc247c012"
+storage_version_token = "1792678323691071"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "fyw3Elg_p_TdHizUT7jAj"
+uri = "file://generated-artifacts/door-to-door-home-card-mobile-view.jpg"
+type = "image"
+title = "Door-to-Door card — homepage mobile"
+description = "Responsive mobile view of the homepage card with the supplied photo."
+logical_id = "8fb424b9-d381-4fe4-a972-9183e28645ff"
+content_hash = "sha256:c3f40d8422cbe4a4ea849668c6e48c87287d5a076e6e978cf63892c80678425f"
+size = 61366
+mtime_ms = 1792678273643
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/8fb424b9-d381-4fe4-a972-9183e28645ff/f41a729a-fb14-4239-b2cc-776e04a4922b"
+storage_version_token = "1792678325053537"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "I2TgGyuwaNDTQovPP0BXL"
+uri = "file://generated-artifacts/door-to-door-services-card-view.jpg"
+type = "image"
+title = "Door-to-Door card — services directory"
+description = "The services-directory Door-to-Door card uses the same supplied photo; the Freight Forwarding detail-page hero remains unchanged."
+logical_id = "51149e10-a51d-429e-9701-b47830f48496"
+content_hash = "sha256:67622bee004da65ee071f89108d7290dc62701c1f9d4ad17aefe01f225c83f81"
+size = 274066
+mtime_ms = 1792678271475
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/51149e10-a51d-429e-9701-b47830f48496/4ce74064-14e3-41a7-9f4a-d332246fbf63"
+storage_version_token = "1792678326613201"
+content_type = "image/jpeg"
+
+[[outputs]]
+id = "BS0l1_luBBzSXp7yEXgM1"
+uri = "file://generated-artifacts/door-to-door-discovery-card.png"
+type = "image"
+title = "Homepage service discovery card"
+description = "Desktop preview of the new Discover More Logistics Services card beside Door-to-Door Logistics."
+logical_id = "1e5dd208-c133-4390-8a48-91669358e95e"
+content_hash = "sha256:0240b531e89482be60006618e85a655faf6dd18df45613910e9040a538856543"
+size = 292847
+mtime_ms = 1792681955678
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/1e5dd208-c133-4390-8a48-91669358e95e/1079266a-10eb-49d0-a8c8-422e38162d7e"
+storage_version_token = "1792682148241289"
+content_type = "image/png"
+
+[[outputs]]
+id = "QIcTwkuQkrpup8O8rIBwu"
+uri = "file://generated-artifacts/Envod_Kingdom_KSA_Bilingual_Keyword_Master_Canonical_Page_Mappings.csv"
+type = "table"
+title = "ENVOD KINGDOM keyword master — canonical page mappings"
+description = "Separate copy of the 2,400-row keyword master with 700 draft page URLs aligned to existing canonical service pages. Search-volume and difficulty values remain unmeasured; the uploaded original is unchanged."
+logical_id = "820ce4f1-785c-453e-9d8c-de095151c730"
+content_hash = "sha256:8e6bea860dffb5cfbfb31fb0238b68e388ab12a36c8f436ca3d83a70256f8263"
+size = 932389
+mtime_ms = 1792684407041
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/820ce4f1-785c-453e-9d8c-de095151c730/652d8b0e-d232-4e9c-94cd-a8acad73e1d7"
+storage_version_token = "1792684672904472"
+content_type = "text/csv"
+
+[[outputs]]
+id = "VxfH2VR-Epl9h5Q8aynla"
+uri = "file://artifacts/envod-kingdom/docs/seo-audit/research/notes.md"
+type = "text"
+title = "ENVOD Exhibition Logistics — Research Notes"
+description = "Research plan and findings log for the English/Arabic Saudi-market SEO review."
+logical_id = "c21a7ac8-1e84-4583-81ad-a9ae4757fd39"
+content_hash = "sha256:eb68ad546a1273599c777a31376c2e5a8e671eb674a696c2e1924ac443dac5b4"
+size = 2959
+mtime_ms = 1792803094340
+storage_uri = "gcs://replit-rams-assets-sisko/rams/assets/repl:a7ebb319-37a0-4861-9dc2-9136d55cda1e/c21a7ac8-1e84-4583-81ad-a9ae4757fd39/cf7fdc6b-0334-4d3c-a561-d0276b1ad8fd"
+storage_version_token = "1792803096639334"
+content_type = "text/markdown"

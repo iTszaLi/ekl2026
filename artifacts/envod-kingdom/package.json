@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server/index.ts",
+    "prebuild": "node scripts/build-vercel-search-console.mjs",
     "build": "vite build --config vite.config.ts && vite build --config vite.config.ts --ssr src/entry-server.tsx --outDir dist/server && node prerender.mjs",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "start": "NODE_ENV=production tsx server/index.ts",
@@ -38,6 +39,7 @@
     "clsx": "catalog:",
     "country-flag-icons": "^1.6.20",
     "d3-geo": "^3.1.1",
+    "esbuild": "0.27.3",
     "framer-motion": "catalog:",
     "lucide-react": "catalog:",
     "pino-pretty": "^13.2.0",

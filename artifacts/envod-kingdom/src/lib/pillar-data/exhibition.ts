@@ -313,26 +313,20 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       cityAr: "الرياض",
     },
     {
-      name: "Malham Exhibition Centre",
-      nameAr: "مركز معارض ملهم",
+      name: "Riyadh Exhibition and Convention Center (Malham)",
+      nameAr: "مركز الرياض للمعارض والمؤتمرات (ملهم)",
       city: "Malham",
       cityAr: "ملهم",
     },
     {
-      name: "Jeddah International Exhibition & Convention Center",
-      nameAr: "مركز جدة الدولي للمعارض والمؤتمرات",
+      name: "Jeddah International Exhibition & Convention Center (Jeddah Forums and Events Center)",
+      nameAr: "مركز جدة الدولي للمعارض والمؤتمرات (مركز جدة للمنتديات والفعاليات)",
       city: "Jeddah",
       cityAr: "جدة",
     },
     {
       name: "Jeddah Superdome",
       nameAr: "قبة جدة (سوبر دوم)",
-      city: "Jeddah",
-      cityAr: "جدة",
-    },
-    {
-      name: "Jeddah Center for Forums & Events",
-      nameAr: "مركز جدة للمنتديات والفعاليات",
       city: "Jeddah",
       cityAr: "جدة",
     },
@@ -364,5 +358,6 @@ export const EXHIBITION_PILLAR: ServicePillar = {
     { label: "Project Cargo", labelAr: "شحن المشاريع", href: "/services/project-cargo" },
     { label: "Warehousing & Distribution", labelAr: "التخزين والتوزيع", href: "/services/warehousing" },
     { label: "House Moving & Relocation", labelAr: "نقل المنازل والانتقال", href: "/services/relocation" },
+    { label: "GCC Transportation", labelAr: "النقل البري داخل دول مجلس التعاون", href: "/services/gcc-transportation" },
   ],
 };

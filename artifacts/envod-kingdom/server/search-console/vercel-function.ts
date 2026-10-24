@@ -1,6 +1,6 @@
 import express from "express";
-import { createSearchConsoleRouter } from "../../server/search-console/router.js";
-import { EncryptedVercelBlobSearchConsoleStore } from "../../server/search-console/vercel-blob-store.js";
+import { createSearchConsoleRouter } from "./router.js";
+import { EncryptedVercelBlobSearchConsoleStore } from "./vercel-blob-store.js";
 
 const app = express();
 app.disable("x-powered-by");

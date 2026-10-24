@@ -105,6 +105,7 @@ export const PREPARATION_LINKS: Record<string, { slug: string; label: [string, s
   "customs-clearance": [
     { slug: "ocean-freight", label: ["Ocean freight and FCL/LCL planning", "تخطيط الشحن البحري والحاويات الكاملة والجزئية"] },
     { slug: "air-freight", label: ["Air cargo preparation", "تجهيز الشحن الجوي"] },
+    { slug: "exhibition-logistics", label: ["Customs planning for exhibition cargo", "التخطيط الجمركي لبضائع المعارض"] },
   ],
   "ocean-freight": [
     { slug: "customs-clearance", label: ["Saudi customs document preparation", "تجهيز مستندات التخليص الجمركي في السعودية"] },
@@ -122,6 +123,7 @@ export const PREPARATION_LINKS: Record<string, { slug: string; label: [string, s
   ],
   "gcc-transportation": [
     { slug: "customs-clearance", label: ["Border document preparation", "تجهيز مستندات الحدود"] },
+    { slug: "exhibition-logistics", label: ["Exhibition cargo delivery and return planning", "تخطيط تسليم بضائع المعارض وإعادتها"] },
   ],
   "freight-forwarding": [
     { slug: "ocean-freight", label: ["Choose a container-shipping arrangement", "اختيار ترتيبات الشحن بالحاويات"] },

@@ -1,0 +1,527 @@
+{
+  "researchDate": "2026-10-24",
+  "uniqueUrlCount": 52,
+  "methodology": "Four English and four Arabic query rounds plus targeted official-source checks. Search snippets are not metrics.",
+  "sources": [
+    {
+      "id": "EX01",
+      "title": "ENVOD Exhibition & Event Logistics (live page)",
+      "url": "https://www.envodkingdom.net/services/exhibition-logistics",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/envod-exhibition-live.md",
+      "notes": "First-party page; page claims are not independently verified.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX02",
+      "title": "ENVOD House Moving & Relocation (live page)",
+      "url": "https://www.envodkingdom.net/services/relocation",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/envod-relocation-live.md",
+      "notes": "First-party page.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX03",
+      "title": "ENVOD Customs Clearance (live page)",
+      "url": "https://www.envodkingdom.net/services/customs-clearance",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/envod-customs-live.md",
+      "notes": "First-party page.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX04",
+      "title": "ENVOD ATA Carnet (live page)",
+      "url": "https://www.envodkingdom.net/services/ata-carnet",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/envod-ata-live.md",
+      "notes": "First-party page.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX05",
+      "title": "ENVOD GCC Transportation (live page)",
+      "url": "https://www.envodkingdom.net/services/gcc-transportation",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/envod-gcc-live.md",
+      "notes": "First-party page.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX06",
+      "title": "Four Winds — Exhibitions and Events",
+      "url": "https://www.fourwinds-ksa.com/exhibitions-and-events",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/priority-services-02-four-winds-exhibitions.md",
+      "notes": "Provider-authored page; its ATA claim conflicts with current ZATCA/ICC sources.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX07",
+      "title": "SMI — Fairs & Exhibition Logistics",
+      "url": "https://www.smilogistics.com/fairs-exhibition-logistics",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/priority-services-03-smi-exhibitions.md",
+      "notes": "Provider-authored service page.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX08",
+      "title": "ORO Events — Event Logistics & Transportation",
+      "url": "https://oroevents.ae/services/event-logistics/",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-en-03-oro-event-logistics.html",
+      "notes": "Provider-authored page.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX09",
+      "title": "TWI — Event Services",
+      "url": "https://www.twi.ae/our-services/event-services",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-en-03-twi-services.html",
+      "notes": "Provider-authored page.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX10",
+      "title": "Rhenus — Riyadh Front Exhibition appointment result",
+      "url": "https://www.rhenus.group/news-media/en/rhenus-logistics-appointed-official-freight-forwarder-for-major-trade-shows-at-riyadh-front-exhibition-conference-centre/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet plus archive response",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-en-01-rhenus-riyadh-front.html",
+      "notes": "Search snippet says appointed freight forwarder; fetched page returned archive disclaimer, so do not treat as current appointment evidence.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX11",
+      "title": "Trans Net — Expo/Exhibition Logistics",
+      "url": "https://www.transnet-group.com/services-en/industrial-logistics-en/expo-exhibition-en",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-en-snippets.md",
+      "notes": "Provider-authored snippet.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX12",
+      "title": "SFDA — exhibition-purpose import PDF",
+      "url": "https://www.sfda.gov.sa/sites/default/files/2025-03/CRCFoodMDCEX.pdf",
+      "tier": "Tier 1",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-en-snippets.md",
+      "notes": "Product-specific regulatory context; not a general customs rule.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX13",
+      "title": "ZATCA — Temporary Admission Using ATA Carnet",
+      "url": "https://zatca.gov.sa/en/eServices/Pages/eServices-294.aspx",
+      "tier": "Tier 1",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-ata-zatca-service.md",
+      "notes": "Official pre-approval service page; updated 2026-08-31.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX14",
+      "title": "ZATCA — Temporary Admission guide",
+      "url": "https://eservices.zatca.gov.sa/sites/sc/en/CustomsGuideNew/CustomsGuideLandPorts/Pages/Page03.aspx",
+      "tier": "Tier 1",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-rules-01-zatca-temporary-admission.md",
+      "notes": "Official general temporary-admission guide; date not shown.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX15",
+      "title": "ICC — ATA Carnet in your country",
+      "url": "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country",
+      "tier": "Tier 1",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-ata-icc-country.md",
+      "notes": "ICC directory names the Federation of Saudi Chambers as the Saudi national guaranteeing association.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX16",
+      "title": "ICC WCF — ATA Chain",
+      "url": "https://iccwbo.org/world-chambers-federation/chamber-services/ata-carnet",
+      "tier": "Tier 1",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/snippets.md",
+      "notes": "Search-result excerpt; partial text only.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX17",
+      "title": "ICC — Saudi Arabia and Philippines ATA operations launch",
+      "url": "https://iccwbo.org/news-publications/news/saudi-arabia-and-the-philippines-to-launch-ata-operations-in-2024",
+      "tier": "Tier 1",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/snippets.md",
+      "notes": "Search-result excerpt; use only for the operational start date surfaced.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX18",
+      "title": "U.S. International Trade Administration — Saudi Temporary Entry",
+      "url": "https://www.trade.gov/country-commercial-guides/saudi-arabia-temporary-entry",
+      "tier": "Tier 1",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-ar-03-tradegov-temporary-entry.md",
+      "notes": "Secondary government guidance; verify current Saudi steps with ZATCA.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX19",
+      "title": "ZATCA — Event Disclosure Form",
+      "url": "https://zatca.gov.sa/en/eservices/pages/eservices-273.aspx",
+      "tier": "Tier 1",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/snippets.md",
+      "notes": "Snippet does not establish that disclosure is required for every event shipment.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX20",
+      "title": "ZATCA — Import Instructions",
+      "url": "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+      "tier": "Tier 1",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/snippets.md",
+      "notes": "Snippet only; not applied universally to Carnet shipments.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX21",
+      "title": "SMI Logistics — Arabic exhibition logistics",
+      "url": "https://www.smilogistics.com/ar/fairs-exhibition-logistics",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-arabic-smi-logistics.md",
+      "notes": "Provider-authored Arabic page; useful for vocabulary, not independent capability proof.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX22",
+      "title": "AOSS — Arabic exhibition booth design/execution",
+      "url": "https://aoss.sa/ar/services/booths-exhibitions/exhibition-booth-design-execution",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-arabic-aoss-booth-design.md",
+      "notes": "Useful to distinguish event design/build from freight logistics.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX23",
+      "title": "BENA EX — event organization",
+      "url": "https://benaex-sa.com/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-arabic-snippets.md",
+      "notes": "Snippet only; event organizer terminology.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX24",
+      "title": "Nofuth Al Qimma — event organization",
+      "url": "https://nofuthalqimma.com/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-arabic-snippets.md",
+      "notes": "Snippet only; event/stand design vocabulary.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX25",
+      "title": "Find Saudi — event/exhibition organization listing",
+      "url": "https://www.findsaudi.com/ar/Cat/839/%D8%AA%D9%86%D8%B8%D9%8A%D9%85_%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%B3%D8%A8%D8%A7%D8%AA_%D9%85%D8%B9%D8%A7%D8%B1%D8%B6.aspx?pagerId=9",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-arabic-snippets.md",
+      "notes": "Directory category; not proof of freight service.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX26",
+      "title": "Raqi — Riyadh event logistics article",
+      "url": "https://raqi.com/ar/business/event-logistics-riyadh/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/gapfill-arabic-snippets.md",
+      "notes": "Snippet only; not a freight-market demand metric.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX27",
+      "title": "Aljawad — intercity freight",
+      "url": "https://aljawad.sa.com/services/%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%B4%D8%AD%D9%86-%D8%A8%D9%8A%D9%86-%D8%A7%D9%84%D9%85%D8%AF%D9%86",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-ar-snippets.md",
+      "notes": "Snippet mentions events as a sector; scope is not established.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX28",
+      "title": "Deep Vision — Saudi event organization",
+      "url": "https://deepvision.sa/%D8%B4%D8%B1%D9%83%D8%A7%D8%AA-%D8%AA%D9%86%D8%B8%D9%8A%D9%85-%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%B6-%D9%88%D8%A7%D9%84%D9%85%D8%A4%D8%AA%D9%85%D8%B1%D8%A7%D8%AA",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-ar-snippets.md",
+      "notes": "Event organization and booth design, not freight evidence.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX29",
+      "title": "StandMaker — exhibition graphic delivery",
+      "url": "https://standmakerglobal.com/graphic-printing",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-ar-snippets.md",
+      "notes": "Printing delivery claims do not establish freight coverage or offices.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX30",
+      "title": "StandMe — booth design/build",
+      "url": "https://www.standme.sa/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-ar-snippets.md",
+      "notes": "Provider snippet; booth design/build rather than dedicated freight.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX31",
+      "title": "Automechanika Riyadh — planning and preparation",
+      "url": "https://automechanika-riyadh.ksa.messefrankfurt.com/riyadh/en/planning-preparation.html",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-01-automechanika-riyadh-planning.md",
+      "notes": "Organizer page; useful for edition details, not venue cargo rules.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX32",
+      "title": "Dhahran Expo — official event calendar",
+      "url": "https://www.dhahranexpo.com.sa/",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-02-dhahran-expo-calendar.md",
+      "notes": "Venue/company calendar; does not specify freight access procedures.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX33",
+      "title": "Jeddah Construct 2027 — event page",
+      "url": "https://www.jeddahconstruct.com/",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-03-jeddah-construct.md",
+      "notes": "Organizer page; lists March 2027 event at JIECC.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX34",
+      "title": "LEAP 2026 — Saudi Press Agency",
+      "url": "https://www.spa.gov.sa/en/w2662074",
+      "tier": "Tier 1",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-leap-2026.md",
+      "notes": "Official government news report; 2026 event is past.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX35",
+      "title": "Cityscape Global 2026 — official event hub",
+      "url": "https://cityscapeglobal.com/content-hub",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-cityscape-2026.md",
+      "notes": "Official organizer source; lists Nov 2026 dates and Malham venue.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX36",
+      "title": "Big 5 Construct Saudi 2026 — event information",
+      "url": "https://www.big5constructsaudi.com/event-info",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-big5-2026.md",
+      "notes": "Official organizer source; event dates are past as of research date.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX37",
+      "title": "Saudi Build 2026 — official FAQ",
+      "url": "https://saudi-build.com/faqs",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet plus fetch",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-date-snippets.md",
+      "notes": "Official search snippet showed 2–5 Nov 2026 at RICEC; direct fetch did not expose date details.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX38",
+      "title": "INDEX Saudi Arabia 2026 — event information",
+      "url": "https://www.index-saudi.com/event-info",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-index-2026.md",
+      "notes": "Official event page; date is past as of research date.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX39",
+      "title": "Global Health Exhibition — 2026 show information",
+      "url": "https://www.globalhealthsaudi.com/overview/show-information",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-global-health-2026.md",
+      "notes": "Current organizer page says no in-person 2026 exhibition and rescheduling to 2027; older snippets conflict.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX40",
+      "title": "Foodex Saudi 2026 — English event page",
+      "url": "https://www.foodexsaudiexpo.com/en",
+      "tier": "Tier 3",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-foodex-2026.md",
+      "notes": "English event page lists the Jeddah edition; homepage search snippet also showed a Riyadh edition.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX41",
+      "title": "Foodex Saudi — official homepage",
+      "url": "https://www.foodexsaudiexpo.com/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-event-date-snippets.md",
+      "notes": "Homepage snippet lists both Riyadh and Jeddah event dates/venues; reconcile with edition-specific organizer pages before publishing dates.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX42",
+      "title": "Jeddah Chamber — Jeddah Forums and Events Center",
+      "url": "https://www.jcci.org.sa/en/%D8%AC%D8%AF%D9%88%D9%84-%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1-%D9%85%D8%B1%D9%83%D8%B2-%D8%AC%D8%AF%D8%A9-%D9%84%D9%84%D9%85%D9%86%D8%AA%D8%AF%D9%8A%D8%A7%D8%AA-%D9%88%D8%A7%D9%84%D9%81%D8%B9%D8%A7%D9%84%D9%8A%D8%A7%D8%AA",
+      "tier": "Tier 1",
+      "evidenceMode": "fetched",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venue-jeddah-forums.md",
+      "notes": "Jeddah Chamber page uses the current venue name.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX43",
+      "title": "Machinex Saudi — JIECC venue alias",
+      "url": "https://www.machinexsaudi.com/venue",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venue-jeddah-alias-snippet.md",
+      "notes": "Snippet says JIECC is also known as Jeddah Center for Forums & Events; supports alias merge, not a venue-operated statement.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX44",
+      "title": "SEREDO 2026 — Saudi Press Agency",
+      "url": "https://www.spa.gov.sa/en/N2648674",
+      "tier": "Tier 1",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-snippets.md",
+      "notes": "Event was 6–8 Sep 2026 at Jeddah Superdome; past event.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX45",
+      "title": "Heavy Equipment Connect 2026",
+      "url": "https://hecfe.com/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-snippets.md",
+      "notes": "Event was Feb 2026 at Dhahran Expo; past event.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX46",
+      "title": "FSB Riyadh 2027",
+      "url": "https://www.fsb-riyadh.com/",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-snippets.md",
+      "notes": "Organizer snippet lists June 2027 at RICEC; recheck before planning.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX47",
+      "title": "Riyadh Exhibitions Company — event listing",
+      "url": "https://www.recexpo.com/en/index.asp",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-snippets.md",
+      "notes": "Search excerpt lists an Oct 2026 event, past by research date.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX48",
+      "title": "Automechanika Riyadh — event home",
+      "url": "https://automechanika-riyadh.ksa.messefrankfurt.com/riyadh/en.html",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/exhibition-venues-snippets.md",
+      "notes": "Organizer snippet lists Jan 2027 at RFECC.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX49",
+      "title": "GBE Logistics — international freight and customs",
+      "url": "https://gbe.sa/pages/services-international-freight.html",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/priority-services-snippets.md",
+      "notes": "Provider snippet; service-pattern observation only.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX50",
+      "title": "AMCC — customs clearance",
+      "url": "https://amcc-saudi.com/customs-clearance",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/priority-services-snippets.md",
+      "notes": "Provider snippet; service-pattern observation only.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX51",
+      "title": "SMI — relocation services",
+      "url": "https://www.smilogistics.com/relocation-services",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/priority-services-snippets.md",
+      "notes": "Provider snippet; audience framing only.",
+      "accessedAt": "2026-10-24"
+    },
+    {
+      "id": "EX52",
+      "title": "GAC Moving — Moving to Saudi Arabia",
+      "url": "https://moving.gac.com/move-destinations/moving-to-saudi-arabia",
+      "tier": "Tier 3",
+      "evidenceMode": "snippet",
+      "evidencePath": "artifacts/envod-kingdom/docs/seo-audit/research/sources/priority-services-snippets.md",
+      "notes": "Provider snippet; credential claim not independently verified.",
+      "accessedAt": "2026-10-24"
+    }
+  ]
+}
