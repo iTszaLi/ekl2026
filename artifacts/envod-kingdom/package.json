@@ -29,7 +29,6 @@
     "@tailwindcss/vite": "catalog:",
     "@types/compression": "^1.8.1",
     "@types/d3-geo": "^3.1.0",
-    "@types/express": "^5.0.6",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
@@ -55,6 +54,7 @@
   "dependencies": {
     "@replit/connectors-sdk": "^0.4.3",
     "@studio-freight/lenis": "^1.0.42",
+    "@types/express": "^5.0.6",
     "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "2.8.2",
     "compression": "^1.8.2",

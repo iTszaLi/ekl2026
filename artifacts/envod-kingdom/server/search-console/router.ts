@@ -7,6 +7,7 @@ import express, {
   type RequestHandler,
   type Response,
 } from "express";
+import type {} from "pino-http";
 import { z } from "zod";
 import { crawlEnvodKingdom } from "./crawler.js";
 import {
