@@ -626,24 +626,32 @@ export default function Contact() {
                       </div>
                     </section>
 
-                    <label className="flex items-start gap-3 text-[13px] leading-relaxed text-white/60">
-                      <input
-                        type="checkbox"
-                        checked={privacyConsent}
-                        onChange={(event) => {
-                          setPrivacyConsent(event.target.checked);
-                          setSubmitError("");
-                        }}
-                        required
-                        className="mt-1 accent-secondary"
-                      />
-                      <span>
-                        {t(
-                          "I agree that ENVOD KINGDOM may use these details to respond to my enquiry.",
-                          "أوافق على استخدام إنفود كينغدوم لهذه البيانات للرد على استفساري.",
-                        )}
-                      </span>
-                    </label>
+                    <div>
+                      <label className="flex items-start gap-3 text-[13px] leading-relaxed text-white/60">
+                        <input
+                          type="checkbox"
+                          checked={privacyConsent}
+                          onChange={(event) => {
+                            setPrivacyConsent(event.target.checked);
+                            setSubmitError("");
+                          }}
+                          required
+                          className="mt-1 accent-secondary"
+                        />
+                        <span>
+                          {t(
+                            "I agree that ENVOD KINGDOM may use these details to respond to my enquiry.",
+                            "أوافق على استخدام إنفود كينغدوم لهذه البيانات للرد على استفساري.",
+                          )}
+                        </span>
+                      </label>
+                      <Link
+                        href="/privacy-policy"
+                        className="ms-7 mt-1 inline-flex text-xs font-semibold text-secondary underline decoration-secondary/40 underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                      >
+                        {t("Privacy Notice", "إشعار الخصوصية")}
+                      </Link>
+                    </div>
 
                     {submitError && (
                       <p role="alert" className="text-[13px] text-red-300">

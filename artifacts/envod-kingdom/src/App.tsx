@@ -23,6 +23,7 @@ const ServiceDetail = routePages.service.Page;
 const Industries = routePages.industries.Page;
 const IndustryDetail = routePages.industry.Page;
 const Vision2030 = routePages.vision.Page;
+const Legal = routePages.legal.Page;
 const NotFound = routePages.notFound.Page;
 
 function ScrollToTop() {
@@ -88,6 +89,15 @@ function Router() {
       <Route path="/blog/:slug"><Redirect to="/gallery" /></Route>
       <Route path="/contact">
         <MainLayout><Contact /></MainLayout>
+      </Route>
+      <Route path="/privacy-policy">
+        <MainLayout><Legal page="privacy" /></MainLayout>
+      </Route>
+      <Route path="/terms-and-conditions">
+        <MainLayout><Legal page="terms" /></MainLayout>
+      </Route>
+      <Route path="/cookie-notice">
+        <MainLayout><Legal page="cookies" /></MainLayout>
       </Route>
       <Route path="/admin/search-console">
         <Suspense fallback={<AdminRouteLoading />}>

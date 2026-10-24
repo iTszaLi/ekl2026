@@ -194,7 +194,7 @@ export default function LegalPage({ page }: { page: LegalPageKind }) {
 
   return (
     <article
-      className="min-h-screen bg-background px-4 pb-24 pt-32 text-white"
+      className="min-h-[65vh] bg-background px-4 pb-24 pt-32 text-white"
       dir={isRtl ? "rtl" : "ltr"}
     >
       <div className="mx-auto max-w-3xl">
@@ -215,14 +215,23 @@ export default function LegalPage({ page }: { page: LegalPageKind }) {
             </section>
           ))}
         </div>
-        <div className="mt-12 flex flex-wrap gap-5 border-t border-white/10 pt-6 text-sm">
+        <nav aria-label={t("Legal notices", "الإشعارات القانونية")} className="mt-12 flex flex-wrap gap-x-5 gap-y-3 border-t border-white/10 pt-6 text-sm">
+          <Link href="/privacy-policy" className="text-secondary hover:underline">
+            {t("Privacy Notice", "إشعار الخصوصية")}
+          </Link>
+          <Link href="/terms-and-conditions" className="text-secondary hover:underline">
+            {t("Terms of Use", "شروط الاستخدام")}
+          </Link>
+          <Link href="/cookie-notice" className="text-secondary hover:underline">
+            {t("Cookie Notice", "إشعار ملفات تعريف الارتباط")}
+          </Link>
           <Link href="/" className="text-secondary hover:underline">
             {t("Home", "الرئيسية")}
           </Link>
           <Link href="/contact" className="text-secondary hover:underline">
             {t("Contact us", "اتصل بنا")}
           </Link>
-        </div>
+        </nav>
       </div>
     </article>
   );

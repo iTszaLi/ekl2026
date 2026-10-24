@@ -30,6 +30,7 @@ export const routePages = {
   about: loadPage(() => import("../pages/about")),
   gallery: loadPage(() => import("../pages/gallery/index")),
   contact: loadPage(() => import("../pages/contact")),
+  legal: loadPage<{ page: "privacy" | "terms" | "cookies" }>(() => import("../pages/legal")),
   notFound: loadPage(() => import("../pages/not-found")),
 };
 
@@ -44,6 +45,7 @@ export async function preloadRoute(path: string): Promise<void> {
     : route === "/vision-2030" ? routePages.vision
     : route === "/about" ? routePages.about
     : route === "/contact" ? routePages.contact
+    : route === "/privacy-policy" || route === "/terms-and-conditions" || route === "/cookie-notice" ? routePages.legal
     : route === "/track" ? routePages.track
     : route === "/gallery" || route.startsWith("/blog") ? routePages.gallery
     : routePages.notFound;

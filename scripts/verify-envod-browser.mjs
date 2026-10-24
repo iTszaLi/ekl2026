@@ -75,7 +75,7 @@ try {
   await page.locator("#phone").fill("+966500000000");
   await page.locator('input[type="checkbox"]').check();
   await page.getByLabel("Service Interested In", { exact: false }).click();
-  await page.getByRole("option", { name: "Other Logistics Requirements", exact: true }).click();
+  await page.getByRole("option", { name: "Other / General Enquiry", exact: true }).click();
   await page.locator('form button[type="submit"]').click();
   await page.locator("#requirementsText-error").waitFor();
   assert.equal(acceptedRequests, 0, "Other must be described before submitting");
@@ -89,7 +89,7 @@ try {
 
   await page.goto(`${origin}/services/customs-clearance`);
   await page.getByRole("heading", { name: "Prepare your Saudi customs clearance enquiry" }).waitFor();
-  await page.getByRole("link", { name: "Request a Quote", exact: true }).click();
+  await page.getByRole("main").getByRole("link", { name: "Request a Quote", exact: true }).click();
   await page.waitForURL("**/contact?service=customs-clearance");
   await page.locator("#requirementsText").waitFor();
   assert.equal(await page.locator("form").getByRole("link", { name: "Privacy Notice", exact: true }).count(), 1);
@@ -120,10 +120,14 @@ try {
   await page.getByRole("button", { name: "Send another message", exact: true }).waitFor();
   assert.equal(acceptedRequests, 3);
   assert.equal(new Set(submissionIds.contact).size, 1);
-  const contactEvents = await page.evaluate(() => window.dataLayer || []);
-  assert.equal(contactEvents.filter((event) => event.event === "contact_form_submit_success").length, 1);
-  assert.equal(contactEvents.filter((event) => event.event === "contact_form_submit_failure").length, 2);
-  assert(contactEvents.filter((event) => event.event === "contact_form_submit_failure").every((event) => event.service_category === "Customs Clearance"));
+  const contactEvents = await page.evaluate(() =>
+    (window.vaq || [])
+      .filter(([type]) => type === "event")
+      .map(([, event]) => event),
+  );
+  assert.equal(contactEvents.filter((event) => event.name === "contact_form_submit_success").length, 1);
+  assert.equal(contactEvents.filter((event) => event.name === "contact_form_submit_failure").length, 2);
+  assert(contactEvents.filter((event) => event.name === "contact_form_submit_failure").every((event) => event.data.service_category === "Customs Clearance"));
   assert(!JSON.stringify(contactEvents).includes("test@example.com"));
   assert(!JSON.stringify(contactEvents).includes("Automated test"));
   assert(!JSON.stringify(contactEvents).includes("+966500000000"));
@@ -159,10 +163,14 @@ try {
   await dialog.getByRole("heading", { name: "Request Accepted", exact: true }).waitFor();
   assert.equal(acceptedRequests, 6);
   assert.equal(new Set(submissionIds.quote).size, 1);
-  const quoteEvents = await page.evaluate(() => window.dataLayer || []);
-  assert.equal(quoteEvents.filter((event) => event.event === "quote_form_submit_success").length, 1);
-  assert.equal(quoteEvents.filter((event) => event.event === "quote_form_submit_failure").length, 2);
-  assert(quoteEvents.filter((event) => event.event === "quote_form_submit_failure").every((event) => event.service_category === "Air Freight"));
+  const quoteEvents = await page.evaluate(() =>
+    (window.vaq || [])
+      .filter(([type]) => type === "event")
+      .map(([, event]) => event),
+  );
+  assert.equal(quoteEvents.filter((event) => event.name === "quote_form_submit_success").length, 1);
+  assert.equal(quoteEvents.filter((event) => event.name === "quote_form_submit_failure").length, 2);
+  assert(quoteEvents.filter((event) => event.name === "quote_form_submit_failure").every((event) => event.data.service_category === "Air Freight"));
   assert(!JSON.stringify(quoteEvents).includes("test@example.com"));
   assert(!JSON.stringify(quoteEvents).includes("Automated quote test"));
   assert(!JSON.stringify(quoteEvents).includes("+966500000000"));

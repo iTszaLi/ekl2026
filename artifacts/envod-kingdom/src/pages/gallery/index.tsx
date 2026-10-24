@@ -142,7 +142,7 @@ function GalleryCard({ item, onOpen, t, isRtl }: { item: GalleryItem; onOpen: ()
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-4">
-          <h3 className="text-white font-bold text-base leading-snug mb-1.5 line-clamp-2">{title}</h3>
+          <h2 className="text-white font-bold text-base leading-snug mb-1.5 line-clamp-2">{title}</h2>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-white/70">
             {location && (
               <span className="flex items-center gap-1">

@@ -170,6 +170,9 @@ export const ENGLISH_CONTENT_ROUTES: string[] = [
   "/about",
   "/gallery",
   "/contact",
+  "/privacy-policy",
+  "/terms-and-conditions",
+  "/cookie-notice",
   "/industries",
   "/vision-2030",
   "/track",
@@ -276,6 +279,27 @@ const STATIC: Record<string, SeoConfig> = {
       ]),
     ],
   },
+  "/privacy-policy": {
+    title: "Privacy Notice | ENVOD KINGDOM",
+    description:
+      "Read how ENVOD KINGDOM handles information submitted through its contact, quotation and shipment-status forms.",
+    canonicalPath: "/privacy-policy",
+    image: OG_IMAGE,
+  },
+  "/terms-and-conditions": {
+    title: "Terms of Use | ENVOD KINGDOM",
+    description:
+      "Review the terms that apply to use of the ENVOD KINGDOM website and its general service information.",
+    canonicalPath: "/terms-and-conditions",
+    image: OG_IMAGE,
+  },
+  "/cookie-notice": {
+    title: "Cookie Notice | ENVOD KINGDOM",
+    description:
+      "Read about the website's current use of cookies, browser storage and third-party resources.",
+    canonicalPath: "/cookie-notice",
+    image: OG_IMAGE,
+  },
   "/industries": {
     title: "Logistics by Industry in Saudi Arabia | ENVOD KINGDOM",
     description:
@@ -373,6 +397,21 @@ const STATIC_AR: Record<string, { title: string; description: string }> = {
     title: "تواصل مع إنفود كينغدوم | اطلب عرض سعر للشحن",
     description:
       "تواصل مع إنفود كينغدوم في الرياض للاستفسار عن التخليص الجمركي والشحن والخدمات اللوجستية في السعودية والخليج.",
+  },
+  "/privacy-policy": {
+    title: "إشعار الخصوصية | إنفود كينغدوم",
+    description:
+      "اطلع على كيفية تعامل إنفود كينغدوم مع المعلومات المقدمة عبر نماذج التواصل وطلب التسعير والاستفسار عن حالة الشحنة.",
+  },
+  "/terms-and-conditions": {
+    title: "شروط استخدام الموقع | إنفود كينغدوم",
+    description:
+      "راجع الشروط المطبقة على استخدام موقع إنفود كينغدوم والمعلومات العامة عن الخدمات.",
+  },
+  "/cookie-notice": {
+    title: "إشعار ملفات تعريف الارتباط | إنفود كينغدوم",
+    description:
+      "اطلع على الاستخدام الحالي لملفات تعريف الارتباط وتخزين المتصفح والموارد التابعة لأطراف أخرى.",
   },
   "/industries": {
     title: "الخدمات اللوجستية للقطاعات | إنفود كينغدوم",

@@ -208,21 +208,29 @@ export default function Track() {
               className="sr-only"
             />
 
-            <label className="flex items-start gap-3 text-sm leading-relaxed text-white/60">
-              <input
-                type="checkbox"
-                checked={privacyConsent}
-                onChange={(event) => setPrivacyConsent(event.target.checked)}
-                required
-                className="mt-1 accent-secondary"
-              />
-              <span>
-                {t(
-                  "I agree to the use of these details to respond to my request.",
-                  "أوافق على استخدام هذه البيانات للرد على طلبي.",
-                )}
-              </span>
-            </label>
+            <div>
+              <label className="flex items-start gap-3 text-sm leading-relaxed text-white/60">
+                <input
+                  type="checkbox"
+                  checked={privacyConsent}
+                  onChange={(event) => setPrivacyConsent(event.target.checked)}
+                  required
+                  className="mt-1 accent-secondary"
+                />
+                <span>
+                  {t(
+                    "I agree to the use of these details to respond to my request.",
+                    "أوافق على استخدام هذه البيانات للرد على طلبي.",
+                  )}
+                </span>
+              </label>
+              <Link
+                href="/privacy-policy"
+                className="ms-7 mt-1 inline-flex text-xs font-semibold text-secondary underline decoration-secondary/40 underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              >
+                {t("Read the Privacy Notice", "اقرأ إشعار الخصوصية")}
+              </Link>
+            </div>
 
             {error && (
               <p role="alert" className="flex items-start gap-2 text-sm text-red-300">

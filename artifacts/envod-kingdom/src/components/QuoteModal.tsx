@@ -435,21 +435,29 @@ export function QuoteModal({ isOpen, onClose }: Props) {
                         <label className={labelClass}>{t("Additional Notes", "ملاحظات إضافية")}</label>
                         <textarea value={data.message} onChange={e => set("message", e.target.value)} placeholder={t("Any other details…", "أي تفاصيل أخرى...")} className={`${fieldClass} resize-none h-16`} />
                       </div>
-                      <label className="flex items-start gap-2 text-[11px] leading-relaxed text-white/55">
-                        <input
-                          type="checkbox"
-                          checked={privacyConsent}
-                          onChange={(event) => setPrivacyConsent(event.target.checked)}
-                          required
-                          className="mt-0.5 accent-secondary"
-                        />
-                        <span>
-                          {t(
-                            "I agree that ENVOD KINGDOM may use these details to respond.",
-                            "أوافق على استخدام إنفود كينغدوم لهذه البيانات للرد.",
-                          )}
-                        </span>
-                      </label>
+                      <div>
+                        <label className="flex items-start gap-2 text-[11px] leading-relaxed text-white/55">
+                          <input
+                            type="checkbox"
+                            checked={privacyConsent}
+                            onChange={(event) => setPrivacyConsent(event.target.checked)}
+                            required
+                            className="mt-0.5 accent-secondary"
+                          />
+                          <span>
+                            {t(
+                              "I agree that ENVOD KINGDOM may use these details to respond.",
+                              "أوافق على استخدام إنفود كينغدوم لهذه البيانات للرد.",
+                            )}
+                          </span>
+                        </label>
+                        <Link
+                          href="/privacy-policy"
+                          className="ms-6 mt-1 inline-flex text-[11px] font-semibold text-secondary underline decoration-secondary/40 underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+                        >
+                          {t("Privacy Notice", "إشعار الخصوصية")}
+                        </Link>
+                      </div>
                       {submitError && (
                         <p role="alert" className="text-xs text-red-300">
                           {submitError}
