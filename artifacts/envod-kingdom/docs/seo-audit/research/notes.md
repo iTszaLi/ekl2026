@@ -51,7 +51,7 @@ Added GCC cross-links, corrected the Malham venue name, consolidated Jeddah venu
 - The Foodex official English page and homepage search result show different edition listings; confirm before publishing a multi-city schedule.
 - The current Global Health organizer page says no in-person 2026 exhibition; older official search results still show the former 2026 dates. Do not use the stale schedule.
 - Specific venue freight access, delivery slots, loading procedures and move-in/out rules were not found; confirm with the event/venue for each booking.
-- The Vercel JavaScript handler build change requires confirmation in the next real Vercel deployment.
+- A Vercel production deployment of the integrated code reached READY; public English/Arabic service routes returned 200 and the English page showed the qualified phrase and corrected venue labels. The Search Console session is unconfigured; Resend delivery remains unverified because no Vercel environment variables are configured.
 
 ## Gaps
 No Search Console demand data; no reliable keyword volume, rank, AI citation or backlink measurements; no complete public Saudi ATA eligibility list; no direct venue cargo-access rules; no independent verification of competitor claims or ENVOD event appointments.

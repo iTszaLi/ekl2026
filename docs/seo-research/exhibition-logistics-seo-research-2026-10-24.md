@@ -65,7 +65,7 @@ No source reviewed supplied venue-specific freight booking, loading-bay, vehicle
 - Corrected the Malham venue label and consolidated the duplicate Jeddah venue aliases.
 - Expanded the bilingual event-reference disclaimer to require current organizer/venue confirmation for edition dates, cargo instructions and move-in/out deadlines.
 - Kept the existing bilingual page, metadata, FAQ/schema, service URL, quote prefill, service-specific event fields, and other service pages intact. The exact KSA comparison phrase was not duplicated.
-- The Search Console Vercel function now has a JavaScript build output path intended to avoid Vercel’s TypeScript/Express function compiler failure; this remains pending a real Vercel build verification.
+- The Search Console Vercel function now has a JavaScript build output path. A Vercel production deployment of the integrated code reached READY, and the public English and Arabic service routes returned 200. This verifies the build and public pages, but not account-specific services: Vercel currently has no configured environment variables, the Search Console session reports configured=false, and Resend delivery has not been verified.
 
 ## Service priority map
 
@@ -73,7 +73,9 @@ The owner-provided order is service priority, not a measured keyword score: P1 E
 
 ## Production and measurement limits
 
-The Vercel project environment-variable listing currently returns no configured keys. Do not add guessed values or commit credentials. The site documents the required variable names separately; Google OAuth/Search Console storage and Resend email delivery are not production-verified until the owner configures their secrets through Vercel’s secure environment settings and an authorized test succeeds. No email or indexing request was sent during this research.
+Local verification passed: typecheck; all six test scripts (service catalog, Search Console, enquiries, Vercel enquiries, counters and image dimensions); the production client/SSR build; and 86-route prerendering. Vite emitted non-blocking sourcemap-location and large-chunk warnings. A Vercel production deployment of the integrated code reached READY; the public English and Arabic service URLs returned 200, and the live English page showed the qualified phrase and corrected venue labels.
+
+The Vercel project environment-variable listing currently returns no configured keys. Do not add guessed values or commit credentials. The site documents the required variable names separately; Google OAuth/Search Console storage and Resend email delivery are not production-verified until the owner configures their secrets through Vercel’s secure environment settings and an authorized test succeeds. The Search Console session endpoint currently reports configured=false. No email or indexing request was sent during this research.
 
 ## Evidence registry
 
