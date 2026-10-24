@@ -8,7 +8,7 @@ import express, {
   type Response,
 } from "express";
 import { z } from "zod";
-import { crawlEnvodKingdom } from "./crawler";
+import { crawlEnvodKingdom } from "./crawler.js";
 import {
   exchangeAuthorizationCode,
   fetchGoogleUserInfo,
@@ -18,7 +18,7 @@ import {
   SearchConsoleClient,
   type SearchAnalyticsQuery,
   type SearchAnalyticsRow,
-} from "./google-api";
+} from "./google-api.js";
 import {
   clearAdminSessionCookie,
   clearOAuthStateCookie,
@@ -26,12 +26,13 @@ import {
   getOAuthStateCookie,
   setAdminSessionCookie,
   setOAuthStateCookie,
-} from "./security";
+} from "./security.js";
 import {
   emptySearchConsoleStore,
   EncryptedSearchConsoleStore,
+  type SearchConsoleStorage,
   type SearchConsoleStore,
-} from "./store";
+} from "./store.js";
 
 const SEARCH_CONSOLE_SCOPE =
   "https://www.googleapis.com/auth/webmasters.readonly";
@@ -39,6 +40,7 @@ const IDENTITY_SCOPES = "openid email";
 const MAX_GSC_RANGE_DAYS = 400;
 const MAX_INSPECTION_URLS = 10;
 const SEARCH_ROW_LIMIT = 25_000;
+const AUDIT_RETENTION_MS = 30 * 24 * 60 * 60 * 1000;
 
 type Environment = NodeJS.ProcessEnv;
 type Fetcher = typeof fetch;
@@ -50,12 +52,8 @@ interface Options {
   fetchImpl?: Fetcher;
   now?: () => number;
   storeFilePath?: string;
+  storeFactory?: (env: Environment) => SearchConsoleStorage | null;
   maxCrawlUrls?: number;
-}
-
-interface OAuthState {
-  verifier: string;
-  expiresAt: number;
 }
 
 interface AccessTokenCache {
@@ -141,7 +139,24 @@ function getRedirectUri(env: Environment, apiPrefix: string): string | null {
         uri.protocol !== "https:" ||
         uri.pathname !== callbackPath ||
         uri.search ||
-        uri.hash
+        uri.hash ||
+        uri.username ||
+        uri.password
+      ) {
+        return null;
+      }
+      if (
+        (env.VERCEL === "1" || env.NODE_ENV === "production") &&
+        uri.origin !== "https://www.envodkingdom.net"
+      ) {
+        return null;
+      }
+      const developmentDomain = env.REPLIT_DEV_DOMAIN?.trim().toLowerCase();
+      if (
+        env.VERCEL !== "1" &&
+        env.NODE_ENV !== "production" &&
+        developmentDomain &&
+        uri.origin !== `https://${developmentDomain}`
       ) {
         return null;
       }
@@ -176,6 +191,13 @@ function configuration(env: Environment, apiPrefix: string) {
   if (!sessionSecret || sessionSecret.length < 32) {
     missing.push("SESSION_SECRET");
   }
+  const encryptionSecret = env.GSC_TOKEN_ENCRYPTION_KEY?.trim();
+  if (!encryptionSecret || encryptionSecret.length < 32) {
+    missing.push("GSC_TOKEN_ENCRYPTION_KEY");
+  }
+  if (env.VERCEL === "1" && !env.BLOB_READ_WRITE_TOKEN?.trim()) {
+    missing.push("BLOB_READ_WRITE_TOKEN");
+  }
   if (!redirectUri) missing.push("GSC_REDIRECT_URI");
   return {
     configured: missing.length === 0,
@@ -186,6 +208,30 @@ function configuration(env: Environment, apiPrefix: string) {
     sessionSecret,
     redirectUri,
   };
+}
+
+export function isTrustedMutationOrigin(
+  req: Request,
+  env: Environment,
+): boolean {
+  const origin = req.get("origin")?.trim();
+  if (!origin) return false;
+  try {
+    const parsed = new URL(origin);
+    if (parsed.origin !== origin || req.get("sec-fetch-site") === "cross-site") {
+      return false;
+    }
+    if (env.VERCEL === "1" || env.NODE_ENV === "production") {
+      return (
+        parsed.protocol === "https:" &&
+        (parsed.origin === "https://www.envodkingdom.net" ||
+          parsed.origin === "https://envodkingdom.net")
+      );
+    }
+    return origin === `${req.protocol}://${req.get("host")}`;
+  } catch {
+    return false;
+  }
 }
 
 function parseCookiePath(apiPrefix: string): string {
@@ -461,13 +507,21 @@ function encodePathSegment(value: string): string {
   return encodeURIComponent(value);
 }
 
-function isAudit(value: unknown): value is { pages: unknown[]; completedAt: string } {
-  return (
+export function isAudit(
+  value: unknown,
+  now = Date.now(),
+): value is { pages: unknown[]; completedAt: string } {
+  if (
     !!value &&
     typeof value === "object" &&
     Array.isArray((value as { pages?: unknown }).pages) &&
     typeof (value as { completedAt?: unknown }).completedAt === "string"
-  );
+  ) {
+    const completedAt = Date.parse((value as { completedAt: string }).completedAt);
+    const age = now - completedAt;
+    return Number.isFinite(completedAt) && age >= 0 && age < AUDIT_RETENTION_MS;
+  }
+  return false;
 }
 
 export function createSearchConsoleRouter(options: Options) {
@@ -478,7 +532,6 @@ export function createSearchConsoleRouter(options: Options) {
   const basePath = options.basePath ?? "";
   const authConfig = () => configuration(env, options.apiPrefix);
   const oauthCookiePath = parseCookiePath(options.apiPrefix);
-  const oauthStates = new Map<string, OAuthState>();
   const accessCache: { current: AccessTokenCache | null } = { current: null };
   const dashboardCache = new Map<
     string,
@@ -492,11 +545,23 @@ export function createSearchConsoleRouter(options: Options) {
   const storePath =
     options.storeFilePath ??
     path.resolve(serverDirectory, "..", "..", ".private-data", "gsc.enc");
-  let store: EncryptedSearchConsoleStore | null = null;
+  let store: SearchConsoleStorage | null | undefined;
   const getStore = () => {
-    const secret = env.SESSION_SECRET?.trim();
-    if (!secret || secret.length < 32) return null;
-    if (!store) store = new EncryptedSearchConsoleStore(storePath, secret);
+    if (store !== undefined) return store;
+    if (options.storeFactory) {
+      store = options.storeFactory(env);
+      return store;
+    }
+    if (env.VERCEL === "1") {
+      store = null;
+      return store;
+    }
+    const secret = env.GSC_TOKEN_ENCRYPTION_KEY?.trim();
+    if (!secret || secret.length < 32) {
+      store = null;
+      return store;
+    }
+    store = new EncryptedSearchConsoleStore(storePath, secret);
     return store;
   };
 
@@ -513,6 +578,14 @@ export function createSearchConsoleRouter(options: Options) {
       return;
     }
     res.locals.adminEmail = session.email;
+    next();
+  };
+
+  const requireSameOrigin: RequestHandler = (req, res, next) => {
+    if (!isTrustedMutationOrigin(req, env)) {
+      responseError(res, 403, "This request must come from the ENVOD KINGDOM site.");
+      return;
+    }
     next();
   };
 
@@ -588,7 +661,7 @@ export function createSearchConsoleRouter(options: Options) {
         selectedProperty: null,
         lastSyncedAt: null,
         setupMessage:
-          "The private dashboard needs Google OAuth client settings and the authorized administrator email in Replit Secrets.",
+          "The private dashboard needs server-side Google OAuth settings, the authorized administrator, and encrypted persistent storage.",
       });
       return;
     }
@@ -630,17 +703,8 @@ export function createSearchConsoleRouter(options: Options) {
         responseError(
           res,
           503,
-          "Google OAuth is not configured. Add the OAuth client ID, client secret, administrator email and matching redirect URI in Replit Secrets.",
+          "Google OAuth is not configured. Set the OAuth client, administrator, encryption, storage, and matching redirect URI in the deployment environment.",
         );
-        return;
-      }
-
-      const time = now();
-      for (const [state, pending] of oauthStates) {
-        if (pending.expiresAt <= time) oauthStates.delete(state);
-      }
-      if (oauthStates.size >= 500) {
-        responseError(res, 503, "Too many sign-in attempts are active. Retry in a few minutes.");
         return;
       }
 
@@ -649,8 +713,15 @@ export function createSearchConsoleRouter(options: Options) {
       const challenge = createHash("sha256")
         .update(verifier)
         .digest("base64url");
-      oauthStates.set(state, { verifier, expiresAt: time + 10 * 60_000 });
-      setOAuthStateCookie(req, res, state, oauthCookiePath);
+      setOAuthStateCookie(
+        req,
+        res,
+        state,
+        verifier,
+        config.sessionSecret ?? "",
+        oauthCookiePath,
+        now(),
+      );
 
       const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
       authUrl.search = new URLSearchParams({
@@ -673,20 +744,22 @@ export function createSearchConsoleRouter(options: Options) {
     const state = parseQueryString(req.query.state);
     const providerError = parseQueryString(req.query.error);
     const code = parseQueryString(req.query.code);
+    const pendingState = getOAuthStateCookie(
+      req,
+      config.sessionSecret,
+      now(),
+    );
     clearOAuthStateCookie(req, res, oauthCookiePath);
     if (providerError) {
-      if (state) oauthStates.delete(state);
       res.redirect(`${basePath}/admin/search-console?oauth=cancelled`);
       return;
     }
 
-    const cookieState = getOAuthStateCookie(req);
-    const pending = state ? oauthStates.get(state) : undefined;
+    const pending =
+      state && pendingState?.state === state ? pendingState : null;
     if (
       !state ||
       !pending ||
-      pending.expiresAt <= now() ||
-      cookieState !== state ||
       !code ||
       code.length > 4096 ||
       !config.configured ||
@@ -695,11 +768,9 @@ export function createSearchConsoleRouter(options: Options) {
       !config.clientSecret ||
       !config.adminEmail
     ) {
-      if (state) oauthStates.delete(state);
       responseError(res, 400, "Google sign-in could not be verified. Start the connection again.");
       return;
     }
-    oauthStates.delete(state);
 
     try {
       const tokenResponse = await exchangeAuthorizationCode({
@@ -779,7 +850,7 @@ export function createSearchConsoleRouter(options: Options) {
     }
   });
 
-  router.post("/logout", (_req, res) => {
+  router.post("/logout", requireSameOrigin, (_req, res) => {
     clearAdminSessionCookie(_req, res);
     res.json({ ok: true });
   });
@@ -815,7 +886,11 @@ export function createSearchConsoleRouter(options: Options) {
     }
   });
 
-  router.post("/property", requireAdmin, async (req, res) => {
+  router.post(
+    "/property",
+    requireAdmin,
+    requireSameOrigin,
+    async (req, res) => {
     const body = z
       .object({ siteUrl: z.string().trim().min(1).max(500) })
       .safeParse(req.body);
@@ -863,7 +938,8 @@ export function createSearchConsoleRouter(options: Options) {
     } catch (error) {
       sendProviderError(req, res, error, "oauth");
     }
-  });
+    },
+  );
 
   router.get(
     "/dashboard",
@@ -1002,8 +1078,15 @@ export function createSearchConsoleRouter(options: Options) {
 
   router.get("/audit", requireAdmin, async (req, res) => {
     try {
-      const saved = await getStore()?.read();
-      if (!saved?.audit || !isAudit(saved.audit)) {
+      const storage = getStore();
+      const saved = await storage?.read();
+      if (
+        !saved?.audit ||
+        !isAudit(saved.audit, now())
+      ) {
+        if (saved?.audit && storage) {
+          await storage.write({ ...saved, audit: null });
+        }
         responseError(res, 404, "No site crawl has been completed yet.");
         return;
       }
@@ -1017,6 +1100,7 @@ export function createSearchConsoleRouter(options: Options) {
   router.post(
     "/audit/run",
     requireAdmin,
+    requireSameOrigin,
     createRateLimiter({ limit: 2, windowMs: 5 * 60_000, now }),
     async (req, res) => {
       const elapsed = now() - lastCrawlStartedAt;
@@ -1055,6 +1139,7 @@ export function createSearchConsoleRouter(options: Options) {
   router.post(
     "/inspection",
     requireAdmin,
+    requireSameOrigin,
     createRateLimiter({ limit: 5, windowMs: 5 * 60_000, now }),
     async (req, res) => {
       const body = z
@@ -1125,7 +1210,11 @@ export function createSearchConsoleRouter(options: Options) {
     },
   );
 
-  router.post("/disconnect", requireAdmin, async (req, res) => {
+  router.post(
+    "/disconnect",
+    requireAdmin,
+    requireSameOrigin,
+    async (req, res) => {
     const storage = getStore();
     if (!storage) {
       responseError(res, 503, "Secure server-side storage is unavailable.");
@@ -1147,7 +1236,8 @@ export function createSearchConsoleRouter(options: Options) {
     } catch (error) {
       sendProviderError(req, res, error, "disconnect");
     }
-  });
+    },
+  );
 
   router.use(
     (

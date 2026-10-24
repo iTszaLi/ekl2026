@@ -4,6 +4,13 @@ import type { Request, Response } from "express";
 const SESSION_COOKIE = "__Host-envod_gsc_admin";
 const STATE_COOKIE = "envod_gsc_oauth_state";
 const SESSION_TTL_SECONDS = 8 * 60 * 60;
+const OAUTH_STATE_TTL_SECONDS = 10 * 60;
+
+export interface OAuthStatePayload {
+  state: string;
+  verifier: string;
+  expiresAt: number;
+}
 
 function signature(value: string, secret: string): string {
   return createHmac("sha256", secret).update(value).digest("base64url");
@@ -53,11 +60,25 @@ export function setOAuthStateCookie(
   req: Request,
   res: Response,
   state: string,
+  verifier: string,
+  secret: string,
   path: string,
+  now = Date.now(),
 ): void {
+  const payload = Buffer.from(
+    JSON.stringify({
+      state,
+      verifier,
+      expiresAt: now + OAUTH_STATE_TTL_SECONDS * 1000,
+    } satisfies OAuthStatePayload),
+  ).toString("base64url");
+  const value = `${payload}.${signature(payload, secret)}`;
   res.append(
     "Set-Cookie",
-    serializeCookie(STATE_COOKIE, state, req, { maxAge: 600, path }),
+    serializeCookie(STATE_COOKIE, value, req, {
+      maxAge: OAUTH_STATE_TTL_SECONDS,
+      path,
+    }),
   );
 }
 
@@ -72,8 +93,42 @@ export function clearOAuthStateCookie(
   );
 }
 
-export function getOAuthStateCookie(req: Request): string | undefined {
-  return cookieValue(req, STATE_COOKIE);
+export function getOAuthStateCookie(
+  req: Request,
+  secret: string | undefined,
+  now = Date.now(),
+): OAuthStatePayload | null {
+  if (!secret) return null;
+  const value = cookieValue(req, STATE_COOKIE);
+  if (!value) return null;
+  const separator = value.lastIndexOf(".");
+  if (separator <= 0) return null;
+  const encodedPayload = value.slice(0, separator);
+  const suppliedSignature = value.slice(separator + 1);
+  if (!constantTimeEqual(suppliedSignature, signature(encodedPayload, secret))) {
+    return null;
+  }
+  try {
+    const decoded: unknown = JSON.parse(
+      Buffer.from(encodedPayload, "base64url").toString("utf8"),
+    );
+    if (!decoded || typeof decoded !== "object") return null;
+    const payload = decoded as Partial<OAuthStatePayload>;
+    if (
+      typeof payload.state !== "string" ||
+      payload.state.length < 32 ||
+      typeof payload.verifier !== "string" ||
+      payload.verifier.length < 43 ||
+      typeof payload.expiresAt !== "number" ||
+      !Number.isFinite(payload.expiresAt) ||
+      payload.expiresAt <= now
+    ) {
+      return null;
+    }
+    return payload as OAuthStatePayload;
+  } catch {
+    return null;
+  }
 }
 
 export function setAdminSessionCookie(

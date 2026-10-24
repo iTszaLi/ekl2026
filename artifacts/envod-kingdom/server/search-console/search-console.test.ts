@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, readFile, rm, stat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { createServer } from "node:http";
 import { test } from "node:test";
 import type { Request, Response } from "express";
 import {
@@ -9,11 +10,16 @@ import {
   SearchConsoleClient,
 } from "./google-api";
 import {
+  getOAuthStateCookie,
   getAdminSession,
+  setOAuthStateCookie,
   setAdminSessionCookie,
 } from "./security";
 import { EncryptedSearchConsoleStore } from "./store";
 import { crawlEnvodKingdom } from "./crawler";
+import { EncryptedVercelBlobSearchConsoleStore } from "./vercel-blob-store";
+import { isAudit, isTrustedMutationOrigin } from "./router";
+import searchConsoleVercelHandler from "../../api/search-console/[...path]";
 
 function fakeResponse() {
   const headers = new Map<string, string[]>();
@@ -63,6 +69,106 @@ test("admin session cookies are signed, allowlisted, and expire", () => {
   );
 });
 
+test("OAuth state and PKCE verifier survive serverless instances only in a signed short-lived cookie", () => {
+  const secret = "o".repeat(48);
+  const state = "s".repeat(43);
+  const verifier = "v".repeat(64);
+  const { response, headers } = fakeResponse();
+  setOAuthStateCookie(
+    fakeRequest() as Request,
+    response,
+    state,
+    verifier,
+    secret,
+    "/api/search-console/oauth",
+    1000,
+  );
+  const cookieHeader = headers.get("Set-Cookie")?.[0];
+  assert.ok(cookieHeader);
+  assert.match(cookieHeader, /HttpOnly/);
+  assert.match(cookieHeader, /Secure/);
+  assert.match(cookieHeader, /SameSite=Lax/);
+  assert.match(cookieHeader, /Max-Age=600/);
+  const cookie = cookieHeader.split(";")[0];
+  assert.deepEqual(
+    getOAuthStateCookie(fakeRequest(cookie) as Request, secret, 2000),
+    { state, verifier, expiresAt: 601_000 },
+  );
+  assert.equal(
+    getOAuthStateCookie(fakeRequest(cookie) as Request, secret, 601_000),
+    null,
+  );
+  assert.equal(
+    getOAuthStateCookie(fakeRequest(`${cookie}tampered`) as Request, secret, 2000),
+    null,
+  );
+});
+
+test("Search Console mutations reject cross-origin or missing-origin requests", () => {
+  const makeRequest = (origin?: string, fetchSite?: string) =>
+    ({
+      protocol: "https",
+      get(name: string) {
+        if (name === "origin") return origin;
+        if (name === "sec-fetch-site") return fetchSite;
+        if (name === "host") return "www.envodkingdom.net";
+        return undefined;
+      },
+    }) as unknown as Request;
+
+  assert.equal(
+    isTrustedMutationOrigin(makeRequest("https://www.envodkingdom.net", "same-origin"), {
+      VERCEL: "1",
+    }),
+    true,
+  );
+  assert.equal(
+    isTrustedMutationOrigin(makeRequest("https://attacker.example", "cross-site"), {
+      VERCEL: "1",
+    }),
+    false,
+  );
+  assert.equal(
+    isTrustedMutationOrigin(makeRequest(undefined), { VERCEL: "1" }),
+    false,
+  );
+  assert.equal(
+    isTrustedMutationOrigin(makeRequest("https://preview.replit.dev"), {
+      NODE_ENV: "development",
+    }),
+    false,
+  );
+});
+
+test("Vercel handler serves a safe unconfigured session and rejects cross-origin mutations", async () => {
+  const server = createServer(searchConsoleVercelHandler);
+  await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+  try {
+    const address = server.address();
+    assert.ok(address && typeof address !== "string");
+    const baseUrl = `http://127.0.0.1:${address.port}`;
+    const session = await fetch(`${baseUrl}/api/search-console/session`);
+    assert.equal(session.status, 200);
+    assert.equal(session.headers.get("cache-control"), "no-store");
+    const sessionBody = (await session.json()) as { configured: boolean };
+    assert.equal(sessionBody.configured, false);
+
+    const logout = await fetch(`${baseUrl}/api/search-console/logout`, {
+      method: "POST",
+      headers: {
+        Origin: "https://attacker.example",
+        "Content-Type": "application/json",
+      },
+      body: "{}",
+    });
+    assert.equal(logout.status, 403);
+  } finally {
+    await new Promise<void>((resolve, reject) =>
+      server.close((error) => (error ? reject(error) : resolve())),
+    );
+  }
+});
+
 test("Search Console refresh tokens are encrypted at rest", async () => {
   const directory = await mkdtemp(path.join(tmpdir(), "envod-gsc-store-"));
   const filePath = path.join(directory, "gsc.enc");
@@ -84,6 +190,85 @@ test("Search Console refresh tokens are encrypted at rest", async () => {
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+});
+
+test("private Vercel Blob storage encrypts data and reads the latest version", async () => {
+  let stored: string | null = null;
+  let lastReadOptions: Record<string, unknown> | null = null;
+  let lastPutOptions: Record<string, unknown> | null = null;
+  const blobApi = {
+    async get(_path: string, options: Record<string, unknown>) {
+      lastReadOptions = options;
+      if (!stored) return null;
+      const stream = new ReadableStream<Uint8Array>({
+        start(controller) {
+          controller.enqueue(new TextEncoder().encode(stored ?? ""));
+          controller.close();
+        },
+      });
+      return {
+        statusCode: 200,
+        stream,
+        headers: new Headers(),
+        blob: {
+          url: "https://example.private.blob.vercel-storage.com/private",
+          downloadUrl: "https://example.private.blob.vercel-storage.com/private",
+          pathname: "envod-private/search-console/connection-v1.enc",
+          contentDisposition: "attachment",
+          cacheControl: "no-cache",
+          uploadedAt: new Date(0),
+          etag: "etag",
+          contentType: "application/json",
+          size: stored.length,
+        },
+      };
+    },
+    async put(_path: string, body: unknown, options: Record<string, unknown>) {
+      stored = String(body);
+      lastPutOptions = options;
+      return {};
+    },
+    async del() {
+      stored = null;
+    },
+  } as unknown as NonNullable<
+    ConstructorParameters<typeof EncryptedVercelBlobSearchConsoleStore>[2]
+  >;
+  const store = new EncryptedVercelBlobSearchConsoleStore(
+    "private-read-write-token",
+    "k".repeat(64),
+    blobApi,
+  );
+  await store.write({
+    version: 1,
+    refreshToken: "secret-refresh-token",
+    selectedProperty: "sc-domain:envodkingdom.net",
+    lastSyncedAt: "2026-10-24T00:00:00.000Z",
+    audit: null,
+  });
+  assert.ok(stored);
+  assert.ok(!stored.includes("secret-refresh-token"));
+  assert.equal(lastPutOptions?.access, "private");
+  assert.equal(lastPutOptions?.allowOverwrite, true);
+  assert.equal((await store.read()).refreshToken, "secret-refresh-token");
+  assert.equal(lastReadOptions?.access, "private");
+  assert.equal(lastReadOptions?.useCache, false);
+  await store.clear();
+  assert.equal((await store.read()).refreshToken, null);
+});
+
+test("crawl reports are accepted only within the configured retention window", () => {
+  const now = Date.parse("2026-10-24T12:00:00.000Z");
+  const recent = {
+    completedAt: new Date(now - 29 * 24 * 60 * 60 * 1000).toISOString(),
+    pages: [],
+  };
+  const expired = {
+    completedAt: new Date(now - 30 * 24 * 60 * 60 * 1000).toISOString(),
+    pages: [],
+  };
+  assert.equal(isAudit(recent, now), true);
+  assert.equal(isAudit(expired, now), false);
 });
 
 test("Google Search Analytics limits rows and returns only validated metrics", async () => {

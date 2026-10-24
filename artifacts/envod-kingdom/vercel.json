@@ -13,7 +13,30 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/admin/search-console",
+      "destination": "/spa.html"
+    },
+    {
+      "source": "/admin/search-console/:path*",
+      "destination": "/spa.html"
+    }
+  ],
   "headers": [
+    {
+      "source": "/admin/search-console/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "private, no-store"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [

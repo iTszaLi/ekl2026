@@ -1,4 +1,4 @@
-import type { AuditedPage, SiteAudit } from "../../src/lib/search-console-api";
+import type { AuditedPage, SiteAudit } from "../../src/lib/search-console-api.js";
 
 const ALLOWED_HOSTS = new Set(["www.envodkingdom.net", "envodkingdom.net"]);
 const AUDIT_AGENT = "EnvodKingdomSEOAudit";

@@ -9,9 +9,9 @@ import { getLocaleBase, LanguageProvider } from "@/lib/language-context";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { SeoManager } from "@/components/SeoManager";
 
-const SearchConsoleDashboard = import.meta.env.DEV
-  ? lazy(() => import("@/pages/admin/SearchConsoleDashboard"))
-  : null;
+const SearchConsoleDashboard = lazy(
+  () => import("@/pages/admin/SearchConsoleDashboard"),
+);
 
 const Home = routePages.home.Page;
 const Track = routePages.track.Page;
@@ -89,13 +89,11 @@ function Router() {
       <Route path="/contact">
         <MainLayout><Contact /></MainLayout>
       </Route>
-      {SearchConsoleDashboard ? (
-        <Route path="/admin/search-console">
-          <Suspense fallback={<AdminRouteLoading />}>
-            <SearchConsoleDashboard />
-          </Suspense>
-        </Route>
-      ) : null}
+      <Route path="/admin/search-console">
+        <Suspense fallback={<AdminRouteLoading />}>
+          <SearchConsoleDashboard />
+        </Suspense>
+      </Route>
       <Route>
         <MainLayout><NotFound /></MainLayout>
       </Route>

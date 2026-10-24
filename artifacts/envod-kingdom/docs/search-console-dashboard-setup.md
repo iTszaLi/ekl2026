@@ -1,63 +1,76 @@
-# Private Search Console Dashboard Setup
+# Private Search Console Dashboard
 
-## Current status
+## Scope and current state
 
-The review copy contains a server-side Google OAuth flow, an allowlisted admin session, encrypted token storage, a private dashboard, a read-only crawler and URL Inspection requests. The integration is **not connected or live-tested** until the required secrets are added and the administrator completes Google authorization.
+The dashboard is a private, read-only admin tool at:
 
-This setup applies to the Replit review copy only. It does not alter the Vercel project, GitHub production branch, domain configuration, or production website.
+`https://www.envodkingdom.net/admin/search-console`
 
-## Google Cloud setup
+Its API is served at `/api/search-console/*`. The production UI is excluded from the sitemap and marked `noindex, nofollow`; authenticated API responses use `Cache-Control: no-store`. The dashboard is not connected to Google until the owner configures the production environment and an authorized administrator completes OAuth. A successful site build alone does not provide Search Console metrics.
 
-1. In Google Cloud Console, create or select a project for this private dashboard.
-2. Enable the **Google Search Console API**.
-3. Configure the OAuth consent screen. Add the Google account that owns or has access to the ENVOD KINGDOM Search Console property as an authorized test user if the app remains in Testing.
-4. Request only these identity and data scopes:
-   - `openid`
-   - `email`
-   - `https://www.googleapis.com/auth/webmasters.readonly`
-5. Create an OAuth 2.0 Client ID with application type **Web application**.
-6. Add the exact callback URL below under **Authorized redirect URIs**:
+The API only requests Google identity (`openid`, `email`) and the Search Console read-only scope:
 
-   `https://a7ebb319-37a0-4861-9dc2-9136d55cda1e-00-2znz0ahbzqskl.sisko.replit.dev/api/search-console/oauth/callback`
+`https://www.googleapis.com/auth/webmasters.readonly`
 
-   This was derived from the current Replit development domain and the app's `/api/search-console/oauth/callback` route. If that development domain changes, use the current `REPLIT_DEV_DOMAIN` with the same path and update the Google OAuth client to match. Do not register a guessed production callback.
+It does not submit URLs, alter pages, request indexing, or use Google's write scope.
 
-Google may require the consent-screen domain to be verified or may restrict the unverified testing setup. If Google rejects the Replit callback/domain, do not substitute an unrelated redirect or expose tokens; a verified HTTPS domain that actually routes to this backend will be needed.
+## Production setup in Vercel
 
-## Replit Secrets
+The Vercel project is `ekl2026-envod-kingdom` with the site rooted at `artifacts/envod-kingdom`.
 
-Add these values through the Replit Secrets flow, never in chat, source files, frontend variables, or a committed `.env`:
+1. In Vercel, create or attach a **private** Blob store to this project. The attached store must provide `BLOB_READ_WRITE_TOKEN` to the Production environment. Do not use a public Blob store for OAuth state.
+2. In Google Cloud, enable the **Google Search Console API** and configure the OAuth consent screen. Create a Web application OAuth client.
+3. Set the authorized JavaScript origin to `https://www.envodkingdom.net` and add this exact authorized redirect URI:
 
-| Secret name | Value to provide |
-|---|---|
-| `GSC_CLIENT_ID` | OAuth Web application client ID from Google Cloud |
-| `GSC_CLIENT_SECRET` | OAuth Web application client secret from Google Cloud |
-| `GSC_ADMIN_EMAIL` | The exact Google account email authorized to use this private dashboard |
-| `SESSION_SECRET` | Already configured for this project; retain it and do not replace it for this setup |
+   `https://www.envodkingdom.net/api/search-console/oauth/callback`
 
-`GSC_REDIRECT_URI` is optional for the current Replit development domain. If it is set, it must be the exact registered HTTPS callback URL, including `/api/search-console/oauth/callback`.
+4. Add the variable names below to the Vercel project's **Production** environment. Secret values must be entered directly in Vercel; never paste them into chat, source files, frontend variables, or a committed `.env`.
+5. Redeploy the production branch after environment setup.
+6. Open the dashboard, sign in with the allowlisted Google account, and select the exact ENVOD property returned by Google—prefer `sc-domain:envodkingdom.net` if available. URL-prefix properties are not treated as interchangeable.
+7. Verify that the account can load live metrics, run the read-only site crawl, and inspect a small set of ENVOD URLs.
 
-## Connect and verify
+| Variable | Requirement | Purpose |
+|---|---|---|
+| `GSC_CLIENT_ID` | Required | Google OAuth Web application client ID. |
+| `GSC_CLIENT_SECRET` | Required secret | Google OAuth Web application client secret. |
+| `GSC_ADMIN_EMAIL` | Required | Exact Google account email allowed to use the dashboard. |
+| `GSC_REDIRECT_URI` | Required | Exact callback URI above; it must match the OAuth client registration. |
+| `SESSION_SECRET` | Required secret, at least 32 characters | Signs the administrator session and OAuth state cookie. Keep it separate from the encryption key. |
+| `GSC_TOKEN_ENCRYPTION_KEY` | Required secret, at least 32 characters | Independent key used to derive the AES-256-GCM key for the encrypted connection record. Generate a high-entropy value (for example, `openssl rand -hex 32`) and enter it only in Vercel. |
+| `BLOB_READ_WRITE_TOKEN` | Required in Vercel | Read/write token for the attached private Blob store. Vercel provides this when the store is attached. |
 
-1. Open `/admin/search-console` in the Replit review copy.
-2. Choose **Sign in with Google** and authorize the listed identity and read-only Search Console scope.
-3. Select the exact available `sc-domain:envodkingdom.net` property if present. Otherwise select the exact available `https://envodkingdom.net/` or `https://www.envodkingdom.net/` URL-prefix property. The dashboard does not assume those properties are interchangeable.
-4. Confirm that the dashboard shows the chosen property and the actual API response before using its metrics.
-5. Use the dashboard's disconnect control to revoke the Google token and remove the locally stored connection.
+For a Google OAuth consent screen in **Testing**, Google documents that refresh tokens expire after seven days when the app requests scopes beyond basic profile scopes. The read-only Search Console scope is beyond those basic scopes. Complete Google's applicable OAuth publishing/verification requirements before relying on long-lived production access. See [Google OAuth 2.0 token expiration](https://developers.google.com/identity/protocols/oauth2#expiration) and [Search Console API authorization](https://developers.google.com/webmaster-tools/v1/how-tos/authorizing).
+
+## Local development
+
+The local Express server uses the encrypted `.private-data/gsc.enc` file only outside Vercel. For local development, set `GSC_TOKEN_ENCRYPTION_KEY` and the required OAuth settings through Replit Secrets or another local secret manager. Use the current HTTPS development callback only if it is registered in the Google OAuth client. Never copy the local token file into Vercel.
+
+Vercel requests are deliberately not allowed to fall back to local disk. If the private Blob store, OAuth values, or encryption key are missing, the API reports that setup is incomplete and does not attempt to persist credentials.
 
 ## Security and data handling
 
-- OAuth code exchange, token refresh, identity verification, Search Console requests, and URL Inspection requests run on the server.
-- The browser receives only dashboard data and safe connection status. Client secret, access token, and refresh token are not returned to it.
-- A signed, `HttpOnly`, `SameSite=Lax` admin cookie is limited to the configured `GSC_ADMIN_EMAIL`; HTTPS requests set `Secure`.
-- The Google refresh token is encrypted with AES-256-GCM and a key derived from the existing `SESSION_SECRET`. The encrypted file is placed in `.private-data`, outside the static public build, and excluded from Git and deployment packaging.
-- Search Console analytics are fetched only for an exact property returned by Google's API and selected by the administrator.
-- The crawler is limited to `www.envodkingdom.net` and `envodkingdom.net`, reads robots.txt and sitemap declarations first, caps the crawl at 300 URLs, limits each response body, and does not send indexing requests or change page content.
-- URL Inspection is limited to ten ENVOD URLs per request. No Indexing API or submit/publish operation is implemented.
-- The dashboard uses Google's read-only Search Console scope. It does not include the Search Console Links report, Manual Actions report, or all indexing coverage data; those remain unavailable through this API flow.
+- The client secret, access token, refresh token, and OAuth PKCE verifier are never returned in API responses.
+- OAuth state and the PKCE verifier are held in a short-lived, signed, `HttpOnly`, `SameSite=Lax` cookie so the flow works across separate serverless instances. HTTPS requests set `Secure`.
+- The Google refresh token, selected property, sync timestamp, and latest crawl report are encrypted with AES-256-GCM before private Blob storage. `SESSION_SECRET` and `GSC_TOKEN_ENCRYPTION_KEY` are separate.
+- The private Blob object uses a fixed path, private access, and uncached consistent reads. Vercel's temporary filesystem is not used.
+- State-changing requests require a same-origin request from the production ENVOD domain. The server also validates the allowlisted administrator's signed session.
+- The crawler first reads robots.txt and sitemap declarations, stays on ENVOD domains, limits pages and response sizes, and makes no content changes or indexing requests.
+- The Vercel Search Console function sets a 120-second request ceiling to accommodate the read-only crawl; actual duration remains subject to the Vercel plan limit.
+- URL Inspection is limited to ten ENVOD URLs per request. The Google API flow does not include write scopes or indexing submission.
+- Dashboard analytics are fetched from Search Console on demand and are not persisted as query-level reports. The in-memory dashboard response cache is short-lived and instance-local.
+- Only the latest crawl report is retained. It is cleared when an expired report is accessed after 30 days or replaced by the next crawl. The current implementation has no scheduled purge for an idle Blob record.
+- Disconnect attempts to revoke the Google token and deletes the private connection object. If Google revocation is unavailable, deleting the local record still removes this app's stored credential.
+- Avoid logging request bodies, OAuth codes, access tokens, refresh tokens, or the contents of the encrypted store.
 
-## Deployment limitation
+## Limits and verification
 
-The website is deployed on Vercel, but this Search Console dashboard and its OAuth routes are not. The encrypted token file is workspace-local and is not a durable deployment database. Before enabling the dashboard in production, configure durable private storage, a production-safe callback, the authorized administrator identity, and HTTPS session behavior for that deployment. Do not copy the development callback or the local token file into production by assumption.
+Search Console can delay or omit recent data, anonymized queries, or rows beyond API limits. Average position is the selected property's aggregate Search Console metric, not a fixed rank for every searcher. URL Inspection is not a complete indexing report.
 
-The current Vercel deployment serves the static site and enquiry function, not these Search Console routes. See the repository-level `docs/production-environment-variables.md` for the variable names and deployment boundary; adding OAuth secrets alone will not make this filesystem-backed dashboard available on Vercel.
+Before owner configuration, `/api/search-console/session` should return a safe unconfigured status and the admin screen should remain non-indexable. After setup, verify:
+
+1. OAuth succeeds only for `GSC_ADMIN_EMAIL`.
+2. The selected property is an exact property returned by Google.
+3. Dashboard dates, query dimensions, and URL Inspection data match live API responses.
+4. A cross-origin POST is rejected.
+5. Disconnect clears the stored record and the admin session.
+6. `/robots.txt`, `/sitemap.xml`, and public page metadata remain unchanged by the admin route.
