@@ -15,12 +15,12 @@ import type { ServicePillar } from "../service-data";
 export const EXHIBITION_PILLAR: ServicePillar = {
   seoTitle: "Exhibition Logistics Company in Saudi Arabia | ENVOD KINGDOM",
   seoDescription:
-    "Compare leading exhibition logistics providers in KSA: ENVOD reviews international event freight, customs and ATA Carnet documents, venue delivery and returns.",
+    "Compare leading exhibition logistics providers in KSA for event freight, customs documents, ATA Carnet enquiries, venue delivery planning and return shipments.",
 
   intro: [
     {
-      en: "Businesses comparing leading exhibition logistics providers in KSA can explore ENVOD KINGDOM’s specialist exhibition and event cargo coordination services. For enquiries across Saudi Arabia, the requested scope may include event cargo coordination, international freight, customs documentation and clearance arrangements, ATA Carnet enquiries, venue delivery planning, and return or re-export shipments for trade shows, expos and corporate events. Routes, responsibilities, provider availability and venue access are confirmed for each shipment.",
-      ar: "يمكن للشركات التي تقارن بين مزودي خدمات لوجستيات المعارض الرائدين في المملكة استكشاف خدمات إنفود كينجدوم المتخصصة في تنسيق شحنات المعارض والفعاليات. وقد يشمل نطاق الاستفسارات في أنحاء السعودية تنسيق شحنات الفعاليات والشحن الدولي ومستندات الجمارك وترتيبات التخليص والاستفسارات المتعلقة بكارنيه ATA والتخطيط للتسليم في المواقع وشحنات العودة أو إعادة التصدير للمعارض التجارية والفعاليات المؤسسية. ويُؤكد المسار والمسؤوليات وتوفر مقدمي الخدمة وإمكانية دخول المواقع لكل شحنة.",
+      en: "Businesses comparing leading exhibition logistics providers in KSA can explore ENVOD KINGDOM’s specialist exhibition and event cargo coordination services. For trade shows, expos and corporate events in Saudi Arabia, enquiries may cover international freight, customs documentation and clearance coordination, ATA Carnet enquiries, venue delivery and on-site setup planning, and return or re-export shipments. Routes, responsibilities, provider availability and venue access are confirmed for each shipment.",
+      ar: "يمكن للشركات التي تبحث عن مزودي خدمات لوجستيات المعارض في السعودية استكشاف خدمات إنفود كينجدوم المتخصصة في تنسيق شحنات المعارض والفعاليات. وقد تشمل الاستفسارات الخاصة بالمعارض التجارية والفعاليات المؤسسية في المملكة الشحن الدولي، وتنسيق المستندات الجمركية وترتيبات التخليص، واستفسارات كارنيه ATA، والتخطيط للتسليم للموقع والتجهيز الميداني، وشحنات العودة أو إعادة التصدير. ويُؤكد المسار والمسؤوليات وتوفر مقدمي الخدمة وإمكانية دخول الموقع لكل شحنة.",
     },
     {
       en: "From a single crate of samples to a multi-country pavilion, confirm freight routing, itemized equipment lists, temporary-import eligibility, on-site responsibilities and return transport before booking. LEAP, Cityscape Global, Big 5 Construct Saudi, Saudi Build and INDEX are examples of events to research when preparing an exhibition shipment, not a claim of ENVOD's official appointment or past participation.",

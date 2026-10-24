@@ -531,8 +531,8 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
     ar: "تنسيق التخليص الجمركي للميناء الجاف بالرياض وميناء جدة الإسلامي وميناء الملك عبدالعزيز بالدمام، وتجهيز المستندات والتحقق من متطلبات البضاعة.",
   },
   "exhibition-logistics": {
-    en: "Compare leading exhibition logistics providers in KSA: ENVOD reviews international event freight, customs and ATA Carnet documents, venue delivery and returns.",
-    ar: "تنسيق لوجستيات المعارض في السعودية: الشحن الدولي ومستندات الجمارك واستفسارات كارنيه ATA والتسليم للموقع وتخطيط شحنات العودة حسب كل فعالية.",
+    en: "Compare leading exhibition logistics providers in KSA for event freight, customs documents, ATA Carnet enquiries, venue delivery planning and return shipments.",
+    ar: "تنسيق شحن المعارض في السعودية: الشحن الدولي، مستندات الجمارك، استفسارات كارنيه ATA، التسليم للموقع وتخطيط شحنات العودة حسب كل فعالية.",
   },
   "ata-carnet": {
     en: "ATA Carnet and temporary-import coordination in Saudi Arabia: eligibility, equipment lists, customs endorsements and re-export planning for exhibition cargo.",

@@ -76,7 +76,15 @@ export default function ServiceDetail() {
   }
 
   const serviceName = isRtl ? service.nameAr : service.name;
-  const serviceDesc = isRtl ? service.descriptionAr : service.description;
+  const serviceHeading = serviceId === 11
+    ? t("Exhibition & Event Logistics in Saudi Arabia", "لوجستيات المعارض والفعاليات في السعودية")
+    : serviceName;
+  const serviceDesc = serviceId === 11
+    ? t(
+        "Exhibition and event cargo coordination for Saudi Arabia enquiries, including international freight, customs-document support, ATA Carnet enquiries, venue delivery and return or re-export planning. Routes, responsibilities and on-site scope are confirmed per shipment.",
+        "تنسيق شحن المعارض والفعاليات في السعودية، بما يشمل الشحن الدولي ودعم مستندات الجمارك واستفسارات كارنيه ATA والتسليم للموقع والتخطيط للعودة أو إعادة التصدير. ويُؤكد المسار والمسؤوليات ونطاق العمل الميداني لكل شحنة.",
+      )
+    : isRtl ? service.descriptionAr : service.description;
   const heroImage = serviceId ? SERVICE_IMAGES[serviceId] : undefined;
   const heroOptions = serviceId ? SERVICE_HERO_OPTIONS[serviceId] : undefined;
 
@@ -153,7 +161,7 @@ export default function ServiceDetail() {
                 transition={{ delay: 0.12 }}
                 className="text-3xl md:text-5xl xl:text-6xl font-black text-white leading-tight tracking-tight max-w-3xl"
               >
-                {serviceName}
+                {serviceHeading}
               </motion.h1>
             </div>
           </div>
