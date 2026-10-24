@@ -1,3 +1,5 @@
+/// <reference types="express" />
+
 import { createHash, randomBytes } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
