@@ -203,6 +203,13 @@ const ENQUIRY_SERVICE_DEFINITIONS = [
       select("furnitureAssembly", "Furniture dismantling or assembly", "فك الأثاث أو تركيبه", yesNoUnsure),
       date("preferredMoveDate", "Preferred moving date", "تاريخ الانتقال المفضل"),
       select("storageNeeded", "Storage required?", "هل تحتاج إلى تخزين؟", yesNoUnsure),
+      area(
+        "buildingAccess",
+        "Building access and special handling",
+        "دخول المبنى ومتطلبات المناولة الخاصة",
+        "Optional: stairs or lift, parking/entry restrictions, fragile or oversized items.",
+        "اختياري: السلالم أو المصعد وقيود المواقف أو الدخول والقطع الحساسة أو كبيرة الحجم.",
+      ),
     ],
   },
   {

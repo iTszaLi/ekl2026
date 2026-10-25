@@ -1,0 +1,150 @@
+{
+  "routeCount": 92,
+  "brokenAssets": [],
+  "nonSitemapLinks": [
+    "/ar/"
+  ],
+  "browserResults": [
+    {
+      "language": "en",
+      "viewport": 1440,
+      "lang": "en",
+      "dir": "ltr",
+      "width": 1425,
+      "scrollWidth": 1425,
+      "heading": "What information is needed for an exhibition logistics quote?",
+      "headingTop": 111.5,
+      "headerBottom": 88.5,
+      "bulletIconX": 280.5,
+      "bulletTextX": 308.5,
+      "bulletCount": 6,
+      "references": [
+        {
+          "href": "https://zatca.gov.sa/en/eServices/Pages/eServices-294.aspx",
+          "text": "ZATCA: Temporary Admission Using ATA Carnet",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country/",
+          "text": "ICC: Find the ATA Carnet association for your country",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+          "text": "ZATCA: Import instructions and cargo-dependent document requirements",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        }
+      ],
+      "packaging": true
+    },
+    {
+      "language": "en",
+      "viewport": 390,
+      "lang": "en",
+      "dir": "ltr",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "What information is needed for an exhibition logistics quote?",
+      "headingTop": 143.5,
+      "headerBottom": 137,
+      "bulletIconX": 16,
+      "bulletTextX": 44,
+      "bulletCount": 6,
+      "references": [
+        {
+          "href": "https://zatca.gov.sa/en/eServices/Pages/eServices-294.aspx",
+          "text": "ZATCA: Temporary Admission Using ATA Carnet",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country/",
+          "text": "ICC: Find the ATA Carnet association for your country",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+          "text": "ZATCA: Import instructions and cargo-dependent document requirements",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        }
+      ],
+      "packaging": true
+    },
+    {
+      "language": "ar",
+      "viewport": 1440,
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 1425,
+      "scrollWidth": 1425,
+      "heading": "ما المعلومات المطلوبة لعرض سعر لوجستيات المعارض؟",
+      "headingTop": 111.625,
+      "headerBottom": 88.5,
+      "bulletIconX": 1128.5,
+      "bulletTextX": 471.125,
+      "bulletCount": 6,
+      "references": [
+        {
+          "href": "https://zatca.gov.sa/ar/eServices/Pages/eServices-294.aspx",
+          "text": "هيئة الزكاة والضريبة والجمارك: الإدخال المؤقت (كارنيه)",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country/",
+          "text": "غرفة التجارة الدولية: ابحث عن جهة كارنيه ATA في بلدك (بالإنجليزية)",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://zatca.gov.sa/ar/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+          "text": "هيئة الزكاة والضريبة والجمارك: إرشادات الاستيراد والمستندات بحسب البضاعة",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        }
+      ],
+      "packaging": true
+    },
+    {
+      "language": "ar",
+      "viewport": 390,
+      "lang": "ar",
+      "dir": "rtl",
+      "width": 390,
+      "scrollWidth": 390,
+      "heading": "ما المعلومات المطلوبة لعرض سعر لوجستيات المعارض؟",
+      "headingTop": 143.75,
+      "headerBottom": 121,
+      "bulletIconX": 358,
+      "bulletTextX": 16,
+      "bulletCount": 6,
+      "references": [
+        {
+          "href": "https://zatca.gov.sa/ar/eServices/Pages/eServices-294.aspx",
+          "text": "هيئة الزكاة والضريبة والجمارك: الإدخال المؤقت (كارنيه)",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country/",
+          "text": "غرفة التجارة الدولية: ابحث عن جهة كارنيه ATA في بلدك (بالإنجليزية)",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        },
+        {
+          "href": "https://zatca.gov.sa/ar/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+          "text": "هيئة الزكاة والضريبة والجمارك: إرشادات الاستيراد والمستندات بحسب البضاعة",
+          "rel": "noopener noreferrer",
+          "target": "_blank"
+        }
+      ],
+      "packaging": true
+    }
+  ],
+  "runtimeExceptions": []
+}

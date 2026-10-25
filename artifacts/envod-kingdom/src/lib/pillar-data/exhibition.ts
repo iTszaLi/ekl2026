@@ -15,7 +15,7 @@ import type { ServicePillar } from "../service-data";
 export const EXHIBITION_PILLAR: ServicePillar = {
   seoTitle: "Exhibition Logistics Company in Saudi Arabia | ENVOD KINGDOM",
   seoDescription:
-    "Compare leading exhibition logistics providers in KSA for event freight, customs documents, ATA Carnet enquiries, venue delivery planning and return shipments.",
+    "Exhibition shipments to Saudi Arabia: freight, customs documents, ATA Carnet enquiries and venue delivery. Compare leading exhibition logistics providers in KSA",
 
   intro: [
     {
@@ -123,6 +123,17 @@ export const EXHIBITION_PILLAR: ServicePillar = {
           ar: "تنسّق إنفود مراجعة قائمة المعدات ومستندات الشحنة. وإذا تعذّر استخدام الكارنيه أو لم يناسب البضاعة، فناقش إجراء الإدخال المؤقت المطبق مع مسؤول التخليص المختص قبل الإرسال. تختلف مدد التخليص الجمركي حسب المستندات ونوع البضاعة ومتطلبات الفحص والموافقات التنظيمية.",
         },
       ],
+      references: [
+        {
+          label: { en: "ZATCA: Temporary Admission Using ATA Carnet", ar: "هيئة الزكاة والضريبة والجمارك: الإدخال المؤقت (كارنيه)" },
+          href: "https://zatca.gov.sa/en/eServices/Pages/eServices-294.aspx",
+          hrefAr: "https://zatca.gov.sa/ar/eServices/Pages/eServices-294.aspx",
+        },
+        {
+          label: { en: "ICC: Find the ATA Carnet association for your country", ar: "غرفة التجارة الدولية: ابحث عن جهة كارنيه ATA في بلدك (بالإنجليزية)" },
+          href: "https://iccwbo.org/business-solutions/ata-carnet/ata-carnet-in-your-country/",
+        },
+      ],
     },
     {
       id: "on-site-handling",
@@ -177,6 +188,48 @@ export const EXHIBITION_PILLAR: ServicePillar = {
         {
           en: "Government, defense or controlled-venue requests: eligibility, security and regulatory requirements must be reviewed before any service commitment.",
           ar: "طلبات الجهات الحكومية أو الدفاعية أو المواقع الخاضعة للضوابط: يجب مراجعة الأهلية ومتطلبات الأمن واللوائح قبل أي التزام بتقديم الخدمة.",
+        },
+      ],
+    },
+    {
+      id: "exhibition-logistics-quote-checklist",
+      heading: {
+        en: "What information is needed for an exhibition logistics quote?",
+        ar: "ما المعلومات المطلوبة لعرض سعر لوجستيات المعارض؟",
+      },
+      paragraphs: [
+        {
+          en: "Send the event brief and cargo details together so the proposed freight, customs-document support, venue delivery and return movements can be reviewed as one plan. Pricing depends on the route, freight mode, cargo, required handling, customs procedure and venue requirements; a written quote should clarify included work, exclusions and each provider’s responsibilities.",
+          ar: "أرسل تفاصيل الفعالية والبضائع معاً حتى يمكن مراجعة الشحن ودعم المستندات الجمركية والتسليم للموقع وشحنات العودة ضمن خطة واحدة. يعتمد السعر على المسار ووسيلة الشحن والبضاعة والمناولة المطلوبة والإجراء الجمركي ومتطلبات الموقع؛ وينبغي أن يوضح العرض المكتوب الأعمال المشمولة والاستثناءات ومسؤوليات كل مقدم خدمة.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Event name, venue, hall and stand number, organizer’s freight manual, and confirmed build-up, delivery and collection windows.",
+          ar: "اسم الفعالية والموقع والقاعة ورقم الجناح ودليل الشحن الصادر عن المنظّم ومواعيد التجهيز والتسليم والاستلام المؤكدة.",
+        },
+        {
+          en: "Collection address, origin country, destination, cargo-ready date, preferred freight mode and the return or next-event destination.",
+          ar: "عنوان الاستلام وبلد المنشأ والوجهة وتاريخ جاهزية البضاعة ووسيلة الشحن المفضلة ووجهة العودة أو الفعالية التالية.",
+        },
+        {
+          en: "Itemized packing list, number of packages, dimensions, gross weight and declared values; identify restricted goods, batteries, liquids or special handling needs.",
+          ar: "قائمة تعبئة مفصلة وعدد الطرود وأبعادها وأوزانها الإجمالية والقيم المصرح بها؛ مع توضيح البضائع المقيدة أو البطاريات أو السوائل أو احتياجات المناولة الخاصة.",
+        },
+        {
+          en: "Identify goods intended for return separately from items intended for sale, use or distribution. Confirm the applicable import procedure, importer or consignee and required approvals with the responsible customs operator.",
+          ar: "ميّز البضائع المخصصة للعودة عن المواد المخصصة للبيع أو الاستخدام أو التوزيع. وأكّد إجراء الاستيراد المطبق والمستورد أو المرسل إليه والموافقات المطلوبة مع مشغّل الجمارك المسؤول.",
+        },
+        {
+          en: "Clarify unloading, lifting, unpacking, empty-crate storage, repacking, insurance and return collection requirements. Venue-appointed contractors and access permissions must be confirmed rather than assumed.",
+          ar: "وضّح متطلبات التفريغ والرفع وفك التغليف وتخزين الصناديق الفارغة وإعادة التغليف والتأمين والاستلام للعودة. ويجب تأكيد المقاولين المعتمدين من الموقع وتصاريح الدخول، لا افتراض توفرها.",
+        },
+      ],
+      references: [
+        {
+          label: { en: "ZATCA: Import instructions and cargo-dependent document requirements", ar: "هيئة الزكاة والضريبة والجمارك: إرشادات الاستيراد والمستندات بحسب البضاعة" },
+          href: "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
+          hrefAr: "https://zatca.gov.sa/ar/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx",
         },
       ],
     },
@@ -359,5 +412,6 @@ export const EXHIBITION_PILLAR: ServicePillar = {
     { label: "Warehousing & Distribution", labelAr: "التخزين والتوزيع", href: "/services/warehousing" },
     { label: "House Moving & Relocation", labelAr: "نقل المنازل والانتقال", href: "/services/relocation" },
     { label: "GCC Transportation", labelAr: "النقل البري داخل دول مجلس التعاون", href: "/services/gcc-transportation" },
+    { label: "Packaging & Crating Services", labelAr: "خدمات التغليف والصناديق", href: "/services/packaging-crating" },
   ],
 };

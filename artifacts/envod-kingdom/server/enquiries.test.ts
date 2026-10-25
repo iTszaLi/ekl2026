@@ -256,7 +256,12 @@ test("customs, exhibition, breakbulk, sea freight, warehousing, relocation and o
     },
     {
       service: "Packing, Moving & Relocation",
-      serviceDetails: { moveType: "Residential", estimatedContents: "2 rooms", packingService: "Packing and unpacking" },
+      serviceDetails: {
+        moveType: "Residential",
+        estimatedContents: "2 rooms",
+        packingService: "Packing and unpacking",
+        buildingAccess: "Third-floor walk-up; fragile cabinet (test only)",
+      },
     },
     {
       service: "Import & Export Documentation",

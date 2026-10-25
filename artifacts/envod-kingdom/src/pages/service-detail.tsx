@@ -78,12 +78,19 @@ export default function ServiceDetail() {
   const serviceName = isRtl ? service.nameAr : service.name;
   const serviceHeading = serviceId === 11
     ? t("Exhibition & Event Logistics in Saudi Arabia", "لوجستيات المعارض والفعاليات في السعودية")
+    : serviceId === 9
+      ? t("House Moving & Relocation in Riyadh", "نقل المنازل والأثاث في الرياض")
     : serviceName;
   const serviceDesc = serviceId === 11
     ? t(
         "Exhibition and event cargo coordination for Saudi Arabia enquiries, including international freight, customs-document support, ATA Carnet enquiries, venue delivery and return or re-export planning. Routes, responsibilities and on-site scope are confirmed per shipment.",
         "تنسيق شحن المعارض والفعاليات في السعودية، بما يشمل الشحن الدولي ودعم مستندات الجمارك واستفسارات كارنيه ATA والتسليم للموقع والتخطيط للعودة أو إعادة التصدير. ويُؤكد المسار والمسؤوليات ونطاق العمل الميداني لكل شحنة.",
       )
+    : serviceId === 9
+      ? t(
+          "Planning a home move in Riyadh? Send ENVOD KINGDOM your move type, approximate inventory, packing needs, preferred date and route. Building access and fragile or oversized items can also be noted. Provider availability, responsibilities and the requested scope are confirmed before booking.",
+          "هل تخطط لنقل منزلك أو أثاثك في الرياض؟ أرسل إلى إنفود كينغدوم نوع الانتقال وقائمة المنقولات التقريبية واحتياجات التغليف والموعد والمسار. ويمكنك أيضاً ذكر متطلبات دخول المبنى والقطع الحساسة أو كبيرة الحجم. يتم تأكيد توفر مقدم الخدمة والمسؤوليات والنطاق المطلوب قبل الحجز.",
+        )
     : isRtl ? service.descriptionAr : service.description;
   const heroImage = serviceId ? SERVICE_IMAGES[serviceId] : undefined;
   const heroOptions = serviceId ? SERVICE_HERO_OPTIONS[serviceId] : undefined;
@@ -242,7 +249,9 @@ export default function ServiceDetail() {
             {t("Service options for", "خيارات")} <span className="text-secondary">{serviceName}</span>
           </h2>
           <p className="text-white/45 text-sm max-w-xl">
-            {t("Choose a sub-service to send an enquiry about your requirements. Response times depend on the enquiry and business hours.", "اختر خدمة فرعية لإرسال استفسار بمتطلباتك. تختلف مدة الرد حسب الاستفسار وساعات العمل.")}
+            {serviceId === 9
+              ? t("Choose the move type closest to your request. These are enquiry categories, not a fixed service package; scope and provider availability are confirmed before booking.", "اختر نوع الانتقال الأقرب إلى طلبك. هذه فئات للاستفسار وليست باقة خدمة ثابتة؛ ويُؤكد النطاق وتوفر مقدم الخدمة قبل الحجز.")
+              : t("Choose a sub-service to send an enquiry about your requirements. Response times depend on the enquiry and business hours.", "اختر خدمة فرعية لإرسال استفسار بمتطلباتك. تختلف مدة الرد حسب الاستفسار وساعات العمل.")}
           </p>
         </motion.div>
 
@@ -293,8 +302,12 @@ export default function ServiceDetail() {
               viewport={{ once: true }}
               className={`mb-12 ${isRtl ? "text-right" : "text-center"}`}
             >
-              <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">{t("HOW IT WORKS", "كيف تعمل")}</p>
-              <h2 className="text-2xl md:text-3xl font-black text-white">{t("Our Process", "عمليتنا")}</h2>
+              <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+                {serviceId === 9 ? t("MOVE-REQUEST REVIEW", "مراجعة طلب الانتقال") : t("HOW IT WORKS", "كيف تعمل")}
+              </p>
+              <h2 className="text-2xl md:text-3xl font-black text-white">
+                {serviceId === 9 ? t("From enquiry to confirmed scope", "من الاستفسار إلى تأكيد النطاق") : t("Our Process", "عمليتنا")}
+              </h2>
             </motion.div>
             <div className="flex flex-wrap justify-center gap-4">
               {meta.process.map((step, i) => (
@@ -334,8 +347,12 @@ export default function ServiceDetail() {
             viewport={{ once: true }}
             className={isRtl ? "text-right" : ""}
           >
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-4">{t("INDUSTRIES SERVED", "القطاعات المخدومة")}</p>
-            <h2 className="text-2xl font-black text-white mb-6">{t("Who We Serve", "من نخدم")}</h2>
+            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-4">
+              {serviceId === 9 ? t("MOVE TYPES WE REVIEW", "أنواع الانتقال التي نراجعها") : t("INDUSTRIES SERVED", "القطاعات المخدومة")}
+            </p>
+            <h2 className="text-2xl font-black text-white mb-6">
+              {serviceId === 9 ? t("Common move enquiries", "استفسارات الانتقال الشائعة") : t("Who We Serve", "من نخدم")}
+            </h2>
             <div className="space-y-3">
               {meta.industries.map((ind, i) => (
                 <motion.div
@@ -362,8 +379,12 @@ export default function ServiceDetail() {
             viewport={{ once: true }}
             className={isRtl ? "text-right" : ""}
           >
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-4">{t("WHY CHOOSE US", "لماذا تختارنا")}</p>
-            <h2 className="text-2xl font-black text-white mb-6">{t("The ENVOD Advantage", "ميزة إنفود")}</h2>
+            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-4">
+              {serviceId === 9 ? t("BEFORE BOOKING", "قبل الحجز") : t("WHY CHOOSE US", "لماذا تختارنا")}
+            </p>
+            <h2 className="text-2xl font-black text-white mb-6">
+              {serviceId === 9 ? t("What we confirm", "ما نؤكده") : t("The ENVOD Advantage", "ميزة إنفود")}
+            </h2>
             <div className="space-y-4">
               {meta.whyEnvod.map((point, i) => (
                 <motion.div
@@ -448,10 +469,14 @@ export default function ServiceDetail() {
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-5">{t("GET STARTED", "ابدأ الآن")}</p>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4 max-w-2xl mx-auto leading-tight">
-              {t("Planning a shipment?", "هل تخطط لشحنة؟")} <span className="text-secondary">{t("Send an Enquiry.", "أرسل استفساراً.")}</span>
+              {serviceId === 9
+                ? t("Planning a home move?", "هل تخطط لنقل منزلك؟")
+                : t("Planning a shipment?", "هل تخطط لشحنة؟")} <span className="text-secondary">{t("Send an Enquiry.", "أرسل استفساراً.")}</span>
             </h2>
             <p className="text-white/45 max-w-lg mx-auto mb-10 text-sm leading-relaxed">
-              {t("Share the cargo, route and timing so the requested scope and provider availability can be reviewed.", "أرسل تفاصيل البضاعة والمسار والتوقيت لمراجعة النطاق المطلوب وتوفر مقدم الخدمة.")}
+              {serviceId === 9
+                ? t("Share the move type, approximate contents, packing and access needs, preferred date and route. Provider options and scope are checked before booking.", "أرسل نوع الانتقال والحجم التقريبي واحتياجات التغليف والدخول والموعد والمسار. ويتم التحقق من خيارات مقدم الخدمة والنطاق قبل الحجز.")
+                : t("Share the cargo, route and timing so the requested scope and provider availability can be reviewed.", "أرسل تفاصيل البضاعة والمسار والتوقيت لمراجعة النطاق المطلوب وتوفر مقدم الخدمة.")}
             </p>
             <div className={`flex flex-col sm:flex-row gap-4 justify-center ${isRtl ? "sm:flex-row-reverse" : ""}`}>
               <Link

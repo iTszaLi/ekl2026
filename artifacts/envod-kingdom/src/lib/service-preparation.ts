@@ -7,6 +7,23 @@ interface Preparation {
 }
 
 export const SERVICE_PREPARATION: Record<string, Preparation> = {
+  relocation: {
+    heading: ["Prepare a Riyadh home-moving enquiry", "جهّز استفسار نقل منزلك في الرياض"],
+    summary: [
+      "A clear move brief helps ENVOD review the route and requested scope. Share only the details needed for an initial estimate; exact addresses can follow when necessary.",
+      "تساعد تفاصيل الانتقال إنفود على مراجعة المسار والنطاق المطلوب. أرسل ما يلزم للاستفسار الأولي فقط؛ ويمكن تقديم العناوين الدقيقة عند الحاجة.",
+    ],
+    items: [
+      ["Identify the move type, approximate home size or room count, major furniture, carton estimate and preferred date.", "حدد نوع الانتقال والحجم التقريبي للمنزل أو عدد الغرف وأبرز قطع الأثاث وعدد الصناديق والموعد المفضل."],
+      ["Share origin and destination cities or areas. Note stairs, lift access, parking or entry limits, and fragile or oversized items.", "أرسل مدينتي أو منطقتي المنشأ والوجهة. واذكر السلالم أو المصعد وقيود المواقف أو الدخول والقطع الحساسة أو كبيرة الحجم."],
+      ["List requested packing, furniture dismantling or reassembly, storage, or other handling needs; these are not assumed to be included.", "اذكر احتياجات التغليف أو فك الأثاث أو تركيبه أو التخزين أو المناولة الأخرى؛ ولا يُفترض شمولها تلقائياً."],
+      ["For an international move, add the origin and destination countries and ask which household goods, customs documents and provider responsibilities apply to that route.", "للانتقال الدولي، أضف دولتي المنشأ والوجهة واستفسر عن أهلية الأمتعة المنزلية ومستندات الجمارك ومسؤوليات مقدم الخدمة للمسار."],
+    ],
+    note: [
+      "Local and intercity routes, provider availability, packing scope, storage, customs, insurance terms, price and timing require case-specific confirmation. Ask for the responsible provider, included work, exclusions and terms before booking.",
+      "تتطلب المسارات المحلية وبين المدن وتوفر مقدم الخدمة ونطاق التغليف والتخزين والجمارك وشروط التأمين والسعر والموعد تأكيداً لكل حالة. اطلب تحديد مقدم الخدمة المسؤول والأعمال المشمولة والاستثناءات والشروط قبل الحجز.",
+    ],
+  },
   "project-cargo": {
     heading: ["Project-cargo planning checklist", "قائمة تجهيز نقل بضائع المشاريع"],
     summary: ["Start with a cargo survey and a shipment-specific transport plan. A vehicle name alone does not establish whether a load can move safely or legally on a proposed route.", "ابدأ بمعاينة البضاعة وخطة نقل خاصة بالشحنة. اسم المركبة وحده لا يثبت إمكانية نقل الحمولة بأمان أو السماح بمرورها على المسار المقترح."],
@@ -131,6 +148,11 @@ export const PREPARATION_LINKS: Record<string, { slug: string; label: [string, s
   ],
   "project-cargo": [
     { slug: "freight-forwarding", label: ["Coordinate transport legs and responsibilities", "تنسيق مراحل النقل والمسؤوليات"] },
+  ],
+  relocation: [
+    { slug: "packaging-crating", label: ["Packaging and crating requirements", "متطلبات التغليف والتصنيد"] },
+    { slug: "warehousing", label: ["Storage and warehousing enquiries", "استفسارات التخزين والمستودعات"] },
+    { slug: "customs-clearance", label: ["Customs documents for international moves", "مستندات الجمارك للانتقالات الدولية"] },
   ],
   "temperature-controlled-logistics": [
     { slug: "air-freight", label: ["Air transport acceptance and preparation", "قبول الشحن الجوي وتجهيزه"] },

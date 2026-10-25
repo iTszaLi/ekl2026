@@ -43,7 +43,7 @@ export default function PillarSections({
 
         <div className="mt-14 space-y-12">
           {pillar.sections.map((s) => (
-            <article key={s.id} id={s.id} className="scroll-mt-28">
+            <article key={s.id} id={s.id} className="scroll-mt-36 md:scroll-mt-28">
               <h2 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
                 {isRtl ? s.heading.ar : s.heading.en}
               </h2>
@@ -59,7 +59,7 @@ export default function PillarSections({
                   {s.bullets.map((b, i) => (
                     <li
                       key={i}
-                      className={`flex items-start gap-3 ${isRtl ? "flex-row-reverse" : ""}`}
+                      className="flex items-start gap-3"
                     >
                       <CheckCircle2
                         className="w-4 h-4 mt-0.5 shrink-0"
@@ -71,6 +71,28 @@ export default function PillarSections({
                     </li>
                   ))}
                 </ul>
+              )}
+              {!!s.references?.length && (
+                <div className="mt-6 text-sm leading-relaxed">
+                  <p className="text-white/70 font-semibold">
+                    {isRtl ? "مراجع رسمية للتحقق من المتطلبات الحالية" : "Official references for checking current requirements"}
+                  </p>
+                  <ul className="mt-2 space-y-2">
+                    {s.references.map((reference, index) => (
+                      <li key={reference.href}>
+                        <a
+                          href={isRtl ? reference.hrefAr ?? reference.href : reference.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white/70 underline underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                          data-testid={`link-pillar-reference-${s.id}-${index + 1}`}
+                        >
+                          {isRtl ? reference.label.ar : reference.label.en}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </article>
           ))}

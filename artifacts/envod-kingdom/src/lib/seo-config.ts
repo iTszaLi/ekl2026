@@ -483,8 +483,8 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
     ar: "خطط لشحن المعدات الثقيلة أو كبيرة الحجم في السعودية. شارك الأبعاد والمسار والتصاريح واحتياجات الرفع لتأكيد توفر مزود مؤهل.",
   },
   relocation: {
-    en: "Request residential or commercial moving in Saudi Arabia. Share inventory, packing needs, dates and route so the service scope can be confirmed.",
-    ar: "اطلب خدمات نقل سكنية أو تجارية في السعودية. شارك قائمة الأثاث واحتياجات التغليف والتواريخ والمسار لتحديد نطاق الخدمة.",
+    en: "Plan a home move in Riyadh? Share the move type, inventory, packing needs, preferred date and route. ENVOD reviews provider availability and scope before booking.",
+    ar: "هل تخطط لنقل منزل في الرياض؟ أرسل نوع الانتقال وقائمة المنقولات واحتياجات التغليف والموعد والمسار لمراجعة النطاق وتوفر مقدم الخدمة قبل الحجز.",
   },
   "ecommerce-logistics": {
     en: "Discuss e-commerce delivery, returns and fulfillment in Saudi Arabia. Provider coverage, facilities, integrations and tracking options depend on confirmed scope.",
@@ -531,8 +531,8 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
     ar: "تنسيق التخليص الجمركي للميناء الجاف بالرياض وميناء جدة الإسلامي وميناء الملك عبدالعزيز بالدمام، وتجهيز المستندات والتحقق من متطلبات البضاعة.",
   },
   "exhibition-logistics": {
-    en: "Compare leading exhibition logistics providers in KSA for event freight, customs documents, ATA Carnet enquiries, venue delivery planning and return shipments.",
-    ar: "تنسيق شحن المعارض في السعودية: الشحن الدولي، مستندات الجمارك، استفسارات كارنيه ATA، التسليم للموقع وتخطيط شحنات العودة حسب كل فعالية.",
+    en: "Exhibition shipments to Saudi Arabia: freight, customs documents, ATA Carnet enquiries and venue delivery. Compare leading exhibition logistics providers in KSA",
+    ar: "شحن المعارض إلى السعودية: تنسيق الشحن ومستندات الجمارك واستفسارات كارنيه ATA والتسليم للموقع. استكشف خدمات مزودي لوجستيات المعارض في المملكة.",
   },
   "ata-carnet": {
     en: "ATA Carnet and temporary-import coordination in Saudi Arabia: eligibility, equipment lists, customs endorsements and re-export planning for exhibition cargo.",
@@ -564,6 +564,11 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
       ? meta?.pillar?.intro.map((paragraph) => paragraph.ar).join(" ") ||
         svc.descriptionAr
       : pillar?.seoDescription ?? svc.description);
+  const serviceTitle = slug === "relocation"
+    ? language === "ar"
+      ? "نقل الأثاث والمنازل في الرياض | إنفود كينغدوم"
+      : "House Moving & Relocation in Riyadh | ENVOD KINGDOM"
+    : undefined;
 
   const jsonLd: Array<Record<string, unknown>> = [
     {
@@ -599,12 +604,13 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
   }
 
   return {
-    title:
+    title: serviceTitle ?? (
       language === "ar"
         ? `${svc.nameAr} في السعودية | إنفود كينغدوم`
         : slug === "oog-cargo"
           ? "Out-of-Gauge Cargo in Saudi Arabia | ENVOD KINGDOM"
-        : pillar?.seoTitle ?? `${svc.name} in Saudi Arabia | ENVOD KINGDOM`,
+        : pillar?.seoTitle ?? `${svc.name} in Saudi Arabia | ENVOD KINGDOM`
+    ),
     description: serviceDescription,
     canonicalPath: path,
     image: OG_IMAGE,

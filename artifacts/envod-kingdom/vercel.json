@@ -2,6 +2,17 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "envodkingdom.net"
+        }
+      ],
+      "destination": "https://www.envodkingdom.net/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {

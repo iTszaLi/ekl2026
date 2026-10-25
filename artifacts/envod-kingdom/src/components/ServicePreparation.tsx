@@ -76,7 +76,9 @@ export function ServicePreparation({ slug }: { slug: string }) {
           </nav>
         )}
         <Link href={`/contact?service=${slug}`} className="inline-flex rounded-xl bg-secondary px-6 py-3 font-bold text-white hover:bg-secondary/85">
-          {t("Send your shipment requirements", "أرسل متطلبات شحنتك")}
+          {slug === "relocation"
+            ? t("Send your move details", "أرسل تفاصيل انتقالك")
+            : t("Send your shipment requirements", "أرسل متطلبات شحنتك")}
         </Link>
       </div>
     </section>
