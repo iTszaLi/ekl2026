@@ -236,7 +236,7 @@ function CompactCard({ service, index, doorToDoor = false }: {
     )
     : isRtl ? service.descriptionAr : service.description;
   const image = doorToDoor ? DOOR_TO_DOOR_IMAGE : SERVICE_IMAGES[service.id];
-  const detailHref = doorToDoor ? "/services/freight-forwarding" : `/services/${slug}`;
+  const detailHref = doorToDoor ? "/services/door-to-door" : `/services/${slug}`;
 
   const content = (
     <>
