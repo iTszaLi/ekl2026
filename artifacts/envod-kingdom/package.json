@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server/index.ts",
     "prebuild": "node scripts/build-vercel-search-console.mjs",
-    "build": "vite build --config vite.config.ts && vite build --config vite.config.ts --ssr src/entry-server.tsx --outDir dist/server && node prerender.mjs",
+    "build": "vite build --config vite.config.ts && vite build --config vite.config.ts --ssr src/entry-server.tsx --outDir dist/server && node prerender.mjs && pnpm run test:seo-routes",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "start": "NODE_ENV=production tsx server/index.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit",
