@@ -163,7 +163,10 @@ function GalleryCard({ item, onOpen, t, isRtl }: { item: GalleryItem; onOpen: ()
         </div>
       </div>
       </button>
-      <div className="mt-3 px-1"><h3 className="text-sm font-bold text-white">{title}</h3>{description && <p className="mt-1 text-xs leading-relaxed text-white/70">{description}</p>}</div>
+      <div className="mt-3 px-1">
+        <h3 className="text-sm font-bold text-white">{title}</h3>
+        {description && <p className="mt-1 text-xs leading-relaxed text-white/70">{description}</p>}
+      </div>
       {item.servicePath && (
         <a
           href={galleryServicePath(item.servicePath, isRtl)}
