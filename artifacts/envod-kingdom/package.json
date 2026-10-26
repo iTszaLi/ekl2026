@@ -13,6 +13,7 @@
     "test:counters": "node scripts/check-counter-prerender.mjs",
     "test:image-dimensions": "node scripts/check-image-dimensions.mjs",
     "test:service-catalog": "tsx --test server/service-catalog.test.ts",
+    "test:seo-routes": "tsx --test src/lib/seo-route-coverage.test.ts",
     "test:search-console": "tsx --test server/search-console/search-console.test.ts",
     "test:enquiries": "tsx --test server/enquiries.test.ts",
     "test:vercel-enquiries": "tsx --test server/vercel-enquiry-handler.test.ts",
