@@ -82,8 +82,7 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
 }
 
 /* ─────────────────────── Gallery card ─────────────────────── */
-function GalleryCard({ item, onOpen, t, isRtl }: { item: GalleryItem; onOpen: () => void; t: (en: string, ar: string) => string; isRtl: boolean }) {
-  const [loaded, setLoaded] = useState(false);
+function GalleryCard({ item, onOpen, t, isRtl, eager }: { item: GalleryItem; onOpen: () => void; t: (en: string, ar: string) => string; isRtl: boolean; eager: boolean }) {
   const [imageFailed, setImageFailed] = useState(false);
   const monthLabel = formatMonthYear(item.monthYear);
   const title = galleryTitle(item, isRtl);
@@ -113,17 +112,13 @@ function GalleryCard({ item, onOpen, t, isRtl }: { item: GalleryItem; onOpen: ()
           width={item.width}
           height={item.height}
           alt={imageFailed ? "" : galleryAltText(item, isRtl)}
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
+          fetchPriority={eager ? "high" : "auto"}
           decoding="async"
-          onLoad={() => {
-            setLoaded(true);
-            setImageFailed(false);
-          }}
+          onLoad={() => setImageFailed(false)}
           onError={() => setImageFailed(true)}
           aria-hidden={imageFailed}
-          className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
-            loaded && !imageFailed ? "opacity-100" : "opacity-0"
-          }`}
+          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
         />
         {imageFailed && (
           <div
@@ -275,7 +270,7 @@ export default function Gallery() {
         ) : (
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
             {filtered.map((item, i) => (
-              <GalleryCard key={item.id} item={item} t={t} isRtl={isRtl} onOpen={() => setLightboxIndex(i)} />
+              <GalleryCard key={item.id} item={item} t={t} isRtl={isRtl} eager={i < 4} onOpen={() => setLightboxIndex(i)} />
             ))}
           </div>
         )}
