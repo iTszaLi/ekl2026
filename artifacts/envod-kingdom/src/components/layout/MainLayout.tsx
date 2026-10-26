@@ -478,6 +478,17 @@ export function Footer() {
                   {badge}
                 </span>
               ))}
+              <a
+                href="https://www.jctrans.com/en/company/07f1r7u/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t("Open ENVOD KINGDOM's verified JCtrans company profile", "افتح ملف ENVOD KINGDOM الموثق على JCtrans")}
+                data-testid="footer-jctrans-profile"
+                className="inline-flex items-center gap-1 rounded-full border border-secondary/30 bg-secondary/10 px-3.5 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-secondary transition-colors hover:bg-secondary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
+              >
+                {t("JCtrans Profile", "ملف JCtrans")}
+                <ArrowUpRight aria-hidden="true" className="h-3 w-3 shrink-0" />
+              </a>
             </div>
 
             <HeadOfficeMiniMap />

@@ -101,11 +101,15 @@ test("every industry detail page has English and Arabic indexable routes", () =>
   }
 });
 
-test("the About page retains the verified JCtrans company-profile link in both languages", () => {
+test("the footer profile badge and About page link to the verified JCtrans company profile in both languages", () => {
   const profileUrl = "https://www.jctrans.com/en/company/07f1r7u/";
   for (const route of ["/about", "/ar/about"]) {
     const html = readFileSync(htmlPath(route), "utf8");
     assert.ok(html.includes(`href="${profileUrl}"`), `${route} links to the verified company profile`);
     assert.ok(html.includes("160391"), `${route} includes the listed JCtrans member identifier`);
+    const badgeLink = html.match(/<a\b[^>]*data-testid="footer-jctrans-profile"[^>]*>/)?.[0] ?? "";
+    assert.ok(badgeLink.includes(`href="${profileUrl}"`), `${route} footer badge links to the official company profile`);
+    assert.ok(badgeLink.includes('target="_blank"'), `${route} footer badge opens the external profile separately`);
+    assert.ok(badgeLink.includes('rel="noopener noreferrer"'), `${route} footer badge uses safe external-link attributes`);
   }
 });
