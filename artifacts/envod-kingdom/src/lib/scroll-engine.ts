@@ -52,4 +52,12 @@ export function scrollToTop(immediate = true) {
   }
 }
 
+/** Keep Lenis' target and native horizontal/vertical offsets synchronized. */
+export function restoreScrollPosition(x: number, y: number) {
+  lenis?.resize();
+  lenis?.scrollTo(y, { immediate: true, force: true });
+  window.scrollTo({ left: x, top: y, behavior: "instant" });
+  ScrollTrigger.update();
+}
+
 export { gsap, ScrollTrigger };

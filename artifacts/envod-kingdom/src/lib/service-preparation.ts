@@ -4,6 +4,7 @@ interface Preparation {
   items: [string, string][];
   note: [string, string];
   source?: { label: [string, string]; url: string };
+  references?: { label: [string, string]; url: string }[];
 }
 
 export const SERVICE_PREPARATION: Record<string, Preparation> = {
@@ -18,6 +19,9 @@ export const SERVICE_PREPARATION: Record<string, Preparation> = {
       ["Share origin and destination cities or areas. Note stairs, lift access, parking or entry limits, and fragile or oversized items.", "أرسل مدينتي أو منطقتي المنشأ والوجهة. واذكر السلالم أو المصعد وقيود المواقف أو الدخول والقطع الحساسة أو كبيرة الحجم."],
       ["List requested packing, furniture dismantling or reassembly, storage, or other handling needs; these are not assumed to be included.", "اذكر احتياجات التغليف أو فك الأثاث أو تركيبه أو التخزين أو المناولة الأخرى؛ ولا يُفترض شمولها تلقائياً."],
       ["For an international move, add the origin and destination countries and ask which household goods, customs documents and provider responsibilities apply to that route.", "للانتقال الدولي، أضف دولتي المنشأ والوجهة واستفسر عن أهلية الأمتعة المنزلية ومستندات الجمارك ومسؤوليات مقدم الخدمة للمسار."],
+      ["For a Riyadh apartment or villa, note the floor at each property, lift size or booking requirements, permitted moving hours and the distance from parking to the entrance. Check who arranges any building permission at both ends.", "لنقل شقة أو فيلا في الرياض، اذكر الطابق في كل مبنى وحجم المصعد أو متطلبات حجزه وأوقات النقل المسموحة والمسافة بين الموقف والمدخل. واتفق على المسؤول عن تصاريح الدخول في موقعي الاستلام والتسليم."],
+      ["When comparing movers and packers in Riyadh, ask who contracts with you, who performs each task, what packing materials and handling are included, and how liability or claims are addressed. ENVOD reviews the enquiry; the responsible provider and agreed work must be confirmed, not assumed.", "عند مقارنة خيارات نقل عفش بالرياض أو البحث عن شركة نقل أثاث بالرياض، اسأل عن جهة التعاقد ومن ينفذ كل مهمة ومواد التغليف والمناولة المشمولة وكيفية التعامل مع المسؤولية والمطالبات. تراجع إنفود الاستفسار؛ ويجب تأكيد مقدم الخدمة المسؤول والأعمال المتفق عليها بدلاً من افتراضها."],
+      ["Depending on the agreed move, discuss Survey, Packing, Loading, Transport, Delivery and Unpacking. Customs applies only where relevant to the route. These are planning checkpoints, not automatically included services; international requirements and provider responsibilities need separate confirmation.", "ناقش مراحل المعاينة والتغليف والتحميل والنقل والتسليم وفك التغليف بحسب نطاق الانتقال المتفق عليه. وتُراجع الجمارك فقط عند انطباقها على المسار. هذه نقاط للتخطيط وليست خدمات مشمولة تلقائياً؛ وتحتاج المتطلبات الدولية ومسؤوليات مقدم الخدمة إلى تأكيد مستقل."],
     ],
     note: [
       "Local and intercity routes, provider availability, packing scope, storage, customs, insurance terms, price and timing require case-specific confirmation. Ask for the responsible provider, included work, exclusions and terms before booking.",
@@ -65,6 +69,12 @@ export const SERVICE_PREPARATION: Record<string, Preparation> = {
     ],
     note: ["ZATCA's current import instructions address advance Fasah declarations and commodity-specific conditions. Confirm the rules for your shipment before dispatch. Release times depend on documentation, inspections and authority decisions; no fixed clearance time is promised.", "تتناول تعليمات الاستيراد الحالية لدى الهيئة تقديم البيانات مسبقاً عبر فسح والشروط الخاصة بالسلع. تحقق من متطلبات شحنتك قبل الإرسال. تعتمد مدة الفسح على المستندات والفحص وقرارات الجهات المختصة، ولا توجد مدة تخليص مضمونة."],
     source: { label: ["ZATCA import instructions — checked 17 October 2026", "تعليمات الاستيراد لدى الهيئة — تمت مراجعتها في 17 أكتوبر 2026"], url: "https://zatca.gov.sa/en/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx" },
+    references: [
+      { label: ["ZATCA: Arabic import instructions and advance declarations", "هيئة الزكاة والضريبة والجمارك: إرشادات الاستيراد والبيانات المسبقة"], url: "https://zatca.gov.sa/ar/RulesRegulations/Taxes/Pages/customs-bussiness/import-pages/Import-Instructions.aspx" },
+      { label: ["Fasah: official customs-services portal", "فسح: البوابة الرسمية للخدمات الجمركية"], url: "https://fasah.zatca.gov.sa/" },
+      { label: ["SABER: product registration and conformity services", "سابر: خدمات تسجيل المنتجات والمطابقة"], url: "https://saber.sa/" },
+      { label: ["SFDA: official authority information and services", "هيئة الغذاء والدواء: المعلومات والخدمات الرسمية"], url: "https://www.sfda.gov.sa/ar" },
+    ],
   },
   "air-freight": {
     heading: ["What we need for an air freight quote", "ما المطلوب لتسعير الشحن الجوي؟"],
@@ -103,6 +113,7 @@ export const SERVICE_PREPARATION: Record<string, Preparation> = {
       ["Send the event name, venue, stand number, build-up deadline and dismantling window.", "أرسل اسم الفعالية والموقع ورقم الجناح وموعد التجهيز وفترة التفكيك."],
       ["Provide a packing list, dimensions, values and serial numbers where applicable.", "جهّز قائمة التعبئة والأبعاد والقيم والأرقام التسلسلية عند انطباقها."],
       ["Separate goods returning after the event from goods being sold or consumed, and request an eligibility review for temporary admission or ATA Carnet.", "افصل البضائع المعادة بعد الفعالية عن البضائع المعدة للبيع أو الاستهلاك، واطلب مراجعة أهلية الإدخال المؤقت أو كارنيه ATA."],
+      ["When comparing exhibition logistics providers, distinguish freight and venue-delivery coordination from event management or booth construction. Confirm the appointed venue contractor, unloading equipment and responsibility for each task.", "عند مقارنة شركات لوجستيات المعارض، ميّز بين تنسيق الشحن وتسليم المعدات إلى الموقع وبين تنظيم الفعالية أو إنشاء الجناح. أكّد المقاول المعتمد من الموقع ومعدات التفريغ ومسؤولية كل طرف."],
     ],
     note: ["Venue services, equipment, temporary storage and on-site assistance must be confirmed in the quotation. An event's appearance on this site does not itself establish an official organizer appointment.", "يجب تأكيد خدمات الموقع والمعدات والتخزين المؤقت والمساعدة الميدانية في عرض السعر. لا يعني ذكر فعالية في هذا الموقع وجود تعيين رسمي من منظمها."],
   },
@@ -123,6 +134,8 @@ export const PREPARATION_LINKS: Record<string, { slug: string; label: [string, s
     { slug: "ocean-freight", label: ["Ocean freight and FCL/LCL planning", "تخطيط الشحن البحري والحاويات الكاملة والجزئية"] },
     { slug: "air-freight", label: ["Air cargo preparation", "تجهيز الشحن الجوي"] },
     { slug: "exhibition-logistics", label: ["Customs planning for exhibition cargo", "التخطيط الجمركي لبضائع المعارض"] },
+    { slug: "freight-forwarding", label: ["International freight and customs coordination", "تنسيق الشحن الدولي والمتطلبات الجمركية"] },
+    { slug: "ata-carnet", label: ["ATA Carnet and temporary-admission enquiries", "استفسارات كارنيه ATA والإدخال المؤقت"] },
   ],
   "ocean-freight": [
     { slug: "customs-clearance", label: ["Saudi customs document preparation", "تجهيز مستندات التخليص الجمركي في السعودية"] },

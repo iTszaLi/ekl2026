@@ -66,6 +66,9 @@ export function ServicePreparation({ slug }: { slug: string }) {
             </a>
           </p>
         )}
+        {content.references && <nav aria-label={t("Official regulatory references", "المراجع الرسمية للمتطلبات التنظيمية")} className="mb-7 flex flex-col items-start gap-3">
+          {content.references.map(reference => <a key={reference.url} href={reference.url} target="_blank" rel="noopener noreferrer" className="text-sm text-secondary underline underline-offset-4">{t(...reference.label)}</a>)}
+        </nav>}
         {PREPARATION_LINKS[slug]?.length > 0 && (
           <nav aria-label={t("Related shipment preparation guides", "أدلة ذات صلة لتجهيز الشحنات")} className="mb-7 flex flex-col items-start gap-3">
             {PREPARATION_LINKS[slug].map((link) => (

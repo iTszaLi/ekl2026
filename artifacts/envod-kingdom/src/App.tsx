@@ -26,21 +26,10 @@ const Vision2030 = routePages.vision.Page;
 const Legal = routePages.legal.Page;
 const NotFound = routePages.notFound.Page;
 
+import { RouteScrollRestoration } from "@/components/RouteScrollRestoration";
 function ScrollToTop() {
   const [location] = useLocation();
-  useEffect(() => {
-    // A linked guide handles its fragment after the lazy route has rendered.
-    // A delayed unconditional reset would otherwise override that position.
-    if (window.location.hash) return;
-    let cancelled = false;
-    void import("@/lib/scroll-engine").then((m) => {
-      if (!cancelled) m.scrollToTop(true);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [location]);
-  return null;
+  return <RouteScrollRestoration location={location} />;
 }
 
 function AdminRouteLoading() {

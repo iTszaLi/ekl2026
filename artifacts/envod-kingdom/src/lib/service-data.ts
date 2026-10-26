@@ -1,5 +1,8 @@
 import { EXHIBITION_PILLAR } from "./pillar-data/exhibition";
 import { ATA_CARNET_PILLAR } from "./pillar-data/ata-carnet";
+import { RESTORED_RELOCATION_OPTIONS } from "./relocation-options";
+import { DOOR_TO_DOOR_META, DOOR_TO_DOOR_SERVICE } from "./door-to-door";
+import { SERVICE_REVIEW_FAQ } from "./service-review-faq";
 
 export interface Service {
   id: number;
@@ -460,8 +463,8 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
     id: 9, slug: "relocation",
     gradient: "linear-gradient(135deg,#180c04 0%,#281408 50%,#0c0604 100%)",
     accentHex: "#fb923c",
-    industries: ["Homes & apartments","Villas & private residences","Office & employee moves","International household moves"],
-    industriesAr: ["المنازل والشقق","الفلل والمساكن الخاصة","نقل المكاتب والموظفين","نقل الأمتعة المنزلية دولياً"],
+    industries: ["Homes & apartments","Villas & private residences","Office & employee moves","International household moves","Corporate","Government","Diplomatic","Individual","Expat Communities"],
+    industriesAr: ["المنازل والشقق","الفلل والمساكن الخاصة","نقل المكاتب والموظفين","نقل الأمتعة المنزلية دولياً","الشركات","الحكومة","الدبلوماسية","الأفراد","المغتربون"],
     process: [
       { en: "Send move details", ar: "أرسل تفاصيل الانتقال" },
       { en: "Review inventory & access", ar: "مراجعة المنقولات والدخول" },
@@ -473,11 +476,15 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
       { name: "Office and employee move enquiries", nameAr: "استفسارات نقل المكاتب والموظفين", desc: "Include the inventory, schedule, building access and requested work so availability and responsibilities can be reviewed for the specific move.", descAr: "أرسل قائمة المنقولات والجدول ومتطلبات دخول المبنى والأعمال المطلوبة لمراجعة التوفر والمسؤوليات لكل انتقال." },
       { name: "International household move enquiries", nameAr: "استفسارات نقل الأمتعة المنزلية دولياً", desc: "Share origin and destination countries, inventory and preferred dates. Route coverage, customs documents, eligibility and provider responsibilities need confirmation.", descAr: "أرسل دولتي المنشأ والوجهة وقائمة المنقولات والتواريخ المفضلة. يجب تأكيد تغطية المسار ومستندات الجمارك والأهلية ومسؤوليات مقدم الخدمة." },
       { name: "Packing, handling and storage requests", nameAr: "طلبات التغليف والمناولة والتخزين", desc: "Describe any packing, furniture dismantling, fragile-item handling or storage needs. Availability, terms and responsibilities are confirmed for the move.", descAr: "اذكر احتياجات التغليف أو فك الأثاث أو مناولة القطع الحساسة أو التخزين. ويتم تأكيد التوفر والشروط والمسؤوليات للانتقال." },
+      ...RESTORED_RELOCATION_OPTIONS,
     ],
     whyEnvod: [
       { en: "Move size, inventory, packing and access needs reviewed together", ar: "مراجعة حجم الانتقال والمنقولات والتغليف ومتطلبات الدخول معاً" },
       { en: "Origin, destination and preferred timing checked for the requested route", ar: "مراجعة المنشأ والوجهة والموعد المفضل للمسار المطلوب" },
       { en: "Provider availability, responsibilities and scope confirmed before booking", ar: "تأكيد توفر مقدم الخدمة والمسؤوليات والنطاق قبل الحجز" },
+      { en: "Inventory and packing requirements reviewed", ar: "مراجعة قائمة الأثاث ومتطلبات التغليف" },
+      { en: "Import rules and customs responsibilities checked", ar: "التحقق من قواعد الاستيراد ومسؤوليات الجمارك" },
+      { en: "Route coverage and provider scope confirmed per move", ar: "تأكيد تغطية المسار ونطاق مقدم الخدمة لكل انتقال" },
     ],
     overview: [
       { en: "House moving and furniture relocation in Riyadh can involve a local address change, a move between Saudi cities, or an international household-goods shipment. ENVOD KINGDOM reviews each enquiry by move type, inventory, packing requests, preferred date and route; available providers and the agreed scope must be confirmed before booking.", ar: "قد يشمل نقل المنازل والأثاث في الرياض انتقالاً داخل المدينة أو بين المدن السعودية أو شحنة أمتعة منزلية دولية. تراجع إنفود كينغدوم كل استفسار وفق نوع الانتقال وقائمة المنقولات واحتياجات التغليف والموعد والمسار؛ ويجب تأكيد مقدم الخدمة المتاح والنطاق المتفق عليه قبل الحجز." },
@@ -1030,6 +1037,13 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
   },
 };
 
+SERVICE_META[25] = DOOR_TO_DOOR_META;
+for (const meta of Object.values(SERVICE_META)) {
+  meta.faq = [...meta.faq, ...(SERVICE_REVIEW_FAQ[meta.slug] ?? [])];
+}
+export function getServiceById(id: number) {
+  return id === 25 ? DOOR_TO_DOOR_SERVICE : SERVICE_CATALOG.find(service => service.id === id);
+}
 export const SLUG_TO_ID: Record<string, number> = Object.fromEntries(
   Object.values(SERVICE_META).map((m) => [m.slug, m.id])
 );

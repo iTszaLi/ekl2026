@@ -64,7 +64,7 @@ test("Riyadh relocation content, metadata, internal services and optional move-a
 
   assert.match(relocation.overview?.[0]?.en ?? "", /house moving.*Riyadh/i);
   assert.match(relocation.overview?.[0]?.ar ?? "", /نقل المنازل والأثاث في الرياض/);
-  assert.equal(relocation.subServices.length, 4);
+  assert.equal(relocation.subServices.length, 18);
   assert.equal(relocation.process.length, 4);
   assert.ok(relocation.faq.length >= 4);
   assert.ok(!relocation.process.some((step) => /customs|الجمارك/i.test(`${step.en} ${step.ar}`)));

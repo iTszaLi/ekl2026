@@ -63,18 +63,10 @@ function fmtDate(value: string | null | undefined) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? value : date.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
 }
-function downloadCsv(filename: string, rows: Array<Record<string, unknown>>) {
-  if (!rows.length) return;
-  const headers = Object.keys(rows[0]);
-  const quote = (value: unknown) => `"${String(value ?? "").replace(/"/g, '""')}"`;
-  const csv = [headers.map(quote).join(","), ...rows.map((row) => headers.map((key) => quote(row[key])).join(","))].join("\r\n");
-  const url = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = filename;
-  anchor.click();
-  URL.revokeObjectURL(url);
-}
+import { downloadCsv } from "@/lib/csv-export";
+import { countryDisplay, normalizeCountry } from "@/lib/search-countries";
+import { classifyPage, isBrandQuery, equalPeriods } from "@/lib/search-operations";
+import { SearchOperationsMonitor } from "./SearchOperationsMonitor";
 function errorMessage(error: unknown) {
   return error instanceof Error ? error.message : "The request could not be completed.";
 }
@@ -121,7 +113,7 @@ function MetricsTable({ section, rows, queryPages = [], onInspect, onExport }: {
   rows: DashboardData["queries"];
   queryPages?: SearchQueryPageRow[];
   onInspect?: (urls: string[]) => void;
-  onExport: () => void;
+  onExport: (rows: DashboardData["queries"]) => void;
 }) {
   const [filter, setFilter] = useState("");
   const [sortKey, setSortKey] = useState<"key" | "clicks" | "impressions" | "ctr" | "position">("clicks");
@@ -137,7 +129,7 @@ function MetricsTable({ section, rows, queryPages = [], onInspect, onExport }: {
     if (!filter.trim()) return true;
     const normalized = filter.toLocaleLowerCase();
     const destinations = section.key === "queries" ? queryPages.filter((item) => item.query === row.key).map((item) => item.page).join(" ") : "";
-    return `${row.key} ${destinations}`.toLocaleLowerCase().includes(normalized);
+    return `${row.key} ${section.key === "countries" ? countryDisplay(row.key) : ""} ${destinations}`.toLocaleLowerCase().includes(normalized);
   }).sort((left, right) => {
     const a = left[sortKey];
     const b = right[sortKey];
@@ -158,7 +150,7 @@ function MetricsTable({ section, rows, queryPages = [], onInspect, onExport }: {
     <section className="sc-card sc-table-card">
       <header className="sc-card-head">
         <div><div className="sc-eyebrow">Search performance</div><h2>{section.title}</h2><p>{section.description}</p></div>
-        <button className="sc-icon-button" onClick={onExport} disabled={!rows.length} aria-label={`Export ${section.title} as CSV`} title="Export CSV"><Download size={16} /></button>
+        <button className="sc-icon-button" onClick={() => onExport(filteredRows)} disabled={!filteredRows.length} aria-label={`Export ${section.title} as CSV`} title="Export CSV"><Download size={16} /></button>
       </header>
       {rows.length ? <>
         <div className="sc-table-tools"><label className="sc-table-filter"><Search size={14} /><input value={filter} onChange={(event) => { setFilter(event.target.value); setPageIndex(0); }} placeholder={`Filter ${section.title.toLowerCase()}…`} /></label><span>{filteredRows.length} returned rows</span></div>
@@ -166,7 +158,7 @@ function MetricsTable({ section, rows, queryPages = [], onInspect, onExport }: {
           <tbody>{visibleRows.map((row, index) => {
             const destinations = section.key === "queries" ? queryPages.filter((item) => item.query === row.key) : [];
             return <tr key={`${row.key}-${index}`}>
-              <td className={section.key === "pages" ? "sc-url-cell" : ""}>{row.key || "—"}</td>
+              <td className={section.key === "pages" ? "sc-url-cell" : ""}>{section.key === "countries" ? countryDisplay(row.key) : row.key || "—"}</td>
               {section.key === "queries" && <td className="sc-destination-cell">{destinations.length ? destinations.map((destination) => <span className="sc-destination-item" key={`${destination.query}-${destination.page}`}><a href={destination.page} target="_blank" rel="noreferrer" title={destination.page}>{destination.page}</a>{onInspect && <button className="sc-inline-action" onClick={() => onInspect([destination.page])}>Inspect</button>}</span>) : <span className="sc-not-returned">Not returned</span>}</td>}
               <td>{fmtNumber(row.clicks)}</td><td>{fmtNumber(row.impressions)}</td><td>{fmtCtr(row.ctr)}</td><td>{fmtPosition(row.position)}</td>
             </tr>;
@@ -177,7 +169,7 @@ function MetricsTable({ section, rows, queryPages = [], onInspect, onExport }: {
     </section>
   );
 }
-function QueryPageTable({ rows, onInspect, onExport }: { rows: SearchQueryPageRow[]; onInspect: (urls: string[]) => void; onExport: () => void }) {
+function QueryPageTable({ rows, onInspect, onExport }: { rows: SearchQueryPageRow[]; onInspect: (urls: string[]) => void; onExport: (rows: SearchQueryPageRow[]) => void }) {
   const [filter, setFilter] = useState("");
   const [sortKey, setSortKey] = useState<keyof SearchQueryPageRow>("impressions");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
@@ -202,7 +194,7 @@ function QueryPageTable({ rows, onInspect, onExport }: { rows: SearchQueryPageRo
     { label: "CTR", key: "ctr" }, { label: "Position", key: "position" }, { label: "Inspect" },
   ];
   return <section className="sc-card sc-table-card sc-query-page-card">
-    <header className="sc-card-head"><div><div className="sc-eyebrow">Returned query × page dimensions</div><h2>Query destinations</h2><p>Exact query-to-URL pairs returned by Search Console. No destination is inferred.</p></div><button className="sc-icon-button" onClick={onExport} disabled={!rows.length} aria-label="Export query destinations as CSV" title="Export CSV"><Download size={16} /></button></header>
+    <header className="sc-card-head"><div><div className="sc-eyebrow">Returned query × page dimensions</div><h2>Query destinations</h2><p>Exact query-to-URL pairs returned by Search Console. No destination is inferred.</p></div><button className="sc-icon-button" onClick={() => onExport(sortedRows)} disabled={!sortedRows.length} aria-label="Export query destinations as CSV" title="Export CSV"><Download size={16} /></button></header>
     {rows.length ? <>
       <div className="sc-table-tools"><label className="sc-table-filter"><Search size={14} /><input value={filter} onChange={(event) => { setFilter(event.target.value); setPageIndex(0); }} placeholder="Filter queries and destination URLs…" /></label><span>{filteredRows.length} returned pairs</span></div>
       <div className="sc-table-scroll"><table><thead><tr>{headers.map(({ label, key }) => <th key={label}>{key ? <button className="sc-sort-button" onClick={() => sortBy(key)}>{label}{sortKey === key ? ` ${sortDirection === "asc" ? "↑" : "↓"}` : ""}</button> : label}</th>)}</tr></thead>
@@ -215,31 +207,32 @@ function QueryPageTable({ rows, onInspect, onExport }: { rows: SearchQueryPageRo
 function EmptyInline({ title, detail }: { title: string; detail: string }) {
   return <div className="sc-empty-inline"><span className="sc-empty-mark"><BarChart3 size={18} /></span><strong>{title}</strong><span>{detail}</span></div>;
 }
-function MetricCard({ label, value, previous, current, format, lowerIsBetter = false }: { label: string; value: number; previous: number; current: number; format: (n: number) => string; lowerIsBetter?: boolean }) {
-  const delta = previous === 0 ? null : ((current - previous) / Math.abs(previous)) * 100;
+function MetricCard({ label, value, previous, current, format, lowerIsBetter = false, available=true, reported=true, previousReported=true }: { label: string; value: number; previous: number; current: number; format: (n: number) => string; lowerIsBetter?: boolean;available?:boolean;reported?:boolean;previousReported?:boolean }) {
+  const delta = !available || previous === 0 ? null : ((current - previous) / Math.abs(previous)) * 100;
   const favorable = delta !== null && (lowerIsBetter ? delta <= 0 : delta >= 0);
   return <article className="sc-metric">
     <span className="sc-metric-label">{label}</span>
-    <strong>{format(value)}</strong>
-    <span className={`sc-delta ${delta === null ? "neutral" : favorable ? "positive" : "negative"}`}>
+    <strong>{reported?format(value):"Unavailable"}</strong>
+    <span className={`sc-delta ${delta === null || delta === 0 ? "neutral" : favorable ? "positive" : "negative"}`}>
       {delta === null ? <CircleHelp size={13} /> : delta >= 0 ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
-      {delta === null ? "No comparison available" : `${Math.abs(delta).toFixed(1)}% vs previous period`}
+      {delta === null ? available?"Percentage unavailable (previous value is zero)":"Comparison unavailable" : `${delta > 0 ? "+" : ""}${delta.toFixed(1)}% · ${delta === 0 ? "Unchanged" : favorable ? "Improved" : "Worsened"}`}
     </span>
+    <small>Previous: {previousReported?format(previous):"Unavailable"} · Absolute change: {available?`${current-previous>0?"+":""}${label.includes("CTR")?`${((current-previous)*100).toFixed(2)} percentage points`:(current-previous).toFixed(2)}`:"Unavailable"}{lowerIsBetter?" · Lower average position is better":""}</small>
   </article>;
 }
 function OpportunityReview({ dashboard, onInspect }: { dashboard: DashboardData; onInspect: (urls: string[]) => void }) {
   const queryRows = dashboard.queries;
-  const branded = queryRows.filter((row) => /\benvod\b/i.test(row.key));
-  const nonBranded = queryRows.filter((row) => !/\benvod\b/i.test(row.key));
+  const branded = queryRows.filter((row) => isBrandQuery(row.key));
+  const nonBranded = queryRows.filter((row) => !isBrandQuery(row.key));
   const belowReportCtr = queryRows.filter((row) => row.impressions > 0 && row.ctr < dashboard.current.ctr);
   const position4to20 = dashboard.queryPages.filter((row) => row.position >= 4 && row.position <= 20);
   const position11to30 = dashboard.queryPages.filter((row) => row.position > 10 && row.position <= 30);
-  const saudi = dashboard.countries.find((row) => row.key.trim().toUpperCase() === "SA");
+  const saudi = dashboard.countries.find((row) => normalizeCountry(row.key) === "sau");
   const languagePages = dashboard.pages.reduce((result, row) => {
     try {
       const pathname = new URL(row.key).pathname;
-      if (/^\/en(?:\/|$)/i.test(pathname)) result.english.add(row.key);
-      if (/^\/ar(?:\/|$)/i.test(pathname)) result.arabic.add(row.key);
+      if (classifyPage(row.key) === "en") result.english.add(row.key);
+      if (classifyPage(row.key) === "ar") result.arabic.add(row.key);
     } catch {
       // Only parse and classify explicit, returned absolute URLs.
     }
@@ -274,11 +267,11 @@ function OpportunityReview({ dashboard, onInspect }: { dashboard: DashboardData;
     <header className="sc-card-head"><div><div className="sc-eyebrow">Evidence-led review filters</div><h2>Where to investigate</h2><p>Calculated only from rows returned for this property and date range.</p></div></header>
     <div className="sc-opportunity-caveat"><CircleHelp size={15} /><span>These are review filters, not ranking or search-demand guarantees. Search Console may omit anonymized or low-volume queries; absent evidence is labeled “Not returned.”</span></div>
     <div className="sc-opportunity-grid">
-      <article className="sc-review-panel"><h3>Query classification</h3><p>Brand heuristic: query text contains “ENVOD”. Remaining returned queries are grouped as non-branded for review.</p><div className="sc-review-pair"><div><small>BRANDED · {queryRows.length ? `${branded.length} returned queries` : "Not returned"}</small><b>{branded.length ? `${fmtNumber(brandedMetrics.impressions)} impressions` : queryRows.length ? "No matching rows" : "Not returned"}</b><span>CTR {metricText(branded.length ? brandedMetrics.ctr : null, fmtCtr)}</span><span>{relativeText(branded, brandedMetrics)}</span></div><div><small>NON-BRANDED · {queryRows.length ? `${nonBranded.length} returned queries` : "Not returned"}</small><b>{nonBranded.length ? `${fmtNumber(nonBrandedMetrics.impressions)} impressions` : queryRows.length ? "No matching rows" : "Not returned"}</b><span>CTR {metricText(nonBranded.length ? nonBrandedMetrics.ctr : null, fmtCtr)}</span><span>{relativeText(nonBranded, nonBrandedMetrics)}</span></div></div></article>
+      <article className="sc-review-panel"><h3>Query classification</h3><p>Exploratory brand matching includes ENVOD / ENVODKINGDOM and common Arabic spellings. Unmatched queries are not independently verified non-brand demand. Sums refer only to returned query rows.</p><div className="sc-review-pair"><div><small>BRAND-MATCHED · {queryRows.length ? `${branded.length} returned queries` : "Not returned"}</small><b>{branded.length ? `${fmtNumber(brandedMetrics.impressions)} impressions` : queryRows.length ? "No matching rows" : "Not returned"}</b><span>CTR {metricText(branded.length ? brandedMetrics.ctr : null, fmtCtr)}</span><span>{relativeText(branded, brandedMetrics)}</span></div><div><small>UNMATCHED · {queryRows.length ? `${nonBranded.length} returned queries` : "Not returned"}</small><b>{nonBranded.length ? `${fmtNumber(nonBrandedMetrics.impressions)} impressions` : queryRows.length ? "No matching rows" : "Not returned"}</b><span>CTR {metricText(nonBranded.length ? nonBrandedMetrics.ctr : null, fmtCtr)}</span><span>{relativeText(nonBranded, nonBrandedMetrics)}</span></div></div></article>
       <article className="sc-review-panel"><h3>Impressions with below-report CTR</h3><p>Returned queries with impressions and CTR below this report’s overall CTR ({fmtCtr(dashboard.current.ctr)}).</p><b className="sc-review-number">{queryRows.length ? fmtNumber(belowReportCtr.length) : "Not returned"}</b><span className="sc-review-sub">{queryRows.length ? `of ${queryRows.length} returned query rows` : "No query rows in this report"}</span></article>
       <article className="sc-review-panel"><h3>Position bands · query × page rows</h3><p>Observed pairs in the selected period; the 11–20 range appears in both filters by design.</p><div className="sc-band-row"><div><small>POSITIONS 4–20</small><b>{bandA.rows ? `${bandA.rows} rows · ${fmtNumber(bandA.impressions)} impr.` : dashboard.queryPages.length ? "No rows returned in band" : "Not returned"}</b>{reviewLinkList(bandA.destinations)}</div><div><small>POSITIONS 11–30</small><b>{bandB.rows ? `${bandB.rows} rows · ${fmtNumber(bandB.impressions)} impr.` : dashboard.queryPages.length ? "No rows returned in band" : "Not returned"}</b>{reviewLinkList(bandB.destinations)}</div></div></article>
-      <article className="sc-review-panel"><h3>Saudi Arabia</h3><p>Country dimension matched on the returned Search Console country code.</p>{saudi ? <><b className="sc-review-number">{fmtNumber(saudi.impressions)} impressions</b><span className="sc-review-sub">{fmtNumber(saudi.clicks)} clicks · CTR {fmtCtr(saudi.ctr)}</span></> : <span className="sc-not-returned">{dashboard.countries.length ? "SA not returned" : "Country data not returned"}</span>}</article>
-      <article className="sc-review-panel sc-language-panel"><h3>Language URL paths</h3><p>Only explicit /en and /ar paths present in returned page URLs are classified.</p><div className="sc-language-split"><div><small>ENGLISH PATHS</small><b>{languagePages.english.size || (dashboard.pages.length ? "No /en paths returned" : "Not returned")}</b>{reviewLinkList([...languagePages.english])}</div><div><small>ARABIC PATHS</small><b>{languagePages.arabic.size || (dashboard.pages.length ? "No /ar paths returned" : "Not returned")}</b>{reviewLinkList([...languagePages.arabic])}</div></div></article>
+      <article className="sc-review-panel"><h3>Saudi Arabia (sau)</h3><p>Matched using the Search Console ISO alpha-3 country code.</p>{saudi ? <><b className="sc-review-number">{fmtNumber(saudi.impressions)} impressions</b><span className="sc-review-sub">{fmtNumber(saudi.clicks)} clicks · CTR {fmtCtr(saudi.ctr)}</span></> : <span className="sc-not-returned">{dashboard.countries.length ? "No matching rows returned" : "Country data not returned"}</span>}</article>
+      <article className="sc-review-panel sc-language-panel"><h3>Language URL paths</h3><p>Verified default English and /ar/ public routes only. Unknown/admin/external paths are excluded. Classification is not indexing evidence.</p><div className="sc-language-split"><div><small>DEFAULT ENGLISH PATHS</small><b>{languagePages.english.size || "No matching rows returned"}</b>{reviewLinkList([...languagePages.english])}</div><div><small>ARABIC PATHS</small><b>{languagePages.arabic.size || "No matching rows returned"}</b>{reviewLinkList([...languagePages.arabic])}</div></div></article>
     </div>
   </section>;
 }
@@ -519,7 +512,8 @@ export default function SearchConsoleDashboard() {
     internalLinks: page.internalLinks, imageCount: page.imageCount, imagesMissingAlt: page.imagesMissingAlt,
     structuredDataTypes: page.structuredDataTypes.join(" | "), wordCount: page.wordCount, error: page.error,
   }));
-  const incomplete = !!dashboard && (TABLES.some(({ key }) => !dashboard[key]?.length) || !dashboard.timeSeries.length);
+  const incomplete = !!dashboard && dashboard.availability?.current === false;
+  const comparable = !!dashboard && !incomplete && dashboard.availability?.previous!==false && equalPeriods(dashboard.startDate,dashboard.endDate,dashboard.previousStartDate,dashboard.previousEndDate);
 
   return (
     <main className="sc-admin" data-theme={isDark ? "dark" : "light"}>
@@ -604,16 +598,19 @@ export default function SearchConsoleDashboard() {
           {status?.selectedProperty && dashboard && <>
             {incomplete && <div className="sc-alert sc-alert-partial"><AlertCircle size={16} /><span>Partial data: some dimensions or dates were not returned by Google Search Console. Empty sections remain blank rather than showing substitute values.</span></div>}
             <section className="sc-metric-grid">
-              <MetricCard label="Total clicks" value={dashboard.current.clicks} current={dashboard.current.clicks} previous={dashboard.previous.clicks} format={fmtNumber} />
-              <MetricCard label="Impressions" value={dashboard.current.impressions} current={dashboard.current.impressions} previous={dashboard.previous.impressions} format={fmtNumber} />
-              <MetricCard label="Average CTR" value={dashboard.current.ctr} current={dashboard.current.ctr} previous={dashboard.previous.ctr} format={fmtCtr} />
-              <MetricCard label="Average position" value={dashboard.current.position} current={dashboard.current.position} previous={dashboard.previous.position} format={fmtPosition} lowerIsBetter />
+              <MetricCard label="Total clicks" value={dashboard.current.clicks} current={dashboard.current.clicks} previous={dashboard.previous.clicks} format={fmtNumber} available={comparable} reported={!incomplete} previousReported={dashboard.availability?.previous!==false} />
+              <MetricCard label="Impressions" value={dashboard.current.impressions} current={dashboard.current.impressions} previous={dashboard.previous.impressions} format={fmtNumber} available={comparable} reported={!incomplete} previousReported={dashboard.availability?.previous!==false} />
+              <MetricCard label="Average CTR" value={dashboard.current.ctr} current={dashboard.current.ctr} previous={dashboard.previous.ctr} format={fmtCtr} available={comparable && dashboard.current.impressions>0 && dashboard.previous.impressions>0} reported={!incomplete && dashboard.current.impressions>0} previousReported={dashboard.availability?.previous!==false && dashboard.previous.impressions>0} />
+              <MetricCard label="Average position" value={dashboard.current.position} current={dashboard.current.position} previous={dashboard.previous.position} format={fmtPosition} lowerIsBetter available={comparable && dashboard.current.impressions>0 && dashboard.previous.impressions>0 && dashboard.current.position>0 && dashboard.previous.position>0} reported={!incomplete && dashboard.current.impressions>0 && dashboard.current.position>0} previousReported={dashboard.availability?.previous!==false && dashboard.previous.impressions>0 && dashboard.previous.position>0} />
             </section>
             <div className="sc-period-caption"><span>Current period</span><b>{dashboard.startDate} — {dashboard.endDate}</b><i /> <span>Compared with</span><b>{dashboard.previousStartDate} — {dashboard.previousEndDate}</b></div>
             <TrendChart data={dashboard.timeSeries} onExport={chartExport} />
+            <p className="sc-period-caption">Search type: web · final data · Google dates use Pacific Time. Query anonymity, row limits and aggregation differences mean row sums may differ from property totals. Historical URL variants are not proof of a current canonical defect. Brand matching includes ENVOD, ENVODKINGDOM and Arabic variants such as إنفود / انفود / إينفود; unmatched queries are not verified non-brand demand.</p>
+            <p className="sc-period-caption">Only returned daily rows are plotted; missing days are not reconstructed as zero. Average position is not a fixed keyword-rank tracker, and period comparisons do not establish causation.</p>
+            <SearchOperationsMonitor baseline={dashboard} audit={audit} onUnauthorized={handleError} />
             <OpportunityReview dashboard={dashboard} onInspect={(urls) => void inspect(urls)} />
-            <QueryPageTable rows={dashboard.queryPages} onInspect={(urls) => void inspect(urls)} onExport={() => downloadCsv("search-console-query-destinations.csv", dashboard.queryPages.map((row) => ({ query: row.query, page: row.page, clicks: row.clicks, impressions: row.impressions, ctr: row.ctr, position: row.position })))} />
-            <div className="sc-table-grid">{TABLES.map((section) => <MetricsTable key={section.key} section={section} rows={rowsFor(section.key)} queryPages={dashboard.queryPages} onInspect={(urls) => void inspect(urls)} onExport={() => downloadCsv(`search-console-${section.key}.csv`, rowsFor(section.key).map((row) => ({ dimension: row.key, clicks: row.clicks, impressions: row.impressions, ctr: row.ctr, position: row.position })))} />)}</div>
+            <QueryPageTable rows={dashboard.queryPages} onInspect={(urls) => void inspect(urls)} onExport={(rows) => downloadCsv("search-console-query-destinations.csv", rows.map((row) => ({ property:dashboard.property,start_date:dashboard.startDate,end_date:dashboard.endDate,retrieved_at:dashboard.retrievedAt,result_set:"filtered_sorted_query_page_rows",...row })))} />
+            <div className="sc-table-grid">{TABLES.map((section) => <MetricsTable key={section.key} section={section} rows={rowsFor(section.key)} queryPages={dashboard.queryPages} onInspect={(urls) => void inspect(urls)} onExport={(rows) => downloadCsv(`search-console-${section.key}.csv`, rows.map((row) => ({ property:dashboard.property,start_date:dashboard.startDate,end_date:dashboard.endDate,retrieved_at:dashboard.retrievedAt,result_set:`filtered_sorted_${section.key}_rows`,dimension: row.key,...(section.key==="countries"?{country_code:row.key,country_label:countryDisplay(row.key)}:{}), clicks: row.clicks, impressions: row.impressions, ctr: row.ctr, position: row.position })))} />)}</div>
             {dashboard.notes.length > 0 && <section className="sc-notes"><div className="sc-eyebrow">SOURCE NOTES</div>{dashboard.notes.map((note, index) => <p key={`${index}-${note}`}>{note}</p>)}</section>}
           </>}
 

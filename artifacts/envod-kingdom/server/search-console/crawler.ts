@@ -655,6 +655,7 @@ export async function crawlEnvodKingdom(options: {
     robotsUrl: robots.url,
     robotsAllowsCrawl: robots.allowsCrawl,
     sitemapUrls: sitemap.sitemapUrls,
+    sitemapPageUrls: sitemap.pageUrls,
     discoveredUrls: discovered.size,
     crawledUrls: pagesByUrl.size,
     pages: [...pagesByUrl.values()].sort((a, b) => a.url.localeCompare(b.url)),

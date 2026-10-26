@@ -1,3 +1,4 @@
+import type {PerformanceFilters} from "./search-operations";
 export interface SearchConsoleStatus {
   configured: boolean;
   authenticated: boolean;
@@ -40,6 +41,7 @@ export interface SearchConsoleDashboard {
   endDate: string;
   previousStartDate: string;
   previousEndDate: string;
+  availability?: {current:boolean;previous:boolean};
   retrievedAt: string;
   current: SearchMetricRow;
   previous: SearchMetricRow;
@@ -81,6 +83,7 @@ export interface SiteAudit {
   robotsUrl: string;
   robotsAllowsCrawl: boolean;
   sitemapUrls: string[];
+  sitemapPageUrls?: string[];
   discoveredUrls: number;
   crawledUrls: number;
   pages: AuditedPage[];
@@ -198,10 +201,11 @@ export const searchConsoleApi = {
       method: "POST",
       body: JSON.stringify({ siteUrl }),
     }),
-  getDashboard: (startDate: string, endDate: string, force = false) => {
+  getDashboard: (startDate: string, endDate: string, force = false, filters: PerformanceFilters = {}) => {
     const query = new URLSearchParams({
       startDate,
       endDate,
+      ...Object.fromEntries(Object.entries(filters).filter(([,value])=>!!value)),
       ...(force ? { force: "1" } : {}),
     });
     return request<SearchConsoleDashboard>(`/dashboard?${query.toString()}`);

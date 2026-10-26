@@ -1,5 +1,5 @@
 import type { SeoConfig } from "./seo";
-import { SERVICE_CATALOG, SERVICE_META, SLUG_TO_ID, ID_TO_SLUG } from "./service-data";
+import { SERVICE_CATALOG, SERVICE_META, SLUG_TO_ID, ID_TO_SLUG, getServiceById } from "./service-data";
 import { SERVICE_FAQS } from "./services-faq";
 import { INDUSTRY_META, INDUSTRY_BY_SLUG } from "./industry-data";
 import { VISION_SEO, VISION_FAQ } from "./vision-data";
@@ -176,6 +176,7 @@ export const ENGLISH_CONTENT_ROUTES: string[] = [
   "/industries",
   "/vision-2030",
   "/track",
+  "/services/door-to-door",
   ...SERVICE_CATALOG.map((s) => `/services/${ID_TO_SLUG[s.id]}`).filter(
     (p) => !p.endsWith("/undefined"),
   ),
@@ -554,7 +555,7 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
 
 function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
   const slug = ID_TO_SLUG[id];
-  const svc = SERVICE_CATALOG.find((s) => s.id === id)!;
+  const svc = getServiceById(id)!;
   const meta = SERVICE_META[id];
   const pillar = meta?.pillar;
   const path = localizedPath(`/services/${slug}`, language);

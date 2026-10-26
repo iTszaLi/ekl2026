@@ -1,0 +1,5 @@
+.sc-monitor-form label {display:flex;flex-direction:column;gap:8px;min-width:0}
+.sc-monitor-form input,.sc-monitor-form select {display:block;box-sizing:border-box;width:100%;min-width:0;padding:10px;border:1px solid currentColor;border-radius:6px;background:transparent;color:inherit;font:inherit}
+.sc-monitor-form option {background:#fff;color:#172735}
+[data-testid="search-operations-monitor"] {min-width:0}
+[data-testid="search-operations-monitor"] .sc-table-scroll {max-width:100%;overflow-x:auto}

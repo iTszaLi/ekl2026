@@ -1,4 +1,4 @@
-export const seoIntelligenceResearch = {
+const researchRegister = {
   "researchDate": "2026-10-24",
   "keywordCandidateRows": 566,
   "sourceRecords": 52,
@@ -422,7 +422,7 @@ export const seoIntelligenceResearch = {
     {
       "priority": "P10",
       "service": "Project Cargo Logistics",
-      "queryEn": "/services/project-cargo",
+      "queryEn": "project cargo logistics Saudi Arabia",
       "queryAr": "نقل المعدات الثقيلة",
       "targetUrlEn": "/services/project-cargo",
       "targetUrlAr": "/ar/services/project-cargo",
@@ -492,7 +492,7 @@ export const seoIntelligenceResearch = {
     {
       "priority": "P12",
       "service": "Warehousing & Distribution",
-      "queryEn": "/services/warehousing",
+      "queryEn": "warehousing and distribution Saudi Arabia",
       "queryAr": "خدمات تخزين البضائع",
       "targetUrlEn": "/services/warehousing",
       "targetUrlAr": "/ar/services/warehousing",
@@ -874,8 +874,8 @@ export const seoIntelligenceResearch = {
       "service": "Door-to-Door Logistics",
       "queryEn": "door-to-door freight services Saudi Arabia",
       "queryAr": "خدمات الشحن من الباب إلى الباب في السعودية",
-      "targetUrlEn": "/services",
-      "targetUrlAr": "/ar/services",
+      "targetUrlEn": "/services/door-to-door",
+      "targetUrlAr": "/ar/services/door-to-door",
       "routeType": "Services-page enquiry card; no separate detail route",
       "journeyFocus": "Pickup-to-delivery scope, shipment modes, customs responsibilities and recipient location",
       "ksaScope": "Primary market; existing bilingual page/card is the target; phrase is a candidate, not measured demand.",
@@ -1035,3 +1035,18 @@ export const seoIntelligenceResearch = {
     }
   ]
 } as const;
+// Research records, priorities and evidence are retained; connection state is not
+// inferred from a historical research snapshot. Measured data lives separately.
+export const seoIntelligenceResearch = {
+  ...researchRegister,
+  services: researchRegister.services.map(service=>({
+    ...service,
+    researchSnapshot:{envodRank:service.envodRank,technicalStatus:service.technicalStatus},
+    envodRank:"No independent rank-tracking measurement; inspect actual returned Search Console metrics in Performance.",
+    searchVolume:"Not measured by a keyword-demand source. Search Console impressions are not monthly keyword volume.",
+    actualOutcome:"Research record; live performance and conversion outcomes must be measured separately.",
+    testMethod:service.testMethod.replace("After Search Console setup,","Where authorized Search Console rows are returned,"),
+    confidence:service.confidence.replace("Search Console is not configured","live performance has not been evaluated for this research record"),
+    ...(service.priority==="P24"?{routeType:"Dedicated bilingual detail route",technicalStatus:"Door-to-Door has its own target, separate from Freight Forwarding. Check current HTTP, canonical and indexing evidence independently."}:{}),
+  })),
+};

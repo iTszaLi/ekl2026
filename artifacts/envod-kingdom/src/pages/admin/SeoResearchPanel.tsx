@@ -22,18 +22,7 @@ const EMPTY_RESEARCH: SeoIntelligenceResearch = {
   markets: [],
 };
 
-function exportCsv(filename: string, rows: Array<Record<string, unknown>>) {
-  if (!rows.length) return;
-  const headers = Object.keys(rows[0]);
-  const quote = (value: unknown) => `"${String(value ?? "").replace(/"/g, '""')}"`;
-  const csv = `\uFEFF${[headers.map(quote).join(","), ...rows.map((row) => headers.map((key) => quote(row[key])).join(","))].join("\r\n")}`;
-  const objectUrl = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
-  const anchor = document.createElement("a");
-  anchor.href = objectUrl;
-  anchor.download = filename;
-  anchor.click();
-  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0);
-}
+import {downloadCsv as exportCsv} from "@/lib/csv-export";
 
 function EvidenceLinks({ priority, research }: { priority: string; research: SeoIntelligenceResearch }) {
   const service = research.services.find((row) => row.priority === priority);

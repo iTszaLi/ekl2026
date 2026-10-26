@@ -38,6 +38,7 @@ import {
   type SearchConsoleStore,
 } from "./store.js";
 
+import { performanceFilters } from "../../src/lib/search-operations";
 const SEARCH_CONSOLE_SCOPE =
   "https://www.googleapis.com/auth/webmasters.readonly";
 const IDENTITY_SCOPES = "openid email";
@@ -66,6 +67,7 @@ interface AccessTokenCache {
 }
 
 interface DashboardResponse {
+  availability: {current:boolean;previous:boolean};
   property: string;
   startDate: string;
   endDate: string;
@@ -479,6 +481,7 @@ function toDashboardResponse(
     previousStartDate: previousRange.startDate,
     previousEndDate: previousRange.endDate,
     retrievedAt,
+    availability: {current:currentTotal.length>0,previous:previousTotal.length>0},
     current: metricSummary(currentTotal[0]),
     previous: metricSummary(previousTotal[0]),
     timeSeries: trend.map((row) => ({
@@ -987,7 +990,11 @@ export function createSearchConsoleRouter(options: Options) {
           responseError(res, 409, "Select the verified ENVOD KINGDOM property first.");
           return;
         }
-        const cacheKey = `${connection.selectedProperty}|${startDate}|${endDate}`;
+        let filters: ReturnType<typeof performanceFilters>;
+        try {
+          filters=performanceFilters(Object.fromEntries(["language","page","country","device","query"].map(key=>[key,typeof req.query[key]==="string"?req.query[key]:undefined])));
+        } catch(error) {responseError(res,400,error instanceof Error?error.message:"Invalid performance filters");return;}
+        const cacheKey = `${connection.selectedProperty}|${startDate}|${endDate}|${JSON.stringify(filters)}`;
         const force = req.query.force === "1";
         const cached = dashboardCache.get(cacheKey);
         if (!force && cached && cached.expiresAt > now()) {
@@ -1000,6 +1007,9 @@ export function createSearchConsoleRouter(options: Options) {
           ({
             startDate: from,
             endDate: to,
+            type: "web" as const,
+            dataState: "final" as const,
+            ...(filters.length ? {dimensionFilterGroups:[{groupType:"and" as const,filters}]} : {}),
             ...(dimensions ? { dimensions } : {}),
             rowLimit: SEARCH_ROW_LIMIT,
           }) satisfies SearchAnalyticsQuery;

@@ -23,6 +23,9 @@ export interface SearchAnalyticsQuery {
   dimensions?: string[];
   rowLimit?: number;
   startRow?: number;
+  type?: "web";
+  dataState?: "final";
+  dimensionFilterGroups?: {groupType:"and";filters:{dimension:string;operator:string;expression:string}[]}[];
 }
 
 export interface SearchAnalyticsRow {

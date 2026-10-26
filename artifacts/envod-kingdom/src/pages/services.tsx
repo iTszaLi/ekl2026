@@ -160,7 +160,7 @@ const DOOR_TO_DOOR: Offering = {
     tr("Customs and operator responsibilities confirmed", "تأكيد مسؤوليات الجمارك والمشغّل"),
   ],
   icon: "Truck",
-  slug: "freight-forwarding",
+  slug: "door-to-door",
   category: "specialized",
 };
 
