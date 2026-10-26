@@ -528,8 +528,8 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
     ar: "نسّق الشحن بين بلدين خارج سوق بلد الشاحن. يُؤكد المنشأ والوجهة والناقل ومسؤوليات الجمارك وشروط السرية لكل طلب.",
   },
   "customs-clearance": {
-    en: "Customs clearance coordination for Riyadh Dry Port, Jeddah Islamic Port and King Abdulaziz Port Dammam. Prepare documents and check cargo-specific requirements.",
-    ar: "تنسيق التخليص الجمركي للميناء الجاف بالرياض وميناء جدة الإسلامي وميناء الملك عبدالعزيز بالدمام، وتجهيز المستندات والتحقق من متطلبات البضاعة.",
+    en: "Customs clearance in Saudi Arabia: prepare import and export documents and check cargo requirements for Riyadh, Jeddah or Dammam. Release and approvals remain subject to the authorities.",
+    ar: "التخليص الجمركي في السعودية: جهّز مستندات الاستيراد والتصدير وراجع متطلبات البضاعة لمنفذ الرياض أو جدة أو الدمام. يظل الفسح خاضعاً للجهات المختصة.",
   },
   "exhibition-logistics": {
     en: "Exhibition shipments to Saudi Arabia: freight, customs documents, ATA Carnet enquiries and venue delivery. Compare leading exhibition logistics providers in KSA",
@@ -544,8 +544,8 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
     ar: "خدمات الشحن المتكامل في السعودية: تنسيق الشحن الجوي والبحري والبري ومستندات الشحنة ومسؤوليات التخليص ومتطلبات التسليم.",
   },
   "ocean-freight": {
-    en: "Ocean freight in Saudi Arabia: compare FCL and LCL, prepare shipment details, and plan customs and inland delivery through Jeddah or Dammam gateways.",
-    ar: "الشحن البحري في السعودية: مقارنة الحاوية الكاملة FCL والشحن المشترك LCL وتجهيز تفاصيل الشحنة وتخطيط التخليص والنقل الداخلي عبر جدة أو الدمام.",
+    en: "Container shipping to Saudi Arabia by ocean freight: compare FCL and LCL, share origin, destination and cargo details, and plan inland delivery. Route and carrier availability are confirmed per shipment.",
+    ar: "شحن الحاويات إلى السعودية عبر الشحن البحري: قارن FCL وLCL وشارك المنشأ والوجهة وتفاصيل البضاعة وخطط للتسليم الداخلي. يُؤكد المسار وتوفر الناقل لكل شحنة.",
   },
   "gcc-transportation": {
     en: "GCC transportation from Saudi Arabia: plan cross-border road freight, cargo documents, border requirements and vehicle suitability before booking.",

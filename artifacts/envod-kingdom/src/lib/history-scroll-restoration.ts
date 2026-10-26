@@ -1,10 +1,17 @@
-import {restoreScrollPosition} from "./scroll-engine";
 type Position={x:number;y:number};
 const STATE_KEY="__envodScrollEntry";
 const STORAGE_KEY="envod.history.scroll.v1";
 const memory=new Map<string,Position>();
 const id=()=>crypto.randomUUID();
 const pathname=(value:string)=>new URL(value,location.href).pathname.replace(/\/+$/,"")||"/";
+const restorePosition=(x:number,y:number)=>{
+  // Restore native scroll immediately; load the animation engine only for its
+  // Lenis/ScrollTrigger synchronization so it stays out of the entry bundle.
+  window.scrollTo({left:x,top:y,behavior:"instant"});
+  void import("./scroll-engine").then(({restoreScrollPosition})=>{
+    if(Math.abs(window.scrollX-x)<=2&&Math.abs(window.scrollY-y)<=2)restoreScrollPosition(x,y);
+  }).catch(error=>console.error("Unable to synchronize scroll after history restoration",error));
+};
 
 /** One position per native history entry, never one shared value per pathname. */
 export function createHistoryScrollRestoration() {
@@ -63,7 +70,7 @@ export function createHistoryScrollRestoration() {
     // Do not clamp a saved deep position to a lazy route's short fallback.
     if(!final&&limit+2<position.y)return;
     const y=Math.min(position.y,limit);
-    if(Math.abs(window.scrollY-y)>2||Math.abs(window.scrollX-position.x)>2)restoreScrollPosition(position.x,y);
+    if(Math.abs(window.scrollY-y)>2||Math.abs(window.scrollX-position.x)>2)restorePosition(position.x,y);
     if(final){cancel();target=null;save();}
   };
   request=()=>{

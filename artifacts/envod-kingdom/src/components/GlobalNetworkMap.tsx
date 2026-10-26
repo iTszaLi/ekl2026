@@ -2,9 +2,6 @@ import { useMemo, useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
 import { CONTACT_PHONE_DISPLAY } from "@/lib/quote-mailto";
 import { motion, AnimatePresence, useReducedMotion, useInView } from "framer-motion";
-import { geoMercator, geoPath } from "d3-geo";
-import { feature } from "topojson-client";
-import worldTopo from "world-atlas/countries-110m.json";
 import type { LucideIcon } from "lucide-react";
 import {
   Building2, Plane, Ship, Truck, Anchor, Warehouse, Globe2, Package,
@@ -61,24 +58,10 @@ function DetailRow({
   );
 }
 
-/* ───────────────────────── Geometry constants ───────────────────────── */
+/* ─────────────────────────── Viewbox constants ──────────────────────── */
 const VB_W = 1000;
 const VB_H = 600;
-const PAD = 28;
 const EASE = [0.22, 1, 0.36, 1] as const;
-
-// Corner points of the visible region (MultiPoint carries no winding ambiguity).
-// Frames Europe (top-left), Africa (bottom-left), the full Middle East / Gulf
-// (centre) and India (right) — the geography ENVOD's offices span.
-const REGION_BOUNDS = {
-  type: "MultiPoint" as const,
-  coordinates: [
-    [-16, -6],
-    [92, -6],
-    [-16, 60],
-    [92, 60],
-  ] as [number, number][],
-};
 
 /* ───────────────────────────── Service model ─────────────────────────── */
 type ServiceKey =
@@ -315,31 +298,50 @@ export function GlobalNetworkMap({ aboutContext = false }: { aboutContext?: bool
 
   const [hoverId, setHoverId] = useState<string | null>(null);
   const [activeId, setActiveId] = useState<string>("riyadh");
+  const [mapGeometry, setMapGeometry] = useState<{
+    countryPaths: Array<{ name: string; d: string }>;
+    pts: Record<string, { x: number; y: number }>;
+  } | null>(null);
+  const mapCanvasRef = useRef<HTMLDivElement>(null);
 
-  // Projection + geometry (language-independent, computed once)
-  const { countryPaths, pts } = useMemo(() => {
-    const projection = geoMercator().fitExtent(
-      [[PAD, PAD], [VB_W - PAD, VB_H - PAD]],
-      REGION_BOUNDS as never,
-    );
-    const pathGen = geoPath(projection);
+  // The office details and a localized map preview are server-rendered. Load
+  // D3 and the country geometry only as the footer map approaches the viewport.
+  useEffect(() => {
+    const canvas = mapCanvasRef.current;
+    if (!canvas) return;
 
-    const world = feature(
-      worldTopo as never,
-      (worldTopo as unknown as { objects: { countries: unknown } }).objects.countries as never,
-    ) as unknown as { features: Array<{ properties?: { name?: string } }> };
+    let cancelled = false;
+    const loadGeometry = () => {
+      void import("@/lib/global-network-map-geometry")
+        .then(({ buildGlobalNetworkMapGeometry }) => {
+          if (!cancelled) setMapGeometry(buildGlobalNetworkMapGeometry(OFFICES));
+        })
+        .catch((error) => {
+          console.error("Unable to load the ENVOD network map geometry.", error);
+        });
+    };
 
-    const countryPaths = world.features
-      .map((f) => ({ name: f.properties?.name ?? "", d: pathGen(f as never) }))
-      .filter((c): c is { name: string; d: string } => !!c.d);
-
-    const pts: Record<string, { x: number; y: number }> = {};
-    for (const o of OFFICES) {
-      const p = projection([o.lng, o.lat]);
-      if (p) pts[o.id] = { x: p[0], y: p[1] };
+    if (typeof IntersectionObserver === "undefined") {
+      loadGeometry();
+      return () => { cancelled = true; };
     }
-    return { countryPaths, pts };
+
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.disconnect();
+        loadGeometry();
+      }
+    }, { rootMargin: "600px 0px" });
+
+    observer.observe(canvas);
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+    };
   }, []);
+
+  const countryPaths = mapGeometry?.countryPaths ?? [];
+  const pts = mapGeometry?.pts ?? {};
 
   const hub = pts["riyadh"];
 
@@ -457,7 +459,23 @@ export function GlobalNetworkMap({ aboutContext = false }: { aboutContext?: bool
             dir="ltr"
           >
             {/* Aspect-locked stage — the svg map and markers align to this box */}
-            <div className="relative w-full" style={{ aspectRatio: `${VB_W} / ${VB_H}` }}>
+            <div
+              ref={mapCanvasRef}
+              data-map-geometry-loaded={mapGeometry ? "true" : "false"}
+              className="relative w-full"
+              style={{ aspectRatio: `${VB_W} / ${VB_H}` }}
+            >
+            <img
+              src={`${import.meta.env.BASE_URL}global-network-map-preview-${isRtl ? "ar" : "en"}.webp`}
+              width={1470}
+              height={isRtl ? 884 : 882}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${mapGeometry ? "opacity-0" : "opacity-100"}`}
+            />
             <svg viewBox={`0 0 ${VB_W} ${VB_H}`} preserveAspectRatio="xMidYMid meet" className="absolute inset-0 w-full h-full">
               <defs>
                 <filter id={aboutContext ? "routeGlow-about" : "routeGlow"} x="-30%" y="-30%" width="160%" height="160%">

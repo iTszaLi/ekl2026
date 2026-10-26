@@ -3,7 +3,6 @@ import { lazy, Suspense, useEffect } from "react";
 import { useReducedMotion } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { routePages } from "@/lib/route-pages";
 import { getLocaleBase, LanguageProvider } from "@/lib/language-context";
 import { MainLayout } from "@/components/layout/MainLayout";
@@ -125,14 +124,12 @@ function App({ ssrPath }: { ssrPath?: string }) {
   return (
     <LanguageProvider initialLanguage={initialLanguage}>
       <Analytics />
-      <TooltipProvider>
-        <WouterRouter base={getLocaleBase(initialLanguage)} ssrPath={ssrPath}>
-          <ScrollToTop />
-          <SeoManager />
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
+      <WouterRouter base={getLocaleBase(initialLanguage)} ssrPath={ssrPath}>
+        <ScrollToTop />
+        <SeoManager />
+        <Router />
+      </WouterRouter>
+      <Toaster />
     </LanguageProvider>
   );
 }

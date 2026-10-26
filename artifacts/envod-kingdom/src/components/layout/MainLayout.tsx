@@ -11,9 +11,16 @@ import {
 import logoIcon from "@assets/image_1780532431289.png";
 import logoFull from "@assets/image_1780437854819.png";
 import { Button } from "@/components/ui/button";
-import { QuoteModal } from "@/components/QuoteModal";
 import { emitAnalyticsEvent } from "@/lib/analytics";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from "@/lib/quote-mailto";
+
+const QuoteModal = React.lazy(() =>
+  import("@/components/QuoteModal").then(({ QuoteModal: Modal }) => ({ default: Modal })),
+);
+
+function preloadQuoteModal() {
+  void import("@/components/QuoteModal");
+}
 
 /* ─────────────────────────── Navbar ─────────────────────────── */
 export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
@@ -111,6 +118,8 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
           </Button>
           <button
             onClick={onGetQuote}
+            onPointerEnter={preloadQuoteModal}
+            onFocus={preloadQuoteModal}
             className="group relative whitespace-nowrap shrink-0 bg-secondary hover:bg-secondary/85 text-white px-5 lg:px-6 py-3 rounded-xl font-black text-[12px] lg:text-[13px] uppercase tracking-wider transition-all shadow-lg shadow-secondary/20 hover:shadow-secondary/35 hover:-translate-y-px overflow-hidden"
           >
             <span className="relative z-10">{t("Get a Free Quote", "احصل على تسعيرة")}</span>
@@ -152,6 +161,8 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
               </Button>
               <button
                 onClick={() => { setMobileOpen(false); onGetQuote?.(); }}
+                onPointerEnter={preloadQuoteModal}
+                onFocus={preloadQuoteModal}
                 className="w-full text-center bg-secondary hover:bg-secondary/90 text-white px-4 py-3 rounded-xl font-black text-sm uppercase tracking-wider transition-colors"
               >
                 {t("Get a Free Quote", "احصل على تسعيرة مجانية")}
@@ -702,7 +713,11 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       <Navbar onGetQuote={() => setQuoteOpen(true)} />
       <main className="flex-1">{children}</main>
       <Footer />
-      <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />
+      {quoteOpen && (
+        <React.Suspense fallback={null}>
+          <QuoteModal isOpen onClose={() => setQuoteOpen(false)} />
+        </React.Suspense>
+      )}
 
       <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
         <a
