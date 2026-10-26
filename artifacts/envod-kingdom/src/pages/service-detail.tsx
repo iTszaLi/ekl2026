@@ -69,8 +69,8 @@ export default function ServiceDetail() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <p className="text-white/40 text-lg mb-4">{t("Service not found", "الخدمة غير موجودة")}</p>
-          <Link href="/services" className="text-secondary hover:underline text-sm">{t("← Back to Services", "← العودة للخدمات")}</Link>
+          <p className="text-white/60 text-lg mb-4">{t("Service not found", "الخدمة غير موجودة")}</p>
+          <Link href="/services" className="text-white/90 hover:text-white hover:underline text-sm">{t("← Back to Services", "← العودة للخدمات")}</Link>
         </div>
       </div>
     );
@@ -134,14 +134,14 @@ export default function ServiceDetail() {
           <motion.nav
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className={`flex items-center gap-2 text-white/35 text-xs mb-8 ${isRtl ? "flex-row-reverse" : ""}`}
+            className={`flex items-center gap-2 text-white/60 text-xs mb-8 ${isRtl ? "flex-row-reverse" : ""}`}
             aria-label="Breadcrumb"
           >
             <Link href="/" className="hover:text-white transition-colors">{t("Home", "الرئيسية")}</Link>
             <ChevronRight className={`w-3 h-3 flex-shrink-0 ${isRtl ? "rotate-180" : ""}`} />
             <Link href="/services" className="hover:text-white transition-colors">{t("Services", "الخدمات")}</Link>
             <ChevronRight className={`w-3 h-3 flex-shrink-0 ${isRtl ? "rotate-180" : ""}`} />
-            <span className="text-secondary font-medium">{serviceName}</span>
+            <span className="text-white/90 font-medium">{serviceName}</span>
           </motion.nav>
 
           <div className={`flex items-start gap-6 mb-8 ${isRtl ? "flex-row-reverse" : ""}`}>
@@ -159,7 +159,7 @@ export default function ServiceDetail() {
               <motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3"
+                className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3"
               >
                 ENVOD KINGDOM SHIPPING SERVICES
               </motion.p>
@@ -214,7 +214,7 @@ export default function ServiceDetail() {
       {meta.overview && meta.overview.length > 0 && (
         <section className="border-t border-white/6 py-16" aria-labelledby="service-overview-heading">
           <div className={`container mx-auto px-4 max-w-3xl ${isRtl ? "text-right" : ""}`}>
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
               {t("OVERVIEW", "نظرة عامة")}
             </p>
             <h2 id="service-overview-heading" className="text-2xl md:text-3xl font-black text-white mb-6">
@@ -244,13 +244,13 @@ export default function ServiceDetail() {
           viewport={{ once: true }}
           className={`mb-12 ${isRtl ? "text-right" : ""}`}
         >
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
             {t("SUB-SERVICES", "الخدمات الفرعية")}
           </p>
           <h2 className="text-2xl md:text-4xl font-black text-white mb-3">
-            {t("Service options for", "خيارات")} <span className="text-secondary">{serviceName}</span>
+            {t("Service options for", "خيارات")} <span className="text-white/90">{serviceName}</span>
           </h2>
-          <p className="text-white/45 text-sm max-w-xl">
+          <p className="text-white/60 text-sm max-w-xl">
             {serviceId === 9
               ? t("Choose the move type closest to your request. These are enquiry categories, not a fixed service package; scope and provider availability are confirmed before booking.", "اختر نوع الانتقال الأقرب إلى طلبك. هذه فئات للاستفسار وليست باقة خدمة ثابتة؛ ويُؤكد النطاق وتوفر مقدم الخدمة قبل الحجز.")
               : t("Choose a sub-service to send an enquiry about your requirements. Response times depend on the enquiry and business hours.", "اختر خدمة فرعية لإرسال استفسار بمتطلباتك. تختلف مدة الرد حسب الاستفسار وساعات العمل.")}
@@ -285,7 +285,7 @@ export default function ServiceDetail() {
               <p className="text-white/48 text-xs leading-relaxed mb-4">
                 {isRtl ? sub.descAr : sub.desc}
               </p>
-              <div className={`flex items-center gap-1.5 text-xs font-semibold transition-colors group-hover:text-white/80 text-white/35 ${isRtl ? "flex-row-reverse" : ""}`}>
+              <div className={`flex items-center gap-1.5 text-xs font-semibold transition-colors group-hover:text-white/80 text-white/60 ${isRtl ? "flex-row-reverse" : ""}`}>
                 {t("Send Inquiry", "إرسال استفسار")}
                 <ArrowRight className={`w-3 h-3 transition-transform group-hover:translate-x-0.5 ${isRtl ? "rotate-180" : ""}`} />
               </div>
@@ -304,7 +304,7 @@ export default function ServiceDetail() {
               viewport={{ once: true }}
               className={`mb-12 ${isRtl ? "text-right" : "text-center"}`}
             >
-              <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+              <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
                 {serviceId === 9 ? t("MOVE-REQUEST REVIEW", "مراجعة طلب الانتقال") : t("HOW IT WORKS", "كيف تعمل")}
               </p>
               <h2 className="text-2xl md:text-3xl font-black text-white">
@@ -349,7 +349,7 @@ export default function ServiceDetail() {
             viewport={{ once: true }}
             className={isRtl ? "text-right" : ""}
           >
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-4">
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-4">
               {serviceId === 9 ? t("MOVE TYPES WE REVIEW", "أنواع الانتقال التي نراجعها") : t("INDUSTRIES SERVED", "القطاعات المخدومة")}
             </p>
             <h2 className="text-2xl font-black text-white mb-6">
@@ -381,7 +381,7 @@ export default function ServiceDetail() {
             viewport={{ once: true }}
             className={isRtl ? "text-right" : ""}
           >
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-4">
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-4">
               {serviceId === 9 ? t("BEFORE BOOKING", "قبل الحجز") : t("WHY CHOOSE US", "لماذا تختارنا")}
             </p>
             <h2 className="text-2xl font-black text-white mb-6">
@@ -420,7 +420,7 @@ export default function ServiceDetail() {
               viewport={{ once: true }}
               className={`mb-10 ${isRtl ? "text-right" : "text-center"}`}
             >
-              <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">{t("FAQ", "الأسئلة الشائعة")}</p>
+              <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">{t("FAQ", "الأسئلة الشائعة")}</p>
               <h2 className="text-2xl md:text-3xl font-black text-white">{t("Frequently Asked Questions", "الأسئلة المتكررة")}</h2>
             </motion.div>
             <div className="space-y-3">
@@ -444,7 +444,7 @@ export default function ServiceDetail() {
       {meta.pillar && meta.pillar.relatedLinks.length > 0 && (
         <section className="py-14 border-t border-white/6">
           <div className={`container mx-auto px-4 max-w-5xl ${isRtl ? "text-right" : ""}`} dir={isRtl ? "rtl" : "ltr"}>
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
               {t("RELATED SERVICES", "خدمات ذات صلة")}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -469,13 +469,13 @@ export default function ServiceDetail() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent" />
         <div className={`container mx-auto px-4 text-center relative z-10 ${isRtl ? "rtl" : ""}`}>
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-5">{t("GET STARTED", "ابدأ الآن")}</p>
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-5">{t("GET STARTED", "ابدأ الآن")}</p>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-4 max-w-2xl mx-auto leading-tight">
               {serviceId === 9
                 ? t("Planning a home move?", "هل تخطط لنقل منزلك؟")
-                : t("Planning a shipment?", "هل تخطط لشحنة؟")} <span className="text-secondary">{t("Send an Enquiry.", "أرسل استفساراً.")}</span>
+                : t("Planning a shipment?", "هل تخطط لشحنة؟")} <span className="text-white/90">{t("Send an Enquiry.", "أرسل استفساراً.")}</span>
             </h2>
-            <p className="text-white/45 max-w-lg mx-auto mb-10 text-sm leading-relaxed">
+            <p className="text-white/60 max-w-lg mx-auto mb-10 text-sm leading-relaxed">
               {serviceId === 9
                 ? t("Share the move type, approximate contents, packing and access needs, preferred date and route. Provider options and scope are checked before booking.", "أرسل نوع الانتقال والحجم التقريبي واحتياجات التغليف والدخول والموعد والمسار. ويتم التحقق من خيارات مقدم الخدمة والنطاق قبل الحجز.")
                 : t("Share the cargo, route and timing so the requested scope and provider availability can be reviewed.", "أرسل تفاصيل البضاعة والمسار والتوقيت لمراجعة النطاق المطلوب وتوفر مقدم الخدمة.")}

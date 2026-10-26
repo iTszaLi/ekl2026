@@ -166,7 +166,7 @@ function GalleryCard({ item, onOpen, t, isRtl, eager }: { item: GalleryItem; onO
         <a
           href={galleryServicePath(item.servicePath, isRtl)}
           aria-label={t(`Explore service: ${title}`, `استكشف الخدمة: ${title}`)}
-          className="mt-2 inline-flex items-center gap-2 rounded-md px-1 py-1 text-xs font-semibold text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary/70"
+          className="mt-2 inline-flex items-center gap-2 rounded-md px-1 py-1 text-xs font-semibold text-white/90 hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary/70"
         >
           {t("Explore related logistics service", "استكشف الخدمة اللوجستية المرتبطة")} — {galleryBadgeLabel(item, t)}
           <ArrowRight aria-hidden="true" className={`h-3.5 w-3.5 ${isRtl ? "rotate-180" : ""}`} />

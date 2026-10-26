@@ -423,7 +423,7 @@ export default function Services() {
           <section className="pb-9 pt-12 sm:pb-12 sm:pt-16" aria-labelledby="exhibition-heading">
             <div className={`mb-5 flex items-end justify-between gap-4 ${isRtl ? "flex-row-reverse" : ""}`}>
               <div>
-                <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-secondary">{t("ENVOD SPECIALTY", "من تخصصات إنفود")}</p>
+                <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-white/90">{t("ENVOD SPECIALTY", "من تخصصات إنفود")}</p>
                 <h2 id="exhibition-heading" className="text-2xl font-semibold tracking-tight text-[#f2f0eb] sm:text-[30px]">{t("ENVOD Specialist", "متخصصو إنفود")}</h2>
               </div>
               <span className="hidden text-xs text-white/60 sm:block">{t("Freight, documents & venue coordination", "تنسيق الشحن والمستندات والموقع")}</span>
@@ -481,7 +481,7 @@ export default function Services() {
         <section id="services-directory" className="scroll-mt-20 pb-14 pt-5 sm:pb-20 sm:pt-8" aria-labelledby="directory-heading">
           <div className={`mb-6 flex flex-col gap-5 border-b border-white/10 pb-5 md:flex-row md:items-end md:justify-between ${isRtl ? "md:flex-row-reverse" : ""}`}>
             <div className={isRtl ? "text-right" : ""}>
-              <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-secondary">{t("ALL SERVICES", "جميع الخدمات")}</p>
+              <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-white/90">{t("ALL SERVICES", "جميع الخدمات")}</p>
               <h2 id="directory-heading" className="text-2xl font-semibold tracking-tight text-[#f2f0eb] sm:text-[32px]">{t("Logistics Services", "الخدمات اللوجستية")}</h2>
               <p className="mt-2 max-w-2xl text-xs leading-relaxed text-white/50">{t("Explore services from customs documentation coordination and international freight to specialist cargo and temperature-controlled transportation. Route and availability are confirmed per enquiry.", "استكشف خدمات تنسيق مستندات الجمارك والشحن الدولي والبضائع المتخصصة والنقل بدرجة حرارة مضبوطة. يُؤكد المسار والتوفر لكل استفسار.")}</p>
             </div>
@@ -496,7 +496,7 @@ export default function Services() {
                   data-testid={`button-filter-${tab.id}`}
                 >
                   {isRtl ? tab.label.ar : tab.label.en}
-                  <span className={`font-mono text-[10px] ${activeTab === tab.id ? "text-white/75" : "text-white/35"}`}>{tab.count}</span>
+                  <span className={`font-mono text-[10px] ${activeTab === tab.id ? "text-white" : "text-white/70"}`}>{tab.count}</span>
                 </button>
               ))}
             </div>
@@ -573,7 +573,7 @@ export default function Services() {
               ))}
             </motion.div>
           </AnimatePresence>
-          <div className={`mt-4 flex items-center gap-2 text-[11px] text-white/40 ${isRtl ? "flex-row-reverse" : ""}`}>
+          <div className={`mt-4 flex items-center gap-2 text-[11px] text-white/60 ${isRtl ? "flex-row-reverse" : ""}`}>
             <ShieldCheck className="h-3.5 w-3.5 text-secondary" aria-hidden="true" />
             {t(
               `${offers.length} displayed offerings · ${coreCount} core · ${specializedCount} specialized`,
@@ -586,7 +586,7 @@ export default function Services() {
       <section className="border-y border-white/[0.09] bg-[#091724]" aria-labelledby="faq-heading">
         <div className="mx-auto max-w-[1240px] px-5 py-14 sm:px-8 sm:py-16 lg:px-10">
           <div className={`mb-7 max-w-2xl ${isRtl ? "mr-auto text-right" : ""}`}>
-            <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-secondary">{t("BEFORE YOU ENQUIRE", "قبل إرسال استفسارك")}</p>
+            <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-white/90">{t("BEFORE YOU ENQUIRE", "قبل إرسال استفسارك")}</p>
             <h2 id="faq-heading" className="text-2xl font-semibold tracking-tight sm:text-[32px]">{t("Planning a shipment?", "هل تخطط لشحنة؟")}</h2>
             <p className="mt-2 text-xs leading-relaxed text-white/50">{t("A few useful details can help us review the right scope.", "تساعد بعض التفاصيل في مراجعة نطاق الخدمة المناسب.")}</p>
           </div>

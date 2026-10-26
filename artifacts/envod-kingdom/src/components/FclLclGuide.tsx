@@ -53,7 +53,7 @@ export function FclLclGuide() {
         "Confirm carrier acceptance, import requirements, Incoterms, excluded charges and any destination delivery obligations before booking.",
         "أكد قبول الناقل ومتطلبات الاستيراد والإنكوترمز والرسوم المستثناة وأي التزامات للتسليم في الوجهة قبل الحجز.",
       )}</p>
-      <a href="https://www.maersk.com/support/faqs/what-is-fcl" target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm text-secondary underline underline-offset-4">
+      <a href="https://www.maersk.com/support/faqs/what-is-fcl" target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm text-white/90 underline underline-offset-4 hover:text-white">
         {t("Carrier reference: what FCL means", "مرجع من ناقل بحري: معنى FCL")}
       </a>
     </div>

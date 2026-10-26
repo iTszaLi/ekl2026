@@ -37,7 +37,7 @@ export function ServicePreparation({ slug }: { slug: string }) {
         {slug === "ocean-freight" && <FclLclGuide />}
         {["ata-carnet", "exhibition-logistics"].includes(slug) && (
           <p className="mb-6 text-sm">
-            <a href="https://zatca.gov.sa/en/MediaCenter/News/Pages/news-1245.aspx" target="_blank" rel="noopener noreferrer" className="text-secondary underline underline-offset-4">
+            <a href="https://zatca.gov.sa/en/MediaCenter/News/Pages/news-1245.aspx" target="_blank" rel="noopener noreferrer" className="text-white/90 underline underline-offset-4 hover:text-white">
               {t("ZATCA: ATA Carnet acceptance and the Saudi guaranteeing association", "هيئة الزكاة والضريبة والجمارك: قبول كارنيه ATA والجهة الضامنة السعودية")}
             </a>
           </p>
@@ -54,25 +54,25 @@ export function ServicePreparation({ slug }: { slug: string }) {
               "These are gateway planning considerations, not a claim of ENVOD branches, terminal operations or guaranteed access. Confirm current requirements and shipment eligibility.",
               "هذه اعتبارات لتخطيط منافذ الشحن، وليست ادعاءً بوجود فروع لإنفود أو تشغيل محطات أو دخول مضمون. تحقق من المتطلبات الحالية وأهلية الشحنة.",
             )}</p>
-            <a href="https://www.spa.gov.sa/en/N2153933" target="_blank" rel="noopener noreferrer" className="inline-block text-sm text-secondary underline underline-offset-4">
+            <a href="https://www.spa.gov.sa/en/N2153933" target="_blank" rel="noopener noreferrer" className="inline-block text-sm text-white/90 underline underline-offset-4 hover:text-white">
               {t("Official Saudi Press Agency: Jeddah and Dammam port context", "وكالة الأنباء السعودية: سياق ميناءي جدة والدمام")}
             </a>
           </div>
         )}
         {content.source && (
           <p className="mb-6 text-sm">
-            <a href={content.source.url} target="_blank" rel="noopener noreferrer" className="text-secondary underline underline-offset-4">
+            <a href={content.source.url} target="_blank" rel="noopener noreferrer" className="text-white/90 underline underline-offset-4 hover:text-white">
               {t(...content.source.label)}
             </a>
           </p>
         )}
         {content.references && <nav aria-label={t("Official regulatory references", "المراجع الرسمية للمتطلبات التنظيمية")} className="mb-7 flex flex-col items-start gap-3">
-          {content.references.map(reference => <a key={reference.url} href={reference.url} target="_blank" rel="noopener noreferrer" className="text-sm text-secondary underline underline-offset-4">{t(...reference.label)}</a>)}
+          {content.references.map(reference => <a key={reference.url} href={reference.url} target="_blank" rel="noopener noreferrer" className="text-sm text-white/90 underline underline-offset-4 hover:text-white">{t(...reference.label)}</a>)}
         </nav>}
         {PREPARATION_LINKS[slug]?.length > 0 && (
           <nav aria-label={t("Related shipment preparation guides", "أدلة ذات صلة لتجهيز الشحنات")} className="mb-7 flex flex-col items-start gap-3">
             {PREPARATION_LINKS[slug].map((link) => (
-              <Link key={link.slug} href={`/services/${link.slug}#shipment-preparation`} className="text-sm text-secondary underline underline-offset-4 hover:text-white">
+              <Link key={link.slug} href={`/services/${link.slug}#shipment-preparation`} className="text-sm text-white/90 underline underline-offset-4 hover:text-white">
                 {t(...link.label)}
               </Link>
             ))}

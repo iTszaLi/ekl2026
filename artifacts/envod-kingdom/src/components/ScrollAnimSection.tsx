@@ -23,6 +23,8 @@ interface Props {
   frameCount?: number;
   chapters: AnimChapter[];
   isRtl?: boolean;
+  /** Keep the first above-the-fold scene ready before starting decorative media. */
+  priority?: boolean;
 }
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -48,6 +50,7 @@ export function ScrollAnimSection({
   frameFolder,
   chapters,
   isRtl = false,
+  priority = false,
 }: Props) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef   = useRef<HTMLVideoElement>(null);
@@ -61,6 +64,9 @@ export function ScrollAnimSection({
   const [chapterIdx, setChapterIdx] = useState(0);
   const [isVisible,  setIsVisible]  = useState(false);
   const [started,    setStarted]    = useState(false); // src attached after first intersect
+  const [hasEntered, setHasEntered] = useState(priority);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [viewportReady, setViewportReady] = useState(false);
   const [isReady,    setIsReady]    = useState(false); // first frame decoded
   const [loadPercent, setLoadPercent] = useState(0);
 
@@ -119,13 +125,48 @@ export function ScrollAnimSection({
     };
   }, [reduceMotion]);
 
+  // Keep decorative background video off small screens; the matching poster
+  // remains visible and avoids downloading a large video for the first screen.
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 640px)");
+    const update = () => {
+      setIsSmallScreen(media.matches);
+      setViewportReady(true);
+    };
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  // Request below-the-fold posters shortly before they can be seen, rather
+  // than fetching every video poster during the initial page load.
+  useEffect(() => {
+    if (priority) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setHasEntered(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setHasEntered(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px", threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [priority]);
+
   // IntersectionObserver — attach source on first entry, play/pause thereafter
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries[0].isIntersecting;
         setIsVisible(visible);
-        if (visible && !reduceMotion) setStarted(true);
       },
       { threshold: 0.15 },
     );
@@ -133,6 +174,17 @@ export function ScrollAnimSection({
     if (el) observer.observe(el);
     return () => observer.disconnect();
   }, [reduceMotion]);
+
+  // Start the first decorative video only after the initial rendering window;
+  // other scene videos start when they become visible on larger screens.
+  useEffect(() => {
+    if (!isVisible || !viewportReady || isSmallScreen || reduceMotion || started) return;
+    const timeout = window.setTimeout(
+      () => setStarted(true),
+      priority ? 1500 : 0,
+    );
+    return () => window.clearTimeout(timeout);
+  }, [isVisible, isSmallScreen, priority, reduceMotion, started, viewportReady]);
 
   // Keep the poster visible as a sharp fallback; reduced-motion users never
   // download or autoplay the animated background.
@@ -156,7 +208,7 @@ export function ScrollAnimSection({
     if (!v || !started) return;
     if (reduceMotion) {
       v.pause();
-    } else if (isVisible) {
+    } else if (isVisible && !isSmallScreen) {
       v.muted = true;
       v.playbackRate = READABLE_PLAYBACK_RATE;
       const p = v.play();
@@ -164,7 +216,7 @@ export function ScrollAnimSection({
     } else {
       v.pause();
     }
-  }, [isVisible, reduceMotion, started]);
+  }, [isVisible, isSmallScreen, reduceMotion, started]);
 
   // Chapter switching + readiness + buffered progress — all driven by the video
   useEffect(() => {
@@ -207,13 +259,14 @@ export function ScrollAnimSection({
   const titleParts  = chapter?.title.split(". ").filter(Boolean) ?? [];
   const features    = isRtl ? chapter?.featuresAr : chapter?.features;
   const documentSupport = isRtl ? chapter?.documentSupportAr : chapter?.documentSupport;
+  const showChapterImmediately = priority && chapterIdx === 0;
 
   return (
     <MotionConfig reducedMotion="user">
       <motion.section
         ref={sectionRef}
         className="relative h-screen overflow-hidden bg-[#030b18]"
-        initial={reduceMotion ? false : { opacity: 0 }}
+        initial={reduceMotion || priority ? false : { opacity: 0 }}
         whileInView={reduceMotion ? undefined : { opacity: 1 }}
         viewport={{ once: false, amount: 0.2 }}
         transition={{ duration: reduceMotion ? 0 : 1, ease: "easeOut" }}
@@ -231,7 +284,7 @@ export function ScrollAnimSection({
         loop
         playsInline
         preload="none"
-        poster={`${BASE}/media/${frameFolder}.jpg`}
+        poster={hasEntered ? `${BASE}/media/${frameFolder}.jpg` : undefined}
         aria-hidden="true"
       >
         {started && (
@@ -315,7 +368,7 @@ export function ScrollAnimSection({
             {chapter && (
               <motion.div
                 key={chapterIdx}
-                initial={{ opacity: 0, y: 36 }}
+                initial={showChapterImmediately ? false : { opacity: 0, y: 36 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -24 }}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as [number,number,number,number] }}
@@ -323,7 +376,7 @@ export function ScrollAnimSection({
               >
                 {/* Eyebrow */}
                 <motion.p
-                  initial={{ opacity: 0, x: isRtl ? 20 : -20 }}
+                  initial={showChapterImmediately ? false : { opacity: 0, x: isRtl ? 20 : -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.15, duration: 0.65 }}
                   className="text-secondary text-xs font-bold tracking-[0.35em] uppercase mb-5"
@@ -335,7 +388,7 @@ export function ScrollAnimSection({
                 <h2 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black text-white uppercase tracking-tight leading-[1.05] max-w-4xl overflow-hidden">
                   {isRtl && chapter.titleAr ? (
                     <motion.span
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={showChapterImmediately ? false : { opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2, duration: 0.9, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
                       className="block"
@@ -347,7 +400,7 @@ export function ScrollAnimSection({
                       <motion.span
                         key={i}
                         className="block overflow-hidden"
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={showChapterImmediately ? false : { opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + i * 0.16, duration: 0.9, ease: [0.22,1,0.36,1] as [number,number,number,number] }}
                       >
@@ -364,7 +417,7 @@ export function ScrollAnimSection({
                 {/* Subtitle */}
                 {chapter.subtitle && (
                   <motion.p
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={showChapterImmediately ? false : { opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.75 }}
                     className="mt-6 text-base md:text-lg text-white/65 max-w-2xl font-light leading-relaxed"
@@ -376,7 +429,7 @@ export function ScrollAnimSection({
                 {/* Premium feature checkmarks */}
                 {features && features.length > 0 && (
                   <motion.div
-                    initial={{ opacity: 0, y: 16 }}
+                    initial={showChapterImmediately ? false : { opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
                     className={`mt-5 flex flex-wrap gap-2 md:mt-8 md:gap-3 ${isRtl ? "justify-end" : ""}`}
@@ -384,7 +437,7 @@ export function ScrollAnimSection({
                     {features.map((feat, i) => (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, x: isRtl ? 16 : -16 }}
+                        initial={showChapterImmediately ? false : { opacity: 0, x: isRtl ? 16 : -16 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.55 + i * 0.07, duration: 0.45 }}
                         className={`flex items-center gap-1.5 bg-white/[0.07] backdrop-blur-md border border-white/15 rounded-full px-3 py-1.5 md:gap-2 md:px-4 md:py-2 ${isRtl ? "flex-row-reverse" : ""}`}
@@ -398,7 +451,7 @@ export function ScrollAnimSection({
 
                 {documentSupport && documentSupport.length > 0 && (
                   <motion.div
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={showChapterImmediately ? false : { opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.55, duration: 0.4 }}
                     className={`mt-4 md:mt-5 ${isRtl ? "text-right" : "text-left"}`}
@@ -417,7 +470,7 @@ export function ScrollAnimSection({
                       {documentSupport.map((standard, i) => (
                         <motion.span
                           key={standard}
-                          initial={{ opacity: 0, scale: 0.85 }}
+                          initial={showChapterImmediately ? false : { opacity: 0, scale: 0.85 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.6 + i * 0.02, duration: 0.2 }}
                           className="inline-flex size-9 md:size-11 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/[0.12] text-[9px] md:text-[10px] font-bold tracking-tight text-white ring-1 ring-white/20 transition-colors hover:border-secondary/70 hover:bg-secondary/20"

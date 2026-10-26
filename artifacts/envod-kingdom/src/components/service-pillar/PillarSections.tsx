@@ -109,7 +109,7 @@ export default function PillarSections({
           }}
         >
           <div className="container mx-auto px-4 py-16 max-w-5xl">
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
               {isRtl ? "أماكن المعارض" : "EXHIBITION VENUES"}
             </p>
             <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
@@ -117,7 +117,7 @@ export default function PillarSections({
                 ? "معلومات تخطيط مواقع المعارض في السعودية"
                 : "Planning for Saudi exhibition venues"}
             </h2>
-            <p className="text-white/45 text-sm max-w-2xl mb-8">
+            <p className="text-white/60 text-sm max-w-2xl mb-8">
               {isRtl
                 ? "تُذكر المواقع لأغراض التخطيط فقط؛ ويجب تأكيد الدخول ومواعيد التسليم والمقاولين والنطاق المتاح لكل فعالية."
                 : "Venue names are planning references only; access, delivery windows, contractors and available service scope must be confirmed for each event."}
@@ -139,7 +139,7 @@ export default function PillarSections({
                       <h3 className="text-white font-bold text-sm leading-snug">
                         {isRtl ? v.nameAr : v.name}
                       </h3>
-                      <p className="text-white/45 text-xs mt-1">
+                      <p className="text-white/60 text-xs mt-1">
                         {isRtl ? v.cityAr : v.city}
                       </p>
                     </div>
@@ -154,7 +154,7 @@ export default function PillarSections({
       {/* Major events */}
       {pillar.majorEvents.length > 0 && (
         <div className="container mx-auto px-4 py-16 max-w-5xl">
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
             {isRtl ? "فعاليات للبحث والتخطيط" : "EVENTS TO RESEARCH FOR PLANNING"}
           </p>
           <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
@@ -162,7 +162,7 @@ export default function PillarSections({
               ? "أمثلة فعاليات في السعودية"
               : "Examples of Saudi events"}
           </h2>
-          <p className="text-white/45 text-sm max-w-2xl mb-8">
+          <p className="text-white/60 text-sm max-w-2xl mb-8">
             {isRtl
                 ? "تُذكر هذه الفعاليات كأمثلة بحثية فقط، ولا تعني تعيين إنفود أو مشاركتها السابقة. تختلف مواعيد كل نسخة وموقعها وتعليمات الشحن؛ لذا أكّد التفاصيل الحالية ومواعيد الدخول والخروج مع المنظّم والموقع."
                 : "These event names are planning references only; they do not imply ENVOD appointment or past participation. Dates, venues and cargo instructions vary by edition, so confirm current details and move-in/out deadlines with the organizer and venue."}
@@ -177,7 +177,7 @@ export default function PillarSections({
                   <CalendarDays className="w-4 h-4 shrink-0" style={{ color: accentHex }} />
                   <span className="text-white font-bold text-sm">{e.name}</span>
                 </div>
-                <span className="text-white/40 text-xs whitespace-nowrap">
+                <span className="text-white/60 text-xs whitespace-nowrap">
                   {(isRtl ? e.sectorAr : e.sector)} · {(isRtl ? e.cityAr : e.city)}
                 </span>
               </div>

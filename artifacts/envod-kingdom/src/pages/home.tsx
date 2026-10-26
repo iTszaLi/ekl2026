@@ -183,6 +183,7 @@ export default function Home() {
         frameCount={120}
         chapters={craneChapters}
         isRtl={isRtl}
+        priority
       />
 
       <ScrollAnimSection

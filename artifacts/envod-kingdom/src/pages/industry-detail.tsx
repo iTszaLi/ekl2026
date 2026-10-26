@@ -33,8 +33,8 @@ export default function IndustryDetail() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <p className="text-white/40 text-lg mb-4">{t("Industry not found", "القطاع غير موجود")}</p>
-          <Link href="/industries" className="text-secondary hover:underline text-sm">{t("← Back to Industries", "← العودة للقطاعات")}</Link>
+          <p className="text-white/60 text-lg mb-4">{t("Industry not found", "القطاع غير موجود")}</p>
+          <Link href="/industries" className="text-white/90 hover:text-white hover:underline text-sm">{t("← Back to Industries", "← العودة للقطاعات")}</Link>
         </div>
       </div>
     );
@@ -67,12 +67,12 @@ export default function IndustryDetail() {
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
         <div className={`container mx-auto px-4 relative z-10 ${isRtl ? "text-right" : ""}`}>
-          <nav className={`flex items-center gap-2 text-white/35 text-xs mb-8 ${isRtl ? "flex-row-reverse" : ""}`} aria-label="Breadcrumb">
+          <nav className={`flex items-center gap-2 text-white/60 text-xs mb-8 ${isRtl ? "flex-row-reverse" : ""}`} aria-label="Breadcrumb">
             <Link href="/" className="hover:text-white transition-colors">{t("Home", "الرئيسية")}</Link>
             <ChevronRight className={`w-3 h-3 flex-shrink-0 ${isRtl ? "rotate-180" : ""}`} />
             <Link href="/industries" className="hover:text-white transition-colors">{t("Industries", "القطاعات")}</Link>
             <ChevronRight className={`w-3 h-3 flex-shrink-0 ${isRtl ? "rotate-180" : ""}`} />
-            <span className="text-secondary font-medium">{name}</span>
+            <span className="text-white/90 font-medium">{name}</span>
           </nav>
 
           <div className={`flex items-start gap-6 mb-8 ${isRtl ? "flex-row-reverse" : ""}`}>
@@ -80,7 +80,7 @@ export default function IndustryDetail() {
               <Icon className="w-10 h-10" style={{ color: ind.accentHex }} />
             </div>
             <div>
-              <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+              <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
                 ENVOD KINGDOM SHIPPING SERVICES
               </p>
               <h1 className="text-3xl md:text-5xl xl:text-6xl font-black text-white leading-tight tracking-tight max-w-3xl">
@@ -127,7 +127,7 @@ export default function IndustryDetail() {
       {/* ── Overview (SEO body — crawlable static HTML) ── */}
       <section className="border-t border-white/6 py-16" aria-labelledby="industry-overview-heading">
         <div className={`container mx-auto px-4 max-w-3xl ${isRtl ? "text-right" : ""}`}>
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
             {t("OVERVIEW", "نظرة عامة")}
           </p>
           <h2 id="industry-overview-heading" className="text-2xl md:text-3xl font-black text-white mb-6">
@@ -146,7 +146,7 @@ export default function IndustryDetail() {
       {/* ── Challenges ── */}
       <section className="py-16 border-t border-white/6" style={{ background: "linear-gradient(180deg, hsl(var(--background)) 0%, #020d1c 100%)" }}>
         <div className={`container mx-auto px-4 max-w-4xl ${isRtl ? "text-right" : ""}`}>
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
             {t("THE CHALLENGE", "التحدي")}
           </p>
           <h2 className="text-2xl md:text-3xl font-black text-white mb-8">
@@ -168,11 +168,11 @@ export default function IndustryDetail() {
       {/* ── Solutions ── */}
       <section className="py-20 container mx-auto px-4" aria-labelledby="industry-solutions-heading">
         <div className={`mb-12 ${isRtl ? "text-right" : ""}`}>
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
             {t("OUR SOLUTIONS", "حلولنا")}
           </p>
           <h2 id="industry-solutions-heading" className="text-2xl md:text-4xl font-black text-white mb-3">
-            {t("How ENVOD Supports", "كيف تدعم إنفود")} <span className="text-secondary">{name}</span>
+            {t("How ENVOD Supports", "كيف تدعم إنفود")} <span className="text-white/90">{name}</span>
           </h2>
         </div>
 
@@ -193,7 +193,7 @@ export default function IndustryDetail() {
                   {isRtl ? sol.descAr : sol.descEn}
                 </p>
                 {sol.serviceSlug && (
-                  <span className={`flex items-center gap-1.5 text-xs font-semibold transition-colors group-hover:text-white/80 text-white/35 ${isRtl ? "flex-row-reverse" : ""}`}>
+                  <span className={`flex items-center gap-1.5 text-xs font-semibold transition-colors group-hover:text-white/80 text-white/60 ${isRtl ? "flex-row-reverse" : ""}`}>
                     {t("View Service", "عرض الخدمة")}
                     <ArrowRight className={`w-3 h-3 transition-transform group-hover:translate-x-0.5 ${isRtl ? "rotate-180" : ""}`} />
                   </span>
@@ -214,7 +214,7 @@ export default function IndustryDetail() {
       <section className="py-16 border-t border-white/6">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className={`mb-10 ${isRtl ? "text-right" : "text-center"}`}>
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">{t("FAQ", "الأسئلة الشائعة")}</p>
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">{t("FAQ", "الأسئلة الشائعة")}</p>
             <h2 className="text-2xl md:text-3xl font-black text-white">{t("Frequently Asked Questions", "الأسئلة المتكررة")}</h2>
           </div>
           <div className="space-y-3">
@@ -228,7 +228,7 @@ export default function IndustryDetail() {
       {/* ── Related Services ── */}
       <section className="py-14 border-t border-white/6">
         <div className={`container mx-auto px-4 max-w-5xl ${isRtl ? "text-right" : ""}`}>
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
             {t("RELATED SERVICES", "خدمات ذات صلة")}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
@@ -249,7 +249,7 @@ export default function IndustryDetail() {
       {/* ── Other Industries ── */}
       <section className="py-14 border-t border-white/6">
         <div className={`container mx-auto px-4 max-w-5xl ${isRtl ? "text-right" : ""}`}>
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
             {t("OTHER INDUSTRIES", "قطاعات أخرى")}
           </p>
           <div className={`flex flex-wrap gap-2.5 ${isRtl ? "flex-row-reverse" : ""}`}>
@@ -264,7 +264,7 @@ export default function IndustryDetail() {
             ))}
             <Link
               href="/industries"
-              className="text-xs font-bold text-secondary hover:text-white bg-secondary/10 hover:bg-secondary/25 border border-secondary/30 rounded-full px-4 py-2 transition-colors"
+              className="text-xs font-bold text-white/90 hover:text-white bg-secondary/10 hover:bg-secondary/25 border border-secondary/30 rounded-full px-4 py-2 transition-colors"
             >
               {t("All Industries", "كل القطاعات")}
             </Link>
@@ -277,7 +277,7 @@ export default function IndustryDetail() {
         <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse 55% 40% at 50% 50%, ${ind.accentHex}08 0%, transparent 70%)` }} />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent" />
         <div className="container mx-auto px-4 text-center relative z-10">
-          <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-5">{t("GET STARTED", "ابدأ الآن")}</p>
+          <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-5">{t("GET STARTED", "ابدأ الآن")}</p>
           <h2 className="text-3xl md:text-4xl font-black text-white mb-4 max-w-2xl mx-auto leading-tight">
             {t(`Ready to move your ${ind.nameEn.replace(" Logistics", "").toLowerCase()} cargo?`, `جاهزون لنقل بضائع قطاعكم؟`)}
           </h2>

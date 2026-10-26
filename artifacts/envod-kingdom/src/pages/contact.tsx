@@ -247,7 +247,7 @@ export default function Contact() {
       <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="max-w-3xl mx-auto text-center mb-14">
-          <span className="inline-block text-secondary text-xs font-black uppercase tracking-[0.3em] mb-4">
+          <span className="inline-block text-white/90 text-xs font-black uppercase tracking-[0.3em] mb-4">
             {t("Contact Us", "اتصل بنا")}
           </span>
           <h1 className="text-4xl md:text-5xl font-black text-white mb-5 leading-tight">
@@ -484,7 +484,7 @@ export default function Contact() {
                           id="service"
                           aria-invalid={!!errors.service}
                           aria-describedby={errors.service ? "service-error" : undefined}
-                          className={`${fieldClass(!!errors.service)} justify-between data-[placeholder]:text-white/30 [&>svg]:opacity-60`}
+                          className={`${fieldClass(!!errors.service)} justify-between data-[placeholder]:text-white/60 [&>svg]:opacity-60`}
                         >
                           <SelectValue placeholder={t("Select a service", "اختر خدمة")} />
                         </SelectTrigger>

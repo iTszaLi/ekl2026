@@ -250,12 +250,12 @@ function EventCard({ event, index, isRtl }: { event: (typeof EVENTS)[number]; in
 
         {/* Name + year + city */}
         <h4 className="text-white font-black text-[13px] leading-tight tracking-tight">{event.name}</h4>
-        <p className="text-secondary text-sm font-bold mt-1">{event.year}</p>
-        <p className="text-white/40 text-[10px] tracking-wider uppercase mt-1">{isRtl ? event.cityAr : event.city}</p>
+        <p className="text-white/90 text-sm font-bold mt-1">{event.year}</p>
+        <p className="text-white/60 text-[10px] tracking-wider uppercase mt-1">{isRtl ? event.cityAr : event.city}</p>
 
         {/* Trust badge */}
         <div className="mt-auto pt-4">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/25 bg-secondary/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-secondary/90">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-secondary/25 bg-secondary/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-white/90">
             <BadgeCheck className="w-3.5 h-3.5" aria-hidden="true" />
             {isRtl ? "تم التنفيذ" : "Delivered"}
           </span>
@@ -450,14 +450,17 @@ export function ExhibitionSection() {
               className="relative rounded-3xl overflow-hidden"
               style={{ height: 480 }}
             >
-              {/* Cinematic background */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${import.meta.env.BASE_URL}E1_exhibition.webp)`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center top",
-                }}
+              {/* Cinematic visual, deferred until it approaches the viewport. */}
+              <img
+                src={`${import.meta.env.BASE_URL}E1_exhibition.webp`}
+                alt=""
+                aria-hidden="true"
+                width={1717}
+                height={916}
+                loading="lazy"
+                fetchPriority="low"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover object-top"
               />
               {/* Strong overlay */}
               <div className="absolute inset-0" style={{ background: "linear-gradient(160deg, rgba(2,13,28,0.72) 0%, rgba(10,35,66,0.50) 50%, rgba(2,13,28,0.80) 100%)" }} />
@@ -491,7 +494,7 @@ export function ExhibitionSection() {
                   <span className="text-white text-[11px] font-bold tracking-wider">EXHIBITION SPECIALISTS</span>
                 </div>
                 <div className="bg-secondary/20 backdrop-blur-md border border-secondary/30 rounded-full px-3 py-1.5">
-                  <span className="text-secondary text-[11px] font-black tracking-wider">ATA CARNET</span>
+                  <span className="text-white/90 text-[11px] font-black tracking-wider">ATA CARNET</span>
                 </div>
               </div>
             </motion.div>
@@ -510,13 +513,13 @@ export function ExhibitionSection() {
             viewport={{ once: true }}
             className={`mb-12 ${isRtl ? "text-right" : "text-center"}`}
           >
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
               {t("PROVEN TRACK RECORD", "سجل حافل بالإنجازات")}
             </p>
             <h3 className="text-2xl md:text-3xl font-black text-white">
               {t("Trusted at Major Saudi & GCC Events", "موثوق به في كبرى الفعاليات السعودية والخليجية")}
             </h3>
-            <p className={`text-white/45 text-sm mt-3 max-w-xl leading-relaxed ${isRtl ? "ml-auto" : "mx-auto"}`}>
+            <p className={`text-white/60 text-sm mt-3 max-w-xl leading-relaxed ${isRtl ? "ml-auto" : "mx-auto"}`}>
               {t(
                 "Official logistics support successfully delivered for the Kingdom's landmark exhibitions.",
                 "دعم لوجستي رسمي تم تنفيذه بنجاح لأبرز معارض المملكة.",
@@ -545,13 +548,13 @@ export function ExhibitionSection() {
             viewport={{ once: true }}
             className={`mb-14 ${isRtl ? "text-right" : "text-center"}`}
           >
-            <p className="text-secondary text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
               {t("OUR PROCESS", "عمليتنا")}
             </p>
             <h3 className="text-2xl md:text-3xl xl:text-4xl font-black text-white">
               {t("End-to-End Exhibition Logistics Workflow", "سير عمل لوجستيات المعارض من البداية للنهاية")}
             </h3>
-            <p className={`text-white/45 text-sm mt-3 max-w-2xl leading-relaxed ${isRtl ? "ml-auto" : "mx-auto"}`}>
+            <p className={`text-white/60 text-sm mt-3 max-w-2xl leading-relaxed ${isRtl ? "ml-auto" : "mx-auto"}`}>
               {t(
                 "A structured seven-stage process engineered for corporate exhibitors — transparent, reliable, and managed end to end.",
                 "عملية منظمة من سبع مراحل مصممة للعارضين من الشركات — شفافة وموثوقة ومُدارة من البداية إلى النهاية.",
