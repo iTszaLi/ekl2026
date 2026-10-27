@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ScrollAnimSection, type AnimChapter } from "@/components/ScrollAnimSection";
 import { StatsCounter } from "@/components/StatsCounter";
+import { FIATAAffiliation } from "@/components/FIATAAffiliation";
+import { GlobalLogisticsNetworks } from "@/components/GlobalLogisticsNetworks";
 import { ClientMarquee } from "@/components/ClientMarquee";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ExhibitionSection } from "@/components/ExhibitionSection";
@@ -202,6 +204,10 @@ export default function Home() {
 
       {/* ── Stats Counter ── */}
       <StatsCounter />
+
+      {/* ── Professional affiliation and logistics networks ── */}
+      <FIATAAffiliation />
+      <GlobalLogisticsNetworks />
 
       {/* ── Exhibition Logistics Highlight ── */}
       <ExhibitionSection />

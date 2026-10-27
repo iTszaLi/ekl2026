@@ -113,3 +113,38 @@ test("the footer profile badge and About page link to the verified JCtrans compa
     assert.ok(badgeLink.includes('rel="noopener noreferrer"'), `${route} footer badge uses safe external-link attributes`);
   }
 });
+
+test("the homepage renders bilingual network affiliations and available local logo assets", () => {
+  const logoAssets = [
+    "jctrans.webp",
+    "cooperative-logistics-network.webp",
+    "wcaworld.webp",
+    "planet-logistics-network.webp",
+    "icon-logistics-network.webp",
+  ];
+  for (const asset of logoAssets) {
+    assert.ok(
+      existsSync(join(publicDir, "images", "affiliations", asset)),
+      `${asset} is present in the built public assets`,
+    );
+  }
+
+  for (const route of ["/", "/ar"]) {
+    const html = readFileSync(htmlPath(route), "utf8");
+    assert.match(html, /FIATA Association Member|عضو في FIATA/);
+    assert.match(html, /Connected to Global Freight-Forwarding Networks|ارتباط بشبكات الشحن العالمية/);
+    for (const network of [
+      "JCtrans",
+      "The Cooperative Logistics Network",
+      "WCAworld",
+      "FIATA",
+      "Planet Logistics Network",
+      "ICON Logistics Network",
+    ]) {
+      assert.ok(html.includes(network), `${route} includes ${network}`);
+    }
+    const contactHref = route === "/" ? 'href="/contact"' : 'href="/ar/contact"';
+    assert.ok(html.includes(contactHref), `${route} keeps its localized contact link`);
+    assert.ok(!html.includes('src="/images/affiliations/fiata.webp"'), "FIATA is shown as text without an unapproved mark");
+  }
+});
