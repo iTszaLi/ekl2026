@@ -28,6 +28,7 @@ interface Props {
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const logoIcon = `${BASE}/media/envod-logo-badge.webp`;
+const logoIconSmall = `${BASE}/media/envod-logo-badge-146.webp`;
 const READABLE_PLAYBACK_RATE = 0.86;
 
 /* ── Floating particles ── */
@@ -339,7 +340,7 @@ export function ScrollAnimSection({
               boxShadow: "0 0 24px rgba(214,40,40,.35), 0 0 52px rgba(214,40,40,.15), inset 0 0 10px rgba(0,0,0,.25)",
             }}
           >
-            <img {...getIntrinsicImageDimensions(logoIcon)} src={logoIcon} alt="ENVOD KINGDOM" className="w-full h-full object-cover" />
+            <img {...getIntrinsicImageDimensions(logoIcon)} src={logoIcon} srcSet={`${logoIconSmall} 146w, ${logoIcon} 223w`} sizes="(min-width: 768px) 80px, 64px" alt="ENVOD KINGDOM" className="w-full h-full object-cover" />
             <div
               className="absolute inset-0 rounded-full pointer-events-none"
               style={{ background: "radial-gradient(circle at 50% 50%,transparent 55%,rgba(0,0,0,.30) 100%)" }}

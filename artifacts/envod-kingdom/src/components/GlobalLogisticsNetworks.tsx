@@ -2,13 +2,25 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { getLocalizedPath, useLanguage } from "@/lib/language-context";
 
-const NETWORKS = [
+type Network = {
+  name: string;
+  description: string;
+  descriptionAr: string;
+  href: string;
+  logo?: string;
+  logoSrcSet?: string;
+  width: number;
+  height: number;
+};
+
+const NETWORKS: Network[] = [
   {
     name: "JCtrans",
     description: "International freight-forwarding network.",
     descriptionAr: "شبكة دولية لوكلاء الشحن.",
     href: "https://www.jctrans.com/en/company/07f1r7u/",
     logo: "/images/affiliations/jctrans.webp",
+    logoSrcSet: "/images/affiliations/jctrans-256.webp 256w, /images/affiliations/jctrans.webp 520w",
     width: 520,
     height: 138,
   },
@@ -125,6 +137,8 @@ export function GlobalLogisticsNetworks() {
                     {network.logo ? (
                       <img
                         src={network.logo}
+                        srcSet={network.logoSrcSet}
+                        sizes={network.logoSrcSet ? "256px" : undefined}
                         alt={`${network.name} logo`}
                         width={network.width}
                         height={network.height}

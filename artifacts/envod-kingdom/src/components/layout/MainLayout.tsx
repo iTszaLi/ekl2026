@@ -14,6 +14,7 @@ import { emitAnalyticsEvent } from "@/lib/analytics";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from "@/lib/quote-mailto";
 
 const logoIcon = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/media/envod-logo-badge.webp`;
+const logoIconSmall = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/media/envod-logo-badge-146.webp`;
 
 const QuoteModal = React.lazy(() =>
   import("@/components/QuoteModal").then(({ QuoteModal: Modal }) => ({ default: Modal })),
@@ -91,7 +92,7 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
             className="relative flex-shrink-0 w-9 h-9 rounded-full overflow-hidden ring-1 ring-white/10 group-hover:ring-secondary/50 transition-all duration-300"
             style={{ background: "radial-gradient(circle,rgba(255,255,255,.08) 0%,rgba(255,255,255,.02) 100%)", boxShadow: "0 0 12px rgba(214,40,40,.25),inset 0 0 8px rgba(0,0,0,.2)" }}
           >
-            <img src={logoIcon} width={223} height={171} alt="إنفود كينغدوم" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+            <img src={logoIcon} srcSet={`${logoIconSmall} 146w, ${logoIcon} 223w`} sizes="40px" width={223} height={171} alt="إنفود كينغدوم" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
             <div className="absolute inset-0 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle at 50% 50%,transparent 60%,rgba(0,0,0,.25) 100%)" }} />
           </div>
           <div className={`hidden sm:flex flex-col leading-tight ${isRtl ? "items-end" : "items-start"}`} dir={isRtl ? "rtl" : "ltr"} style={{ fontFamily: isRtl ? "'Cairo',sans-serif" : "inherit" }}>
