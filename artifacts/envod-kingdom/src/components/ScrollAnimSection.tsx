@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, MotionConfig, motion, useReducedMotion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import logoIcon from "@assets/image_1780532431289.png";
 import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 
 export interface AnimChapter {
@@ -28,6 +27,7 @@ interface Props {
 }
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
+const logoIcon = `${BASE}/media/envod-logo-badge.webp`;
 const READABLE_PLAYBACK_RATE = 0.86;
 
 /* ── Floating particles ── */
@@ -65,8 +65,10 @@ export function ScrollAnimSection({
   const [isVisible,  setIsVisible]  = useState(false);
   const [started,    setStarted]    = useState(false); // src attached after first intersect
   const [hasEntered, setHasEntered] = useState(priority);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [viewportReady, setViewportReady] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches,
+  );
+  const [viewportReady, setViewportReady] = useState(() => typeof window !== "undefined");
   const [isReady,    setIsReady]    = useState(false); // first frame decoded
   const [loadPercent, setLoadPercent] = useState(0);
 
@@ -284,10 +286,10 @@ export function ScrollAnimSection({
         loop
         playsInline
         preload="none"
-        poster={hasEntered ? `${BASE}/media/${frameFolder}.jpg` : undefined}
+        poster={hasEntered ? `${BASE}/media/${frameFolder}.webp` : undefined}
         aria-hidden="true"
       >
-        {started && (
+        {started && !isSmallScreen && (
           <>
             <source src={`${BASE}/media/${frameFolder}.webm`} type="video/webm" />
             <source src={`${BASE}/media/${frameFolder}.mp4`} type="video/mp4" />

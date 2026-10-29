@@ -107,7 +107,10 @@ function App({ ssrPath }: { ssrPath?: string }) {
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    if (reducedMotion !== false) return;
+    if (
+      reducedMotion !== false ||
+      window.matchMedia("(max-width: 767px)").matches
+    ) return;
     let cancelled = false;
     let destroy: (() => void) | undefined;
     void import("@/lib/scroll-engine").then((m) => {

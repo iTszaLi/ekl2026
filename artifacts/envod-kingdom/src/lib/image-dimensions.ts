@@ -7,6 +7,7 @@ const DIMENSIONS_BY_FILENAME: Readonly<Record<string, IntrinsicDimensions>> = {
   "T1_1783175639406-C8-P_19F.webp": [1536, 1024],
   "image_1780437854819-CKpOqA13.png": [730, 114],
   "image_1780532431289-DjFszPgZ.png": [223, 171],
+  "envod-logo-badge.webp": [223, 171],
   "image_1783126483702-SeVldUOC.png": [727, 198],
   "image_1783126624254-BGbptc9f.png": [1583, 432],
   "image_1783126648923-BLCJeBKQ.png": [423, 283],

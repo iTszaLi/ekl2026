@@ -8,11 +8,12 @@ import {
   Globe, Menu, X, Clock, Shield, Globe2,
   MapPin, Phone, Printer, Mail, ChevronRight, ArrowUpRight,
 } from "lucide-react";
-import logoIcon from "@assets/image_1780532431289.png";
 import logoFull from "@assets/image_1780437854819.png";
 import { Button } from "@/components/ui/button";
 import { emitAnalyticsEvent } from "@/lib/analytics";
 import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164 } from "@/lib/quote-mailto";
+
+const logoIcon = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/media/envod-logo-badge.webp`;
 
 const QuoteModal = React.lazy(() =>
   import("@/components/QuoteModal").then(({ QuoteModal: Modal }) => ({ default: Modal })),

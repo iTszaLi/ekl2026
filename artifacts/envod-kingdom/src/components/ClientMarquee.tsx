@@ -217,7 +217,7 @@ function ClientCard({ client }: { client: Client }) {
 
 /* ─────────────────────────── Marquee track ─────────────────────────── */
 function MarqueeTrack({ clients, reverse = false, paused }: { clients: Client[]; reverse?: boolean; paused: boolean }) {
-  const tripled = [...clients, ...clients, ...clients];
+  const looped = [...clients, ...clients];
   const duration = clients.length * 5;
   return (
     <div className="flex overflow-hidden" style={{ WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)", maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
@@ -234,7 +234,7 @@ function MarqueeTrack({ clients, reverse = false, paused }: { clients: Client[];
           transform: "translateZ(0)",
         }}
       >
-        {tripled.map((c, i) => <ClientCard key={`${c.id}-${i}`} client={c} />)}
+        {looped.map((c, i) => <ClientCard key={`${c.id}-${i}`} client={c} />)}
       </div>
     </div>
   );
@@ -418,7 +418,7 @@ export function ClientMarquee() {
       <style>{`
         @keyframes cm-scroll {
           from { transform: translateX(0) translateZ(0); }
-          to   { transform: translateX(-33.3333%) translateZ(0); }
+          to   { transform: translateX(-50%) translateZ(0); }
         }
         .cm-card {
           filter: saturate(0.55) brightness(0.92);
