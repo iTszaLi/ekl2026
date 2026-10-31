@@ -128,8 +128,8 @@ export function ScrollAnimSection({
     };
   }, [reduceMotion]);
 
-  // Keep decorative background video off small screens; the matching poster
-  // remains visible and avoids downloading a large video for the first screen.
+  // Keep the active scene small and hardware-decodable on phones. The dedicated
+  // portrait encode avoids decoding a 720p desktop clip just to crop most of it.
   useEffect(() => {
     const media = window.matchMedia("(max-width: 640px)");
     const update = () => {
@@ -178,13 +178,13 @@ export function ScrollAnimSection({
     return () => observer.disconnect();
   }, [reduceMotion]);
 
-  // Start the first decorative video only after the initial rendering window;
-  // other scene videos start when they become visible on larger screens.
+  // Keep the first poster/text paint ahead of video startup, then start only
+  // the scene currently in view. Mobile's lightweight encode can start sooner.
   useEffect(() => {
-    if (!isVisible || !viewportReady || isSmallScreen || reduceMotion || started) return;
+    if (!isVisible || !viewportReady || reduceMotion || started) return;
     const timeout = window.setTimeout(
       () => setStarted(true),
-      priority ? 1500 : 0,
+      priority ? (isSmallScreen ? 250 : 1500) : 0,
     );
     return () => window.clearTimeout(timeout);
   }, [isVisible, isSmallScreen, priority, reduceMotion, started, viewportReady]);
@@ -203,7 +203,7 @@ export function ScrollAnimSection({
     if (!started) return;
     v.muted = true;
     v.load();
-  }, [reduceMotion, started]);
+  }, [isSmallScreen, reduceMotion, started]);
 
   // Play only while visible; never clear src (avoids re-download on each pass)
   useEffect(() => {
@@ -211,9 +211,9 @@ export function ScrollAnimSection({
     if (!v || !started) return;
     if (reduceMotion) {
       v.pause();
-    } else if (isVisible && !isSmallScreen) {
+    } else if (isVisible) {
       v.muted = true;
-      v.playbackRate = READABLE_PLAYBACK_RATE;
+      v.playbackRate = isSmallScreen ? 1 : READABLE_PLAYBACK_RATE;
       const p = v.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
     } else {
@@ -284,12 +284,16 @@ export function ScrollAnimSection({
           transform: "translate3d(0px, 0px, 0) scale(1.04)",
         }}
         muted
+        autoPlay
         loop
         playsInline
         preload="none"
         poster={hasEntered ? `${BASE}/media/${frameFolder}.webp` : undefined}
         aria-hidden="true"
       >
+        {started && isSmallScreen && (
+          <source src={`${BASE}/media/${frameFolder}-mobile.mp4`} type="video/mp4" />
+        )}
         {started && !isSmallScreen && (
           <>
             <source src={`${BASE}/media/${frameFolder}.webm`} type="video/webm" />
@@ -310,7 +314,7 @@ export function ScrollAnimSection({
 
       {/* ── Floating particles ── */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        {PARTICLES.map(p => (
+        {(isSmallScreen ? PARTICLES.slice(0, 6) : PARTICLES).map(p => (
           <div
             key={p.id}
             className="absolute rounded-full bg-white"
