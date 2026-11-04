@@ -1,6 +1,6 @@
 export function csvCell(value: unknown): string {
   let text=value==null?"":String(value);
-  if(typeof value==="string"&&/^[\u0000-\u0020\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]*[=+\-@]/.test(text))text="'"+text;
+  if(typeof value==="string"&&/^[\u0000-\u0020\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2060-\u206f\ufeff]*[=+\-@＝＋－＠]/.test(text))text="'"+text;
   return `"${text.replace(/"/g,'""')}"`;
 }
 export function buildCsv(rows:unknown[][]): string {

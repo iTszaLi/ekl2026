@@ -12,6 +12,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:counters": "node scripts/check-counter-prerender.mjs",
     "test:image-dimensions": "node scripts/check-image-dimensions.mjs",
+    "test:csv": "tsx --test server/csv-export.test.ts",
     "test:service-catalog": "tsx --test server/service-catalog.test.ts",
     "test:seo-routes": "tsx --test src/lib/seo-route-coverage.test.ts",
     "test:search-console": "tsx --test server/search-console/search-console.test.ts",
