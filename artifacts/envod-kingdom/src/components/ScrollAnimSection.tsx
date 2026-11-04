@@ -171,7 +171,7 @@ export function ScrollAnimSection({
         const visible = entries[0].isIntersecting;
         setIsVisible(visible);
       },
-      { threshold: 0.15 },
+      { threshold: 0.51 },
     );
     const el = sectionRef.current;
     if (el) observer.observe(el);
@@ -184,7 +184,7 @@ export function ScrollAnimSection({
     if (!isVisible || !viewportReady || reduceMotion || started) return;
     const timeout = window.setTimeout(
       () => setStarted(true),
-      priority ? (isSmallScreen ? 250 : 1500) : 0,
+      priority ? (isSmallScreen ? 120 : 180) : 0,
     );
     return () => window.clearTimeout(timeout);
   }, [isVisible, isSmallScreen, priority, reduceMotion, started, viewportReady]);
@@ -214,11 +214,29 @@ export function ScrollAnimSection({
     } else if (isVisible) {
       v.muted = true;
       v.playbackRate = isSmallScreen ? 1 : READABLE_PLAYBACK_RATE;
+      let cancelled = false;
+      const retryWhenReady = () => {
+        if (cancelled || !isVisible || reduceMotion || !v.paused) return;
+        const retry = v.play();
+        if (retry && typeof retry.catch === "function") retry.catch(() => {});
+      };
+      v.addEventListener("canplay", retryWhenReady, { once: true });
       const p = v.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          // Safari/iOS can reject the first play request while its first frame
+          // is still decoding. Retry once at canplay; keep the poster as fallback.
+          if (v.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) retryWhenReady();
+        });
+      }
+      return () => {
+        cancelled = true;
+        v.removeEventListener("canplay", retryWhenReady);
+      };
     } else {
       v.pause();
     }
+    return;
   }, [isVisible, isSmallScreen, reduceMotion, started]);
 
   // Chapter switching + readiness + buffered progress — all driven by the video
@@ -236,6 +254,7 @@ export function ScrollAnimSection({
       setChapterIdx(ci);
     };
     const onLoaded = () => setIsReady(true);
+    const onError = () => setLoadPercent(100);
     const onProgress = () => {
       try {
         if (v.buffered.length && v.duration) {
@@ -248,11 +267,13 @@ export function ScrollAnimSection({
 
     v.addEventListener("timeupdate", onTime);
     v.addEventListener("loadeddata", onLoaded);
+    v.addEventListener("error", onError);
     v.addEventListener("progress", onProgress);
     v.addEventListener("canplaythrough", onCanPlayThrough);
     return () => {
       v.removeEventListener("timeupdate", onTime);
       v.removeEventListener("loadeddata", onLoaded);
+      v.removeEventListener("error", onError);
       v.removeEventListener("progress", onProgress);
       v.removeEventListener("canplaythrough", onCanPlayThrough);
     };
@@ -287,7 +308,7 @@ export function ScrollAnimSection({
         autoPlay
         loop
         playsInline
-        preload="none"
+        preload={started ? "auto" : "none"}
         poster={hasEntered ? `${BASE}/media/${frameFolder}.webp` : undefined}
         aria-hidden="true"
       >

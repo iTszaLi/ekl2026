@@ -40,6 +40,40 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          const normalizedId = id.replaceAll("\\", "/");
+          if (normalizedId.includes("/node_modules/react-dom/cjs/react-dom-client.production.js")) {
+            return "react-dom-client";
+          }
+          if (normalizedId.includes("/src/lib/service-data.ts")) {
+            return "site-content";
+          }
+          if (
+            normalizedId.includes("/src/lib/industry-data.ts") ||
+            normalizedId.includes("/src/lib/seo-config.ts") ||
+            normalizedId.includes("/src/lib/pillar-data/") ||
+            normalizedId.includes("/src/lib/services-faq.ts") ||
+            normalizedId.includes("/src/lib/service-review-faq.ts") ||
+            normalizedId.includes("/src/lib/gallery-content.ts") ||
+            normalizedId.includes("/src/lib/vision-data.ts")
+          ) {
+            return "site-content";
+          }
+          if (normalizedId.includes("/node_modules/tailwind-merge/")) {
+            return "class-utils";
+          }
+          if (
+            normalizedId.includes("/node_modules/framer-motion/") ||
+            normalizedId.includes("/node_modules/motion-dom/") ||
+            normalizedId.includes("/node_modules/motion-utils/")
+          ) {
+            return "motion-vendor";
+          }
+        },
+      },
+    },
   },
   server: {
     port,
