@@ -88,6 +88,10 @@ export const EXHIBITION_PILLAR: ServicePillar = {
           ar: "تشمل مراجع التخطيط مركز واجهة الرياض للمعارض والمؤتمرات (RFECC)، ومركز الرياض الدولي للمؤتمرات والمعارض (RICEC)، ومركز معارض ملهم، ومركز جدة الدولي للمعارض والمؤتمرات، وقبة جدة، ومركز جدة للمنتديات والفعاليات. هذه وجهات محتملة لأغراض التخطيط فقط؛ ولا تعني القائمة وجود تعيين من أي موقع أو منظّم أو تنفيذ إنفود مشروعاً في أي منها.",
         },
         {
+          en: "For Jubail event or exhibition-cargo enquiries, provide the venue or site, event dates, cargo details, gateway and access window. The route, local handling and any return movement are confirmed for each shipment; this city reference does not imply a local branch or fixed service availability.",
+          ar: "لاستفسارات شحن المعارض أو الفعاليات إلى الجبيل، أرسل الموقع أو مكان الفعالية وتواريخها وتفاصيل البضاعة ومنفذ الدخول ونافذة الوصول. ويُؤكد المسار والمناولة المحلية وأي حركة عودة لكل شحنة؛ ولا يعني ذكر المدينة وجود فرع محلي أو توفر خدمة ثابتة.",
+        },
+        {
           en: "For a single pallet or a multi-exhibitor pavilion, send the itemized cargo list, dimensions, weight, origin, event dates and venue instructions. The proposed freight, customs and on-site responsibilities can then be scoped; availability, partners and organizer approval are confirmed before booking.",
           ar: "سواء كانت الشحنة منصة واحدة أو جناحاً يضم عدة عارضين، أرسل قائمة البضائع المفصلة والأبعاد والوزن والمنشأ وتواريخ الفعالية وتعليمات الموقع. عندها يمكن تحديد نطاق الشحن والجمارك والمسؤوليات الميدانية المقترحة؛ ويتم تأكيد الإتاحة والشركاء وموافقة المنظّم قبل الحجز.",
         },

@@ -117,6 +117,48 @@ export const SERVICE_PREPARATION: Record<string, Preparation> = {
     ],
     note: ["Venue services, equipment, temporary storage and on-site assistance must be confirmed in the quotation. An event's appearance on this site does not itself establish an official organizer appointment.", "يجب تأكيد خدمات الموقع والمعدات والتخزين المؤقت والمساعدة الميدانية في عرض السعر. لا يعني ذكر فعالية في هذا الموقع وجود تعيين رسمي من منظمها."],
   },
+  "packaging-crating": {
+    heading: ["Prepare a packing and crating enquiry", "جهّز استفسارك عن التغليف والتصنيد"],
+    summary: [
+      "Packing and crating depend on the cargo, transport mode, handling stages and destination requirements. Share the shipment details so the requested protection can be reviewed before booking.",
+      "يعتمد التغليف والتصنيد على البضاعة ووسيلة النقل ومراحل المناولة ومتطلبات الوجهة. أرسل تفاصيل الشحنة لمراجعة الحماية المطلوبة قبل الحجز.",
+    ],
+    items: [
+      ["Provide the cargo description, packed dimensions and weight, handling instructions, and photos or drawings where useful. For machinery, include lifting points and any securing requirements.",
+        "أرسل وصف البضاعة وأبعادها ووزنها بعد التغليف وتعليمات المناولة والصور أو الرسومات عند الحاجة. وللآلات، أرفق نقاط الرفع ومتطلبات التثبيت."],
+      ["Share the origin, destination, freight mode, cargo-ready date, and whether storage, unpacking, or return transport is needed.",
+        "حدد المنشأ والوجهة ووسيلة الشحن وتاريخ جاهزية البضاعة، واذكر الحاجة إلى التخزين أو فك التغليف أو نقل العودة."],
+      ["Specify whether wooden crates or pallets, shock protection, moisture barriers, or ISPM-15 treatment and marking are required. Confirm destination rules and the treatment records for the specific wooden packaging.",
+        "حدد الحاجة إلى صناديق أو منصات خشبية أو حماية من الصدمات أو حواجز للرطوبة أو معالجة وعلامات ISPM-15. تحقق من اشتراطات الوجهة وسجلات معالجة مواد التغليف الخشبية المعنية."],
+      ["For heavy or specialist cargo, state the lashing and securing plan and whether forklift or crane-related assistance is requested. Equipment, operator, capacity and lift points are confirmed for the shipment.",
+        "للبضائع الثقيلة أو المتخصصة، اذكر خطة الربط والتثبيت وما إذا كنت تطلب مساعدة مرتبطة برافعة شوكية أو رافعة. وتُؤكد المعدات والمشغل والسعة ونقاط الرفع للشحنة."],
+    ],
+    note: [
+      "ENVOD's in-house carpentry workshops can be included in a custom-crating enquiry. Timber treatment, marking, crate design, lifting arrangements and provider scope are checked for the destination and shipment; do not assume every wooden package is ISPM-15 treated.",
+      "يمكن إدراج ورش النجارة الداخلية لدى إنفود ضمن استفسار التصنيد المخصص. وتُراجع معالجة الأخشاب والعلامات وتصميم الصندوق وترتيبات الرفع ونطاق مقدم الخدمة وفق الوجهة والشحنة؛ ولا يُفترض أن كل مواد التغليف الخشبية معالجة وفق ISPM-15.",
+    ],
+  },
+  warehousing: {
+    heading: ["Prepare a warehousing and storage enquiry", "جهّز استفسارك عن التخزين والمستودعات"],
+    summary: [
+      "A storage plan depends on the cargo, facility, requested period and handling scope. Providing these details helps the available arrangement be checked before booking.",
+      "تعتمد خطة التخزين على البضاعة والمنشأة والمدة المطلوبة ونطاق المناولة. ويساعد تقديم هذه التفاصيل على التحقق من الترتيب المتاح قبل الحجز.",
+    ],
+    items: [
+      ["Provide the goods description, unit or pallet count, dimensions, gross weight, stackability and handling instructions.",
+        "أرسل وصف البضاعة وعدد الوحدات أو الطبالي والأبعاد والوزن الإجمالي وإمكانية التكديس وتعليمات المناولة."],
+      ["Specify the requested city or facility area, storage dates, inbound and outbound movements, and any order-picking, packing or onward-delivery needs.",
+        "حدد المدينة أو منطقة المنشأة المطلوبة وتواريخ التخزين وحركتي الدخول والخروج وأي احتياج إلى تجهيز الطلبات أو التغليف أو التوصيل اللاحق."],
+      ["State product restrictions and any temperature, humidity, security, insurance or inventory-reporting requirements that the facility must meet.",
+        "اذكر قيود المنتج وأي متطلبات لدرجة الحرارة أو الرطوبة أو الأمن أو التأمين أو تقارير المخزون يجب أن تفي بها المنشأة."],
+      ["If export preparation is needed, describe crating, moisture or shock protection, lashing, securing, and any forklift or crane-related handling request.",
+        "إذا لزم التجهيز للتصدير، فاشرح متطلبات الصناديق والحماية من الرطوبة أو الصدمات والربط والتثبيت وأي طلب مناولة مرتبط برافعة شوكية أو رافعة."],
+    ],
+    note: [
+      "Facility location, operator, capacity, bonded or temperature-controlled authorization, cargo acceptance and service availability must be confirmed for each enquiry. No storage space or facility condition is assumed before confirmation.",
+      "يجب تأكيد موقع المنشأة ومشغلها وسعتها وترخيصها للتخزين الجمركي أو المتحكم بدرجة الحرارة وقبول البضاعة وتوفر الخدمة لكل استفسار. ولا يُفترض توفر مساحة أو حالة للمنشأة قبل التأكيد.",
+    ],
+  },
   "ata-carnet": {
     heading: ["Check ATA Carnet suitability before shipping", "تحقق من ملاءمة كارنيه ATA قبل الشحن"],
     summary: ["An ATA Carnet supports temporary movement of eligible goods. It is not a general import permit and does not make every shipment or intended use eligible.", "يساعد كارنيه ATA على نقل البضائع المؤهلة مؤقتاً. وهو ليس تصريح استيراد عاماً ولا يشمل كل شحنة أو استخدام."],

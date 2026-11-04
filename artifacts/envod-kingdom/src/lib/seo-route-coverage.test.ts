@@ -7,6 +7,7 @@ import { DOOR_TO_DOOR_META } from "./door-to-door";
 import { INDUSTRY_META } from "./industry-data";
 import { CONTENT_ROUTES, SITE_URL } from "./seo-config";
 import { SERVICE_CATALOG, SERVICE_META } from "./service-data";
+import { PREPARATION_LINKS } from "./service-preparation";
 
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const publicDir = join(packageRoot, "dist", "public");
@@ -99,6 +100,46 @@ test("every industry detail page has English and Arabic indexable routes", () =>
       assertDiscoverableRoute(route, sitemap);
     }
   }
+});
+
+test("every related shipment-preparation link resolves to a prerendered bilingual anchor", () => {
+  for (const [sourceSlug, links] of Object.entries(PREPARATION_LINKS)) {
+    for (const languagePrefix of ["", "/ar"]) {
+      const sourceRoute = `${languagePrefix}/services/${sourceSlug}`;
+      const sourceHtml = readFileSync(htmlPath(sourceRoute), "utf8");
+
+      for (const link of links) {
+        const targetRoute = `${languagePrefix}/services/${link.slug}`;
+        const targetHtml = readFileSync(htmlPath(targetRoute), "utf8");
+        const localizedHref = `${languagePrefix}/services/${link.slug}#shipment-preparation`;
+        const englishHref = `/services/${link.slug}#shipment-preparation`;
+
+        assert.ok(
+          sourceHtml.includes(localizedHref) || sourceHtml.includes(englishHref),
+          `${sourceRoute} links to ${targetRoute} shipment preparation`,
+        );
+        assert.ok(
+          targetHtml.includes('id="shipment-preparation"'),
+          `${targetRoute} renders the shipment-preparation fragment target`,
+        );
+      }
+    }
+  }
+});
+
+test("Jubail exhibition-cargo enquiry guidance is present in both languages", () => {
+  const visibleText = (route: string) =>
+    readFileSync(htmlPath(route), "utf8")
+      .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ");
+  const english = visibleText("/services/exhibition-logistics");
+  const arabic = visibleText("/ar/services/exhibition-logistics");
+
+  assert.ok(english.includes("For Jubail event or exhibition-cargo enquiries"));
+  assert.ok(english.includes("does not imply a local branch or fixed service availability"));
+  assert.ok(arabic.includes("لاستفسارات شحن المعارض أو الفعاليات إلى الجبيل"));
+  assert.ok(arabic.includes("ولا يعني ذكر المدينة وجود فرع محلي"));
 });
 
 test("the footer profile badge and About page link to the verified JCtrans company profile in both languages", () => {
