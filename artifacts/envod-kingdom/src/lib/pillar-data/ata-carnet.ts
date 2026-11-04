@@ -127,6 +127,43 @@ export const ATA_CARNET_PILLAR: ServicePillar = {
       ],
     },
     {
+      id: "saudi-ata-carnet-pre-approval",
+      heading: {
+        en: "How does ATA Carnet pre-approval work in Saudi Arabia?",
+        ar: "كيف يعمل طلب الموافقة المسبقة على كارنيه ATA في السعودية؟",
+      },
+      paragraphs: [
+        {
+          en: "For an importer holding an ATA Carnet, ZATCA's e-service provides a way to submit a pre-approval request for goods entering Saudi Arabia. The service asks the applicant to enter the Carnet details, attach a copy, and provide information about the goods covered by it. This is a request step, not a guarantee of acceptance or customs release, and it does not establish that every item or purpose is eligible. Confirm the current process with ZATCA and the authorized issuing association before dispatch.",
+          ar: "تتيح خدمة هيئة الزكاة والضريبة والجمارك للمستورد الحامل لدفتر كارنيه ATA تقديم طلب مسبق للموافقة على دخول البضائع إلى المملكة. وتطلب الخدمة إدخال بيانات الكارنيه وإرفاق صورة منه وتعبئة بيانات البضائع المشمولة به. هذه خطوة لتقديم طلب الموافقة، وليست ضماناً لقبول الشحنة أو فسحها جمركياً، ولا تثبت أهلية جميع الأصناف أو الأغراض. تحقّق من الإجراء الحالي مع الهيئة وجهة إصدار الكارنيه المخوّلة قبل الشحن.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Enter the Carnet details and attach a copy",
+          ar: "إدخال بيانات الكارنيه وإرفاق صورة منه",
+        },
+        {
+          en: "Provide information about the goods listed in the Carnet",
+          ar: "تعبئة بيانات البضائع المدرجة في الكارنيه",
+        },
+        {
+          en: "Check current eligibility and approval requirements with the responsible authorities",
+          ar: "التحقق من الأهلية ومتطلبات الموافقة الحالية لدى الجهات المختصة",
+        },
+      ],
+      references: [
+        {
+          label: {
+            en: "ZATCA: Temporary Admission Using ATA Carnet",
+            ar: "الهيئة: خدمة الإدخال المؤقت (كارنيه)",
+          },
+          href: "https://zatca.gov.sa/en/eServices/Pages/eServices-294.aspx",
+          hrefAr: "https://zatca.gov.sa/ar/eServices/Pages/eServices-294.aspx",
+        },
+      ],
+    },
+    {
       id: "why-envod-for-ata-carnets",
       heading: {
         en: "Why choose ENVOD for ATA Carnets in Saudi Arabia",
