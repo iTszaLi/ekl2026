@@ -1,3 +1,12 @@
+## Notes stored in this folder
+
+- [Organic growth policy](organic-growth-policy.md) — real keyword evidence, owner service priorities, legitimate links and actual premises; separate research from measured outcomes.
+- [Vercel TypeScript function builds](vercel-typescript-functions.md) — use NodeNext-compatible imports; local typecheck is not sufficient to verify Vercel function compilation.
+
+## Notes summarized here only (full files are not in this repository)
+
+The notes below were written in the original Replit workspace, but their full `.md` files were never committed. The links do not resolve; the one-line summaries are kept because they still record useful lessons. Treat them as historical context and check them against the current code before relying on them.
+
 - [Hero video pipeline](scroll-frames.md) — scroll sections are `<video>` (public/media/*), not JPEG frames; runtime writes to public/ don't persist in prod
 - [ScrollAnimSection hero](scroll-anim-hero.md) — sparkle/star baked into video footage (not DOM); z-layering + object-fit-cover gotchas for overlays
 - [Lenis options](lenis-options.md) — @studio-freight/lenis only accepts `lerp` and `wheelMultiplier`; no `smoothTouch`/`syncTouch`
@@ -21,9 +30,7 @@
 - [Security headers](security-headers.md) — CSP lives in 2 places (prerender meta injection + _headers for CF Pages); change both together; directives that look removable but aren't
 - [Hosting and enquiries](static-conversion.md) — Vercel frontend is separate; sync before claiming live SEO changes. Static exports need an API; enquiries are not shipment tracking.
 - [Prerender runtime checks](ssr-runtime-verification.md) — markup audits miss clean-URL redirect loops, Select prefill resets and initial RTL animation overflow.
-- [Organic growth policy](organic-growth-policy.md) — real keyword evidence, owner service priorities, legitimate links and actual premises; separate research from measured outcomes.
 - [Scenario-scoped E2E assertions](scenario-scoped-e2e-assertions.md) — when one route mock covers multiple form journeys, gate field-level assertions by the exact scenario, not just form type.
 - [External web audit fallback](external-web-audit-fallback.md) — web fetch/search/screenshot can return 402 while a bounded direct HTTP request to the public site still works.
 - [Review workspace scope](review-workspace-scope.md) — keep this SEO review isolated from the live Vercel/GitHub site until the user separately approves production changes.
 - [Vercel preview access](vercel-preview-access.md) — a protected deployment URL may show Vercel sign-in while the public custom domain serves the release.
-- [Vercel TypeScript function builds](vercel-typescript-functions.md) — use NodeNext-compatible imports; local typecheck is not sufficient to verify Vercel function compilation.
