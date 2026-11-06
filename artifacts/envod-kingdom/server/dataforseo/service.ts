@@ -884,7 +884,7 @@ export class DataForSeoService {
       ...(normalized.position === null && (normalized.unresolvedResults ?? 0) > 0
         ? {
             status: "error" as const,
-            error: `${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be confirmed from this snapshot.`,
+            error: `ENVOD was not found among the ${(normalized.organicResults ?? 0) - (normalized.unresolvedResults ?? 0)} readable results; ${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be fully confirmed from this snapshot.`,
           }
         : { status: "ok" as const, error: null }),
       retrievedAt: new Date(this.now()).toISOString(),

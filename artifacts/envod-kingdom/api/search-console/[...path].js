@@ -6298,7 +6298,7 @@ var DataForSeoService = class {
       // Never report "not ranked" when some result destinations could not be read.
       ...normalized.position === null && (normalized.unresolvedResults ?? 0) > 0 ? {
         status: "error",
-        error: `${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be confirmed from this snapshot.`
+        error: `ENVOD was not found among the ${(normalized.organicResults ?? 0) - (normalized.unresolvedResults ?? 0)} readable results; ${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be fully confirmed from this snapshot.`
       } : { status: "ok", error: null },
       retrievedAt: new Date(this.now()).toISOString(),
       costUsd: envelopeCost(envelope),

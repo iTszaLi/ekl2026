@@ -277,7 +277,7 @@ test("unreadable redirect links are reported as unconfirmed, never as not rankin
   const row = (await service.rankHistory()).rows[0];
   assert.equal(row.status, "error");
   assert.equal(row.position, null);
-  assert.match(row.error ?? "", /2 of 2 organic results were Google redirect links/);
+  assert.match(row.error ?? "", /not found among the 0 readable results; 2 of 2 organic results were Google redirect links/);
 });
 
 test("rank checks store history, distribution and position changes", async () => {
