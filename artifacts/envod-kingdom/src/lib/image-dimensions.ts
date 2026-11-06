@@ -22,7 +22,7 @@ const DIMENSIONS_BY_FILENAME: Readonly<Record<string, IntrinsicDimensions>> = {
   "image_1783126855621-Dwczm5x5.png": [600, 359],
   "image_1783126930810-esgzQi8U.png": [275, 183],
   "image_1783126985787-8UIZjGQr.png": [565, 353],
-  "image_1783173229953-CSw6I9Br.webp": [1536, 1024],
+  "image_1783173229953-B2tkXgud.webp": [1536, 1024],
   "door_to_door_delivery_1792676608888.webp": [1600, 900],
   "door-to-door-delivery.webp": [1600, 900],
   "image_1783173712084-DqQQc23B.webp": [1536, 1024],
