@@ -244,6 +244,19 @@ Rates assumed: about $0.012 per Labs task plus $0.00012 per returned item, and $
 
 After approval, items 4–11 would land as separate commits on this branch, with the full test suite, typecheck, production build and 94-route verification run in both languages before a PR.
 
+### 7.1 Implementation status (items 4–11 approved 2026-11-07)
+
+| # | Result | Verified by |
+|---|---|---|
+| 4 | Added a footer link "House Moving & Relocation" / "نقل المنازل والانتقال" → `/services/relocation`. The existing "Packing, Crating & Relocation" link is kept. Incoming pages for relocation went from **6 to 48** (EN and AR) | Route audit of the production build |
+| 5 | Desktop and mobile language toggles are now `<a href hreflang>` to the counterpart route. A click still does the same full navigation, keeping the query string and hash | Prerendered HTML in both directions; browser click test EN→AR (desktop) and AR→EN (mobile menu); computed styles identical to the live button |
+| 6 | `Cache-Control: public, max-age=31536000, immutable` added for `/assets/(.*)` only. All 116 files there have content hashes. `/media` is unhashed and was left unchanged | Build output; takes effect after deploy |
+| 7 | The 7 English descriptions are now ≤ 160 characters, keeping their meaning and authority caveats. Arabic descriptions are unchanged | Route audit: `descTooLong` is empty |
+| 8 | **No change needed.** On closer inspection the first hero chapter is already prerendered visible (`initial={false}`). The `opacity:0` lines belong to sections below the fold. After the hydration fix, mobile lab LCP is still about 3.0 s. The cause is the 160 KB render-blocking CSS file plus main-thread JS, which is a separate performance task | Local mobile trace (Slow 4G, 4× CPU) |
+| 9 | **Fixed.** Cause: `ScrollAnimSection` initialised `isSmallScreen` from `matchMedia`, so phones rendered 6 particles while the prerendered HTML had 18. Both values now start with the prerender values and are set in the existing effect | Local mobile Lighthouse: React #418 is gone. The only console error left is the expected `/_vercel/insights` 404 |
+| 10 | The visible text is now part of the accessible name for the 6 "Explore network" cards and the footer JCtrans link. The footer email link uses its visible text | Local mobile Lighthouse: accessibility 100 with no failed audits |
+| 11 | Exhibition hero source (`image_1783173229953.webp`, 1536×1024, used by EN and AR) re-encoded at WebP quality 66: **226 KB → 168 KB (−58 KB, −26%)**, PSNR 36.5 dB, visually identical at 2× zoom. Lighthouse's ~125 KB estimate would need visibly lossy compression, so it was not pursued | Pillow comparison; `test:image-dimensions` passes with the new hash |
+
 ## 8. Progress against the 22 deliverables
 
 | Status | Deliverables |
