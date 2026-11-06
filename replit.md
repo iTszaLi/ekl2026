@@ -20,6 +20,13 @@ Bilingual (English/Arabic, LTR/RTL) marketing site with prerendered content and 
 
 ## Where things live
 
+> **Correction note (November 2026):**
+> - `envod-kingdom-standalone/`, described below, is **not present** in this repository.
+> - No `lib/` directory exists, even though `pnpm-workspace.yaml` still lists `lib/*` and `lib/integrations/*` (those globs match nothing).
+> - Production now runs on Vercel, not Replit: public pages are static and server code runs as the Vercel functions in `artifacts/envod-kingdom/api/`. The Express server in `server/index.ts` is used only for local/Replit development.
+>
+> The original text is kept below for history. See `CLAUDE.md` for the current architecture.
+
 - `artifacts/envod-kingdom/` — React + Vite frontend (the only artifact besides mockup-sandbox)
 - `envod-kingdom-standalone/` — self-contained copy of the frontend for Cloudflare Pages (own pinned package.json, no workspace/catalog refs, builds with plain `pnpm install && pnpm build` → single `dist/`); NOT part of the pnpm workspace. If the monorepo frontend changes, re-sync `src/`, `public/`, `index.html`, and used `attached_assets` into it
 - `artifacts/envod-kingdom/src/lib/service-data.ts` — static services catalog (source of truth for all 30+ service pages)

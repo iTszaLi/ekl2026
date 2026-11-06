@@ -46,3 +46,9 @@ For local Search Console development, `GSC_TOKEN_ENCRYPTION_KEY` and OAuth value
 ## Configuration and verification status
 
 The repository contains no production secret values. The production Vercel project must be configured independently. As of the current review, no Search Console OAuth or Blob configuration was available in the Vercel project, and production enquiry delivery had not been verified. Confirm environment-variable names and deployment status after owner setup; never infer working delivery or live Search Console access from a successful build.
+
+**Update, 6 November 2026.** The public `GET https://www.envodkingdom.net/api/search-console/session` endpoint returned `{"configured":true,"authenticated":false,"connected":false,"selectedProperty":null,"lastSyncedAt":null}`. This means:
+- The production Search Console configuration (OAuth values, keys and the private Blob store) is now present in Vercel.
+- No administrator has completed the Google OAuth connection yet.
+
+The variables themselves were not inspected; only the endpoint's status flags were read. Enquiry email delivery in production remains unverified.
