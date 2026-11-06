@@ -583,7 +583,9 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
       name: serviceName,
       description: serviceDescription,
       serviceType: svc.category,
-      areaServed: "Saudi Arabia",
+      areaServed: meta?.serviceAreas?.cities?.length
+        ? ["Saudi Arabia", ...meta.serviceAreas.cities.map((name) => ({ "@type": "City", name }))]
+        : "Saudi Arabia",
       provider: { "@id": ORG_ID },
       url: toAbsolute(path),
     },

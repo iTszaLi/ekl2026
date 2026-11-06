@@ -231,6 +231,40 @@ export default function ServiceDetail() {
         </section>
       )}
 
+      {/* ── Service areas (owner-verified cities/routes, crawlable static HTML) ── */}
+      {meta.serviceAreas && (
+        <section className="border-t border-white/6 py-16" aria-labelledby="service-areas-heading">
+          <div className={`container mx-auto px-4 max-w-3xl ${isRtl ? "text-right" : ""}`}>
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+              {t("SERVICE AREAS", "مناطق الخدمة")}
+            </p>
+            <h2 id="service-areas-heading" className="text-2xl md:text-3xl font-black text-white mb-6">
+              {isRtl ? meta.serviceAreas.heading.ar : meta.serviceAreas.heading.en}
+            </h2>
+            <div className="space-y-4">
+              {meta.serviceAreas.intro.map((p, i) => (
+                <p key={i} className="text-white/60 text-base leading-relaxed">
+                  {isRtl ? p.ar : p.en}
+                </p>
+              ))}
+            </div>
+            <div className="mt-8 space-y-6">
+              {meta.serviceAreas.items.map((item, i) => (
+                <div key={i}>
+                  <h3 className="text-white font-bold text-lg mb-2">{isRtl ? item.heading.ar : item.heading.en}</h3>
+                  <p className="text-white/60 text-base leading-relaxed">{isRtl ? item.text.ar : item.text.en}</p>
+                </div>
+              ))}
+            </div>
+            {meta.serviceAreas.note && (
+              <p className="mt-8 text-white/48 text-sm leading-relaxed">
+                {isRtl ? meta.serviceAreas.note.ar : meta.serviceAreas.note.en}
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ── Pillar (long-form SEO content, plain HTML for crawlers) ── */}
       {meta.pillar && (
         <PillarSections pillar={meta.pillar} isRtl={isRtl} accentHex={meta.accentHex} />
