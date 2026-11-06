@@ -324,10 +324,10 @@ export default function DataForSeoPanel({ onUnauthorized }: { onUnauthorized: (e
         </Card>
       </div>}
 
-      {history?.latestRun && <Card eyebrow="OPPORTUNITIES" title="Keyword opportunities from the latest rank check" detail="Striking distance = ENVOD ranks 11–50; improving the target page may move it onto page one. Not ranking = no ENVOD URL in the top 50.">
+      {history?.latestRun && <Card eyebrow="OPPORTUNITIES" title="Keyword opportunities from the latest rank check" detail="Striking distance = ENVOD ranks 11–50; improving the target page may move it onto page one. Not found = no ENVOD URL among the top-50 results that could be read (* = some results were unreadable Google redirect links).">
         <div className="dfs-two">
           <div><h3>Striking distance ({opportunities.length})</h3><ul className="dfs-list">{opportunities.map((row) => <li key={row.keyword + row.locationCode} dir="auto">{row.keyword} — #{row.position} in {row.locationName.split(",")[0]} → {row.targetUrl}</li>)}</ul></div>
-          <div><h3>Not ranking in top 50 ({notRanking.length})</h3><ul className="dfs-list">{notRanking.map((row) => <li key={row.keyword + row.locationCode} dir="auto">{row.keyword} ({row.locationName.split(",")[0]}) → {row.targetUrl}</li>)}</ul></div>
+          <div><h3>Not found in top 50 ({notRanking.length})</h3><ul className="dfs-list">{notRanking.map((row) => <li key={row.keyword + row.locationCode} dir="auto">{row.keyword}{row.positionUnconfirmed ? "*" : ""} ({row.locationName.split(",")[0]}) → {row.targetUrl}</li>)}</ul></div>
         </div>
       </Card>}
 
