@@ -62,7 +62,7 @@ async function main(): Promise<number> {
     return 1;
   }
   console.log(`Retrieved:    ${row.retrievedAt} · ${row.locationName} · ${row.device}`);
-  console.log(`ENVOD:        ${row.status === "error" ? `UNCONFIRMED — ${row.error}` : row.position === null ? `not in top ${row.depth}` : `#${row.position} — ${row.rankedUrl}`}`);
+  console.log(`ENVOD:        ${row.status === "error" ? `ERROR — ${row.error}` : row.positionUnconfirmed ? `NOT FOUND (unconfirmed) — ${row.positionNote}` : row.position === null ? `not in top ${row.depth}` : `#${row.position} — ${row.rankedUrl}`}`);
   console.log(`SERP features: ${row.serpFeatures.join(", ") || "none"}`);
   console.log("Top results:");
   for (const item of row.topDomains.slice(0, 10)) {

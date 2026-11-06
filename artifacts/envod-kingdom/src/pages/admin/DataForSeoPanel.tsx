@@ -287,7 +287,7 @@ export default function DataForSeoPanel({ onUnauthorized }: { onUnauthorized: (e
         <div className="dfs-buckets" data-testid="dfs-distribution">
           {([
             ["Tracked", dist?.tracked], ["Positions 1–3", dist?.top3], ["Positions 4–10", dist?.top4to10], ["Positions 11–20", dist?.top11to20],
-            ["Positions 21–50", dist?.top21to50], ["Outside top 50", dist?.outsideTop50], ["Improved", dist?.improved], ["Declined", dist?.declined],
+            ["Positions 21–50", dist?.top21to50], ["Outside top 50", dist?.outsideTop50], ["Not found (unconfirmed)", dist?.notFoundUnconfirmed], ["Improved", dist?.improved], ["Declined", dist?.declined],
           ] as const).map(([label, value]) => <div className="sc-metric" key={label}><span className="sc-metric-label">{label}</span><strong>{history?.latestRun ? n(value ?? 0) : "—"}</strong></div>)}
         </div>
 
@@ -298,7 +298,7 @@ export default function DataForSeoPanel({ onUnauthorized }: { onUnauthorized: (e
               return <tr key={`${row.keyword}-${row.locationCode}`}>
                 <td dir="auto">{row.keyword}<small className="dfs-muted"> · {row.language}</small></td>
                 <td>{row.locationName.split(",")[0]}</td>
-                <td>{row.status === "error" ? <span className="dfs-bad" title={row.error ?? ""}>Error</span> : row.position ?? `> ${row.depth}`}</td>
+                <td>{row.status === "error" ? <span className="dfs-bad" title={row.error ?? ""}>Error</span> : row.position ?? (row.positionUnconfirmed ? <span title={row.positionNote ?? ""}>Not found*</span> : `> ${row.depth}`)}</td>
                 <td>{row.previousPosition ?? "—"}</td>
                 <td className={row.change === "improved" || row.change === "new" ? "sc-good" : row.change === "declined" || row.change === "lost" ? "dfs-bad" : ""}>{row.change.replace("_", " ")}{row.delta ? ` (${row.delta > 0 ? "+" : ""}${row.delta})` : ""}</td>
                 <td><Spark points={row.series} /></td>
@@ -308,6 +308,7 @@ export default function DataForSeoPanel({ onUnauthorized }: { onUnauthorized: (e
                 <td>{row.serpFeatures.filter((feature) => feature !== "organic").join(", ") || "—"}</td>
               </tr>;
             })}</tbody></table></div>
+          {history.rows.some((row) => row.positionUnconfirmed) && <p className="dfs-muted">* Not found among the readable results, but Google returned some results as redirect links whose destination could not be read, so “not in the top 50” is not fully confirmed. Hover for details.</p>}
           <SourceLine meta={history.meta} />
         </> : <p className="dfs-muted">No rank check has been run yet. Rankings appear here only after a real DataForSEO request.</p>}
       </Card>

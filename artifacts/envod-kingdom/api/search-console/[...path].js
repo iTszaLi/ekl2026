@@ -5385,12 +5385,34 @@ function readCredentials(env) {
   if (!login || !password) return null;
   return { login, password };
 }
+var TRANSIENT_TASK_CODES = /* @__PURE__ */ new Set([40101, 40103]);
 function describeStatus(code, providerMessage) {
   const safeProviderMessage = providerMessage.replace(/[\r\n]+/g, " ").slice(0, 200);
-  if (code === 40100 || code === 40101) {
+  if (code === 40100) {
     return new DataForSeoError(
       "auth",
       `DataForSEO rejected the credentials (${code}). Check DATAFORSEO_LOGIN and the API password from app.dataforseo.com \u2192 API Access (not the account login password).`,
+      code
+    );
+  }
+  if (code === 40104 || code === 40201) {
+    return new DataForSeoError(
+      "auth",
+      code === 40104 ? `DataForSEO requires account verification before API use (${code}). Complete it in the DataForSEO user panel.` : `DataForSEO has temporarily paused API access for this account (${code}). Contact DataForSEO support.`,
+      code
+    );
+  }
+  if (code === 40106) {
+    return new DataForSeoError(
+      "provider",
+      `DataForSEO returned only partial results for this search (${code}); unretrieved pages were not charged. Re-run later for a complete snapshot.`,
+      code
+    );
+  }
+  if (TRANSIENT_TASK_CODES.has(code)) {
+    return new DataForSeoError(
+      "provider",
+      `DataForSEO could not complete this search (${code}): ${safeProviderMessage}`,
       code
     );
   }
@@ -6271,7 +6293,7 @@ var DataForSeoService = class {
       );
       return { ...cached.data, targetUrl: keyword.targetUrl, competitors: competitorPositions, cached: true, costUsd: 0 };
     }
-    const envelope = await this.paidPost(
+    const post = () => this.paidPost(
       "serp_rank",
       SOURCES.serp_rank.endpoint,
       {
@@ -6284,7 +6306,15 @@ var DataForSeoService = class {
       },
       this.serpEstimatePerTask()
     );
-    const task = firstTask(envelope);
+    let envelope = await post();
+    let task;
+    try {
+      task = firstTask(envelope);
+    } catch (error) {
+      if (!(error instanceof DataForSeoError && error.statusCode !== null && TRANSIENT_TASK_CODES.has(error.statusCode))) throw error;
+      envelope = await post();
+      task = firstTask(envelope);
+    }
     const normalized = normalizeSerp(task.result?.[0], { target: TARGET_DOMAIN, competitors });
     const result = {
       keyword: keyword.keyword,
@@ -6295,11 +6325,13 @@ var DataForSeoService = class {
       device,
       depth: SERP_DEPTH,
       ...normalized,
-      // Never report "not ranked" when some result destinations could not be read.
+      status: "ok",
+      error: null,
+      // Never report a confirmed "not ranked" when some result destinations could not be read.
       ...normalized.position === null && (normalized.unresolvedResults ?? 0) > 0 ? {
-        status: "error",
-        error: `ENVOD was not found among the ${(normalized.organicResults ?? 0) - (normalized.unresolvedResults ?? 0)} readable results; ${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be fully confirmed from this snapshot.`
-      } : { status: "ok", error: null },
+        positionUnconfirmed: true,
+        positionNote: `ENVOD was not found among the ${(normalized.organicResults ?? 0) - (normalized.unresolvedResults ?? 0)} readable results; ${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be fully confirmed from this snapshot.`
+      } : { positionUnconfirmed: false, positionNote: null },
       retrievedAt: new Date(this.now()).toISOString(),
       costUsd: envelopeCost(envelope),
       cached: false
@@ -6520,7 +6552,7 @@ var DataForSeoService = class {
       previousRun: null,
       runs: index.runs.slice().reverse().slice(0, 30),
       rows: [],
-      distribution: { tracked: 0, top3: 0, top4to10: 0, top11to20: 0, top21to50: 0, outsideTop50: 0, improved: 0, declined: 0 },
+      distribution: { tracked: 0, top3: 0, top4to10: 0, top11to20: 0, top21to50: 0, outsideTop50: 0, notFoundUnconfirmed: 0, improved: 0, declined: 0 },
       byLocation: [],
       competitors: [],
       meta: null
@@ -6564,7 +6596,8 @@ var DataForSeoService = class {
       top4to10: between(4, 10),
       top11to20: between(11, 20),
       top21to50: between(21, 50),
-      outsideTop50: ok.filter((row) => row.position === null || row.position > 50).length,
+      outsideTop50: ok.filter((row) => row.position === null && !row.positionUnconfirmed || (row.position ?? 0) > 50).length,
+      notFoundUnconfirmed: ok.filter((row) => row.position === null && row.positionUnconfirmed).length,
       improved: ok.filter((row) => row.change === "improved" || row.change === "new").length,
       declined: ok.filter((row) => row.change === "declined" || row.change === "lost").length
     };

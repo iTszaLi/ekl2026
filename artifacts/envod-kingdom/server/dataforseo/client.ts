@@ -69,13 +69,40 @@ export function readCredentials(env: NodeJS.ProcessEnv): DataForSeoCredentials |
   return { login, password };
 }
 
+/** Task-level codes that mean "this one search failed, try again" (docs: appendix/errors). */
+export const TRANSIENT_TASK_CODES = new Set([40101, 40103]);
+
 /** Map DataForSEO status codes (docs: appendix/errors) to safe, actionable messages. */
 export function describeStatus(code: number, providerMessage: string): DataForSeoError {
   const safeProviderMessage = providerMessage.replace(/[\r\n]+/g, " ").slice(0, 200);
-  if (code === 40100 || code === 40101) {
+  if (code === 40100) {
     return new DataForSeoError(
       "auth",
       `DataForSEO rejected the credentials (${code}). Check DATAFORSEO_LOGIN and the API password from app.dataforseo.com → API Access (not the account login password).`,
+      code,
+    );
+  }
+  if (code === 40104 || code === 40201) {
+    return new DataForSeoError(
+      "auth",
+      code === 40104
+        ? `DataForSEO requires account verification before API use (${code}). Complete it in the DataForSEO user panel.`
+        : `DataForSEO has temporarily paused API access for this account (${code}). Contact DataForSEO support.`,
+      code,
+    );
+  }
+  if (code === 40106) {
+    return new DataForSeoError(
+      "provider",
+      `DataForSEO returned only partial results for this search (${code}); unretrieved pages were not charged. Re-run later for a complete snapshot.`,
+      code,
+    );
+  }
+  if (TRANSIENT_TASK_CODES.has(code)) {
+    // 40101 = internal search-engine error, 40103 = task execution failed: per task, retryable.
+    return new DataForSeoError(
+      "provider",
+      `DataForSEO could not complete this search (${code}): ${safeProviderMessage}`,
       code,
     );
   }

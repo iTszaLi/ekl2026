@@ -131,6 +131,26 @@ test("provider status codes map to safe error kinds", () => {
   assert.equal(describeStatus(40202, "Rate limit").kind, "rate_limit");
   assert.equal(describeStatus(40501, "Invalid Field: 'x'").kind, "invalid_request");
   assert.equal(describeStatus(50000, "Internal").kind, "provider");
+  // 40101 is an internal search-engine error, not a credentials problem.
+  assert.equal(describeStatus(40101, "Internal SE Server Error.").kind, "provider");
+  assert.equal(describeStatus(40100, "Not authorized").kind, "auth");
+  assert.equal(describeStatus(40104, "Please verify your account").kind, "auth");
+});
+
+test("a transient search-engine error (40101) is retried once and does not stop the rank check", async () => {
+  let attempts = 0;
+  const { impl } = fakeFetch(() => {
+    attempts += 1;
+    return attempts === 1
+      ? json(envelope([], 0, 40101))
+      : json(envelope([serpResult({ "envodkingdom.net": 4 })], 0.01));
+  });
+  const service = new DataForSeoService({ env: credentialsEnv, fetchImpl: impl, store: new MemoryJsonStore() });
+  const { run } = await service.startRankCheck({ locationCodes: [2682], keywords: ["envod kingdom"] });
+  const done = await service.continueRankCheck(run.id);
+  assert.ok(done.completedAt);
+  assert.equal(attempts, 2);
+  assert.equal((await service.rankHistory()).rows[0].position, 4);
 });
 
 test("client rejects unexpected endpoint paths before sending credentials", async () => {
@@ -275,9 +295,14 @@ test("unreadable redirect links are reported as unconfirmed, never as not rankin
   const { run } = await service.startRankCheck({ locationCodes: [2682], keywords: ["envod kingdom"] });
   await service.continueRankCheck(run.id);
   const row = (await service.rankHistory()).rows[0];
-  assert.equal(row.status, "error");
+  assert.equal(row.status, "ok");
   assert.equal(row.position, null);
-  assert.match(row.error ?? "", /not found among the 0 readable results; 2 of 2 organic results were Google redirect links/);
+  assert.equal(row.positionUnconfirmed, true);
+  assert.match(row.positionNote ?? "", /not found among the 0 readable results; 2 of 2 organic results were Google redirect links/);
+  const history = await service.rankHistory();
+  assert.equal(history.distribution.tracked, 1);
+  assert.equal(history.distribution.outsideTop50, 0);
+  assert.equal(history.distribution.notFoundUnconfirmed, 1);
 });
 
 test("rank checks store history, distribution and position changes", async () => {

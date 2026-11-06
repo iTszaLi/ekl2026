@@ -30,6 +30,7 @@ import {
   envelopeCost,
   firstTask,
   readCredentials,
+  TRANSIENT_TASK_CODES,
   type DataForSeoEnvelope,
 } from "./client.js";
 import {
@@ -856,20 +857,30 @@ export class DataForSeoService {
       );
       return { ...cached.data, targetUrl: keyword.targetUrl, competitors: competitorPositions, cached: true, costUsd: 0 };
     }
-    const envelope = await this.paidPost<unknown>(
-      "serp_rank",
-      SOURCES.serp_rank.endpoint,
-      {
-        keyword: keyword.keyword,
-        location_code: locationCode,
-        language_code: keyword.language,
-        device,
-        os: device === "mobile" ? "android" : "windows",
-        depth: SERP_DEPTH,
-      },
-      this.serpEstimatePerTask(),
-    );
-    const task = firstTask(envelope);
+    const post = () =>
+      this.paidPost<unknown>(
+        "serp_rank",
+        SOURCES.serp_rank.endpoint,
+        {
+          keyword: keyword.keyword,
+          location_code: locationCode,
+          language_code: keyword.language,
+          device,
+          os: device === "mobile" ? "android" : "windows",
+          depth: SERP_DEPTH,
+        },
+        this.serpEstimatePerTask(),
+      );
+    let envelope = await post();
+    let task: ReturnType<typeof firstTask<unknown>>;
+    try {
+      task = firstTask(envelope);
+    } catch (error) {
+      // One retry for a transient search-engine failure (DataForSEO does not charge failed tasks).
+      if (!(error instanceof DataForSeoError && error.statusCode !== null && TRANSIENT_TASK_CODES.has(error.statusCode))) throw error;
+      envelope = await post();
+      task = firstTask(envelope);
+    }
     const normalized = normalizeSerp(task.result?.[0], { target: TARGET_DOMAIN, competitors });
     const result: SerpRankResult = {
       keyword: keyword.keyword,
@@ -880,13 +891,15 @@ export class DataForSeoService {
       device,
       depth: SERP_DEPTH,
       ...normalized,
-      // Never report "not ranked" when some result destinations could not be read.
+      status: "ok",
+      error: null,
+      // Never report a confirmed "not ranked" when some result destinations could not be read.
       ...(normalized.position === null && (normalized.unresolvedResults ?? 0) > 0
         ? {
-            status: "error" as const,
-            error: `ENVOD was not found among the ${(normalized.organicResults ?? 0) - (normalized.unresolvedResults ?? 0)} readable results; ${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be fully confirmed from this snapshot.`,
+            positionUnconfirmed: true,
+            positionNote: `ENVOD was not found among the ${(normalized.organicResults ?? 0) - (normalized.unresolvedResults ?? 0)} readable results; ${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be fully confirmed from this snapshot.`,
           }
-        : { status: "ok" as const, error: null }),
+        : { positionUnconfirmed: false, positionNote: null }),
       retrievedAt: new Date(this.now()).toISOString(),
       costUsd: envelopeCost(envelope),
       cached: false,
@@ -1129,7 +1142,7 @@ export class DataForSeoService {
       previousRun: null,
       runs: index.runs.slice().reverse().slice(0, 30),
       rows: [],
-      distribution: { tracked: 0, top3: 0, top4to10: 0, top11to20: 0, top21to50: 0, outsideTop50: 0, improved: 0, declined: 0 },
+      distribution: { tracked: 0, top3: 0, top4to10: 0, top11to20: 0, top21to50: 0, outsideTop50: 0, notFoundUnconfirmed: 0, improved: 0, declined: 0 },
       byLocation: [],
       competitors: [],
       meta: null,
@@ -1178,7 +1191,8 @@ export class DataForSeoService {
       top4to10: between(4, 10),
       top11to20: between(11, 20),
       top21to50: between(21, 50),
-      outsideTop50: ok.filter((row) => row.position === null || row.position > 50).length,
+      outsideTop50: ok.filter((row) => (row.position === null && !row.positionUnconfirmed) || (row.position ?? 0) > 50).length,
+      notFoundUnconfirmed: ok.filter((row) => row.position === null && row.positionUnconfirmed).length,
       improved: ok.filter((row) => row.change === "improved" || row.change === "new").length,
       declined: ok.filter((row) => row.change === "declined" || row.change === "lost").length,
     };

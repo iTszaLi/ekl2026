@@ -174,6 +174,9 @@ export interface SerpRankResult {
   /** Organic items in the snapshot, and how many had no readable destination (e.g. Google redirect links). */
   organicResults?: number;
   unresolvedResults?: number;
+  /** True when ENVOD was not found but some results had unreadable destinations, so "not in top 50" is not confirmed. */
+  positionUnconfirmed?: boolean;
+  positionNote?: string | null;
   serpFeatures: string[];
   seResultsCount: number | null;
   retrievedAt: string;
@@ -219,6 +222,8 @@ export interface RankHistoryResponse {
     top11to20: number;
     top21to50: number;
     outsideTop50: number;
+    /** Not found among readable results, but some destinations were unreadable. */
+    notFoundUnconfirmed: number;
     improved: number;
     declined: number;
   };

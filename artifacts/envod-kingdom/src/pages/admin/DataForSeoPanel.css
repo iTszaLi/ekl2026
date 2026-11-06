@@ -19,7 +19,7 @@
 .dfs-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--sc-line); color: var(--sc-muted); font-size: 10px; }
 .dfs-meta b { color: var(--sc-ink); font-weight: 600; }
 .dfs-note { flex-basis: 100%; }
-.dfs-buckets { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); border: 1px solid var(--sc-line); margin: 12px 0; }
+.dfs-buckets { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); border: 1px solid var(--sc-line); margin: 12px 0; }
 .dfs-buckets .sc-metric { min-height: 90px; padding: 14px; }
 .dfs-buckets .sc-metric strong { font-size: 26px; }
 .dfs-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
