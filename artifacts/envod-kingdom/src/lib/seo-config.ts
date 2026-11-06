@@ -489,8 +489,9 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Partial<Record<SeoLanguage, 
     ar: "خطط لشحن المعدات الثقيلة أو كبيرة الحجم في السعودية. شارك الأبعاد والمسار والتصاريح واحتياجات الرفع لتأكيد توفر مزود مؤهل.",
   },
   relocation: {
-    en: "Plan a home move in Riyadh? Share the move type, inventory, packing needs, preferred date and route. ENVOD reviews provider availability and scope before booking.",
-    ar: "هل تخطط لنقل منزل في الرياض؟ أرسل نوع الانتقال وقائمة المنقولات واحتياجات التغليف والموعد والمسار لمراجعة النطاق وتوفر مقدم الخدمة قبل الحجز.",
+    // Owner approved the four-city wording on 2026-11-07 (cities confirmed the same day).
+    en: "House moving in Riyadh, Jeddah, Dammam and Khobar, and between Saudi cities. Share your inventory, packing needs and date; scope is confirmed before booking.",
+    ar: "نقل عفش المنازل في الرياض وجدة والدمام والخبر وبين المدن السعودية. أرسل قائمة المنقولات واحتياجات التغليف والموعد، ويُؤكد النطاق ومقدم الخدمة قبل الحجز.",
   },
   "ecommerce-logistics": {
     en: "Discuss e-commerce delivery, returns and fulfillment in Saudi Arabia. Provider coverage, facilities, integrations and tracking options depend on confirmed scope.",
@@ -572,8 +573,8 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
       : pillar?.seoDescription ?? svc.description);
   const serviceTitle = slug === "relocation"
     ? language === "ar"
-      ? "نقل الأثاث والمنازل في الرياض | إنفود كينغدوم"
-      : "House Moving & Relocation in Riyadh | ENVOD KINGDOM"
+      ? "نقل عفش في الرياض وجدة والدمام | إنفود كينغدوم"
+      : "House Moving in Riyadh, Jeddah & Dammam | ENVOD KINGDOM"
     : undefined;
 
   const jsonLd: Array<Record<string, unknown>> = [
