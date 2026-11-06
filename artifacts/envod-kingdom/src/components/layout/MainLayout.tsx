@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "wouter";
-import { useLanguage } from "@/lib/language-context";
+import { getLocalizedPath, useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
 import { GlobalNetworkMap } from "@/components/GlobalNetworkMap";
 import {
@@ -27,6 +27,17 @@ function preloadQuoteModal() {
 /* ─────────────────────────── Navbar ─────────────────────────── */
 export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
   const { language, setLanguage, t, isRtl } = useLanguage();
+  const [location] = useLocation();
+  // Crawlable link to the same page in the other language. The click handler
+  // keeps the existing behaviour (full navigation that also preserves the query
+  // string and hash); modified clicks fall through to the browser.
+  const otherLanguage = language === "en" ? "ar" : "en";
+  const otherLanguageHref = getLocalizedPath(location, otherLanguage);
+  const switchLanguage = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    setLanguage(otherLanguage);
+  };
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menuTop, setMenuTop] = useState(0);
@@ -115,8 +126,10 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Button variant="ghost" size="sm" onClick={() => setLanguage(language === "en" ? "ar" : "en")} className="text-white hover:bg-white/10 text-sm">
-            <Globe className="w-4 h-4 mr-1.5" />{language === "en" ? "عربي" : "EN"}
+          <Button asChild variant="ghost" size="sm" className="text-white hover:bg-white/10 text-sm">
+            <a href={otherLanguageHref} hrefLang={otherLanguage} lang={otherLanguage} onClick={switchLanguage} data-testid="link-language-switch">
+              <Globe className="w-4 h-4 mr-1.5" />{language === "en" ? "عربي" : "EN"}
+            </a>
           </Button>
           <button
             onClick={onGetQuote}
@@ -158,8 +171,10 @@ export function Navbar({ onGetQuote }: { onGetQuote?: () => void }) {
               </Link>
             ))}
             <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
-              <Button variant="outline" onClick={() => setLanguage(language === "en" ? "ar" : "en")} className="w-full justify-center">
-                <Globe className="w-4 h-4 mr-2" />{language === "en" ? "عربي" : "EN"}
+              <Button asChild variant="outline" className="w-full justify-center">
+                <a href={otherLanguageHref} hrefLang={otherLanguage} lang={otherLanguage} onClick={switchLanguage}>
+                  <Globe className="w-4 h-4 mr-2" />{language === "en" ? "عربي" : "EN"}
+                </a>
               </Button>
               <button
                 onClick={() => { setMobileOpen(false); onGetQuote?.(); }}
@@ -383,6 +398,7 @@ export function Footer() {
     [t("Exhibition & Event Logistics", "لوجستيات المعارض والفعاليات"), "/services/exhibition-logistics"],
     [t("Customs Clearance in Saudi Arabia", "التخليص الجمركي في السعودية"), "/services/customs-clearance"],
     [t("Packing, Crating & Relocation", "التعبئة والتغليف والانتقال"), "/services/packaging-crating"],
+    [t("House Moving & Relocation", "نقل المنازل والانتقال"), "/services/relocation"],
     [t("Road Transportation & GCC Freight", "النقل البري والشحن الخليجي"), "/services/gcc-transportation"],
     [t("Breakbulk Shipping", "شحن البضائع غير المعبأة"), "/services/breakbulk-shipping"],
     [t("ATA Carnet & Temporary Admission", "دفتر ATA والإدخال المؤقت"), "/services/ata-carnet"],
@@ -495,7 +511,7 @@ export function Footer() {
                 href="https://www.jctrans.com/en/company/07f1r7u/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={t("Open ENVOD KINGDOM's verified JCtrans company profile", "افتح ملف ENVOD KINGDOM الموثق على JCtrans")}
+                aria-label={t("JCtrans Profile: ENVOD KINGDOM's verified company profile (opens in a new tab)", "ملف JCtrans: ملف ENVOD KINGDOM الموثق (يفتح في علامة تبويب جديدة)")}
                 data-testid="footer-jctrans-profile"
                 className="inline-flex items-center gap-1 rounded-full border border-secondary/30 bg-secondary/10 px-3.5 py-1.5 text-[10px] font-black uppercase tracking-[0.15em] text-secondary transition-colors hover:bg-secondary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary"
               >
@@ -606,7 +622,7 @@ export function Footer() {
               </li>
               <li className="flex gap-3">
                 <Mail aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0 text-secondary" />
-                <a href="mailto:info@envodkingdom.net" data-testid="link-footer-email" aria-label={t("Email our team", "راسل فريقنا")} className="break-all text-white/80 text-[13px] hover:text-secondary">
+                <a href="mailto:info@envodkingdom.net" data-testid="link-footer-email" className="break-all text-white/80 text-[13px] hover:text-secondary">
                   {t("Email our team", "راسل فريقنا")}<br />info@envodkingdom.net
                 </a>
               </li>
