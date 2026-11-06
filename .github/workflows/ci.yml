@@ -1,0 +1,56 @@
+# Quality gate for every pull request and every push to main.
+# It only reads the repository and builds locally on the runner: it needs no
+# secrets and never deploys (Vercel deploys separately from its Git integration).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Typecheck, build and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      # Same command Vercel runs for the site: client build, SSR build,
+      # prerender of every English/Arabic route, then the SEO route tests.
+      - name: Production build
+        run: pnpm --filter @workspace/envod-kingdom run build
+
+      - name: Report prerendered route count
+        run: |
+          count=$(grep -c "<loc>" artifacts/envod-kingdom/dist/public/sitemap.xml)
+          echo "Sitemap URLs: $count"
+          echo "### Prerendered sitemap URLs: $count" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: All tests (unit + built-output checks)
+        run: pnpm run test

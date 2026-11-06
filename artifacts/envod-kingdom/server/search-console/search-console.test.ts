@@ -190,7 +190,11 @@ test("Search Console refresh tokens are encrypted at rest", async () => {
     const raw = await readFile(filePath, "utf8");
     assert.ok(!raw.includes("refresh-token-sensitive-value"));
     assert.equal((await store.read()).refreshToken, "refresh-token-sensitive-value");
-    assert.equal((await stat(filePath)).mode & 0o777, 0o600);
+    // Windows does not implement POSIX permission bits (stat reports 0o666),
+    // so the owner-only mode can only be asserted on POSIX hosts.
+    if (process.platform !== "win32") {
+      assert.equal((await stat(filePath)).mode & 0o777, 0o600);
+    }
     await store.clear();
     assert.equal((await store.read()).refreshToken, null);
   } finally {

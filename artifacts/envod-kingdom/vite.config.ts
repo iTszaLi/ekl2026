@@ -5,6 +5,16 @@ import path from "path";
 
 const port = Number(process.env.PORT) || 5173;
 const basePath = process.env.BASE_PATH || "/";
+// Git Bash (MSYS) on Windows rewrites `BASE_PATH=/` into a Windows folder such
+// as "C:/Program Files/Git/". The build then succeeds but every prerendered
+// page is empty because no route matches, so refuse to build instead.
+if (!basePath.startsWith("/")) {
+  throw new Error(
+    `BASE_PATH must start with "/" (received "${basePath}"). ` +
+      "In Git Bash on Windows, run the command with MSYS_NO_PATHCONV=1 " +
+      "or leave BASE_PATH unset (it defaults to \"/\").",
+  );
+}
 const replitDevPlugins =
   process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined
     ? [
