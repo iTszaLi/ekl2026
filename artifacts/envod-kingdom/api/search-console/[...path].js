@@ -5743,6 +5743,43 @@ function record(value) {
 function list(value) {
   return Array.isArray(value) ? value : [];
 }
+var GOOGLE_HOST = /(^|\.)google\.[a-z.]{2,}$/i;
+var GOOGLE_REDIRECT_PATH = /^\/(goto|url|aclk|imgres)(\/|$)/i;
+function hostOf(value) {
+  if (!value) return null;
+  const candidate = value.trim().split(/\s+[›>]\s*|\s/)[0] ?? "";
+  try {
+    const url = new URL(/^[a-z][a-z0-9+.-]*:\/\//i.test(candidate) ? candidate : `https://${candidate}`);
+    return /^[a-z0-9.-]+\.[a-z]{2,63}$/i.test(url.hostname) ? url.hostname.toLowerCase() : null;
+  } catch {
+    return null;
+  }
+}
+function resolveResultHost(item) {
+  const rawUrl = str(item.url);
+  let wrapped = false;
+  if (rawUrl) {
+    try {
+      const url = new URL(rawUrl);
+      if (GOOGLE_HOST.test(url.hostname) && GOOGLE_REDIRECT_PATH.test(url.pathname)) {
+        wrapped = true;
+        for (const key of ["url", "q", "adurl"]) {
+          const embedded = hostOf(url.searchParams.get(key));
+          const value = url.searchParams.get(key) ?? "";
+          if (embedded && /^https?:\/\//i.test(value) && !GOOGLE_HOST.test(embedded)) return embedded;
+        }
+      } else if (/^https?:$/.test(url.protocol)) {
+        return url.hostname.toLowerCase();
+      }
+    } catch {
+    }
+  }
+  const domain = hostOf(str(item.domain));
+  if (domain && !(wrapped && GOOGLE_HOST.test(domain))) return domain;
+  const breadcrumb = hostOf(str(item.breadcrumb));
+  if (breadcrumb && !GOOGLE_HOST.test(breadcrumb)) return breadcrumb;
+  return null;
+}
 function matchesDomain(domain, target) {
   if (!domain) return false;
   const normalized = domain.toLowerCase().replace(/^www\./, "");
@@ -5802,21 +5839,27 @@ function normalizeKeywordItem(item) {
 function normalizeSerp(result, options) {
   const data = record(result);
   const organic = list(data.items).map((item) => record(item)).filter((item) => item.type === "organic");
-  const envod = organic.find((item) => matchesDomain(str(item.domain), options.target));
+  const resolved = organic.map((item) => ({ item, host: resolveResultHost(item) }));
+  const envod = resolved.find((entry) => matchesDomain(entry.host, options.target))?.item;
   const competitors = {};
   for (const competitor of options.competitors) {
-    const hit = organic.find((item) => matchesDomain(str(item.domain), competitor));
+    const hit = resolved.find((entry) => matchesDomain(entry.host, competitor))?.item;
     competitors[competitor] = hit ? num(hit.rank_group) : null;
   }
+  const unresolvedResults = resolved.filter((entry) => !entry.host).length;
   return {
+    organicResults: organic.length,
+    unresolvedResults,
     position: envod ? num(envod.rank_group) : null,
     rankAbsolute: envod ? num(envod.rank_absolute) : null,
     rankedUrl: envod ? str(envod.url) : null,
     competitors,
-    topDomains: organic.slice(0, 10).map((item) => ({
+    topDomains: resolved.slice(0, 10).map(({ item, host }) => ({
       position: num(item.rank_group) ?? 0,
-      domain: str(item.domain) ?? "",
-      url: str(item.url) ?? ""
+      domain: host ?? "unresolved (Google redirect link)",
+      url: str(item.url) ?? "",
+      title: str(item.title),
+      breadcrumb: str(item.breadcrumb)
     })),
     serpFeatures: list(data.item_types).filter((type) => typeof type === "string"),
     seResultsCount: num(data.se_results_count)
@@ -6218,7 +6261,7 @@ var DataForSeoService = class {
     return SERP_DEPTH / 10 * PRICING.serpLivePerPageUsd;
   }
   async serpRank(keyword, locationCode, locationName, device, competitors) {
-    const params = { keyword: keyword.keyword, language: keyword.language, locationCode, device, depth: SERP_DEPTH };
+    const params = { keyword: keyword.keyword, language: keyword.language, locationCode, device, depth: SERP_DEPTH, parser: 2 };
     const cacheKey = `cache/serp_rank/${hashParams(params)}.json`;
     const store = this.store();
     const cached = await store.read(cacheKey);
@@ -6251,9 +6294,12 @@ var DataForSeoService = class {
       locationName,
       device,
       depth: SERP_DEPTH,
-      status: "ok",
-      error: null,
       ...normalized,
+      // Never report "not ranked" when some result destinations could not be read.
+      ...normalized.position === null && (normalized.unresolvedResults ?? 0) > 0 ? {
+        status: "error",
+        error: `${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be confirmed from this snapshot.`
+      } : { status: "ok", error: null },
       retrievedAt: new Date(this.now()).toISOString(),
       costUsd: envelopeCost(envelope),
       cached: false

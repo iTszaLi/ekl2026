@@ -170,7 +170,10 @@ export interface SerpRankResult {
   rankAbsolute: number | null;
   rankedUrl: string | null;
   competitors: Record<string, number | null>;
-  topDomains: Array<{ position: number; domain: string; url: string }>;
+  topDomains: Array<{ position: number; domain: string; url: string; title?: string | null; breadcrumb?: string | null }>;
+  /** Organic items in the snapshot, and how many had no readable destination (e.g. Google redirect links). */
+  organicResults?: number;
+  unresolvedResults?: number;
   serpFeatures: string[];
   seResultsCount: number | null;
   retrievedAt: string;

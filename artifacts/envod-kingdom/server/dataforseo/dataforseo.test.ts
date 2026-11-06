@@ -234,6 +234,52 @@ test("SERP normalisation finds ENVOD and competitors including www subdomains", 
   assert.equal(normalized.topDomains[0].domain, "www.fourwinds-ksa.com");
 });
 
+function wrapped(rank: number, breadcrumb: string | null) {
+  return {
+    type: "organic",
+    rank_group: rank,
+    rank_absolute: rank,
+    domain: "google.com",
+    url: `https://google.com/goto?url=CAESXQHEIkXX${rank}`,
+    breadcrumb,
+    title: `Result ${rank}`,
+  };
+}
+
+test("Google redirect-link results resolve to the real destination from the breadcrumb", () => {
+  const normalized = normalizeSerp(
+    {
+      item_types: ["organic"],
+      items: [
+        wrapped(1, "https://www.fourwinds-ksa.com › services"),
+        wrapped(2, "https://www.envodkingdom.net › ar"),
+        { type: "organic", rank_group: 3, domain: "support.google.com", url: "https://support.google.com/a" },
+      ],
+    },
+    { target: "envodkingdom.net", competitors: ["fourwinds-ksa.com"] },
+  );
+  assert.equal(normalized.position, 2);
+  assert.deepEqual(normalized.competitors, { "fourwinds-ksa.com": 1 });
+  assert.equal(normalized.unresolvedResults, 0);
+  assert.deepEqual(normalized.topDomains.map((item) => item.domain), ["www.fourwinds-ksa.com", "www.envodkingdom.net", "support.google.com"]);
+});
+
+test("unreadable redirect links are reported as unconfirmed, never as not ranking", async () => {
+  const unreadable = { item_types: ["organic"], se_results_count: 109, items: [wrapped(1, null), wrapped(2, "ENVOD KINGDOM")] };
+  assert.equal(normalizeSerp(unreadable, { target: "envodkingdom.net", competitors: [] }).unresolvedResults, 2);
+  const service = new DataForSeoService({
+    env: credentialsEnv,
+    fetchImpl: fakeFetch(() => json(envelope([unreadable], 0.01))).impl,
+    store: new MemoryJsonStore(),
+  });
+  const { run } = await service.startRankCheck({ locationCodes: [2682], keywords: ["envod kingdom"] });
+  await service.continueRankCheck(run.id);
+  const row = (await service.rankHistory()).rows[0];
+  assert.equal(row.status, "error");
+  assert.equal(row.position, null);
+  assert.match(row.error ?? "", /2 of 2 organic results were Google redirect links/);
+});
+
 test("rank checks store history, distribution and position changes", async () => {
   const store = new MemoryJsonStore();
   let time = Date.parse("2026-11-06T09:00:00Z");
