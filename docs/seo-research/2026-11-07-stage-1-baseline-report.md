@@ -224,7 +224,9 @@ Rates assumed: about $0.012 per Labs task plus $0.00012 per returned item, and $
 
 ---
 
-## 7. Changes proposed for approval (nothing has been applied)
+**Update 2026-11-07:** A1 + A2 + the re-check were approved and run. Actual cost was **$0.1431**, leaving a balance of $0.6149. Results are in `2026-11-07-paid-research-results.md`.
+
+## 7. Changes proposed for approval
 
 | # | Change | Type | Risk | Effect |
 |---|---|---|---|---|
