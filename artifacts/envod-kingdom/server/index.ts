@@ -14,6 +14,7 @@ import compression from "compression";
 import type { ViteDevServer } from "vite";
 import { createEnquiryRouter, DEFAULT_SENDER, enquiryApiErrorHandler } from "./enquiries";
 import { createSearchConsoleRouter } from "./search-console/router";
+import { createDataForSeoRouter } from "./dataforseo/router";
 
 const serverDirectory = path.dirname(fileURLToPath(import.meta.url));
 const artifactRoot = path.resolve(serverDirectory, "..");
@@ -114,6 +115,8 @@ app.get(`${apiPrefix}/healthz`, (_req, res) => {
 app.use(`${apiPrefix}/enquiries`, createEnquiryRouter({
   sender: process.env.RESEND_FROM_EMAIL ?? DEFAULT_SENDER,
 }));
+
+app.use(`${apiPrefix}/search-console/dataforseo`, createDataForSeoRouter());
 
 app.use(
   `${apiPrefix}/search-console`,

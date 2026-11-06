@@ -29,6 +29,18 @@ Register `https://www.envodkingdom.net` as the OAuth JavaScript origin, enable t
 
 The API fails closed when required settings or private storage are missing; it does not fall back to ephemeral Vercel disk. Do not use `SESSION_SECRET` as a substitute for `GSC_TOKEN_ENCRYPTION_KEY`.
 
+## Private DataForSEO rank tracking (admin dashboard)
+
+The "Rank tracking (DataForSEO)" tab on `/admin/search-console` calls DataForSEO through the existing Search Console function at `/api/search-console/dataforseo/*`. It reuses the administrator session (`SESSION_SECRET`, `GSC_ADMIN_EMAIL`) and the private Blob store (`BLOB_READ_WRITE_TOKEN`) above. No new function, `vercel.json` change or `VITE_` variable is involved.
+
+| Variable | Requirement | Purpose |
+|---|---|---|
+| `DATAFORSEO_LOGIN` | Required for the DataForSEO tab | DataForSEO API login (account email). Server-only. |
+| `DATAFORSEO_PASSWORD` | Required secret | DataForSEO **API password** from `https://app.dataforseo.com/api-access` — not the account sign-in password. Server-only. |
+| `DATAFORSEO_MONTHLY_BUDGET_USD` | Optional; defaults to `5` | Hard monthly cap on dashboard-initiated paid DataForSEO requests. Requests whose estimate exceeds the remaining budget are refused. |
+
+DataForSEO figures are third-party SERP snapshots and database estimates; they are not Google Search Console measurements. See the [DataForSEO setup guide](dataforseo-setup.md).
+
 ## Local Express server and separate static-host options
 
 These variables apply only when using the local Express server or a separately hosted frontend; they do not all apply to the Vercel serverless enquiry function.

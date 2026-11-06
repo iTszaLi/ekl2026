@@ -1,0 +1,32 @@
+.dfs-panel { display: grid; gap: 16px; }
+.dfs-card { padding: 16px 17px 14px; min-width: 0; }
+.dfs-card h3 { margin: 10px 0 6px; font: 15px Georgia, serif; font-weight: 400; color: var(--sc-ink); }
+.dfs-actions { display: flex; gap: 8px; }
+.dfs-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 12px 0; color: var(--sc-ink); font-size: 11px; }
+.dfs-toolbar label { display: inline-flex; align-items: center; gap: 6px; }
+.dfs-toolbar select, .dfs-input { height: 32px; padding: 0 8px; border: 1px solid var(--sc-line); background: var(--sc-card); color: var(--sc-ink); font: 11px "Noto Sans Arabic", sans-serif; }
+.dfs-input { min-width: 220px; }
+.dfs-market-bar { padding: 10px 14px; border: 1px solid var(--sc-line); background: var(--sc-card); margin: 0; }
+.dfs-locations { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0; padding: 6px 10px; border: 1px solid var(--sc-line); }
+.dfs-locations legend { padding: 0 4px; color: var(--sc-muted); font: 9px "DM Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+.dfs-status-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 12px 0; font-size: 12px; color: var(--sc-ink); }
+.dfs-pill { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; font-weight: 700; font-size: 12px; }
+.dfs-pill-ok { color: #0f5132; background: #d1e7dd; }
+.dfs-pill-bad { color: #842029; background: #f8d7da; }
+.dfs-estimate { color: var(--sc-ink); font-size: 11px; }
+.dfs-bad { color: var(--sc-danger); }
+.dfs-muted { color: var(--sc-muted); font-size: 11px; }
+.dfs-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--sc-line); color: var(--sc-muted); font-size: 10px; }
+.dfs-meta b { color: var(--sc-ink); font-weight: 600; }
+.dfs-note { flex-basis: 100%; }
+.dfs-buckets { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); border: 1px solid var(--sc-line); margin: 12px 0; }
+.dfs-buckets .sc-metric { min-height: 90px; padding: 14px; }
+.dfs-buckets .sc-metric strong { font-size: 26px; }
+.dfs-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.dfs-list { margin: 0; padding-left: 18px; font-size: 11px; color: var(--sc-ink); line-height: 1.7; }
+.dfs-textarea { width: 100%; margin-top: 10px; padding: 10px; border: 1px solid var(--sc-line); background: var(--sc-paper, var(--sc-card)); color: var(--sc-ink); font: 11px/1.6 "DM Mono", monospace; resize: vertical; }
+.dfs-spark path { fill: none; stroke: var(--sc-accent); stroke-width: 1.8; }
+@media (max-width: 900px) {
+  .dfs-buckets { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .dfs-two { grid-template-columns: 1fr; }
+}
