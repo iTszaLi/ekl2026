@@ -85,7 +85,6 @@ overrides:
   '@tailwindcss/oxide>@tailwindcss/oxide-linux-arm64-gnu': '-'
   '@tailwindcss/oxide>@tailwindcss/oxide-linux-arm64-musl': '-'
   '@tailwindcss/oxide>@tailwindcss/oxide-linux-x64-musl': '-'
-  '@tailwindcss/oxide>@tailwindcss/oxide-win32-arm64-msvc': '-'
   '@tailwindcss/oxide>@tailwindcss/oxide-win32-x64-msvc': '-'
   esbuild: 0.27.3
   esbuild>@esbuild/aix-ppc64: '-'
@@ -110,7 +109,6 @@ overrides:
   esbuild>@esbuild/openbsd-x64: '-'
   esbuild>@esbuild/openharmony-arm64: '-'
   esbuild>@esbuild/sunos-x64: '-'
-  esbuild>@esbuild/win32-arm64: '-'
   esbuild>@esbuild/win32-ia32: '-'
   esbuild>@esbuild/win32-x64: '-'
   lightningcss>lightningcss-android-arm64: '-'
@@ -121,7 +119,6 @@ overrides:
   lightningcss>lightningcss-linux-arm64-gnu: '-'
   lightningcss>lightningcss-linux-arm64-musl: '-'
   lightningcss>lightningcss-linux-x64-musl: '-'
-  lightningcss>lightningcss-win32-arm64-msvc: '-'
   lightningcss>lightningcss-win32-x64-msvc: '-'
   rollup>@rollup/rollup-android-arm-eabi: '-'
   rollup>@rollup/rollup-android-arm64: '-'
@@ -143,7 +140,6 @@ overrides:
   rollup>@rollup/rollup-linux-x64-musl: '-'
   rollup>@rollup/rollup-openbsd-x64: '-'
   rollup>@rollup/rollup-openharmony-arm64: '-'
-  rollup>@rollup/rollup-win32-arm64-msvc: '-'
   rollup>@rollup/rollup-win32-ia32-msvc: '-'
   rollup>@rollup/rollup-win32-x64-gnu: '-'
   rollup>@rollup/rollup-win32-x64-msvc: '-'
@@ -584,6 +580,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [linux]
+
+  '@esbuild/win32-arm64@0.27.3':
+    resolution: {integrity: sha512-B2t59lWWYrbRDw/tjiWOuzSsFh1Y/E95ofKz7rIVYSQkUYBjfSgf6oeYPNWHToFRr2zx52JKApIcAS/D5TUBnA==}
+    engines: {node: '>=18'}
+    cpu: [arm64]
+    os: [win32]
 
   '@floating-ui/core@1.7.5':
     resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
@@ -1313,6 +1315,11 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@rollup/rollup-win32-arm64-msvc@4.60.3':
+    resolution: {integrity: sha512-65LAKM/bAWDqKNEelHlcHvm2V+Vfb8C6INFxQXRHCvaVN1rJfwr4NvdP4FyzUaLqWfaCGaadf6UbTm8xJeYfEg==}
+    cpu: [arm64]
+    os: [win32]
+
   '@studio-freight/lenis@1.0.42':
     resolution: {integrity: sha512-HJAGf2DeM+BTvKzHv752z6Z7zy6bA643nZM7W88Ft9tnw2GsJSp6iJ+3cekjyMIWH+cloL2U9X82dKXgdU8kPg==}
     deprecated: 'The ''@studio-freight/lenis'' package has been renamed to ''lenis''. Please update your dependencies: npm install lenis and visit the documentation: https://www.npmjs.com/package/lenis'
@@ -1342,6 +1349,12 @@ packages:
       - '@tybys/wasm-util'
       - '@emnapi/wasi-threads'
       - tslib
+
+  '@tailwindcss/oxide-win32-arm64-msvc@4.3.0':
+    resolution: {integrity: sha512-Pe+RPVTi1T+qymuuRpcdvwSVZjnll/f7n8gBxMMh3xLTctMDKqpdfGimbMyioqtLhUYZxdJ9wGNhV7MKHvgZsQ==}
+    engines: {node: '>= 20'}
+    cpu: [arm64]
+    os: [win32]
 
   '@tailwindcss/oxide@4.3.0':
     resolution: {integrity: sha512-F7HZGBeN9I0/AuuJS5PwcD8xayx5ri5GhjYUDBEVYUkexyA/giwbDNjRVrxSezE3T250OU2K/wp/ltWx3UOefg==}
@@ -1987,6 +2000,12 @@ packages:
     cpu: [x64]
     os: [linux]
     libc: [glibc]
+
+  lightningcss-win32-arm64-msvc@1.32.0:
+    resolution: {integrity: sha512-8SbC8BR40pS6baCM8sbtYDSwEVQd4JlFTOlaD3gWGHfThTcABnNDBda6eTZeqbofalIJhFx0qKzgHJmcPTnGdw==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [arm64]
+    os: [win32]
 
   lightningcss@1.32.0:
     resolution: {integrity: sha512-NXYBzinNrblfraPGyrbPoD19C1h9lfI/1mzgWYvXUTe414Gz/X1FD2XBZSZM7rRTrMA8JL3OtAaGifrIKhQ5yQ==}
@@ -2744,6 +2763,9 @@ snapshots:
   '@date-fns/tz@1.4.1': {}
 
   '@esbuild/linux-x64@0.27.3':
+    optional: true
+
+  '@esbuild/win32-arm64@0.27.3':
     optional: true
 
   '@floating-ui/core@1.7.5':
@@ -3518,6 +3540,9 @@ snapshots:
   '@rollup/rollup-linux-x64-gnu@4.60.3':
     optional: true
 
+  '@rollup/rollup-win32-arm64-msvc@4.60.3':
+    optional: true
+
   '@studio-freight/lenis@1.0.42': {}
 
   '@tabby_ai/hijri-converter@1.0.5': {}
@@ -3538,10 +3563,14 @@ snapshots:
   '@tailwindcss/oxide-wasm32-wasi@4.3.0':
     optional: true
 
+  '@tailwindcss/oxide-win32-arm64-msvc@4.3.0':
+    optional: true
+
   '@tailwindcss/oxide@4.3.0':
     optionalDependencies:
       '@tailwindcss/oxide-linux-x64-gnu': 4.3.0
       '@tailwindcss/oxide-wasm32-wasi': 4.3.0
+      '@tailwindcss/oxide-win32-arm64-msvc': 4.3.0
 
   '@tailwindcss/typography@0.5.19(tailwindcss@4.3.0)':
     dependencies:
@@ -3948,6 +3977,7 @@ snapshots:
   esbuild@0.27.3:
     optionalDependencies:
       '@esbuild/linux-x64': 0.27.3
+      '@esbuild/win32-arm64': 0.27.3
 
   escalade@3.2.0: {}
 
@@ -4163,11 +4193,15 @@ snapshots:
   lightningcss-linux-x64-gnu@1.32.0:
     optional: true
 
+  lightningcss-win32-arm64-msvc@1.32.0:
+    optional: true
+
   lightningcss@1.32.0:
     dependencies:
       detect-libc: 2.1.2
     optionalDependencies:
       lightningcss-linux-x64-gnu: 1.32.0
+      lightningcss-win32-arm64-msvc: 1.32.0
 
   lodash@4.18.1: {}
 
@@ -4490,6 +4524,7 @@ snapshots:
       '@types/estree': 1.0.8
     optionalDependencies:
       '@rollup/rollup-linux-x64-gnu': 4.60.3
+      '@rollup/rollup-win32-arm64-msvc': 4.60.3
       fsevents: 2.3.3
 
   router@2.2.0:

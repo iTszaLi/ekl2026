@@ -1,13 +1,15 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, "dist", "public");
 const SERVER_ENTRY = path.join(__dirname, "dist", "server", "entry-server.js");
 
 const { render, getSeoForPath, CONTENT_ROUTES, SITE_URL, OG_IMAGE, toAbsolute } =
-  await import(SERVER_ENTRY);
+  // A file:// URL is required on Windows, where the ESM loader rejects a raw
+  // "C:\..." path; it resolves to the same module on Linux (Vercel).
+  await import(pathToFileURL(SERVER_ENTRY).href);
 const PRERENDER_ROUTES = [...CONTENT_ROUTES];
 
 const rawTemplate = await readFile(path.join(DIST, "index.html"), "utf-8");
