@@ -422,3 +422,24 @@ test("routes require the administrator session, same-origin mutations and explic
     assert.equal(provider.calls.filter((call) => call.method === "POST").length, 0);
   });
 });
+
+// Vercel's api/search-console/[...path].js only matches one segment after
+// /api/search-console/, so every DataForSEO route needs its own entry file that
+// re-exports that function. Without one, production returns Vercel NOT_FOUND.
+test("every DataForSEO route has a Vercel entry file", async () => {
+  const { readFileSync, existsSync } = await import("node:fs");
+  const { fileURLToPath } = await import("node:url");
+  const path = await import("node:path");
+  const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+  const source = readFileSync(path.join(root, "server/dataforseo/router.ts"), "utf8");
+  const routes = [...source.matchAll(/router\.(?:get|post|put|delete)\(\s*"([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(routes.length >= 8, `expected the DataForSEO routes, found ${routes.length}`);
+  for (const route of new Set(routes)) {
+    const segments = route.split("/").filter(Boolean).map((s) => (s.startsWith(":") ? `[${s.slice(1)}]` : s));
+    const file = segments.length === 1
+      ? path.join(root, "api/search-console/dataforseo/[...path].js")
+      : path.join(root, "api/search-console/dataforseo", ...segments) + ".js";
+    assert.ok(existsSync(file), `missing Vercel entry file for ${route}: ${path.relative(root, file)}`);
+    assert.match(readFileSync(file, "utf8"), /export \{ default, config \} from "(\.\.\/)+\[\.\.\.path\]\.js"/);
+  }
+});
