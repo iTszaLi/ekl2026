@@ -3082,8 +3082,8 @@ var SERVICE_META = {
     // Cities confirmed by the owner on 2026-11-07 ("Yes, all three": Jeddah, Dammam, Khobar, plus Riyadh).
     serviceAreas: {
       heading: {
-        en: "House moving in Riyadh, Jeddah, Dammam and Khobar",
-        ar: "\u0646\u0642\u0644 \u0639\u0641\u0634 \u0648\u0623\u062B\u0627\u062B \u0627\u0644\u0645\u0646\u0627\u0632\u0644 \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636 \u0648\u062C\u062F\u0629 \u0648\u0627\u0644\u062F\u0645\u0627\u0645 \u0648\u0627\u0644\u062E\u0628\u0631"
+        en: "Local and inter-city house moves in Saudi Arabia",
+        ar: "\u0646\u0642\u0644 \u0627\u0644\u0639\u0641\u0634 \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u062F\u0646 \u0648\u0628\u064A\u0646\u0647\u0627 \u0641\u064A \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629"
       },
       intro: [
         {

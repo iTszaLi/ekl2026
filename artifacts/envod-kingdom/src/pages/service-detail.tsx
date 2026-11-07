@@ -80,7 +80,7 @@ export default function ServiceDetail() {
   const serviceHeading = serviceId === 11
     ? t("Exhibition & Event Logistics in Saudi Arabia", "لوجستيات المعارض والفعاليات في السعودية")
     : serviceId === 9
-      ? t("House Moving & Relocation in Riyadh", "نقل المنازل والأثاث في الرياض")
+      ? t("House Moving & Relocation in Riyadh, Jeddah, Dammam & Khobar", "نقل العفش والأثاث في الرياض وجدة والدمام والخبر")
     : serviceName;
   const serviceDesc = serviceId === 11
     ? t(

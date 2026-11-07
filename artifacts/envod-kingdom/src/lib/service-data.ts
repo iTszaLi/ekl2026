@@ -510,8 +510,8 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
     // Cities confirmed by the owner on 2026-11-07 ("Yes, all three": Jeddah, Dammam, Khobar, plus Riyadh).
     serviceAreas: {
       heading: {
-        en: "House moving in Riyadh, Jeddah, Dammam and Khobar",
-        ar: "نقل عفش وأثاث المنازل في الرياض وجدة والدمام والخبر",
+        en: "Local and inter-city house moves in Saudi Arabia",
+        ar: "نقل العفش داخل المدن وبينها في السعودية",
       },
       intro: [
         {
