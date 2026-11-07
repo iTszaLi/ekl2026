@@ -1,5 +1,5 @@
 // server/search-console/vercel-function.ts
-import express2 from "express";
+import express3 from "express";
 
 // server/search-console/router.ts
 import { createHash as createHash2, randomBytes as randomBytes2 } from "node:crypto";
@@ -73,15 +73,15 @@ function jsonLdTypes(html) {
           return;
         }
         if (!value || typeof value !== "object") return;
-        const record = value;
-        const schemaType = record["@type"];
+        const record2 = value;
+        const schemaType = record2["@type"];
         if (typeof schemaType === "string") types.add(schemaType);
         if (Array.isArray(schemaType)) {
           for (const type of schemaType) {
             if (typeof type === "string") types.add(type);
           }
         }
-        if ("@graph" in record) visit(record["@graph"]);
+        if ("@graph" in record2) visit(record2["@graph"]);
       };
       visit(json);
     } catch {
@@ -1800,7 +1800,7 @@ function serializeCookie(name, value, req, options) {
   if (isSecureRequest(req)) parts.push("Secure");
   return parts.join("; ");
 }
-function setOAuthStateCookie(req, res, state, verifier, secret, path3, now = Date.now()) {
+function setOAuthStateCookie(req, res, state, verifier, secret, path5, now = Date.now()) {
   const payload = Buffer.from(
     JSON.stringify({
       state,
@@ -1813,14 +1813,14 @@ function setOAuthStateCookie(req, res, state, verifier, secret, path3, now = Dat
     "Set-Cookie",
     serializeCookie(STATE_COOKIE, value, req, {
       maxAge: OAUTH_STATE_TTL_SECONDS,
-      path: path3
+      path: path5
     })
   );
 }
-function clearOAuthStateCookie(req, res, path3) {
+function clearOAuthStateCookie(req, res, path5) {
   res.append(
     "Set-Cookie",
-    serializeCookie(STATE_COOKIE, "", req, { maxAge: 0, path: path3 })
+    serializeCookie(STATE_COOKIE, "", req, { maxAge: 0, path: path5 })
   );
 }
 function getOAuthStateCookie(req, secret, now = Date.now()) {
@@ -3079,11 +3079,47 @@ var SERVICE_META = {
       { en: "House moving and furniture relocation in Riyadh can involve a local address change, a move between Saudi cities, or an international household-goods shipment. ENVOD KINGDOM reviews each enquiry by move type, inventory, packing requests, preferred date and route; available providers and the agreed scope must be confirmed before booking.", ar: "\u0642\u062F \u064A\u0634\u0645\u0644 \u0646\u0642\u0644 \u0627\u0644\u0645\u0646\u0627\u0632\u0644 \u0648\u0627\u0644\u0623\u062B\u0627\u062B \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636 \u0627\u0646\u062A\u0642\u0627\u0644\u0627\u064B \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u062F\u064A\u0646\u0629 \u0623\u0648 \u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646 \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629 \u0623\u0648 \u0634\u062D\u0646\u0629 \u0623\u0645\u062A\u0639\u0629 \u0645\u0646\u0632\u0644\u064A\u0629 \u062F\u0648\u0644\u064A\u0629. \u062A\u0631\u0627\u062C\u0639 \u0625\u0646\u0641\u0648\u062F \u0643\u064A\u0646\u063A\u062F\u0648\u0645 \u0643\u0644 \u0627\u0633\u062A\u0641\u0633\u0627\u0631 \u0648\u0641\u0642 \u0646\u0648\u0639 \u0627\u0644\u0627\u0646\u062A\u0642\u0627\u0644 \u0648\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0646\u0642\u0648\u0644\u0627\u062A \u0648\u0627\u062D\u062A\u064A\u0627\u062C\u0627\u062A \u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0648\u0627\u0644\u0645\u0648\u0639\u062F \u0648\u0627\u0644\u0645\u0633\u0627\u0631\u061B \u0648\u064A\u062C\u0628 \u062A\u0623\u0643\u064A\u062F \u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629 \u0627\u0644\u0645\u062A\u0627\u062D \u0648\u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u062A\u0641\u0642 \u0639\u0644\u064A\u0647 \u0642\u0628\u0644 \u0627\u0644\u062D\u062C\u0632." },
       { en: "For a useful first enquiry, describe the approximate home or office size, main furniture and carton count, fragile or oversized items, packing or dismantling requests, and building access such as stairs, lifts or parking restrictions. For international moves, import eligibility, customs paperwork, insurance terms and the responsibilities of each provider depend on the route and must be checked for that shipment.", ar: "\u0644\u062A\u0642\u062F\u064A\u0645 \u0627\u0633\u062A\u0641\u0633\u0627\u0631 \u0623\u0648\u0644\u064A \u0645\u0641\u064A\u062F\u060C \u0627\u0630\u0643\u0631 \u0627\u0644\u062D\u062C\u0645 \u0627\u0644\u062A\u0642\u0631\u064A\u0628\u064A \u0644\u0644\u0645\u0646\u0632\u0644 \u0623\u0648 \u0627\u0644\u0645\u0643\u062A\u0628 \u0648\u0623\u0628\u0631\u0632 \u0642\u0637\u0639 \u0627\u0644\u0623\u062B\u0627\u062B \u0648\u0639\u062F\u062F \u0627\u0644\u0635\u0646\u0627\u062F\u064A\u0642 \u0648\u0627\u0644\u0642\u0637\u0639 \u0627\u0644\u062D\u0633\u0627\u0633\u0629 \u0623\u0648 \u0643\u0628\u064A\u0631\u0629 \u0627\u0644\u062D\u062C\u0645 \u0648\u0627\u062D\u062A\u064A\u0627\u062C\u0627\u062A \u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0623\u0648 \u0627\u0644\u0641\u0643 \u0648\u0645\u062A\u0637\u0644\u0628\u0627\u062A \u062F\u062E\u0648\u0644 \u0627\u0644\u0645\u0628\u0646\u0649 \u0645\u062B\u0644 \u0627\u0644\u0633\u0644\u0627\u0644\u0645 \u0623\u0648 \u0627\u0644\u0645\u0635\u0639\u062F \u0623\u0648 \u0642\u064A\u0648\u062F \u0627\u0644\u0645\u0648\u0627\u0642\u0641. \u0648\u0641\u064A \u0627\u0644\u0627\u0646\u062A\u0642\u0627\u0644\u0627\u062A \u0627\u0644\u062F\u0648\u0644\u064A\u0629\u060C \u062A\u0639\u062A\u0645\u062F \u0623\u0647\u0644\u064A\u0629 \u0627\u0644\u0627\u0633\u062A\u064A\u0631\u0627\u062F \u0648\u0627\u0644\u0645\u0633\u062A\u0646\u062F\u0627\u062A \u0627\u0644\u062C\u0645\u0631\u0643\u064A\u0629 \u0648\u0634\u0631\u0648\u0637 \u0627\u0644\u062A\u0623\u0645\u064A\u0646 \u0648\u0645\u0633\u0624\u0648\u0644\u064A\u0629 \u0643\u0644 \u0645\u0642\u062F\u0645 \u062E\u062F\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0645\u0633\u0627\u0631 \u0648\u064A\u062C\u0628 \u0627\u0644\u062A\u062D\u0642\u0642 \u0645\u0646\u0647\u0627 \u0644\u0643\u0644 \u0634\u062D\u0646\u0629." }
     ],
+    // Cities confirmed by the owner on 2026-11-07 ("Yes, all three": Jeddah, Dammam, Khobar, plus Riyadh).
+    serviceAreas: {
+      heading: {
+        en: "Local and inter-city house moves in Saudi Arabia",
+        ar: "\u0646\u0642\u0644 \u0627\u0644\u0639\u0641\u0634 \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u062F\u0646 \u0648\u0628\u064A\u0646\u0647\u0627 \u0641\u064A \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629"
+      },
+      intro: [
+        {
+          en: "ENVOD KINGDOM arranges household moves within Riyadh, Jeddah, Dammam and Khobar, and between Saudi cities, for example Riyadh to Jeddah or Riyadh to Dammam and Khobar. Each move is quoted on its own: the route, inventory, building access and requested packing are reviewed before the date and provider are confirmed.",
+          ar: "\u062A\u0646\u0633\u0651\u0642 \u0625\u0646\u0641\u0648\u062F \u0643\u064A\u0646\u063A\u062F\u0648\u0645 \u0646\u0642\u0644 \u0639\u0641\u0634 \u0627\u0644\u0645\u0646\u0627\u0632\u0644 \u062F\u0627\u062E\u0644 \u0627\u0644\u0631\u064A\u0627\u0636 \u0648\u062C\u062F\u0629 \u0648\u0627\u0644\u062F\u0645\u0627\u0645 \u0648\u0627\u0644\u062E\u0628\u0631\u060C \u0648\u0646\u0642\u0644 \u0627\u0644\u0623\u062B\u0627\u062B \u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646 \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629\u060C \u0645\u062B\u0644 \u0646\u0642\u0644 \u0627\u0644\u0639\u0641\u0634 \u0645\u0646 \u0627\u0644\u0631\u064A\u0627\u0636 \u0625\u0644\u0649 \u062C\u062F\u0629 \u0623\u0648 \u0645\u0646 \u0627\u0644\u0631\u064A\u0627\u0636 \u0625\u0644\u0649 \u0627\u0644\u062F\u0645\u0627\u0645 \u0648\u0627\u0644\u062E\u0628\u0631. \u064A\u064F\u0633\u0639\u064E\u0651\u0631 \u0643\u0644 \u0627\u0646\u062A\u0642\u0627\u0644 \u0639\u0644\u0649 \u062D\u062F\u0629: \u062A\u062A\u0645 \u0645\u0631\u0627\u062C\u0639\u0629 \u0627\u0644\u0645\u0633\u0627\u0631 \u0648\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0646\u0642\u0648\u0644\u0627\u062A \u0648\u0645\u062A\u0637\u0644\u0628\u0627\u062A \u062F\u062E\u0648\u0644 \u0627\u0644\u0645\u0628\u0646\u0649 \u0648\u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u0642\u0628\u0644 \u062A\u0623\u0643\u064A\u062F \u0627\u0644\u0645\u0648\u0639\u062F \u0648\u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629."
+        }
+      ],
+      items: [
+        {
+          heading: { en: "Moves within one city", ar: "\u0646\u0642\u0644 \u0627\u0644\u0639\u0641\u0634 \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u062F\u064A\u0646\u0629" },
+          text: {
+            en: "For a move inside Riyadh, Jeddah, Dammam or Khobar, share both districts, the floor and lift access at each address, and any parking or building-management rules. Mention time restrictions set by the building so loading and unloading can be planned around them.",
+            ar: "\u0644\u0646\u0642\u0644 \u0627\u0644\u0639\u0641\u0634 \u062F\u0627\u062E\u0644 \u0627\u0644\u0631\u064A\u0627\u0636 \u0623\u0648 \u062C\u062F\u0629 \u0623\u0648 \u0627\u0644\u062F\u0645\u0627\u0645 \u0623\u0648 \u0627\u0644\u062E\u0628\u0631\u060C \u0623\u0631\u0633\u0644 \u0627\u0644\u062D\u064A\u0651\u064A\u0646 \u0648\u0627\u0644\u0637\u0627\u0628\u0642 \u0648\u062A\u0648\u0641\u0631 \u0627\u0644\u0645\u0635\u0639\u062F \u0641\u064A \u0643\u0644 \u0639\u0646\u0648\u0627\u0646\u060C \u0648\u0623\u064A \u0642\u0648\u0627\u0639\u062F \u0644\u0644\u0645\u0648\u0627\u0642\u0641 \u0623\u0648 \u0644\u0625\u062F\u0627\u0631\u0629 \u0627\u0644\u0645\u0628\u0646\u0649. \u0648\u0627\u0630\u0643\u0631 \u0623\u0648\u0642\u0627\u062A \u0627\u0644\u062F\u062E\u0648\u0644 \u0627\u0644\u062A\u064A \u064A\u062D\u062F\u062F\u0647\u0627 \u0627\u0644\u0645\u0628\u0646\u0649 \u062D\u062A\u0649 \u064A\u064F\u062E\u0637\u064E\u0651\u0637 \u0644\u0644\u062A\u062D\u0645\u064A\u0644 \u0648\u0627\u0644\u062A\u0646\u0632\u064A\u0644 \u0648\u0641\u0642\u0647\u0627."
+          }
+        },
+        {
+          heading: { en: "Moves between Saudi cities", ar: "\u0646\u0642\u0644 \u0627\u0644\u0623\u062B\u0627\u062B \u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646 \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629" },
+          text: {
+            en: "Inter-city moves, such as Riyadh to Jeddah, Jeddah to Riyadh, or Riyadh to Dammam and Khobar, involve long-distance road transport. The loading date, delivery window and protective packing for the journey are agreed in advance. If you need storage between move-out and move-in, say so in the enquiry; availability is confirmed for the route.",
+            ar: "\u064A\u0634\u0645\u0644 \u0646\u0642\u0644 \u0627\u0644\u0639\u0641\u0634 \u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646\u060C \u0645\u062B\u0644 \u0627\u0644\u0646\u0642\u0644 \u0645\u0646 \u0627\u0644\u0631\u064A\u0627\u0636 \u0625\u0644\u0649 \u062C\u062F\u0629 \u0623\u0648 \u0645\u0646 \u062C\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u0631\u064A\u0627\u0636 \u0623\u0648 \u0645\u0646 \u0627\u0644\u0631\u064A\u0627\u0636 \u0625\u0644\u0649 \u0627\u0644\u062F\u0645\u0627\u0645 \u0648\u0627\u0644\u062E\u0628\u0631\u060C \u0646\u0642\u0644\u0627\u064B \u0628\u0631\u064A\u0627\u064B \u0644\u0645\u0633\u0627\u0641\u0627\u062A \u0637\u0648\u064A\u0644\u0629. \u0648\u064A\u064F\u062A\u0641\u0642 \u0645\u0633\u0628\u0642\u0627\u064B \u0639\u0644\u0649 \u0645\u0648\u0639\u062F \u0627\u0644\u062A\u062D\u0645\u064A\u0644 \u0648\u0646\u0627\u0641\u0630\u0629 \u0627\u0644\u062A\u0633\u0644\u064A\u0645 \u0648\u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0627\u0644\u0648\u0627\u0642\u064A \u0644\u0644\u0631\u062D\u0644\u0629. \u0648\u0625\u0630\u0627 \u0627\u062D\u062A\u062C\u062A \u0625\u0644\u0649 \u062A\u062E\u0632\u064A\u0646 \u0628\u064A\u0646 \u0627\u0644\u0625\u062E\u0644\u0627\u0621 \u0648\u0627\u0644\u0627\u0646\u062A\u0642\u0627\u0644\u060C \u0641\u0627\u0630\u0643\u0631 \u0630\u0644\u0643 \u0641\u064A \u0627\u0644\u0627\u0633\u062A\u0641\u0633\u0627\u0631\u061B \u0648\u064A\u064F\u0624\u0643\u062F \u0627\u0644\u062A\u0648\u0641\u0631 \u0644\u0644\u0645\u0633\u0627\u0631."
+          }
+        }
+      ],
+      note: {
+        en: "Prices are not fixed by city. Each quote depends on the inventory, distance, access and requested packing, and is confirmed before booking.",
+        ar: "\u0644\u0627 \u062A\u0648\u062C\u062F \u0623\u0633\u0639\u0627\u0631 \u062B\u0627\u0628\u062A\u0629 \u062D\u0633\u0628 \u0627\u0644\u0645\u062F\u064A\u0646\u0629. \u064A\u0639\u062A\u0645\u062F \u0643\u0644 \u0639\u0631\u0636 \u0633\u0639\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0646\u0642\u0648\u0644\u0627\u062A \u0648\u0627\u0644\u0645\u0633\u0627\u0641\u0629 \u0648\u0645\u062A\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u062F\u062E\u0648\u0644 \u0648\u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0627\u0644\u0645\u0637\u0644\u0648\u0628\u060C \u0648\u064A\u064F\u0624\u0643\u062F \u0642\u0628\u0644 \u0627\u0644\u062D\u062C\u0632."
+      },
+      cities: ["Riyadh", "Jeddah", "Dammam", "Khobar"]
+    },
     faq: [
       { q: "What details help with a house-moving quote enquiry in Riyadh?", a: "Start with the origin and destination area, move date, home size or approximate inventory, packing needs, fragile or oversized items, and access details such as stairs, lifts and parking restrictions. Exact addresses can be provided later if needed. ENVOD confirms the available provider, requested scope and responsibilities before booking.", qAr: "\u0645\u0627 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u062A\u064A \u062A\u0633\u0627\u0639\u062F \u0641\u064A \u0627\u0633\u062A\u0641\u0633\u0627\u0631 \u0639\u0631\u0636 \u0633\u0639\u0631 \u0646\u0642\u0644 \u0645\u0646\u0632\u0644 \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636\u061F", aAr: "\u0627\u0628\u062F\u0623 \u0628\u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0645\u0646\u0634\u0623 \u0648\u0627\u0644\u0648\u062C\u0647\u0629 \u0648\u0645\u0648\u0639\u062F \u0627\u0644\u0627\u0646\u062A\u0642\u0627\u0644 \u0648\u062D\u062C\u0645 \u0627\u0644\u0645\u0646\u0632\u0644 \u0623\u0648 \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0646\u0642\u0648\u0644\u0627\u062A \u0627\u0644\u062A\u0642\u0631\u064A\u0628\u064A\u0629 \u0648\u0627\u062D\u062A\u064A\u0627\u062C\u0627\u062A \u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0648\u0627\u0644\u0642\u0637\u0639 \u0627\u0644\u062D\u0633\u0627\u0633\u0629 \u0623\u0648 \u0643\u0628\u064A\u0631\u0629 \u0627\u0644\u062D\u062C\u0645 \u0648\u0645\u062A\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u062F\u062E\u0648\u0644 \u0645\u062B\u0644 \u0627\u0644\u0633\u0644\u0627\u0644\u0645 \u0648\u0627\u0644\u0645\u0635\u0639\u062F \u0648\u0627\u0644\u0645\u0648\u0627\u0642\u0641. \u0648\u064A\u0645\u0643\u0646 \u062A\u0642\u062F\u064A\u0645 \u0627\u0644\u0639\u0646\u0627\u0648\u064A\u0646 \u0627\u0644\u062F\u0642\u064A\u0642\u0629 \u0644\u0627\u062D\u0642\u0627\u064B \u0639\u0646\u062F \u0627\u0644\u062D\u0627\u062C\u0629. \u062A\u0624\u0643\u062F \u0625\u0646\u0641\u0648\u062F \u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629 \u0627\u0644\u0645\u062A\u0627\u062D \u0648\u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u0637\u0644\u0648\u0628 \u0648\u0627\u0644\u0645\u0633\u0624\u0648\u0644\u064A\u0627\u062A \u0642\u0628\u0644 \u0627\u0644\u062D\u062C\u0632." },
       { q: "Are packing, furniture dismantling or storage automatically included?", a: "No standard package is assumed. Mention any packing, dismantling or reassembly, fragile-item handling or storage request. Availability, price, terms and the responsible provider must be confirmed for the specific route before booking.", qAr: "\u0647\u0644 \u064A\u0634\u0645\u0644 \u0627\u0644\u0646\u0642\u0644 \u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0623\u0648 \u0641\u0643 \u0627\u0644\u0623\u062B\u0627\u062B \u0623\u0648 \u0627\u0644\u062A\u062E\u0632\u064A\u0646 \u062A\u0644\u0642\u0627\u0626\u064A\u0627\u064B\u061F", aAr: "\u0644\u0627 \u064A\u064F\u0641\u062A\u0631\u0636 \u0648\u062C\u0648\u062F \u0628\u0627\u0642\u0629 \u0645\u0648\u062D\u062F\u0629. \u0627\u0630\u0643\u0631 \u0623\u064A \u0637\u0644\u0628 \u0644\u0644\u062A\u063A\u0644\u064A\u0641 \u0623\u0648 \u0641\u0643 \u0627\u0644\u0623\u062B\u0627\u062B \u0623\u0648 \u062A\u0631\u0643\u064A\u0628\u0647 \u0623\u0648 \u0645\u0646\u0627\u0648\u0644\u0629 \u0627\u0644\u0642\u0637\u0639 \u0627\u0644\u062D\u0633\u0627\u0633\u0629 \u0623\u0648 \u0627\u0644\u062A\u062E\u0632\u064A\u0646. \u064A\u062C\u0628 \u062A\u0623\u0643\u064A\u062F \u0627\u0644\u062A\u0648\u0641\u0631 \u0648\u0627\u0644\u0633\u0639\u0631 \u0648\u0627\u0644\u0634\u0631\u0648\u0637 \u0648\u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629 \u0627\u0644\u0645\u0633\u0624\u0648\u0644 \u0644\u0644\u0645\u0633\u0627\u0631 \u0627\u0644\u0645\u062D\u062F\u062F \u0642\u0628\u0644 \u0627\u0644\u062D\u062C\u0632." },
       { q: "Can ENVOD arrange an international household move?", a: "Send the origin and destination countries and a brief inventory for review. Household-goods eligibility, customs documents, route coverage, insurance terms and provider responsibilities vary by shipment and must be confirmed before any booking.", qAr: "\u0647\u0644 \u064A\u0645\u0643\u0646 \u0644\u0625\u0646\u0641\u0648\u062F \u062A\u0646\u0633\u064A\u0642 \u0627\u0646\u062A\u0642\u0627\u0644 \u062F\u0648\u0644\u064A \u0644\u0644\u0623\u0645\u062A\u0639\u0629 \u0627\u0644\u0645\u0646\u0632\u0644\u064A\u0629\u061F", aAr: "\u0623\u0631\u0633\u0644 \u062F\u0648\u0644\u062A\u064A \u0627\u0644\u0645\u0646\u0634\u0623 \u0648\u0627\u0644\u0648\u062C\u0647\u0629 \u0648\u0642\u0627\u0626\u0645\u0629 \u0645\u062E\u062A\u0635\u0631\u0629 \u0628\u0627\u0644\u0645\u0646\u0642\u0648\u0644\u0627\u062A \u0644\u0644\u0645\u0631\u0627\u062C\u0639\u0629. \u062A\u062E\u062A\u0644\u0641 \u0623\u0647\u0644\u064A\u0629 \u0627\u0644\u0623\u0645\u062A\u0639\u0629 \u0627\u0644\u0645\u0646\u0632\u0644\u064A\u0629 \u0648\u0627\u0644\u0645\u0633\u062A\u0646\u062F\u0627\u062A \u0627\u0644\u062C\u0645\u0631\u0643\u064A\u0629 \u0648\u062A\u063A\u0637\u064A\u0629 \u0627\u0644\u0645\u0633\u0627\u0631 \u0648\u0634\u0631\u0648\u0637 \u0627\u0644\u062A\u0623\u0645\u064A\u0646 \u0648\u0645\u0633\u0624\u0648\u0644\u064A\u0627\u062A \u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629 \u062D\u0633\u0628 \u0627\u0644\u0634\u062D\u0646\u0629 \u0648\u064A\u062C\u0628 \u062A\u0623\u0643\u064A\u062F\u0647\u0627 \u0642\u0628\u0644 \u0623\u064A \u062D\u062C\u0632." },
-      { q: "Does every Riyadh or Saudi route have the same moving service?", a: "No. Local, intercity and international requests are reviewed separately. Provider availability, transport, packing, access requirements, customs responsibilities and price depend on the route and requested scope; ENVOD confirms these details before booking.", qAr: "\u0647\u0644 \u062A\u062A\u0648\u0641\u0631 \u062E\u062F\u0645\u0629 \u0627\u0644\u0646\u0642\u0644 \u0646\u0641\u0633\u0647\u0627 \u0644\u0643\u0644 \u0645\u0633\u0627\u0631\u0627\u062A \u0627\u0644\u0631\u064A\u0627\u0636 \u0623\u0648 \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629\u061F", aAr: "\u0644\u0627. \u062A\u062A\u0645 \u0645\u0631\u0627\u062C\u0639\u0629 \u0627\u0644\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u0645\u062D\u0644\u064A\u0629 \u0648\u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646 \u0648\u0627\u0644\u062F\u0648\u0644\u064A\u0629 \u0643\u0644\u0651\u064C \u0639\u0644\u0649 \u062D\u062F\u0629. \u064A\u0639\u062A\u0645\u062F \u062A\u0648\u0641\u0631 \u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629 \u0648\u0627\u0644\u0646\u0642\u0644 \u0648\u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0648\u0645\u062A\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u062F\u062E\u0648\u0644 \u0648\u0645\u0633\u0624\u0648\u0644\u064A\u0627\u062A \u0627\u0644\u062C\u0645\u0627\u0631\u0643 \u0648\u0627\u0644\u0633\u0639\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0633\u0627\u0631 \u0648\u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u0637\u0644\u0648\u0628\u061B \u0648\u062A\u0624\u0643\u062F \u0625\u0646\u0641\u0648\u062F \u0647\u0630\u0647 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0642\u0628\u0644 \u0627\u0644\u062D\u062C\u0632." }
+      { q: "Does every Riyadh or Saudi route have the same moving service?", a: "No. Local, intercity and international requests are reviewed separately. Provider availability, transport, packing, access requirements, customs responsibilities and price depend on the route and requested scope; ENVOD confirms these details before booking.", qAr: "\u0647\u0644 \u062A\u062A\u0648\u0641\u0631 \u062E\u062F\u0645\u0629 \u0627\u0644\u0646\u0642\u0644 \u0646\u0641\u0633\u0647\u0627 \u0644\u0643\u0644 \u0645\u0633\u0627\u0631\u0627\u062A \u0627\u0644\u0631\u064A\u0627\u0636 \u0623\u0648 \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629\u061F", aAr: "\u0644\u0627. \u062A\u062A\u0645 \u0645\u0631\u0627\u062C\u0639\u0629 \u0627\u0644\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u0645\u062D\u0644\u064A\u0629 \u0648\u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646 \u0648\u0627\u0644\u062F\u0648\u0644\u064A\u0629 \u0643\u0644\u0651\u064C \u0639\u0644\u0649 \u062D\u062F\u0629. \u064A\u0639\u062A\u0645\u062F \u062A\u0648\u0641\u0631 \u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629 \u0648\u0627\u0644\u0646\u0642\u0644 \u0648\u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0648\u0645\u062A\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u062F\u062E\u0648\u0644 \u0648\u0645\u0633\u0624\u0648\u0644\u064A\u0627\u062A \u0627\u0644\u062C\u0645\u0627\u0631\u0643 \u0648\u0627\u0644\u0633\u0639\u0631 \u0639\u0644\u0649 \u0627\u0644\u0645\u0633\u0627\u0631 \u0648\u0627\u0644\u0646\u0637\u0627\u0642 \u0627\u0644\u0645\u0637\u0644\u0648\u0628\u061B \u0648\u062A\u0624\u0643\u062F \u0625\u0646\u0641\u0648\u062F \u0647\u0630\u0647 \u0627\u0644\u062A\u0641\u0627\u0635\u064A\u0644 \u0642\u0628\u0644 \u0627\u0644\u062D\u062C\u0632." },
+      { q: "Which cities do you cover for local house moves?", a: "Local household moves are arranged within Riyadh, Jeddah, Dammam and Khobar. For another city, send the origin and destination so route coverage can be checked before any booking.", qAr: "\u0645\u0627 \u0627\u0644\u0645\u062F\u0646 \u0627\u0644\u062A\u064A \u062A\u063A\u0637\u0648\u0646\u0647\u0627 \u0641\u064A \u0646\u0642\u0644 \u0627\u0644\u0639\u0641\u0634 \u062F\u0627\u062E\u0644 \u0627\u0644\u0645\u062F\u064A\u0646\u0629\u061F", aAr: "\u064A\u062A\u0645 \u062A\u0646\u0633\u064A\u0642 \u0646\u0642\u0644 \u0639\u0641\u0634 \u0627\u0644\u0645\u0646\u0627\u0632\u0644 \u062F\u0627\u062E\u0644 \u0627\u0644\u0631\u064A\u0627\u0636 \u0648\u062C\u062F\u0629 \u0648\u0627\u0644\u062F\u0645\u0627\u0645 \u0648\u0627\u0644\u062E\u0628\u0631. \u0648\u0644\u0623\u064A \u0645\u062F\u064A\u0646\u0629 \u0623\u062E\u0631\u0649\u060C \u0623\u0631\u0633\u0644 \u0627\u0644\u0645\u0646\u0634\u0623 \u0648\u0627\u0644\u0648\u062C\u0647\u0629 \u0644\u0644\u062A\u062D\u0642\u0642 \u0645\u0646 \u062A\u063A\u0637\u064A\u0629 \u0627\u0644\u0645\u0633\u0627\u0631 \u0642\u0628\u0644 \u0623\u064A \u062D\u062C\u0632." },
+      { q: "Can you move furniture from Riyadh to Jeddah or between other Saudi cities?", a: "Yes. Inter-city household moves, for example Riyadh to Jeddah, Jeddah to Riyadh, or Riyadh to Dammam and Khobar, are reviewed on request. Share both cities, the move date, an approximate inventory and access details at each address. The loading date, delivery window, packing and responsible provider are confirmed before booking.", qAr: "\u0647\u0644 \u062A\u0646\u0642\u0644\u0648\u0646 \u0627\u0644\u0639\u0641\u0634 \u0645\u0646 \u0627\u0644\u0631\u064A\u0627\u0636 \u0625\u0644\u0649 \u062C\u062F\u0629 \u0623\u0648 \u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646 \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629 \u0627\u0644\u0623\u062E\u0631\u0649\u061F", aAr: "\u0646\u0639\u0645. \u062A\u062A\u0645 \u0645\u0631\u0627\u062C\u0639\u0629 \u0637\u0644\u0628\u0627\u062A \u0646\u0642\u0644 \u0639\u0641\u0634 \u0627\u0644\u0645\u0646\u0627\u0632\u0644 \u0628\u064A\u0646 \u0627\u0644\u0645\u062F\u0646\u060C \u0645\u062B\u0644 \u0627\u0644\u0646\u0642\u0644 \u0645\u0646 \u0627\u0644\u0631\u064A\u0627\u0636 \u0625\u0644\u0649 \u062C\u062F\u0629 \u0623\u0648 \u0645\u0646 \u062C\u062F\u0629 \u0625\u0644\u0649 \u0627\u0644\u0631\u064A\u0627\u0636 \u0623\u0648 \u0645\u0646 \u0627\u0644\u0631\u064A\u0627\u0636 \u0625\u0644\u0649 \u0627\u0644\u062F\u0645\u0627\u0645 \u0648\u0627\u0644\u062E\u0628\u0631. \u0623\u0631\u0633\u0644 \u0627\u0644\u0645\u062F\u064A\u0646\u062A\u064A\u0646 \u0648\u0645\u0648\u0639\u062F \u0627\u0644\u0627\u0646\u062A\u0642\u0627\u0644 \u0648\u0642\u0627\u0626\u0645\u0629 \u062A\u0642\u0631\u064A\u0628\u064A\u0629 \u0628\u0627\u0644\u0645\u0646\u0642\u0648\u0644\u0627\u062A \u0648\u0645\u062A\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u062F\u062E\u0648\u0644 \u0641\u064A \u0643\u0644 \u0639\u0646\u0648\u0627\u0646. \u0648\u064A\u064F\u0624\u0643\u062F \u0645\u0648\u0639\u062F \u0627\u0644\u062A\u062D\u0645\u064A\u0644 \u0648\u0646\u0627\u0641\u0630\u0629 \u0627\u0644\u062A\u0633\u0644\u064A\u0645 \u0648\u0627\u0644\u062A\u063A\u0644\u064A\u0641 \u0648\u0645\u0642\u062F\u0645 \u0627\u0644\u062E\u062F\u0645\u0629 \u0627\u0644\u0645\u0633\u0624\u0648\u0644 \u0642\u0628\u0644 \u0627\u0644\u062D\u062C\u0632." }
     ]
   },
   10: {
@@ -4327,7 +4363,7 @@ function performanceFilters(input) {
   else if (input.language || input.page) {
     const escaped = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const paths = input.page ? [input.page] : [...publicEnglishPaths];
-    const alternatives = paths.flatMap((path3) => (input.language ? [input.language] : ["en", "ar"]).map((lang) => (lang === "ar" ? "/ar" : "") + (path3 === "/" ? "" : path3)));
+    const alternatives = paths.flatMap((path5) => (input.language ? [input.language] : ["en", "ar"]).map((lang) => (lang === "ar" ? "/ar" : "") + (path5 === "/" ? "" : path5)));
     filters.push({ dimension: "page", operator: "includingRegex", expression: `^https?://(www\\.)?envodkingdom\\.net(${alternatives.map(escaped).join("|")})/?(\\?.*)?$` });
   }
   if (input.query?.trim()) filters.push({ dimension: "query", operator: "contains", expression: input.query.trim().slice(0, 300) });
@@ -4559,7 +4595,7 @@ function getInspectionDetails(url, response) {
   const outer = response && typeof response === "object" ? response : {};
   const inspection = outer.inspectionResult && typeof outer.inspectionResult === "object" ? outer.inspectionResult : {};
   const index = inspection.indexStatusResult && typeof inspection.indexStatusResult === "object" ? inspection.indexStatusResult : {};
-  const list = (value) => Array.isArray(value) ? value.filter((entry) => typeof entry === "string") : [];
+  const list2 = (value) => Array.isArray(value) ? value.filter((entry) => typeof entry === "string") : [];
   const stringValue = (value) => typeof value === "string" ? value : null;
   return {
     url,
@@ -4571,8 +4607,8 @@ function getInspectionDetails(url, response) {
     lastCrawlTime: stringValue(index.lastCrawlTime),
     googleCanonical: stringValue(index.googleCanonical),
     userCanonical: stringValue(index.userCanonical),
-    referringUrls: list(index.referringUrls),
-    sitemaps: list(index.sitemap)
+    referringUrls: list2(index.referringUrls),
+    sitemaps: list2(index.sitemap)
   };
 }
 function normalizeInspectionUrl(value, property) {
@@ -5362,10 +5398,1530 @@ var EncryptedVercelBlobSearchConsoleStore = class {
   }
 };
 
+// server/dataforseo/router.ts
+import path4 from "node:path";
+import { fileURLToPath as fileURLToPath2 } from "node:url";
+import express2, { Router as Router2 } from "express";
+import { z as z3 } from "zod";
+
+// server/dataforseo/client.ts
+var DATAFORSEO_BASE_URL = "https://api.dataforseo.com/v3/";
+var DataForSeoError = class extends Error {
+  constructor(kind, message, statusCode = null, httpStatus = null) {
+    super(message);
+    this.kind = kind;
+    this.statusCode = statusCode;
+    this.httpStatus = httpStatus;
+    this.name = "DataForSeoError";
+  }
+};
+function readCredentials(env) {
+  const login = env.DATAFORSEO_LOGIN?.trim();
+  const password = env.DATAFORSEO_PASSWORD?.trim();
+  if (!login || !password) return null;
+  return { login, password };
+}
+var TRANSIENT_TASK_CODES = /* @__PURE__ */ new Set([40101, 40103]);
+function describeStatus(code, providerMessage) {
+  const safeProviderMessage = providerMessage.replace(/[\r\n]+/g, " ").slice(0, 200);
+  if (code === 40100) {
+    return new DataForSeoError(
+      "auth",
+      `DataForSEO rejected the credentials (${code}). Check DATAFORSEO_LOGIN and the API password from app.dataforseo.com \u2192 API Access (not the account login password).`,
+      code
+    );
+  }
+  if (code === 40104 || code === 40201) {
+    return new DataForSeoError(
+      "auth",
+      code === 40104 ? `DataForSEO requires account verification before API use (${code}). Complete it in the DataForSEO user panel.` : `DataForSEO has temporarily paused API access for this account (${code}). Contact DataForSEO support.`,
+      code
+    );
+  }
+  if (code === 40106) {
+    return new DataForSeoError(
+      "provider",
+      `DataForSEO returned only partial results for this search (${code}); unretrieved pages were not charged. Re-run later for a complete snapshot.`,
+      code
+    );
+  }
+  if (TRANSIENT_TASK_CODES.has(code)) {
+    return new DataForSeoError(
+      "provider",
+      `DataForSEO could not complete this search (${code}): ${safeProviderMessage}`,
+      code
+    );
+  }
+  if (code === 40200 || code === 40210) {
+    return new DataForSeoError(
+      "payment",
+      `DataForSEO reports insufficient funds or payment required (${code}). Top up the DataForSEO balance before running paid requests.`,
+      code
+    );
+  }
+  if (code === 40203) {
+    return new DataForSeoError(
+      "payment",
+      `The daily spend limit set in the DataForSEO dashboard has been reached (${code}).`,
+      code
+    );
+  }
+  if (code === 40202 || code === 40209) {
+    return new DataForSeoError(
+      "rate_limit",
+      `DataForSEO rate limit reached (${code}). Wait a minute and retry.`,
+      code
+    );
+  }
+  if (code >= 4e4 && code < 5e4) {
+    return new DataForSeoError(
+      "invalid_request",
+      `DataForSEO rejected the request (${code}): ${safeProviderMessage}`,
+      code
+    );
+  }
+  return new DataForSeoError(
+    "provider",
+    `DataForSEO could not complete the request (${code}): ${safeProviderMessage}`,
+    code
+  );
+}
+var DataForSeoClient = class {
+  constructor(credentials, fetchImpl = fetch, baseUrl = DATAFORSEO_BASE_URL, timeoutMs = 6e4) {
+    this.fetchImpl = fetchImpl;
+    this.baseUrl = baseUrl;
+    this.timeoutMs = timeoutMs;
+    this.authorization = `Basic ${Buffer.from(
+      `${credentials.login}:${credentials.password}`,
+      "utf8"
+    ).toString("base64")}`;
+  }
+  authorization;
+  /** GET request (used for free endpoints such as appendix/user_data and locations). */
+  get(path5) {
+    return this.request("GET", path5);
+  }
+  /** POST a single task. Live endpoints accept exactly one task per call. */
+  post(path5, task) {
+    return this.request("POST", path5, [task]);
+  }
+  async request(method, path5, body) {
+    if (!/^[a-z0-9_/.-]+$/i.test(path5) || path5.includes("..")) {
+      throw new DataForSeoError("invalid_request", "Unsupported DataForSEO endpoint path.");
+    }
+    const url = new URL(path5.replace(/^\/+/, ""), this.baseUrl);
+    let response;
+    try {
+      response = await this.fetchImpl(url, {
+        method,
+        headers: {
+          Authorization: this.authorization,
+          Accept: "application/json",
+          ...body === void 0 ? {} : { "Content-Type": "application/json" }
+        },
+        body: body === void 0 ? void 0 : JSON.stringify(body),
+        signal: AbortSignal.timeout(this.timeoutMs)
+      });
+    } catch (error) {
+      if (error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError")) {
+        throw new DataForSeoError("timeout", "DataForSEO did not respond in time. Retry later.");
+      }
+      throw new DataForSeoError("network", "DataForSEO could not be reached from the server.");
+    }
+    if (response.status === 401) {
+      throw new DataForSeoError(
+        "auth",
+        "DataForSEO rejected the credentials (HTTP 401). Check DATAFORSEO_LOGIN and the API password.",
+        40100,
+        401
+      );
+    }
+    if (response.status === 402) {
+      throw new DataForSeoError("payment", "DataForSEO requires payment (HTTP 402). Top up the balance.", 40200, 402);
+    }
+    if (response.status === 429) {
+      throw new DataForSeoError("rate_limit", "DataForSEO rate limit reached (HTTP 429). Retry shortly.", 40202, 429);
+    }
+    let envelope;
+    try {
+      envelope = await response.json();
+    } catch {
+      throw new DataForSeoError(
+        "malformed",
+        `DataForSEO returned an unreadable response (HTTP ${response.status}).`,
+        null,
+        response.status
+      );
+    }
+    if (!envelope || typeof envelope.status_code !== "number" || !Array.isArray(envelope.tasks)) {
+      throw new DataForSeoError(
+        "malformed",
+        `DataForSEO returned an unexpected response shape (HTTP ${response.status}).`,
+        null,
+        response.status
+      );
+    }
+    if (envelope.status_code !== 2e4) {
+      const error = describeStatus(envelope.status_code, String(envelope.status_message ?? ""));
+      throw new DataForSeoError(error.kind, error.message, envelope.status_code, response.status);
+    }
+    return envelope;
+  }
+};
+function firstTask(envelope) {
+  const task = envelope.tasks[0];
+  if (!task) {
+    throw new DataForSeoError("malformed", "DataForSEO returned no task in the response.");
+  }
+  if (task.status_code !== 2e4) {
+    throw describeStatus(task.status_code, String(task.status_message ?? ""));
+  }
+  return task;
+}
+function envelopeCost(envelope) {
+  const cost = Number(envelope.cost);
+  return Number.isFinite(cost) && cost >= 0 ? cost : 0;
+}
+
+// server/dataforseo/service.ts
+import { createHash as createHash3, randomBytes as randomBytes3 } from "node:crypto";
+import { z as z2 } from "zod";
+
+// server/dataforseo/config.ts
+var TARGET_DOMAIN = "envodkingdom.net";
+var COUNTRY_LOCATIONS = {
+  saudiArabia: { code: 2682, name: "Saudi Arabia", iso: "SA" },
+  unitedArabEmirates: { code: 2784, name: "United Arab Emirates", iso: "AE" },
+  bahrain: { code: 2048, name: "Bahrain", iso: "BH" },
+  kuwait: { code: 2414, name: "Kuwait", iso: "KW" },
+  qatar: { code: 2634, name: "Qatar", iso: "QA" },
+  oman: { code: 2512, name: "Oman", iso: "OM" }
+};
+var PRIMARY_LOCATION_CODE = COUNTRY_LOCATIONS.saudiArabia.code;
+var KSA_CITY_NAMES = ["Riyadh", "Jeddah", "Dammam", "Jubail", "Al Khobar", "Mecca", "Medina"];
+var DEFAULT_TRACKED_KEYWORDS = [
+  { keyword: "envod kingdom", language: "en", targetUrl: "/", service: "Brand" },
+  { keyword: "exhibition logistics saudi arabia", language: "en", targetUrl: "/services/exhibition-logistics", service: "Exhibition & Event Logistics" },
+  { keyword: "house moving and corporate relocation saudi arabia", language: "en", targetUrl: "/services/relocation", service: "House Moving & Relocation" },
+  { keyword: "customs clearance saudi arabia", language: "en", targetUrl: "/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "customs clearance riyadh", language: "en", targetUrl: "/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "customs clearance jeddah", language: "en", targetUrl: "/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "customs clearance dammam", language: "en", targetUrl: "/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "ata carnet saudi arabia", language: "en", targetUrl: "/services/ata-carnet", service: "ATA Carnet" },
+  { keyword: "gcc road freight saudi arabia", language: "en", targetUrl: "/services/gcc-transportation", service: "GCC Transportation" },
+  { keyword: "freight forwarder in saudi arabia", language: "en", targetUrl: "/services/freight-forwarding", service: "Freight Forwarding" },
+  { keyword: "air freight saudi arabia", language: "en", targetUrl: "/services/air-freight", service: "Air Freight" },
+  { keyword: "sea freight saudi arabia", language: "en", targetUrl: "/services/ocean-freight", service: "Sea Freight" },
+  { keyword: "logistics company in riyadh", language: "en", targetUrl: "/", service: "General logistics" },
+  { keyword: "\u0644\u0648\u062C\u0633\u062A\u064A\u0627\u062A \u0627\u0644\u0645\u0639\u0627\u0631\u0636 \u0648\u0627\u0644\u0641\u0639\u0627\u0644\u064A\u0627\u062A \u0641\u064A \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629", language: "ar", targetUrl: "/ar/services/exhibition-logistics", service: "Exhibition & Event Logistics" },
+  { keyword: "\u0646\u0642\u0644 \u0623\u062B\u0627\u062B \u0648\u0645\u0643\u0627\u062A\u0628 \u0641\u064A \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629", language: "ar", targetUrl: "/ar/services/relocation", service: "House Moving & Relocation" },
+  { keyword: "\u062E\u062F\u0645\u0627\u062A \u0627\u0644\u062A\u062E\u0644\u064A\u0635 \u0627\u0644\u062C\u0645\u0631\u0643\u064A \u0641\u064A \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629", language: "ar", targetUrl: "/ar/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "\u062A\u062E\u0644\u064A\u0635 \u062C\u0645\u0631\u0643\u064A \u0627\u0644\u0631\u064A\u0627\u0636", language: "ar", targetUrl: "/ar/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "\u062A\u062E\u0644\u064A\u0635 \u062C\u0645\u0631\u0643\u064A \u062C\u062F\u0629", language: "ar", targetUrl: "/ar/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "\u062A\u062E\u0644\u064A\u0635 \u062C\u0645\u0631\u0643\u064A \u0627\u0644\u062F\u0645\u0627\u0645", language: "ar", targetUrl: "/ar/services/customs-clearance", service: "Customs Clearance" },
+  { keyword: "\u062E\u062F\u0645\u0627\u062A \u0643\u0631\u0646\u064A\u0629 ATA \u0641\u064A \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629", language: "ar", targetUrl: "/ar/services/ata-carnet", service: "ATA Carnet" },
+  { keyword: "\u0627\u0644\u0646\u0642\u0644 \u0628\u064A\u0646 \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629 \u0648\u062F\u0648\u0644 \u0627\u0644\u062E\u0644\u064A\u062C", language: "ar", targetUrl: "/ar/services/gcc-transportation", service: "GCC Transportation" },
+  { keyword: "\u0648\u0643\u064A\u0644 \u0634\u062D\u0646 \u0641\u064A \u0627\u0644\u0633\u0639\u0648\u062F\u064A\u0629", language: "ar", targetUrl: "/ar/services/freight-forwarding", service: "Freight Forwarding" },
+  { keyword: "\u0634\u0631\u0643\u0629 \u0644\u0648\u062C\u0633\u062A\u064A\u0629 \u0641\u064A \u0627\u0644\u0631\u064A\u0627\u0636", language: "ar", targetUrl: "/ar", service: "General logistics" }
+];
+var DEFAULT_COMPETITORS = [
+  { name: "Four Winds Saudi Arabia", domain: "fourwinds-ksa.com", verification: "verified", note: 'Homepage title: "Four Winds Saudi Arabia | Moving & Logistics Services".' },
+  { name: "Glaube Logistics", domain: "glaubelogistics.com", verification: "verified", note: "Homepage title names Glaube Logistics." },
+  { name: "Falcon Freight", domain: "thefalconfreight.com", verification: "verified", note: 'Homepage title: "Falcon Freight | Trusted Freight Forwarding Experts in Saudi Arabia". Owner to confirm this is the intended Falcon.' },
+  { name: "Agility", domain: "agility.com", verification: "verified", note: "Global Agility group domain; site blocks automated fetches (Cloudflare). Owner to confirm a KSA-specific domain is not preferred." },
+  { name: "Maxon", domain: "maxon.sa", verification: "likely", note: "Referenced as Maxon logistics (maxon.sa / logistics.maxon.sa) in earlier repo competitor research; site rejects automated fetches." },
+  { name: "Expat Logistics", domain: "expatlogistics.com", verification: "likely", note: "Saudi pet-relocation business per homepage title; owner to confirm it is the intended Expat Logistics." },
+  { name: "BCC Logistics", domain: null, verification: "unconfirmed", note: "bcclogistics.com did not respond; owner to supply the official domain." },
+  { name: "Aegis", domain: null, verification: "unconfirmed", note: "aegislogistics.com is an unrelated US trucking firm; owner to supply the correct domain." },
+  { name: "Luxe Events", domain: null, verification: "unconfirmed", note: "No official KSA domain found; owner to supply it." }
+];
+function defaultTrackingConfig() {
+  return {
+    version: 1,
+    updatedAt: null,
+    targetDomain: TARGET_DOMAIN,
+    keywords: DEFAULT_TRACKED_KEYWORDS.map((keyword) => ({ ...keyword })),
+    competitors: DEFAULT_COMPETITORS.map((competitor) => ({ ...competitor }))
+  };
+}
+function activeCompetitorDomains(config2) {
+  return config2.competitors.filter((competitor) => competitor.domain && competitor.verification !== "unconfirmed").map((competitor) => competitor.domain);
+}
+var PRICING = {
+  serpLivePerPageUsd: 2e-3,
+  labsTaskUsd: 0.012,
+  labsItemUsd: 12e-5
+};
+var DEFAULT_MONTHLY_BUDGET_USD = 5;
+var SERP_DEPTH = 50;
+var MAX_SERP_TASKS_PER_BATCH = 8;
+var MAX_TRACKED_KEYWORDS = 100;
+var MAX_RANK_TASKS_PER_RUN = 200;
+var CACHE_TTL_MS = {
+  serp_rank: 12 * 60 * 60 * 1e3,
+  ranked_keywords: 7 * 24 * 60 * 60 * 1e3,
+  domain_overview: 7 * 24 * 60 * 60 * 1e3,
+  competitors_domain: 7 * 24 * 60 * 60 * 1e3,
+  keyword_overview: 14 * 24 * 60 * 60 * 1e3,
+  keyword_suggestions: 14 * 24 * 60 * 60 * 1e3,
+  related_keywords: 14 * 24 * 60 * 60 * 1e3,
+  locations: 30 * 24 * 60 * 60 * 1e3
+};
+
+// server/dataforseo/service.ts
+var BudgetExceededError = class extends Error {
+  constructor(estimate) {
+    super("dataforseo_budget_exceeded");
+    this.estimate = estimate;
+  }
+};
+var ConflictError = class extends Error {
+};
+var COUNTRY_CODES = new Set(Object.values(COUNTRY_LOCATIONS).map((country) => country.code));
+var COUNTRY_BY_CODE = new Map(
+  Object.values(COUNTRY_LOCATIONS).map((country) => [country.code, country])
+);
+var domainSchema = z2.string().trim().toLowerCase().transform((value) => value.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/.*$/, "")).pipe(z2.string().regex(/^(?=.{4,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/));
+var keywordSchema = z2.string().trim().min(1).max(80).transform((value) => value.toLowerCase());
+var languageSchema = z2.enum(["en", "ar"]);
+var countrySchema = z2.coerce.number().int().refine((code) => COUNTRY_CODES.has(code), {
+  message: "Unsupported country location"
+});
+var operationSchemas = {
+  ranked_keywords: z2.object({
+    target: domainSchema.default(TARGET_DOMAIN),
+    locationCode: countrySchema.default(PRIMARY_LOCATION_CODE),
+    languageCode: languageSchema.default("en"),
+    limit: z2.coerce.number().int().min(1).max(200).default(100)
+  }),
+  domain_overview: z2.object({
+    targets: z2.array(domainSchema).min(1).max(10),
+    locationCode: countrySchema.default(PRIMARY_LOCATION_CODE),
+    languageCode: languageSchema.default("en")
+  }),
+  competitors_domain: z2.object({
+    target: domainSchema.default(TARGET_DOMAIN),
+    locationCode: countrySchema.default(PRIMARY_LOCATION_CODE),
+    languageCode: languageSchema.default("en"),
+    limit: z2.coerce.number().int().min(1).max(50).default(20)
+  }),
+  keyword_overview: z2.object({
+    keywords: z2.array(keywordSchema).min(1).max(200),
+    locationCode: countrySchema.default(PRIMARY_LOCATION_CODE),
+    languageCode: languageSchema.default("en")
+  }),
+  keyword_suggestions: z2.object({
+    keyword: keywordSchema,
+    locationCode: countrySchema.default(PRIMARY_LOCATION_CODE),
+    languageCode: languageSchema.default("en"),
+    limit: z2.coerce.number().int().min(1).max(100).default(50)
+  }),
+  related_keywords: z2.object({
+    keyword: keywordSchema,
+    locationCode: countrySchema.default(PRIMARY_LOCATION_CODE),
+    languageCode: languageSchema.default("en"),
+    limit: z2.coerce.number().int().min(1).max(100).default(50)
+  })
+};
+var LABS_OPERATIONS = Object.keys(operationSchemas);
+var rankStartSchema = z2.object({
+  locationCodes: z2.array(z2.coerce.number().int().positive()).min(1).max(8).default([PRIMARY_LOCATION_CODE]),
+  device: z2.enum(["desktop", "mobile"]).default("desktop"),
+  keywords: z2.array(z2.string().trim().min(1).max(80)).max(MAX_TRACKED_KEYWORDS).optional()
+});
+var trackingConfigSchema = z2.object({
+  keywords: z2.array(
+    z2.object({
+      keyword: keywordSchema,
+      language: languageSchema,
+      targetUrl: z2.string().trim().regex(/^\/[a-z0-9/#_-]*$/i).max(200),
+      service: z2.string().trim().min(1).max(80)
+    })
+  ).min(1).max(MAX_TRACKED_KEYWORDS),
+  competitors: z2.array(
+    z2.object({
+      name: z2.string().trim().min(1).max(80),
+      domain: domainSchema.nullable(),
+      verification: z2.enum(["verified", "likely", "unconfirmed"]),
+      note: z2.string().trim().max(300).default("")
+    })
+  ).max(20)
+});
+var SOURCES = {
+  serp_rank: {
+    source: "DataForSEO SERP API \u2014 Google Organic (live, advanced)",
+    endpoint: "serp/google/organic/live/advanced"
+  },
+  ranked_keywords: {
+    source: "DataForSEO Labs \u2014 Google Ranked Keywords (DataForSEO database estimate)",
+    endpoint: "dataforseo_labs/google/ranked_keywords/live"
+  },
+  domain_overview: {
+    source: "DataForSEO Labs \u2014 Google Domain Rank Overview (DataForSEO database estimate)",
+    endpoint: "dataforseo_labs/google/domain_rank_overview/live"
+  },
+  competitors_domain: {
+    source: "DataForSEO Labs \u2014 Google Competitors Domain (DataForSEO database estimate)",
+    endpoint: "dataforseo_labs/google/competitors_domain/live"
+  },
+  keyword_overview: {
+    source: "DataForSEO Labs \u2014 Google Keyword Overview",
+    endpoint: "dataforseo_labs/google/keyword_overview/live"
+  },
+  keyword_suggestions: {
+    source: "DataForSEO Labs \u2014 Google Keyword Suggestions",
+    endpoint: "dataforseo_labs/google/keyword_suggestions/live"
+  },
+  related_keywords: {
+    source: "DataForSEO Labs \u2014 Google Related Keywords",
+    endpoint: "dataforseo_labs/google/related_keywords/live"
+  }
+};
+var ESTIMATE_NOTE = "Third-party DataForSEO data for the stated location and language. It is not Google Search Console data; search volume and traffic are DataForSEO estimates.";
+function round(value, places = 4) {
+  const factor = 10 ** places;
+  return Math.round(value * factor) / factor;
+}
+function monthKey(time) {
+  return new Date(time).toISOString().slice(0, 7);
+}
+function hashParams(value) {
+  return createHash3("sha256").update(JSON.stringify(value)).digest("hex").slice(0, 40);
+}
+function num(value) {
+  const parsed = typeof value === "number" ? value : typeof value === "string" ? Number(value) : NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+function str(value) {
+  return typeof value === "string" && value.trim() ? value : null;
+}
+function record(value) {
+  return value && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
+function list(value) {
+  return Array.isArray(value) ? value : [];
+}
+var GOOGLE_HOST = /(^|\.)google\.[a-z.]{2,}$/i;
+var GOOGLE_REDIRECT_PATH = /^\/(goto|url|aclk|imgres)(\/|$)/i;
+function hostOf(value) {
+  if (!value) return null;
+  const candidate = value.trim().split(/\s+[›>]\s*|\s/)[0] ?? "";
+  try {
+    const url = new URL(/^[a-z][a-z0-9+.-]*:\/\//i.test(candidate) ? candidate : `https://${candidate}`);
+    return /^[a-z0-9.-]+\.[a-z]{2,63}$/i.test(url.hostname) ? url.hostname.toLowerCase() : null;
+  } catch {
+    return null;
+  }
+}
+function resolveResultHost(item) {
+  const rawUrl = str(item.url);
+  let wrapped = false;
+  if (rawUrl) {
+    try {
+      const url = new URL(rawUrl);
+      if (GOOGLE_HOST.test(url.hostname) && GOOGLE_REDIRECT_PATH.test(url.pathname)) {
+        wrapped = true;
+        for (const key of ["url", "q", "adurl"]) {
+          const embedded = hostOf(url.searchParams.get(key));
+          const value = url.searchParams.get(key) ?? "";
+          if (embedded && /^https?:\/\//i.test(value) && !GOOGLE_HOST.test(embedded)) return embedded;
+        }
+      } else if (/^https?:$/.test(url.protocol)) {
+        return url.hostname.toLowerCase();
+      }
+    } catch {
+    }
+  }
+  const domain = hostOf(str(item.domain));
+  if (domain && !(wrapped && GOOGLE_HOST.test(domain))) return domain;
+  const breadcrumb = hostOf(str(item.breadcrumb));
+  if (breadcrumb && !GOOGLE_HOST.test(breadcrumb)) return breadcrumb;
+  return null;
+}
+function matchesDomain(domain, target) {
+  if (!domain) return false;
+  const normalized = domain.toLowerCase().replace(/^www\./, "");
+  return normalized === target || normalized.endsWith(`.${target}`);
+}
+function normalizeDistribution(value) {
+  const metrics = record(value);
+  if (!Object.keys(metrics).length) return null;
+  const pick = (key) => num(metrics[key]) ?? 0;
+  const pos31to40 = pick("pos_31_40");
+  const pos41to50 = pick("pos_41_50");
+  const pos51to100 = pick("pos_51_60") + pick("pos_61_70") + pick("pos_71_80") + pick("pos_81_90") + pick("pos_91_100");
+  return {
+    pos_1: pick("pos_1"),
+    pos_2_3: pick("pos_2_3"),
+    pos_4_10: pick("pos_4_10"),
+    pos_11_20: pick("pos_11_20"),
+    pos_21_30: pick("pos_21_30"),
+    pos_31_40: pos31to40,
+    pos_41_50: pos41to50,
+    pos_51_100: pos51to100,
+    count: pick("count"),
+    estimatedTraffic: num(metrics.etv)
+  };
+}
+function normalizeKeywordItem(item) {
+  const source = record(item);
+  const keywordData = Object.keys(record(source.keyword_data)).length ? record(source.keyword_data) : source;
+  const keyword = str(keywordData.keyword);
+  if (!keyword) return null;
+  const info = record(keywordData.keyword_info);
+  const properties = record(keywordData.keyword_properties);
+  const intent = record(keywordData.search_intent_info);
+  const serpInfo = record(keywordData.serp_info);
+  const ranked = record(record(source.ranked_serp_element).serp_item);
+  return {
+    keyword,
+    searchVolume: num(info.search_volume),
+    competition: num(info.competition),
+    competitionLevel: str(info.competition_level),
+    cpcUsd: num(info.cpc),
+    keywordDifficulty: num(properties.keyword_difficulty),
+    mainIntent: str(intent.main_intent),
+    serpFeatures: list(serpInfo.serp_item_types).filter((type) => typeof type === "string"),
+    monthlySearches: list(info.monthly_searches).map((entry) => record(entry)).map((entry) => ({
+      year: num(entry.year) ?? 0,
+      month: num(entry.month) ?? 0,
+      searchVolume: num(entry.search_volume)
+    })).filter((entry) => entry.year > 0).slice(0, 24),
+    ...Object.keys(ranked).length ? {
+      rankGroup: num(ranked.rank_group),
+      rankedUrl: str(ranked.url),
+      estimatedTraffic: num(ranked.etv)
+    } : {}
+  };
+}
+function normalizeSerp(result, options) {
+  const data = record(result);
+  const organic = list(data.items).map((item) => record(item)).filter((item) => item.type === "organic");
+  const resolved = organic.map((item) => ({ item, host: resolveResultHost(item) }));
+  const envod = resolved.find((entry) => matchesDomain(entry.host, options.target))?.item;
+  const competitors = {};
+  for (const competitor of options.competitors) {
+    const hit = resolved.find((entry) => matchesDomain(entry.host, competitor))?.item;
+    competitors[competitor] = hit ? num(hit.rank_group) : null;
+  }
+  const unresolvedResults = resolved.filter((entry) => !entry.host).length;
+  return {
+    organicResults: organic.length,
+    unresolvedResults,
+    position: envod ? num(envod.rank_group) : null,
+    rankAbsolute: envod ? num(envod.rank_absolute) : null,
+    rankedUrl: envod ? str(envod.url) : null,
+    competitors,
+    topDomains: resolved.slice(0, 10).map(({ item, host }) => ({
+      position: num(item.rank_group) ?? 0,
+      domain: host ?? "unresolved (Google redirect link)",
+      url: str(item.url) ?? "",
+      title: str(item.title),
+      breadcrumb: str(item.breadcrumb)
+    })),
+    serpFeatures: list(data.item_types).filter((type) => typeof type === "string"),
+    seResultsCount: num(data.se_results_count)
+  };
+}
+function seriesKey(keyword, locationCode, device) {
+  return `${keyword}|${locationCode}|${device}`;
+}
+function locationLabel(code, locations) {
+  return locations.find((location) => location.code === code)?.name ?? COUNTRY_BY_CODE.get(code)?.name ?? String(code);
+}
+var DataForSeoService = class {
+  constructor(options) {
+    this.options = options;
+    this.env = options.env ?? process.env;
+    this.fetchImpl = options.fetchImpl ?? fetch;
+    this.now = options.now ?? Date.now;
+  }
+  env;
+  fetchImpl;
+  now;
+  inFlight = /* @__PURE__ */ new Map();
+  runLocks = /* @__PURE__ */ new Set();
+  ledgerQueue = Promise.resolve();
+  statusCache = null;
+  get configured() {
+    return readCredentials(this.env) !== null;
+  }
+  get storageKind() {
+    return this.options.store?.kind ?? "unavailable";
+  }
+  get monthlyBudgetUsd() {
+    const configured = Number(this.env.DATAFORSEO_MONTHLY_BUDGET_USD);
+    return Number.isFinite(configured) && configured >= 0 ? configured : DEFAULT_MONTHLY_BUDGET_USD;
+  }
+  client() {
+    const credentials = readCredentials(this.env);
+    if (!credentials) {
+      throw new DataForSeoError(
+        "not_configured",
+        "DataForSEO is not configured. Add DATAFORSEO_LOGIN and DATAFORSEO_PASSWORD to the server environment."
+      );
+    }
+    return new DataForSeoClient(credentials, this.fetchImpl);
+  }
+  store() {
+    const store = this.options.store;
+    if (!store) {
+      throw new DataForSeoError(
+        "not_configured",
+        "Private storage for DataForSEO results is not configured (Vercel Blob token missing)."
+      );
+    }
+    return store;
+  }
+  log(event, message) {
+    this.options.log?.(event, message);
+  }
+  // ---------------------------------------------------------------- budget
+  async readLedger(time = this.now()) {
+    const month = monthKey(time);
+    const ledger = await this.store().read(`usage/${month}.json`);
+    return ledger ?? { month, spentUsd: 0, paidRequests: 0, entries: [] };
+  }
+  async budget() {
+    const ledger = await this.readLedger();
+    const monthlyBudgetUsd = this.monthlyBudgetUsd;
+    return {
+      month: ledger.month,
+      monthlyBudgetUsd,
+      spentUsd: round(ledger.spentUsd),
+      remainingUsd: round(Math.max(0, monthlyBudgetUsd - ledger.spentUsd)),
+      paidRequests: ledger.paidRequests
+    };
+  }
+  recordUsage(entry) {
+    const next = this.ledgerQueue.then(async () => {
+      const ledger = await this.readLedger(Date.parse(entry.at));
+      ledger.entries.push(entry);
+      if (ledger.entries.length > 2e3) ledger.entries.splice(0, ledger.entries.length - 2e3);
+      ledger.spentUsd = round(ledger.spentUsd + entry.actualUsd, 6);
+      ledger.paidRequests += 1;
+      await this.store().write(`usage/${ledger.month}.json`, ledger);
+    });
+    this.ledgerQueue = next.catch(() => void 0);
+    return next;
+  }
+  async usage() {
+    const ledger = await this.readLedger();
+    const budget = await this.budget();
+    const byOperation = /* @__PURE__ */ new Map();
+    for (const entry of ledger.entries) {
+      const current = byOperation.get(entry.operation) ?? { operation: entry.operation, requests: 0, actualUsd: 0 };
+      current.requests += 1;
+      current.actualUsd = round(current.actualUsd + entry.actualUsd, 6);
+      byOperation.set(entry.operation, current);
+    }
+    return {
+      ...budget,
+      byOperation: [...byOperation.values()].sort((a, b) => b.actualUsd - a.actualUsd),
+      recent: ledger.entries.slice(-25).reverse()
+    };
+  }
+  async assertBudget(estimate) {
+    const budget = await this.budget();
+    const full = {
+      ...estimate,
+      estimatedUsd: round(estimate.estimatedUsd),
+      withinBudget: estimate.estimatedUsd <= budget.remainingUsd + 1e-9,
+      budget
+    };
+    return full;
+  }
+  /** Execute one paid DataForSEO POST, recording the actual cost reported by the provider. */
+  async paidPost(operation, endpoint, task, estimatedUsd) {
+    const budget = await this.budget();
+    if (estimatedUsd > budget.remainingUsd + 1e-9) {
+      throw new BudgetExceededError({
+        operation,
+        requests: 1,
+        estimatedUsd,
+        cachedRequests: 0,
+        basis: "Single request",
+        withinBudget: false,
+        budget
+      });
+    }
+    const at = new Date(this.now()).toISOString();
+    try {
+      const envelope = await this.client().post(endpoint, task);
+      const actualUsd = envelopeCost(envelope);
+      await this.recordUsage({
+        at,
+        operation,
+        endpoint,
+        estimatedUsd: round(estimatedUsd, 6),
+        actualUsd,
+        statusCode: envelope.tasks[0]?.status_code ?? envelope.status_code,
+        ok: envelope.tasks[0]?.status_code === 2e4
+      });
+      this.log({ operation, endpoint, costUsd: actualUsd, taskStatus: envelope.tasks[0]?.status_code }, "DataForSEO request completed");
+      return envelope;
+    } catch (error) {
+      if (error instanceof DataForSeoError) {
+        this.log({ operation, endpoint, kind: error.kind, statusCode: error.statusCode }, "DataForSEO request failed");
+      }
+      throw error;
+    }
+  }
+  // ---------------------------------------------------------------- status
+  async status(force = false) {
+    const time = this.now();
+    if (!force && this.statusCache && this.statusCache.expiresAt > time) return this.statusCache.value;
+    let budget;
+    try {
+      budget = await this.budget();
+    } catch {
+      budget = {
+        month: monthKey(time),
+        monthlyBudgetUsd: this.monthlyBudgetUsd,
+        spentUsd: 0,
+        remainingUsd: 0,
+        paidRequests: 0
+      };
+    }
+    const base = {
+      configured: this.configured,
+      connected: false,
+      checkedAt: new Date(time).toISOString(),
+      error: null,
+      errorCode: null,
+      account: null,
+      budget,
+      storage: this.storageKind
+    };
+    if (!base.configured) {
+      base.error = "Not configured: DATAFORSEO_LOGIN and DATAFORSEO_PASSWORD are not set on the server.";
+      return base;
+    }
+    try {
+      const envelope = await this.client().get("appendix/user_data");
+      const task = firstTask(envelope);
+      const account = record(task.result?.[0]);
+      const money = record(account.money);
+      const limits = record(money.limits);
+      base.connected = true;
+      base.account = {
+        balanceUsd: num(money.balance),
+        totalDepositedUsd: num(money.total),
+        dailySpendLimitUsd: num(record(limits.day).total) ?? num(limits.day)
+      };
+    } catch (error) {
+      base.connected = false;
+      base.error = error instanceof DataForSeoError ? error.message : "DataForSEO status could not be checked.";
+      base.errorCode = error instanceof DataForSeoError ? error.statusCode : null;
+    }
+    this.statusCache = { value: base, expiresAt: time + 6e4 };
+    return base;
+  }
+  // ---------------------------------------------------------------- config
+  async trackingConfig() {
+    return await this.store().read("config.json") ?? defaultTrackingConfig();
+  }
+  async saveTrackingConfig(input) {
+    const parsed = trackingConfigSchema.parse(input);
+    const unique = new Map(parsed.keywords.map((keyword) => [`${keyword.language}|${keyword.keyword}`, keyword]));
+    const config2 = {
+      version: 1,
+      updatedAt: new Date(this.now()).toISOString(),
+      targetDomain: TARGET_DOMAIN,
+      keywords: [...unique.values()],
+      competitors: parsed.competitors.map((competitor) => ({
+        ...competitor,
+        verification: competitor.domain ? competitor.verification : "unconfirmed"
+      }))
+    };
+    await this.store().write("config.json", config2);
+    return config2;
+  }
+  // ---------------------------------------------------------------- locations (free)
+  async locations(refresh = false) {
+    const cached = await this.store().read("locations.json");
+    if (!refresh && cached && Date.parse(cached.retrievedAt) + CACHE_TTL_MS.locations > this.now()) return cached;
+    const client = this.client();
+    const serp = firstTask(await client.get("serp/google/locations/sa"));
+    const serpLocations = list(serp.result).map((entry) => record(entry)).map((entry) => ({
+      code: num(entry.location_code) ?? 0,
+      name: str(entry.location_name) ?? "",
+      type: str(entry.location_type) ?? "",
+      countryIso: str(entry.country_iso_code) ?? ""
+    })).filter(
+      (location) => location.code > 0 && (location.code === PRIMARY_LOCATION_CODE || location.type === "City" && KSA_CITY_NAMES.some((city) => location.name.toLowerCase().startsWith(`${city.toLowerCase()},`)))
+    );
+    if (!serpLocations.some((location) => location.code === PRIMARY_LOCATION_CODE)) {
+      serpLocations.unshift({ code: PRIMARY_LOCATION_CODE, name: "Saudi Arabia", type: "Country", countryIso: "SA" });
+    }
+    const labs = firstTask(await client.get("dataforseo_labs/locations_and_languages"));
+    const labsLocations = list(labs.result).map((entry) => record(entry)).filter((entry) => COUNTRY_CODES.has(num(entry.location_code) ?? -1)).map((entry) => ({
+      code: num(entry.location_code) ?? 0,
+      name: str(entry.location_name) ?? "",
+      languages: list(entry.available_languages).map((language) => str(record(language).language_code)).filter((code) => Boolean(code))
+    }));
+    const document = {
+      retrievedAt: new Date(this.now()).toISOString(),
+      serpLocations,
+      labsLocations
+    };
+    await this.store().write("locations.json", document);
+    return document;
+  }
+  // ---------------------------------------------------------------- Labs operations
+  estimateLabs(operation, params) {
+    const parsed = operationSchemas[operation].parse(params);
+    const perTask = PRICING.labsTaskUsd;
+    const perItem = PRICING.labsItemUsd;
+    switch (operation) {
+      case "domain_overview": {
+        const targets = parsed.targets.length;
+        return { requests: targets, estimatedUsd: targets * (perTask + perItem), basis: `${targets} \xD7 ($0.012 task + $0.00012 item)` };
+      }
+      case "keyword_overview": {
+        const keywords = parsed.keywords.length;
+        return { requests: 1, estimatedUsd: perTask + keywords * perItem, basis: `$0.012 task + ${keywords} \xD7 $0.00012` };
+      }
+      default: {
+        const limit = Number(parsed.limit ?? 100);
+        return { requests: 1, estimatedUsd: perTask + limit * perItem, basis: `$0.012 task + up to ${limit} \xD7 $0.00012` };
+      }
+    }
+  }
+  labsTask(operation, parsed, target) {
+    const common = { location_code: parsed.locationCode, language_code: parsed.languageCode };
+    switch (operation) {
+      case "ranked_keywords":
+        return { ...common, target: parsed.target, limit: parsed.limit, item_types: ["organic"], load_rank_absolute: true };
+      case "domain_overview":
+        return { ...common, target };
+      case "competitors_domain":
+        return { ...common, target: parsed.target, limit: parsed.limit, item_types: ["organic"], exclude_top_domains: true };
+      case "keyword_overview":
+        return { ...common, keywords: parsed.keywords, include_serp_info: true };
+      case "keyword_suggestions":
+        return { ...common, keyword: parsed.keyword, limit: parsed.limit, include_seed_keyword: true, include_serp_info: true };
+      case "related_keywords":
+        return { ...common, keyword: parsed.keyword, limit: parsed.limit, depth: 1, include_seed_keyword: true, include_serp_info: true };
+    }
+  }
+  normalizeLabs(operation, results) {
+    const first = record(results[0]);
+    switch (operation) {
+      case "ranked_keywords":
+        return {
+          target: str(first.target),
+          totalCount: num(first.total_count),
+          distribution: normalizeDistribution(record(first.metrics).organic),
+          keywords: list(first.items).map(normalizeKeywordItem).filter(Boolean)
+        };
+      case "domain_overview":
+        return results.map((result) => {
+          const item = record(list(record(result).items)[0]);
+          return { domain: str(record(result).target) ?? "", organic: normalizeDistribution(record(item.metrics).organic) };
+        });
+      case "competitors_domain":
+        return list(first.items).map((entry) => {
+          const item = record(entry);
+          const full = record(record(item.full_domain_metrics).organic);
+          return {
+            domain: str(item.domain) ?? "",
+            avgPosition: num(item.avg_position),
+            intersections: num(item.intersections),
+            organicKeywords: num(full.count),
+            estimatedTraffic: num(full.etv)
+          };
+        });
+      default:
+        return {
+          seedKeyword: str(first.seed_keyword),
+          keywords: list(first.items).map(normalizeKeywordItem).filter(Boolean)
+        };
+    }
+  }
+  async estimateOperation(operation, params) {
+    const estimate = this.estimateLabs(operation, params);
+    const parsed = operationSchemas[operation].parse(params);
+    const cached = await this.store().read(`cache/${operation}/${hashParams(parsed)}.json`);
+    const fresh = cached && cached.expiresAt > this.now();
+    return this.assertBudget({
+      operation,
+      requests: fresh ? 0 : estimate.requests,
+      estimatedUsd: fresh ? 0 : estimate.estimatedUsd,
+      cachedRequests: fresh ? estimate.requests : 0,
+      basis: fresh ? "Served from cache (no charge)" : estimate.basis
+    });
+  }
+  async runOperation(operation, params, refresh = false) {
+    const parsed = operationSchemas[operation].parse(params);
+    const cacheKey = `cache/${operation}/${hashParams(parsed)}.json`;
+    const pending = this.inFlight.get(cacheKey);
+    if (pending) return pending;
+    const work = (async () => {
+      const store = this.store();
+      if (!refresh) {
+        const cached = await store.read(cacheKey);
+        if (cached && cached.expiresAt > this.now()) {
+          return { operation, meta: { ...cached.meta, cached: true, costUsd: 0 }, data: cached.data };
+        }
+      }
+      const estimate = this.estimateLabs(operation, parsed);
+      const budget = await this.budget();
+      if (estimate.estimatedUsd > budget.remainingUsd + 1e-9) {
+        throw new BudgetExceededError({ operation, ...estimate, cachedRequests: 0, withinBudget: false, budget });
+      }
+      const { endpoint, source } = SOURCES[operation];
+      const results = [];
+      let costUsd = 0;
+      const targets = operation === "domain_overview" ? parsed.targets : [void 0];
+      for (const target of targets) {
+        const envelope = await this.paidPost(
+          operation,
+          endpoint,
+          this.labsTask(operation, parsed, target),
+          estimate.estimatedUsd / targets.length
+        );
+        costUsd += envelopeCost(envelope);
+        const task = firstTask(envelope);
+        results.push(...task.result ?? []);
+      }
+      const locationCode = Number(parsed.locationCode);
+      const meta = {
+        source,
+        endpoint,
+        retrievedAt: new Date(this.now()).toISOString(),
+        locationCode,
+        locationName: COUNTRY_BY_CODE.get(locationCode)?.name ?? null,
+        languageCode: String(parsed.languageCode),
+        device: null,
+        costUsd: round(costUsd, 6),
+        cached: false,
+        notes: [ESTIMATE_NOTE]
+      };
+      const data = this.normalizeLabs(operation, results);
+      await store.write(cacheKey, {
+        storedAt: meta.retrievedAt,
+        expiresAt: this.now() + CACHE_TTL_MS[operation],
+        meta,
+        data
+      });
+      return { operation, meta, data };
+    })();
+    this.inFlight.set(cacheKey, work);
+    try {
+      return await work;
+    } finally {
+      this.inFlight.delete(cacheKey);
+    }
+  }
+  // ---------------------------------------------------------------- rank tracking (SERP API)
+  serpEstimatePerTask() {
+    return SERP_DEPTH / 10 * PRICING.serpLivePerPageUsd;
+  }
+  async serpRank(keyword, locationCode, locationName, device, competitors) {
+    const params = { keyword: keyword.keyword, language: keyword.language, locationCode, device, depth: SERP_DEPTH, parser: 2 };
+    const cacheKey = `cache/serp_rank/${hashParams(params)}.json`;
+    const store = this.store();
+    const cached = await store.read(cacheKey);
+    if (cached && cached.expiresAt > this.now()) {
+      const competitorPositions = Object.fromEntries(
+        competitors.map((domain) => [domain, cached.data.competitors[domain] ?? null])
+      );
+      return { ...cached.data, targetUrl: keyword.targetUrl, competitors: competitorPositions, cached: true, costUsd: 0 };
+    }
+    const post = () => this.paidPost(
+      "serp_rank",
+      SOURCES.serp_rank.endpoint,
+      {
+        keyword: keyword.keyword,
+        location_code: locationCode,
+        language_code: keyword.language,
+        device,
+        os: device === "mobile" ? "android" : "windows",
+        depth: SERP_DEPTH
+      },
+      this.serpEstimatePerTask()
+    );
+    let envelope = await post();
+    let task;
+    try {
+      task = firstTask(envelope);
+    } catch (error) {
+      if (!(error instanceof DataForSeoError && error.statusCode !== null && TRANSIENT_TASK_CODES.has(error.statusCode))) throw error;
+      envelope = await post();
+      task = firstTask(envelope);
+    }
+    const normalized = normalizeSerp(task.result?.[0], { target: TARGET_DOMAIN, competitors });
+    const result = {
+      keyword: keyword.keyword,
+      language: keyword.language,
+      targetUrl: keyword.targetUrl,
+      locationCode,
+      locationName,
+      device,
+      depth: SERP_DEPTH,
+      ...normalized,
+      status: "ok",
+      error: null,
+      // Never report a confirmed "not ranked" when some result destinations could not be read.
+      ...normalized.position === null && (normalized.unresolvedResults ?? 0) > 0 ? {
+        positionUnconfirmed: true,
+        positionNote: `ENVOD was not found among the ${(normalized.organicResults ?? 0) - (normalized.unresolvedResults ?? 0)} readable results; ${normalized.unresolvedResults} of ${normalized.organicResults} organic results were Google redirect links without a readable destination, so ENVOD's position cannot be fully confirmed from this snapshot.`
+      } : { positionUnconfirmed: false, positionNote: null },
+      retrievedAt: new Date(this.now()).toISOString(),
+      costUsd: envelopeCost(envelope),
+      cached: false
+    };
+    await store.write(cacheKey, {
+      storedAt: result.retrievedAt,
+      expiresAt: this.now() + CACHE_TTL_MS.serp_rank,
+      meta: this.serpMeta(result.retrievedAt, locationCode, locationName, keyword.language, device, result.costUsd),
+      data: result
+    });
+    return result;
+  }
+  serpMeta(retrievedAt, locationCode, locationName, languageCode, device, costUsd) {
+    return {
+      ...SOURCES.serp_rank,
+      retrievedAt,
+      locationCode,
+      locationName,
+      languageCode,
+      device,
+      costUsd: round(costUsd, 6),
+      cached: false,
+      notes: [
+        `Live Google results captured by DataForSEO at depth ${SERP_DEPTH}. Position = organic rank_group; "not found" means outside the top ${SERP_DEPTH}. A single SERP snapshot, not Search Console average position.`
+      ]
+    };
+  }
+  async knownLocations() {
+    const cached = await this.store().read("locations.json");
+    const fromCache = cached?.serpLocations ?? [];
+    const countries = Object.values(COUNTRY_LOCATIONS).map((country) => ({
+      code: country.code,
+      name: country.name,
+      type: "Country",
+      countryIso: country.iso
+    }));
+    return [...countries, ...fromCache.filter((location) => !COUNTRY_CODES.has(location.code))];
+  }
+  async estimateRankCheck(input) {
+    const plan = await this.planRankRun(input);
+    const estimate = await this.assertBudget({
+      operation: "rank_check",
+      requests: plan.tasks.length,
+      estimatedUsd: plan.tasks.length * this.serpEstimatePerTask(),
+      cachedRequests: 0,
+      basis: `${plan.tasks.length} SERP request(s) \xD7 depth ${SERP_DEPTH} (${SERP_DEPTH / 10} pages \xD7 ~$${PRICING.serpLivePerPageUsd}); cached results within 12 hours are free`
+    });
+    return { ...estimate, tasks: plan.tasks.length };
+  }
+  async planRankRun(input) {
+    const parsed = rankStartSchema.parse(input);
+    const config2 = await this.trackingConfig();
+    const locations = await this.knownLocations();
+    const selected = [...new Set(parsed.locationCodes)].map((code) => {
+      const location = locations.find((candidate) => candidate.code === code);
+      if (!location) {
+        throw new z2.ZodError([
+          { code: "custom", path: ["locationCodes"], message: `Unknown location ${code}. Load locations first.`, input: code }
+        ]);
+      }
+      return location;
+    });
+    const wanted = parsed.keywords ? new Set(parsed.keywords.map((keyword) => keyword.toLowerCase())) : null;
+    const keywords = config2.keywords.filter((keyword) => !wanted || wanted.has(keyword.keyword));
+    const tasks = selected.flatMap(
+      (location) => keywords.map((keyword) => ({
+        keyword: keyword.keyword,
+        language: keyword.language,
+        targetUrl: keyword.targetUrl,
+        locationCode: location.code
+      }))
+    );
+    if (!tasks.length) throw new ConflictError("No tracked keywords match the request.");
+    if (tasks.length > MAX_RANK_TASKS_PER_RUN) {
+      throw new ConflictError(`A rank check is limited to ${MAX_RANK_TASKS_PER_RUN} keyword-location requests.`);
+    }
+    return { device: parsed.device, locations: selected, tasks };
+  }
+  async rankIndex() {
+    return await this.store().read("rank-index.json") ?? { runs: [] };
+  }
+  async saveRunSummary(summary) {
+    const index = await this.rankIndex();
+    const position = index.runs.findIndex((run) => run.id === summary.id);
+    if (position >= 0) index.runs[position] = summary;
+    else index.runs.push(summary);
+    index.runs.sort((a, b) => a.startedAt.localeCompare(b.startedAt));
+    if (index.runs.length > 200) index.runs.splice(0, index.runs.length - 200);
+    await this.store().write("rank-index.json", index);
+  }
+  async startRankCheck(input) {
+    const plan = await this.planRankRun(input);
+    const estimate = await this.estimateRankCheck(input);
+    if (!estimate.withinBudget) throw new BudgetExceededError(estimate);
+    const index = await this.rankIndex();
+    const active = index.runs.find((run2) => !run2.completedAt && Date.parse(run2.startedAt) > this.now() - 30 * 6e4);
+    if (active) throw new ConflictError(`Rank check ${active.id} is still in progress. Continue or wait for it to finish.`);
+    const startedAt = new Date(this.now()).toISOString();
+    const run = {
+      id: `${startedAt.replace(/[:.]/g, "-")}-${randomBytes3(3).toString("hex")}`.toLowerCase(),
+      startedAt,
+      completedAt: null,
+      device: plan.device,
+      depth: SERP_DEPTH,
+      locations: plan.locations,
+      totalTasks: plan.tasks.length,
+      completedTasks: 0,
+      costUsd: 0,
+      tasks: plan.tasks,
+      results: []
+    };
+    await this.store().write(`rank-runs/${run.id}.json`, run);
+    const { tasks: _tasks, results: _results, ...summary } = run;
+    await this.saveRunSummary(summary);
+    return { run: summary, estimate };
+  }
+  async continueRankCheck(runId) {
+    if (!/^[a-z0-9-]{10,80}$/.test(runId)) throw new ConflictError("Unknown rank check.");
+    if (this.runLocks.has(runId)) throw new ConflictError("This rank check batch is already running.");
+    this.runLocks.add(runId);
+    try {
+      const store = this.store();
+      const run = await store.read(`rank-runs/${runId}.json`);
+      if (!run) throw new ConflictError("Unknown rank check.");
+      if (run.completedAt) {
+        const { tasks: _tasks2, results: _results2, ...summary2 } = run;
+        return summary2;
+      }
+      const config2 = await this.trackingConfig();
+      const competitors = activeCompetitorDomains(config2);
+      const batch = run.tasks.slice(run.results.length, run.results.length + MAX_SERP_TASKS_PER_BATCH);
+      const results = [];
+      let fatal = null;
+      for (let index = 0; index < batch.length; index += 4) {
+        const slice = batch.slice(index, index + 4);
+        const settled = await Promise.allSettled(
+          slice.map(
+            (task) => this.serpRank(task, task.locationCode, locationLabel(task.locationCode, run.locations), run.device, competitors)
+          )
+        );
+        settled.forEach((outcome, offset) => {
+          const task = slice[offset];
+          if (outcome.status === "fulfilled") {
+            results.push(outcome.value);
+            return;
+          }
+          const error = outcome.reason;
+          if (error instanceof BudgetExceededError || error instanceof DataForSeoError && ["auth", "payment", "not_configured", "rate_limit"].includes(error.kind)) {
+            fatal ??= error;
+            return;
+          }
+          results.push({
+            keyword: task.keyword,
+            language: task.language,
+            targetUrl: task.targetUrl,
+            locationCode: task.locationCode,
+            locationName: locationLabel(task.locationCode, run.locations),
+            device: run.device,
+            depth: SERP_DEPTH,
+            status: "error",
+            error: error instanceof DataForSeoError ? error.message : "The SERP request failed.",
+            position: null,
+            rankAbsolute: null,
+            rankedUrl: null,
+            competitors: {},
+            topDomains: [],
+            serpFeatures: [],
+            seResultsCount: null,
+            retrievedAt: new Date(this.now()).toISOString(),
+            costUsd: 0,
+            cached: false
+          });
+        });
+        if (fatal) break;
+      }
+      const contiguous = [];
+      for (const task of batch) {
+        const match = results.find(
+          (result) => result.keyword === task.keyword && result.locationCode === task.locationCode && result.language === task.language
+        );
+        if (!match) break;
+        contiguous.push(match);
+      }
+      run.results.push(...contiguous);
+      run.completedTasks = run.results.length;
+      run.costUsd = round(run.results.reduce((sum, result) => sum + result.costUsd, 0), 6);
+      if (run.results.length >= run.tasks.length) {
+        run.completedAt = new Date(this.now()).toISOString();
+        await this.appendSeries(run);
+      }
+      await store.write(`rank-runs/${run.id}.json`, run);
+      const { tasks: _tasks, results: _results, ...summary } = run;
+      await this.saveRunSummary(summary);
+      if (fatal) throw fatal;
+      return summary;
+    } finally {
+      this.runLocks.delete(runId);
+    }
+  }
+  async appendSeries(run) {
+    const series = await this.store().read("rank-series.json") ?? {};
+    for (const result of run.results) {
+      if (result.status !== "ok") continue;
+      const key = seriesKey(result.keyword, result.locationCode, result.device);
+      const points = series[key] ?? [];
+      points.push({ at: result.retrievedAt, position: result.position });
+      if (points.length > 120) points.splice(0, points.length - 120);
+      series[key] = points;
+    }
+    await this.store().write("rank-series.json", series);
+  }
+  async rankHistory() {
+    const store = this.store();
+    const index = await this.rankIndex();
+    const completed = index.runs.filter((run) => run.completedAt).sort((a, b) => b.startedAt.localeCompare(a.startedAt));
+    const empty = {
+      latestRun: null,
+      previousRun: null,
+      runs: index.runs.slice().reverse().slice(0, 30),
+      rows: [],
+      distribution: { tracked: 0, top3: 0, top4to10: 0, top11to20: 0, top21to50: 0, outsideTop50: 0, notFoundUnconfirmed: 0, improved: 0, declined: 0 },
+      byLocation: [],
+      competitors: [],
+      meta: null
+    };
+    const latestSummary = completed[0];
+    if (!latestSummary) return empty;
+    const latest = await store.read(`rank-runs/${latestSummary.id}.json`);
+    if (!latest) return empty;
+    const previousSummary = completed.slice(1).find((run) => run.device === latest.device) ?? null;
+    const previous = previousSummary ? await store.read(`rank-runs/${previousSummary.id}.json`) : null;
+    const series = await store.read("rank-series.json") ?? {};
+    const previousByKey = new Map(
+      (previous?.results ?? []).filter((result) => result.status === "ok").map((result) => [seriesKey(result.keyword, result.locationCode, result.device), result])
+    );
+    const rows = latest.results.map((result) => {
+      const key = seriesKey(result.keyword, result.locationCode, result.device);
+      const before = previousByKey.get(key);
+      let change;
+      let delta = null;
+      if (!before) change = result.position === null ? "not_ranked" : "no_previous";
+      else if (before.position === null && result.position === null) change = "not_ranked";
+      else if (before.position === null) change = "new";
+      else if (result.position === null) change = "lost";
+      else {
+        delta = before.position - result.position;
+        change = delta > 0 ? "improved" : delta < 0 ? "declined" : "unchanged";
+      }
+      return {
+        ...result,
+        previousPosition: before?.position ?? null,
+        change,
+        delta,
+        series: series[key] ?? []
+      };
+    });
+    const ok = rows.filter((row) => row.status === "ok");
+    const between = (min, max) => ok.filter((row) => row.position !== null && row.position >= min && row.position <= max).length;
+    const distribution = {
+      tracked: ok.length,
+      top3: between(1, 3),
+      top4to10: between(4, 10),
+      top11to20: between(11, 20),
+      top21to50: between(21, 50),
+      outsideTop50: ok.filter((row) => row.position === null && !row.positionUnconfirmed || (row.position ?? 0) > 50).length,
+      notFoundUnconfirmed: ok.filter((row) => row.position === null && row.positionUnconfirmed).length,
+      improved: ok.filter((row) => row.change === "improved" || row.change === "new").length,
+      declined: ok.filter((row) => row.change === "declined" || row.change === "lost").length
+    };
+    const average = (values) => values.length ? round(values.reduce((sum, value) => sum + value, 0) / values.length, 1) : null;
+    const byLocation = latest.locations.map((location) => {
+      const subset = ok.filter((row) => row.locationCode === location.code);
+      const ranked = subset.filter((row) => row.position !== null).map((row) => row.position);
+      return {
+        locationCode: location.code,
+        locationName: location.name,
+        tracked: subset.length,
+        top10: ranked.filter((position) => position <= 10).length,
+        ranked: ranked.length,
+        averagePosition: average(ranked)
+      };
+    });
+    const competitorDomains = [...new Set(ok.flatMap((row) => Object.keys(row.competitors)))];
+    const competitors = competitorDomains.map((domain) => {
+      const positions = ok.map((row) => row.competitors[domain]).filter((value) => typeof value === "number");
+      return {
+        domain,
+        top10: positions.filter((position) => position <= 10).length,
+        ranked: positions.length,
+        averagePosition: average(positions),
+        betterThanEnvod: ok.filter((row) => {
+          const theirs = row.competitors[domain];
+          return typeof theirs === "number" && (row.position === null || theirs < row.position);
+        }).length
+      };
+    });
+    const { tasks: _tasks, results: _results, ...latestRun } = latest;
+    return {
+      latestRun,
+      previousRun: previousSummary,
+      runs: empty.runs,
+      rows,
+      distribution,
+      byLocation,
+      competitors,
+      meta: this.serpMeta(
+        latest.completedAt ?? latest.startedAt,
+        latest.locations.length === 1 ? latest.locations[0].code : null,
+        latest.locations.map((location) => location.name).join(", "),
+        "en / ar (per keyword)",
+        latest.device,
+        latest.costUsd
+      )
+    };
+  }
+};
+
+// server/dataforseo/store.ts
+import { mkdir as mkdir2, readFile as readFile2, rename as rename2, writeFile as writeFile2 } from "node:fs/promises";
+import path3 from "node:path";
+import { get as get2, put as put2 } from "@vercel/blob";
+var KEY_PATTERN = /^[a-z0-9][a-z0-9/_.-]{0,200}\.json$/;
+function assertKey(key) {
+  if (!KEY_PATTERN.test(key) || key.includes("..")) {
+    throw new Error("dataforseo_store_invalid_key");
+  }
+}
+var STORE_PREFIX = "envod-private/dataforseo";
+var VercelBlobJsonStore = class {
+  constructor(token, blob = { get: get2, put: put2 }) {
+    this.token = token;
+    this.blob = blob;
+    if (!token.trim()) throw new Error("dataforseo_blob_token_missing");
+  }
+  kind = "vercel-blob";
+  async read(key) {
+    assertKey(key);
+    const result = await this.blob.get(`${STORE_PREFIX}/${key}`, {
+      access: "private",
+      token: this.token,
+      useCache: false
+    });
+    if (!result) return null;
+    if (result.statusCode !== 200 || !result.stream) {
+      throw new Error("dataforseo_blob_read_failed");
+    }
+    const raw = await new Response(result.stream).text();
+    return JSON.parse(raw);
+  }
+  async write(key, value) {
+    assertKey(key);
+    await this.blob.put(`${STORE_PREFIX}/${key}`, JSON.stringify(value), {
+      access: "private",
+      token: this.token,
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "application/json"
+    });
+  }
+};
+var LocalFileJsonStore = class {
+  constructor(directory) {
+    this.directory = directory;
+  }
+  kind = "local-file";
+  filePath(key) {
+    assertKey(key);
+    return path3.join(this.directory, ...key.split("/"));
+  }
+  async read(key) {
+    try {
+      return JSON.parse(await readFile2(this.filePath(key), "utf8"));
+    } catch (error) {
+      if (error.code === "ENOENT") return null;
+      throw error;
+    }
+  }
+  async write(key, value) {
+    const target = this.filePath(key);
+    await mkdir2(path3.dirname(target), { recursive: true });
+    const temporary = `${target}.${process.pid}.tmp`;
+    await writeFile2(temporary, JSON.stringify(value), { encoding: "utf8", mode: 384 });
+    await rename2(temporary, target);
+  }
+};
+
+// server/dataforseo/router.ts
+var moduleDirectory = path4.dirname(fileURLToPath2(import.meta.url));
+function defaultDataForSeoStore(env) {
+  const blobToken = env.BLOB_READ_WRITE_TOKEN?.trim();
+  if (blobToken) return new VercelBlobJsonStore(blobToken);
+  if (env.VERCEL === "1") return null;
+  return new LocalFileJsonStore(path4.resolve(moduleDirectory, "..", "..", ".private-data", "dataforseo"));
+}
+function sendError(res, status, message, extra = {}) {
+  res.status(status).json({ ok: false, error: message, ...extra });
+}
+function rateLimiter(limit, windowMs, now) {
+  const buckets = /* @__PURE__ */ new Map();
+  return (req, res, next) => {
+    const time = now();
+    const key = req.ip ?? "unknown";
+    let bucket = buckets.get(key);
+    if (!bucket || bucket.resetAt <= time) {
+      if (buckets.size > 2e3) buckets.clear();
+      bucket = { count: 0, resetAt: time + windowMs };
+      buckets.set(key, bucket);
+    }
+    if (bucket.count >= limit) {
+      res.setHeader("Retry-After", String(Math.max(1, Math.ceil((bucket.resetAt - time) / 1e3))));
+      sendError(res, 429, "Too many DataForSEO dashboard requests. Please wait and retry.");
+      return;
+    }
+    bucket.count += 1;
+    next();
+  };
+}
+var runSchema = z3.object({
+  operation: z3.enum(LABS_OPERATIONS),
+  params: z3.unknown().default({}),
+  refresh: z3.boolean().default(false),
+  confirm: z3.literal(true)
+});
+var estimateSchema = z3.object({
+  operation: z3.union([z3.enum(LABS_OPERATIONS), z3.literal("rank_check")]),
+  params: z3.unknown().default({})
+});
+function createDataForSeoRouter(options = {}) {
+  const env = options.env ?? process.env;
+  const now = options.now ?? Date.now;
+  const router = Router2();
+  let service = null;
+  const getService = () => {
+    service ??= new DataForSeoService({
+      env,
+      fetchImpl: options.fetchImpl,
+      now,
+      store: options.store === void 0 ? defaultDataForSeoStore(env) : options.store
+    });
+    return service;
+  };
+  const requireAdmin = (req, res, next) => {
+    const secret = env.SESSION_SECRET?.trim();
+    const session = getAdminSession(
+      req,
+      secret && secret.length >= 32 ? secret : void 0,
+      env.GSC_ADMIN_EMAIL?.trim().toLowerCase(),
+      now()
+    );
+    if (!session) {
+      sendError(res, 401, "Sign in with the authorized ENVOD administrator account to continue.");
+      return;
+    }
+    res.locals.adminEmail = session.email;
+    next();
+  };
+  const requireSameOrigin = (req, res, next) => {
+    if (!isTrustedMutationOrigin(req, env)) {
+      sendError(res, 403, "This request must come from the ENVOD KINGDOM site.");
+      return;
+    }
+    next();
+  };
+  const handle = (work) => async (req, res) => {
+    try {
+      const body = await work(req, res);
+      if (!res.headersSent) res.json(body);
+    } catch (error) {
+      if (error instanceof z3.ZodError) {
+        sendError(res, 400, "The request is invalid.", {
+          issues: error.issues.slice(0, 5).map((issue) => `${issue.path.join(".") || "request"}: ${issue.message}`)
+        });
+        return;
+      }
+      if (error instanceof BudgetExceededError) {
+        sendError(
+          res,
+          402,
+          `This request is estimated at $${error.estimate.estimatedUsd.toFixed(4)}, which exceeds the remaining monthly DataForSEO budget of $${error.estimate.budget.remainingUsd.toFixed(4)}.`,
+          { estimate: error.estimate }
+        );
+        return;
+      }
+      if (error instanceof ConflictError) {
+        sendError(res, 409, error.message);
+        return;
+      }
+      if (error instanceof DataForSeoError) {
+        const status = error.kind === "not_configured" ? 503 : error.kind === "payment" ? 402 : error.kind === "rate_limit" ? 429 : error.kind === "invalid_request" ? 400 : error.kind === "timeout" || error.kind === "network" ? 504 : 502;
+        sendError(res, status, error.message, { providerCode: error.statusCode, kind: error.kind });
+        return;
+      }
+      req.log?.error({ route: req.path }, "DataForSEO dashboard route failed");
+      sendError(res, 500, "The DataForSEO request could not be completed.");
+    }
+  };
+  router.use((_req, res, next) => {
+    res.setHeader("Cache-Control", "no-store");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-Robots-Tag", "noindex, nofollow");
+    next();
+  });
+  router.use(express2.json({ limit: "64kb", strict: true }));
+  router.use(requireAdmin);
+  router.use(rateLimiter(240, 5 * 6e4, now));
+  const paidLimiter = rateLimiter(60, 5 * 6e4, now);
+  router.get("/status", handle(async (req) => getService().status(req.query.refresh === "1")));
+  router.get("/usage", handle(async () => getService().usage()));
+  router.get("/config", handle(async () => getService().trackingConfig()));
+  router.put("/config", requireSameOrigin, handle(async (req) => getService().saveTrackingConfig(req.body)));
+  router.get("/locations", handle(async (req) => getService().locations(req.query.refresh === "1")));
+  router.get("/rank-history", handle(async () => getService().rankHistory()));
+  router.post(
+    "/estimate",
+    requireSameOrigin,
+    handle(async (req) => {
+      const parsed = estimateSchema.parse(req.body);
+      if (parsed.operation === "rank_check") return getService().estimateRankCheck(parsed.params);
+      return getService().estimateOperation(parsed.operation, parsed.params);
+    })
+  );
+  router.post(
+    "/run",
+    requireSameOrigin,
+    paidLimiter,
+    handle(async (req) => {
+      const parsed = runSchema.parse(req.body);
+      return getService().runOperation(parsed.operation, parsed.params, parsed.refresh);
+    })
+  );
+  router.post(
+    "/rank-check/start",
+    requireSameOrigin,
+    paidLimiter,
+    handle(async (req) => {
+      const body = z3.object({ confirm: z3.literal(true) }).passthrough().parse(req.body);
+      return getService().startRankCheck(body);
+    })
+  );
+  router.post(
+    "/rank-check/:runId/continue",
+    requireSameOrigin,
+    paidLimiter,
+    handle(async (req) => getService().continueRankCheck(String(req.params.runId)))
+  );
+  router.use((_req, res) => sendError(res, 404, "Unknown DataForSEO dashboard route."));
+  return router;
+}
+
 // server/search-console/vercel-function.ts
-var app = express2();
+var app = express3();
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
+app.use("/api/search-console/dataforseo", createDataForSeoRouter());
 app.use(
   "/api/search-console",
   createSearchConsoleRouter({

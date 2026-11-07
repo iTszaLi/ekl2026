@@ -80,7 +80,7 @@ export default function ServiceDetail() {
   const serviceHeading = serviceId === 11
     ? t("Exhibition & Event Logistics in Saudi Arabia", "لوجستيات المعارض والفعاليات في السعودية")
     : serviceId === 9
-      ? t("House Moving & Relocation in Riyadh", "نقل المنازل والأثاث في الرياض")
+      ? t("House Moving & Relocation in Riyadh, Jeddah, Dammam & Khobar", "نقل العفش والأثاث في الرياض وجدة والدمام والخبر")
     : serviceName;
   const serviceDesc = serviceId === 11
     ? t(
@@ -89,8 +89,8 @@ export default function ServiceDetail() {
       )
     : serviceId === 9
       ? t(
-          "Planning a home move in Riyadh? Send ENVOD KINGDOM your move type, approximate inventory, packing needs, preferred date and route. Building access and fragile or oversized items can also be noted. Provider availability, responsibilities and the requested scope are confirmed before booking.",
-          "هل تخطط لنقل منزلك أو أثاثك في الرياض؟ أرسل إلى إنفود كينغدوم نوع الانتقال وقائمة المنقولات التقريبية واحتياجات التغليف والموعد والمسار. ويمكنك أيضاً ذكر متطلبات دخول المبنى والقطع الحساسة أو كبيرة الحجم. يتم تأكيد توفر مقدم الخدمة والمسؤوليات والنطاق المطلوب قبل الحجز.",
+          "Planning a home move in Riyadh, Jeddah, Dammam or Khobar, or between Saudi cities? Send ENVOD KINGDOM your move type, approximate inventory, packing needs, preferred date and route. Building access and fragile or oversized items can also be noted. Provider availability, responsibilities and the requested scope are confirmed before booking.",
+          "هل تخطط لنقل منزلك أو أثاثك في الرياض أو جدة أو الدمام أو الخبر، أو بين المدن السعودية؟ أرسل إلى إنفود كينغدوم نوع الانتقال وقائمة المنقولات التقريبية واحتياجات التغليف والموعد والمسار. ويمكنك أيضاً ذكر متطلبات دخول المبنى والقطع الحساسة أو كبيرة الحجم. يتم تأكيد توفر مقدم الخدمة والمسؤوليات والنطاق المطلوب قبل الحجز.",
         )
     : isRtl ? service.descriptionAr : service.description;
   const heroImage = serviceId === 25 ? DOOR_TO_DOOR_IMAGE : serviceId ? SERVICE_IMAGES[serviceId] : undefined;
@@ -227,6 +227,40 @@ export default function ServiceDetail() {
                 </p>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Service areas (owner-verified cities/routes, crawlable static HTML) ── */}
+      {meta.serviceAreas && (
+        <section className="border-t border-white/6 py-16" aria-labelledby="service-areas-heading">
+          <div className={`container mx-auto px-4 max-w-3xl ${isRtl ? "text-right" : ""}`}>
+            <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-3">
+              {t("SERVICE AREAS", "مناطق الخدمة")}
+            </p>
+            <h2 id="service-areas-heading" className="text-2xl md:text-3xl font-black text-white mb-6">
+              {isRtl ? meta.serviceAreas.heading.ar : meta.serviceAreas.heading.en}
+            </h2>
+            <div className="space-y-4">
+              {meta.serviceAreas.intro.map((p, i) => (
+                <p key={i} className="text-white/60 text-base leading-relaxed">
+                  {isRtl ? p.ar : p.en}
+                </p>
+              ))}
+            </div>
+            <div className="mt-8 space-y-6">
+              {meta.serviceAreas.items.map((item, i) => (
+                <div key={i}>
+                  <h3 className="text-white font-bold text-lg mb-2">{isRtl ? item.heading.ar : item.heading.en}</h3>
+                  <p className="text-white/60 text-base leading-relaxed">{isRtl ? item.text.ar : item.text.en}</p>
+                </div>
+              ))}
+            </div>
+            {meta.serviceAreas.note && (
+              <p className="mt-8 text-white/48 text-sm leading-relaxed">
+                {isRtl ? meta.serviceAreas.note.ar : meta.serviceAreas.note.en}
+              </p>
+            )}
           </div>
         </section>
       )}

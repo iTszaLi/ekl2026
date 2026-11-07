@@ -69,12 +69,14 @@ test("Riyadh relocation content, metadata, internal services and optional move-a
   assert.ok(relocation.faq.length >= 4);
   assert.ok(!relocation.process.some((step) => /customs|الجمارك/i.test(`${step.en} ${step.ar}`)));
 
-  assert.equal(seoEn.title, "House Moving & Relocation in Riyadh | ENVOD KINGDOM");
+  assert.equal(seoEn.title, "House Moving in Riyadh, Jeddah & Dammam | ENVOD KINGDOM");
   assert.equal(seoEn.canonicalPath, "/services/relocation");
-  assert.match(seoEn.description, /home move in Riyadh/i);
-  assert.equal(seoAr.title, "نقل الأثاث والمنازل في الرياض | إنفود كينغدوم");
+  assert.match(seoEn.description, /House moving in Riyadh, Jeddah, Dammam and Khobar/);
+  assert.equal(seoAr.title, "نقل عفش في الرياض وجدة والدمام | إنفود كينغدوم");
   assert.equal(seoAr.canonicalPath, "/ar/services/relocation");
-  assert.match(seoAr.description, /نقل منزل في الرياض/);
+  assert.match(seoAr.description, /نقل عفش المنازل في الرياض وجدة والدمام والخبر/);
+  // Owner-confirmed coverage section and JSON-LD cities (2026-11-07).
+  assert.deepEqual(relocation.serviceAreas?.cities, ["Riyadh", "Jeddah", "Dammam", "Khobar"]);
 
   const accessField = enquiry?.fields.find((field) => field.id === "buildingAccess");
   assert.ok(accessField, "the relocation enquiry should offer an optional building-access field");

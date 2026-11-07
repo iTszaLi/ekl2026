@@ -83,7 +83,19 @@ export interface ServiceMeta {
   /** Optional entity-dense, definition-led overview body rendered as crawlable
    *  static HTML on the service page (used by non-pillar services for SEO/GEO/AEO). */
   overview?: BiText[];
+  /** Optional owner-verified coverage section (cities/routes the service is
+   *  actually performed in). Rendered after the overview as crawlable HTML. */
+  serviceAreas?: ServiceAreas;
   pillar?: ServicePillar;
+}
+
+export interface ServiceAreas {
+  heading: BiText;
+  intro: BiText[];
+  items: { heading: BiText; text: BiText }[];
+  note?: BiText;
+  /** Cities added to the Service JSON-LD areaServed (English names). */
+  cities?: string[];
 }
 
 export const SERVICE_META: Record<number, ServiceMeta> = {
@@ -495,11 +507,47 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
       { en: "House moving and furniture relocation in Riyadh can involve a local address change, a move between Saudi cities, or an international household-goods shipment. ENVOD KINGDOM reviews each enquiry by move type, inventory, packing requests, preferred date and route; available providers and the agreed scope must be confirmed before booking.", ar: "قد يشمل نقل المنازل والأثاث في الرياض انتقالاً داخل المدينة أو بين المدن السعودية أو شحنة أمتعة منزلية دولية. تراجع إنفود كينغدوم كل استفسار وفق نوع الانتقال وقائمة المنقولات واحتياجات التغليف والموعد والمسار؛ ويجب تأكيد مقدم الخدمة المتاح والنطاق المتفق عليه قبل الحجز." },
       { en: "For a useful first enquiry, describe the approximate home or office size, main furniture and carton count, fragile or oversized items, packing or dismantling requests, and building access such as stairs, lifts or parking restrictions. For international moves, import eligibility, customs paperwork, insurance terms and the responsibilities of each provider depend on the route and must be checked for that shipment.", ar: "لتقديم استفسار أولي مفيد، اذكر الحجم التقريبي للمنزل أو المكتب وأبرز قطع الأثاث وعدد الصناديق والقطع الحساسة أو كبيرة الحجم واحتياجات التغليف أو الفك ومتطلبات دخول المبنى مثل السلالم أو المصعد أو قيود المواقف. وفي الانتقالات الدولية، تعتمد أهلية الاستيراد والمستندات الجمركية وشروط التأمين ومسؤولية كل مقدم خدمة على المسار ويجب التحقق منها لكل شحنة." },
     ],
+    // Cities confirmed by the owner on 2026-11-07 ("Yes, all three": Jeddah, Dammam, Khobar, plus Riyadh).
+    serviceAreas: {
+      heading: {
+        en: "Local and inter-city house moves in Saudi Arabia",
+        ar: "نقل العفش داخل المدن وبينها في السعودية",
+      },
+      intro: [
+        {
+          en: "ENVOD KINGDOM arranges household moves within Riyadh, Jeddah, Dammam and Khobar, and between Saudi cities, for example Riyadh to Jeddah or Riyadh to Dammam and Khobar. Each move is quoted on its own: the route, inventory, building access and requested packing are reviewed before the date and provider are confirmed.",
+          ar: "تنسّق إنفود كينغدوم نقل عفش المنازل داخل الرياض وجدة والدمام والخبر، ونقل الأثاث بين المدن السعودية، مثل نقل العفش من الرياض إلى جدة أو من الرياض إلى الدمام والخبر. يُسعَّر كل انتقال على حدة: تتم مراجعة المسار وقائمة المنقولات ومتطلبات دخول المبنى والتغليف المطلوب قبل تأكيد الموعد ومقدم الخدمة.",
+        },
+      ],
+      items: [
+        {
+          heading: { en: "Moves within one city", ar: "نقل العفش داخل المدينة" },
+          text: {
+            en: "For a move inside Riyadh, Jeddah, Dammam or Khobar, share both districts, the floor and lift access at each address, and any parking or building-management rules. Mention time restrictions set by the building so loading and unloading can be planned around them.",
+            ar: "لنقل العفش داخل الرياض أو جدة أو الدمام أو الخبر، أرسل الحيّين والطابق وتوفر المصعد في كل عنوان، وأي قواعد للمواقف أو لإدارة المبنى. واذكر أوقات الدخول التي يحددها المبنى حتى يُخطَّط للتحميل والتنزيل وفقها.",
+          },
+        },
+        {
+          heading: { en: "Moves between Saudi cities", ar: "نقل الأثاث بين المدن السعودية" },
+          text: {
+            en: "Inter-city moves, such as Riyadh to Jeddah, Jeddah to Riyadh, or Riyadh to Dammam and Khobar, involve long-distance road transport. The loading date, delivery window and protective packing for the journey are agreed in advance. If you need storage between move-out and move-in, say so in the enquiry; availability is confirmed for the route.",
+            ar: "يشمل نقل العفش بين المدن، مثل النقل من الرياض إلى جدة أو من جدة إلى الرياض أو من الرياض إلى الدمام والخبر، نقلاً برياً لمسافات طويلة. ويُتفق مسبقاً على موعد التحميل ونافذة التسليم والتغليف الواقي للرحلة. وإذا احتجت إلى تخزين بين الإخلاء والانتقال، فاذكر ذلك في الاستفسار؛ ويُؤكد التوفر للمسار.",
+          },
+        },
+      ],
+      note: {
+        en: "Prices are not fixed by city. Each quote depends on the inventory, distance, access and requested packing, and is confirmed before booking.",
+        ar: "لا توجد أسعار ثابتة حسب المدينة. يعتمد كل عرض سعر على المنقولات والمسافة ومتطلبات الدخول والتغليف المطلوب، ويُؤكد قبل الحجز.",
+      },
+      cities: ["Riyadh", "Jeddah", "Dammam", "Khobar"],
+    },
     faq: [
       { q: "What details help with a house-moving quote enquiry in Riyadh?", a: "Start with the origin and destination area, move date, home size or approximate inventory, packing needs, fragile or oversized items, and access details such as stairs, lifts and parking restrictions. Exact addresses can be provided later if needed. ENVOD confirms the available provider, requested scope and responsibilities before booking.", qAr: "ما التفاصيل التي تساعد في استفسار عرض سعر نقل منزل في الرياض؟", aAr: "ابدأ بمنطقة المنشأ والوجهة وموعد الانتقال وحجم المنزل أو قائمة المنقولات التقريبية واحتياجات التغليف والقطع الحساسة أو كبيرة الحجم ومتطلبات الدخول مثل السلالم والمصعد والمواقف. ويمكن تقديم العناوين الدقيقة لاحقاً عند الحاجة. تؤكد إنفود مقدم الخدمة المتاح والنطاق المطلوب والمسؤوليات قبل الحجز." },
       { q: "Are packing, furniture dismantling or storage automatically included?", a: "No standard package is assumed. Mention any packing, dismantling or reassembly, fragile-item handling or storage request. Availability, price, terms and the responsible provider must be confirmed for the specific route before booking.", qAr: "هل يشمل النقل التغليف أو فك الأثاث أو التخزين تلقائياً؟", aAr: "لا يُفترض وجود باقة موحدة. اذكر أي طلب للتغليف أو فك الأثاث أو تركيبه أو مناولة القطع الحساسة أو التخزين. يجب تأكيد التوفر والسعر والشروط ومقدم الخدمة المسؤول للمسار المحدد قبل الحجز." },
       { q: "Can ENVOD arrange an international household move?", a: "Send the origin and destination countries and a brief inventory for review. Household-goods eligibility, customs documents, route coverage, insurance terms and provider responsibilities vary by shipment and must be confirmed before any booking.", qAr: "هل يمكن لإنفود تنسيق انتقال دولي للأمتعة المنزلية؟", aAr: "أرسل دولتي المنشأ والوجهة وقائمة مختصرة بالمنقولات للمراجعة. تختلف أهلية الأمتعة المنزلية والمستندات الجمركية وتغطية المسار وشروط التأمين ومسؤوليات مقدم الخدمة حسب الشحنة ويجب تأكيدها قبل أي حجز." },
       { q: "Does every Riyadh or Saudi route have the same moving service?", a: "No. Local, intercity and international requests are reviewed separately. Provider availability, transport, packing, access requirements, customs responsibilities and price depend on the route and requested scope; ENVOD confirms these details before booking.", qAr: "هل تتوفر خدمة النقل نفسها لكل مسارات الرياض أو السعودية؟", aAr: "لا. تتم مراجعة الطلبات المحلية وبين المدن والدولية كلٌّ على حدة. يعتمد توفر مقدم الخدمة والنقل والتغليف ومتطلبات الدخول ومسؤوليات الجمارك والسعر على المسار والنطاق المطلوب؛ وتؤكد إنفود هذه التفاصيل قبل الحجز." },
+      { q: "Which cities do you cover for local house moves?", a: "Local household moves are arranged within Riyadh, Jeddah, Dammam and Khobar. For another city, send the origin and destination so route coverage can be checked before any booking.", qAr: "ما المدن التي تغطونها في نقل العفش داخل المدينة؟", aAr: "يتم تنسيق نقل عفش المنازل داخل الرياض وجدة والدمام والخبر. ولأي مدينة أخرى، أرسل المنشأ والوجهة للتحقق من تغطية المسار قبل أي حجز." },
+      { q: "Can you move furniture from Riyadh to Jeddah or between other Saudi cities?", a: "Yes. Inter-city household moves, for example Riyadh to Jeddah, Jeddah to Riyadh, or Riyadh to Dammam and Khobar, are reviewed on request. Share both cities, the move date, an approximate inventory and access details at each address. The loading date, delivery window, packing and responsible provider are confirmed before booking.", qAr: "هل تنقلون العفش من الرياض إلى جدة أو بين المدن السعودية الأخرى؟", aAr: "نعم. تتم مراجعة طلبات نقل عفش المنازل بين المدن، مثل النقل من الرياض إلى جدة أو من جدة إلى الرياض أو من الرياض إلى الدمام والخبر. أرسل المدينتين وموعد الانتقال وقائمة تقريبية بالمنقولات ومتطلبات الدخول في كل عنوان. ويُؤكد موعد التحميل ونافذة التسليم والتغليف ومقدم الخدمة المسؤول قبل الحجز." },
     ],
   },
   10: {

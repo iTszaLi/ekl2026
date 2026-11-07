@@ -1,10 +1,14 @@
 import express from "express";
 import { createSearchConsoleRouter } from "./router.js";
 import { EncryptedVercelBlobSearchConsoleStore } from "./vercel-blob-store.js";
+import { createDataForSeoRouter } from "../dataforseo/router.js";
 
 const app = express();
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
+
+// Private DataForSEO routes share this function and the administrator session.
+app.use("/api/search-console/dataforseo", createDataForSeoRouter());
 
 app.use(
   "/api/search-console",

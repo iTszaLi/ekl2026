@@ -189,3 +189,17 @@ test("the homepage renders bilingual network affiliations and available local lo
     assert.ok(!html.includes('src="/images/affiliations/fiata.webp"'), "FIATA is shown as text without an unapproved mark");
   }
 });
+
+test("Organization and LocalBusiness structured data link to the verified brand profiles in both languages", () => {
+  const expected = ["https://maps.google.com/?cid=5323643622818912268", "https://www.jctrans.com/en/company/07f1r7u/"];
+  for (const route of ["/", "/ar", "/services", "/ar/services"]) {
+    const html = readFileSync(htmlPath(route), "utf8");
+    const nodes = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1]) as Record<string, unknown>);
+    for (const type of ["Organization", "LocalBusiness"]) {
+      const node = nodes.find((item) => item["@type"] === type && Array.isArray(item.sameAs));
+      assert.ok(node, `${route} has a ${type} node with sameAs`);
+      assert.deepEqual(node.sameAs, expected, `${route} ${type} sameAs lists the Google Business Profile and JCtrans profile`);
+    }
+  }
+});

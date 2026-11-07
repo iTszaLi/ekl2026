@@ -21,6 +21,8 @@
     "test:search-console": "tsx --test server/search-console/search-console.test.ts",
     "test:enquiries": "tsx --test server/enquiries.test.ts",
     "test:vercel-enquiries": "tsx --test server/vercel-enquiry-handler.test.ts",
+    "test:dataforseo": "tsx --test server/dataforseo/dataforseo.test.ts",
+    "dataforseo:verify": "tsx --env-file-if-exists=.env.local scripts/dataforseo-verify.ts",
     "indexnow:submit": "node scripts/submit-indexnow.mjs"
   },
   "devDependencies": {

@@ -255,7 +255,7 @@ const STATIC: Record<string, SeoConfig> = {
   "/gallery": {
     title: "Operations Gallery — ENVOD KINGDOM Shipping Services LLC",
     description:
-      "ENVOD-provided photos of freight transport, warehouse handling, project cargo, and exhibition equipment. Captions describe visible details without unverified customer, location, or project claims.",
+      "ENVOD-provided photos of freight transport, warehouse handling, project cargo and exhibition equipment. Captions describe only what each photo visibly shows.",
     canonicalPath: "/gallery",
     image: OG_IMAGE,
     jsonLd: galleryStructuredData("en"),
@@ -474,25 +474,31 @@ function defaultSeo(path: string): SeoConfig {
   };
 }
 
-const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>> = {
+// Meta descriptions are kept at 160 characters or fewer so search results do not truncate them.
+// An entry may define one language only; the other language then keeps its existing description.
+const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Partial<Record<SeoLanguage, string>>> = {
+  "pet-animal-import": {
+    en: "Review species-specific permits, health documents, carrier acceptance, route and inspection or quarantine requirements with authorities and operators.",
+  },
   warehousing: {
     en: "Discuss storage, inventory, order handling and distribution in Saudi Arabia. Facility, temperature range, operator and bonded status are confirmed before booking.",
     ar: "ناقش التخزين وإدارة المخزون وتجهيز الطلبات والتوزيع في السعودية. تُؤكد المنشأة ودرجة الحرارة والمشغّل وحالة التخزين الجمركي قبل الحجز.",
   },
   "project-cargo": {
-    en: "Plan heavy or oversized project cargo in Saudi Arabia. Share dimensions, route, permits and lifting needs; qualified-provider availability is confirmed before booking.",
+    en: "Plan heavy or oversized project cargo in Saudi Arabia. Share dimensions, route, permits and lift needs; qualified providers are confirmed before booking.",
     ar: "خطط لشحن المعدات الثقيلة أو كبيرة الحجم في السعودية. شارك الأبعاد والمسار والتصاريح واحتياجات الرفع لتأكيد توفر مزود مؤهل.",
   },
   relocation: {
-    en: "Plan a home move in Riyadh? Share the move type, inventory, packing needs, preferred date and route. ENVOD reviews provider availability and scope before booking.",
-    ar: "هل تخطط لنقل منزل في الرياض؟ أرسل نوع الانتقال وقائمة المنقولات واحتياجات التغليف والموعد والمسار لمراجعة النطاق وتوفر مقدم الخدمة قبل الحجز.",
+    // Owner approved the four-city wording on 2026-11-07 (cities confirmed the same day).
+    en: "House moving in Riyadh, Jeddah, Dammam and Khobar, and between Saudi cities. Share your inventory, packing needs and date; scope is confirmed before booking.",
+    ar: "نقل عفش المنازل في الرياض وجدة والدمام والخبر وبين المدن السعودية. أرسل قائمة المنقولات واحتياجات التغليف والموعد، ويُؤكد النطاق ومقدم الخدمة قبل الحجز.",
   },
   "ecommerce-logistics": {
     en: "Discuss e-commerce delivery, returns and fulfillment in Saudi Arabia. Provider coverage, facilities, integrations and tracking options depend on confirmed scope.",
     ar: "ناقش توصيل التجارة الإلكترونية والمرتجعات وتجهيز الطلبات في السعودية. يعتمد التغطية والمنشأة والتكامل والتتبع على نطاق المزوّد المتاح.",
   },
   "medical-pharma": {
-    en: "Medical and pharmaceutical cargo requires product-specific handling, temperature, carrier and regulatory checks. Confirm route, facility and authorization before booking.",
+    en: "Medical and pharma cargo needs product-specific handling, temperature, carrier and regulatory checks. Confirm route, facility and authorization before booking.",
     ar: "تتطلب الشحنات الطبية والدوائية مراجعة المنتج ودرجة الحرارة والناقل والاشتراطات التنظيمية. تُؤكد المنشأة والمسار والتصاريح قبل الحجز.",
   },
   "food-fmcg": {
@@ -524,11 +530,11 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
     ar: "ناقش الشحن العاجل لمستندات الأعمال والطرود. يعتمد المسار وجدول الناقل والقبول والأمان والموعد على المشغّل المختار.",
   },
   "cross-trade-shipping": {
-    en: "Coordinate shipments between two countries outside your home market. Origin, destination, carrier, customs responsibilities and confidentiality are confirmed per request.",
+    en: "Coordinate shipments between two countries outside your home market. Origin, destination, carrier, customs roles and confidentiality are confirmed per request.",
     ar: "نسّق الشحن بين بلدين خارج سوق بلد الشاحن. يُؤكد المنشأ والوجهة والناقل ومسؤوليات الجمارك وشروط السرية لكل طلب.",
   },
   "customs-clearance": {
-    en: "Customs clearance in Saudi Arabia: prepare import and export documents and check cargo requirements for Riyadh, Jeddah or Dammam. Release and approvals remain subject to the authorities.",
+    en: "Customs clearance in Saudi Arabia: import and export documents and cargo checks for Riyadh, Jeddah or Dammam. Release and approvals rest with the authorities.",
     ar: "التخليص الجمركي في السعودية: جهّز مستندات الاستيراد والتصدير وراجع متطلبات البضاعة لمنفذ الرياض أو جدة أو الدمام. يظل الفسح خاضعاً للجهات المختصة.",
   },
   "exhibition-logistics": {
@@ -544,7 +550,7 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Record<SeoLanguage, string>>
     ar: "خدمات الشحن المتكامل في السعودية: تنسيق الشحن الجوي والبحري والبري ومستندات الشحنة ومسؤوليات التخليص ومتطلبات التسليم.",
   },
   "ocean-freight": {
-    en: "Container shipping to Saudi Arabia by ocean freight: compare FCL and LCL, share origin, destination and cargo details, and plan inland delivery. Route and carrier availability are confirmed per shipment.",
+    en: "Container shipping to Saudi Arabia: compare FCL and LCL, share origin, destination and cargo details, and plan inland delivery. Carriers confirmed per shipment.",
     ar: "شحن الحاويات إلى السعودية عبر الشحن البحري: قارن FCL وLCL وشارك المنشأ والوجهة وتفاصيل البضاعة وخطط للتسليم الداخلي. يُؤكد المسار وتوفر الناقل لكل شحنة.",
   },
   "gcc-transportation": {
@@ -567,8 +573,8 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
       : pillar?.seoDescription ?? svc.description);
   const serviceTitle = slug === "relocation"
     ? language === "ar"
-      ? "نقل الأثاث والمنازل في الرياض | إنفود كينغدوم"
-      : "House Moving & Relocation in Riyadh | ENVOD KINGDOM"
+      ? "نقل عفش في الرياض وجدة والدمام | إنفود كينغدوم"
+      : "House Moving in Riyadh, Jeddah & Dammam | ENVOD KINGDOM"
     : undefined;
 
   const jsonLd: Array<Record<string, unknown>> = [
@@ -578,7 +584,9 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
       name: serviceName,
       description: serviceDescription,
       serviceType: svc.category,
-      areaServed: "Saudi Arabia",
+      areaServed: meta?.serviceAreas?.cities?.length
+        ? ["Saudi Arabia", ...meta.serviceAreas.cities.map((name) => ({ "@type": "City", name }))]
+        : "Saudi Arabia",
       provider: { "@id": ORG_ID },
       url: toAbsolute(path),
     },

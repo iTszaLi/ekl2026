@@ -66,10 +66,11 @@ export function ScrollAnimSection({
   const [isVisible,  setIsVisible]  = useState(false);
   const [started,    setStarted]    = useState(false); // src attached after first intersect
   const [hasEntered, setHasEntered] = useState(priority);
-  const [isSmallScreen, setIsSmallScreen] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches,
-  );
-  const [viewportReady, setViewportReady] = useState(() => typeof window !== "undefined");
+  // Both start with the prerender values so the first client render matches the
+  // static HTML (a mismatch makes React discard and rebuild the whole page).
+  // The media-query effect below sets the real values straight after hydration.
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [viewportReady, setViewportReady] = useState(false);
   const [isReady,    setIsReady]    = useState(false); // first frame decoded
   const [loadPercent, setLoadPercent] = useState(0);
 

@@ -166,8 +166,8 @@ export function GlobalLogisticsNetworks() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={t(
-                      `Visit ${network.name} official website or directory (opens in a new tab)`,
-                      `زيارة الموقع الرسمي أو الدليل لـ ${network.name} (يفتح في علامة تبويب جديدة)`,
+                      `Explore network: ${network.name} official website or directory (opens in a new tab)`,
+                      `استكشف الشبكة: الموقع الرسمي أو الدليل لـ ${network.name} (يفتح في علامة تبويب جديدة)`,
                     )}
                     className="mt-auto inline-flex min-h-10 items-center gap-1 pt-3 text-xs font-semibold text-[#0c2b4d] underline decoration-secondary/70 underline-offset-4 transition-colors hover:decoration-secondary focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2"
                   >

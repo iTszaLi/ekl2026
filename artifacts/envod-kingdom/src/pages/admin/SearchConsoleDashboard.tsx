@@ -3,7 +3,7 @@ import {
   Activity, AlertCircle, ArrowDownRight, ArrowUpRight, BarChart3, Check,
   ChevronDown, CircleHelp, Download, ExternalLink, FileSearch,
   Globe2, LoaderCircle, LogOut, Moon, Printer, RefreshCw, Search,
-  Settings2, ShieldCheck, Sun, Unplug, X,
+  Settings2, ShieldCheck, Sun, Target, Unplug, X,
 } from "lucide-react";
 import {
   SearchConsoleApiError, searchConsoleApi,
@@ -13,6 +13,7 @@ import {
   type UrlInspection,
 } from "@/lib/search-console-api";
 import SeoResearchPanel from "@/pages/admin/SeoResearchPanel";
+import DataForSeoPanel from "@/pages/admin/DataForSeoPanel";
 import "./SearchConsoleDashboard.css";
 
 type DatePreset = "7" | "28" | "90" | "180" | "365" | "custom";
@@ -299,7 +300,7 @@ export default function SearchConsoleDashboard() {
   const [inspection, setInspection] = useState<UrlInspection[] | null>(null);
   const [inspectInput, setInspectInput] = useState("");
   const [auditError, setAuditError] = useState("");
-  const [activeAdminTab, setActiveAdminTab] = useState<"performance" | "research">("performance");
+  const [activeAdminTab, setActiveAdminTab] = useState<"performance" | "research" | "dataforseo">("performance");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mounted = useRef(true);
   const initialStatusLoaded = useRef(false);
@@ -531,7 +532,7 @@ export default function SearchConsoleDashboard() {
           <div>
             <div className="sc-kicker"><span className="sc-kicker-dot" /> SEARCH CONSOLE / ADMIN</div>
             <h1>Search <em>visibility.</em></h1>
-            <p>{activeAdminTab === "performance" ? "Performance from Google Search, alongside a read-only site crawl audit." : "Bilingual service-keyword candidates, sampled competitor evidence and market coverage. Unmeasured fields are labelled."}</p>
+            <p>{activeAdminTab === "performance" ? "Performance from Google Search, alongside a read-only site crawl audit." : activeAdminTab === "dataforseo" ? "Live Google rank tracking, search volumes and competitor visibility from your DataForSEO account. Not Search Console data." : "Bilingual service-keyword candidates, sampled competitor evidence and market coverage. Unmeasured fields are labelled."}</p>
           </div>
           <div className="sc-heading-controls">
             <button className="sc-button sc-button-outline" onClick={() => void refreshAll()} disabled={pageState === "loading" || !!busy}><RefreshCw size={15} className={busy === "performance" ? "sc-spin" : ""} /> Refresh</button>
@@ -549,7 +550,9 @@ export default function SearchConsoleDashboard() {
         </section>
 
         <div className="sc-source-line">
-          {pageState === "connected" && activeAdminTab === "research"
+          {pageState === "connected" && activeAdminTab === "dataforseo"
+            ? <><span><Globe2 size={14} /> Source: DataForSEO API (third-party Google SERP and Labs data)</span><i /><span>Not Google Search Console data — each section shows its retrieval date, location and device</span></>
+            : pageState === "connected" && activeAdminTab === "research"
             ? <><span><Globe2 size={14} /> Source: curated project research register</span><i /><span>Not live performance data</span></>
             : <><span><Globe2 size={14} /> Source: Google Search Console</span><i /><span>Range: {dateLabel}</span>{status?.lastSyncedAt && <><i /><span>Last sync: {fmtDate(status.lastSyncedAt)}</span></>}</>}
         </div>
@@ -566,6 +569,7 @@ export default function SearchConsoleDashboard() {
             {audit && <div className="sc-audit-meta"><div><small>ORIGIN</small><b>{audit.origin}</b></div><div><small>DISCOVERED</small><b>{fmtNumber(audit.discoveredUrls)} URLs</b></div><div><small>CRAWLED</small><b>{fmtNumber(audit.crawledUrls)} URLs</b></div><div><small>ROBOTS.TXT</small><b className={audit.robotsAllowsCrawl ? "sc-good" : "sc-warning"}>{audit.robotsAllowsCrawl ? "Crawl allowed" : "Crawl restricted"}</b></div><div className="sc-audit-time"><small>COMPLETED</small><b>{fmtDate(audit.completedAt)}</b></div></div>}
             {!audit && !auditError && <EmptyInline title="No crawl audit loaded" detail="Load the latest audit or run a new read-only crawl." />}
           </section>
+          <DataForSeoPanel onUnauthorized={handleError} />
         </>}
 
         {pageState === "connected" && <>
@@ -575,6 +579,9 @@ export default function SearchConsoleDashboard() {
             </button>
             <button type="button" aria-pressed={activeAdminTab === "research"} className={activeAdminTab === "research" ? "active" : ""} onClick={() => setActiveAdminTab("research")} data-testid="tab-admin-research">
               <Search size={15} /> SEO intelligence research
+            </button>
+            <button type="button" aria-pressed={activeAdminTab === "dataforseo"} className={activeAdminTab === "dataforseo" ? "active" : ""} onClick={() => setActiveAdminTab("dataforseo")} data-testid="tab-admin-dataforseo">
+              <Target size={15} /> Rank tracking (DataForSEO)
             </button>
           </nav>
           {activeAdminTab === "performance" && <>
@@ -646,6 +653,7 @@ export default function SearchConsoleDashboard() {
           <footer className="sc-footer"><span><ShieldCheck size={14} /> Read-only Search Console reporting</span><span>Search Console data may be delayed by Google. No indexing requests or website edits are made.</span>{status?.connected && <button onClick={() => void disconnect()} disabled={!!busy}><Unplug size={13} /> Disconnect Google</button>}</footer>
           </>}
           {activeAdminTab === "research" && <SeoResearchPanel onUnauthorized={handleError} />}
+          {activeAdminTab === "dataforseo" && <DataForSeoPanel onUnauthorized={handleError} />}
         </>}
       </div>
     </main>
