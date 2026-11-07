@@ -89,8 +89,8 @@ export default function ServiceDetail() {
       )
     : serviceId === 9
       ? t(
-          "Planning a home move in Riyadh? Send ENVOD KINGDOM your move type, approximate inventory, packing needs, preferred date and route. Building access and fragile or oversized items can also be noted. Provider availability, responsibilities and the requested scope are confirmed before booking.",
-          "هل تخطط لنقل منزلك أو أثاثك في الرياض؟ أرسل إلى إنفود كينغدوم نوع الانتقال وقائمة المنقولات التقريبية واحتياجات التغليف والموعد والمسار. ويمكنك أيضاً ذكر متطلبات دخول المبنى والقطع الحساسة أو كبيرة الحجم. يتم تأكيد توفر مقدم الخدمة والمسؤوليات والنطاق المطلوب قبل الحجز.",
+          "Planning a home move in Riyadh, Jeddah, Dammam or Khobar, or between Saudi cities? Send ENVOD KINGDOM your move type, approximate inventory, packing needs, preferred date and route. Building access and fragile or oversized items can also be noted. Provider availability, responsibilities and the requested scope are confirmed before booking.",
+          "هل تخطط لنقل منزلك أو أثاثك في الرياض أو جدة أو الدمام أو الخبر، أو بين المدن السعودية؟ أرسل إلى إنفود كينغدوم نوع الانتقال وقائمة المنقولات التقريبية واحتياجات التغليف والموعد والمسار. ويمكنك أيضاً ذكر متطلبات دخول المبنى والقطع الحساسة أو كبيرة الحجم. يتم تأكيد توفر مقدم الخدمة والمسؤوليات والنطاق المطلوب قبل الحجز.",
         )
     : isRtl ? service.descriptionAr : service.description;
   const heroImage = serviceId === 25 ? DOOR_TO_DOOR_IMAGE : serviceId ? SERVICE_IMAGES[serviceId] : undefined;
