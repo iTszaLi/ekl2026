@@ -304,11 +304,31 @@ export default function SearchConsoleDashboard() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const mounted = useRef(true);
   const initialStatusLoaded = useRef(false);
+  // The OAuth callback returns with ?oauth=connected|not-authorized|cancelled.
+  // Read it once so a failed sign-in explains itself instead of looking like a loop.
+  const [oauthResult] = useState(() => {
+    if (typeof window === "undefined") return "";
+    return new URLSearchParams(window.location.search).get("oauth") ?? "";
+  });
 
   useEffect(() => {
     mounted.current = true;
+    if (oauthResult && typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("oauth");
+      window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+    }
     return () => { mounted.current = false; };
-  }, []);
+  }, [oauthResult]);
+
+  const signInNotice =
+    oauthResult === "not-authorized"
+      ? "That Google account is not the authorized administrator, so access was refused. Sign in with the Google account entered as GSC_ADMIN_EMAIL in the Vercel project settings."
+      : oauthResult === "cancelled"
+        ? "Google sign-in was cancelled or refused. If Google said the app is not verified or access is blocked, add this account as a test user on the Google Cloud OAuth consent screen (or publish the app), then try again."
+        : oauthResult === "connected"
+          ? "Google connected, but this browser did not keep the sign-in. Allow cookies for www.envodkingdom.net (or turn off strict tracking protection for it), make sure the address starts with www, and sign in again."
+          : "";
 
   const handleError = useCallback((error: unknown) => {
     if (error instanceof SearchConsoleApiError && error.status === 401) {
@@ -560,7 +580,7 @@ export default function SearchConsoleDashboard() {
         {providerError && <div className="sc-alert sc-alert-error" role="alert"><AlertCircle size={17} /><div><b>Search Console request failed</b><span>{providerError}</span></div><button onClick={() => void loadStatus()} aria-label="Retry"><RefreshCw size={15} /> Retry</button><button className="sc-alert-close" onClick={() => setProviderError("")} aria-label="Dismiss"><X size={15} /></button></div>}
 
         {pageState === "loading" && <section className="sc-state-panel"><div className="sc-state-icon sc-loading-icon"><LoaderCircle size={22} /></div><span className="sc-eyebrow">SECURE SESSION</span><h2>Checking the connection</h2><p>Verifying the private Search Console session and available property.</p><div className="sc-skeleton-line" /><div className="sc-skeleton-line short" /></section>}
-        {pageState === "signed-out" && <section className="sc-state-panel"><div className="sc-state-icon"><ShieldCheck size={22} /></div><span className="sc-eyebrow">ADMIN ACCESS</span><h2>Sign in to continue</h2><p>This dashboard is restricted to the ENVOD Kingdom administrator. Sign in to connect the Google account with Search Console access.</p><button className="sc-button sc-button-primary" onClick={connect}><ExternalLink size={15} /> Sign in with Google</button></section>}
+        {pageState === "signed-out" && <section className="sc-state-panel"><div className="sc-state-icon"><ShieldCheck size={22} /></div><span className="sc-eyebrow">ADMIN ACCESS</span><h2>Sign in to continue</h2><p>This dashboard is restricted to the ENVOD Kingdom administrator. Sign in to connect the Google account with Search Console access.</p>{signInNotice && <p role="alert" className="sc-signin-notice" data-testid="text-oauth-notice">{signInNotice}</p>}<button className="sc-button sc-button-primary" onClick={connect}><ExternalLink size={15} /> Sign in with Google</button></section>}
         {pageState === "unconfigured" && <section className="sc-state-panel"><div className="sc-state-icon"><Settings2 size={22} /></div><span className="sc-eyebrow">CONNECTION SETUP</span><h2>Search Console is not configured</h2><p>{status?.setupMessage || "The server has not been configured for Google Search Console access yet."}</p><div className="sc-readonly-note"><CircleHelp size={16} /> Ask the administrator to complete the server-side Google OAuth setup. No dashboard data is shown until configured.</div></section>}
         {pageState === "unconnected" && <>
           <section className="sc-state-panel"><div className="sc-state-icon"><Unplug size={22} /></div><span className="sc-eyebrow">GOOGLE AUTHORIZATION</span><h2>Connect a Search Console account</h2><p>Authorize the Google account that has access to ENVOD Kingdom’s verified Search Console property.</p><button className="sc-button sc-button-primary" onClick={connect}><ExternalLink size={15} /> Connect Google Search Console</button><div className="sc-readonly-note"><ShieldCheck size={16} /> Access is used to read search performance and inspection data only.</div></section>
