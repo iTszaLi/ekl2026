@@ -41,6 +41,16 @@ test("the Vercel production alias redirects to www, and no rule redirects previe
   assert.equal(aliasRule?.destination, "https://www.envodkingdom.net/:path*");
   assert.equal(aliasRule?.permanent, true);
 
+  // Owner approved 2026-11-08 (Fix A): on Vercel, "/:path*" did not catch the bare
+  // root of the alias (it still answered 200), so the root needs its own rule,
+  // the same pattern as the apex host above.
+  const aliasRootRule = redirects.find((rule) =>
+    rule.source === "/" &&
+    rule.has?.some((condition) => condition.type === "host" && condition.value === "ekl2026-envod-kingdom.vercel.app"),
+  );
+  assert.equal(aliasRootRule?.destination, "https://www.envodkingdom.net/");
+  assert.equal(aliasRootRule?.permanent, true);
+
   const hostValues = redirects.flatMap((rule) => rule.has ?? []).filter((c) => c.type === "host").map((c) => c.value);
   for (const host of hostValues) {
     assert.ok(host === "envodkingdom.net" || host === "ekl2026-envod-kingdom.vercel.app", `unexpected host redirect: ${host}`);
