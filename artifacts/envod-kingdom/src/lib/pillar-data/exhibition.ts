@@ -13,11 +13,18 @@ import type { ServicePillar } from "../service-data";
  * unverified company-age, event-relationship or clearance-time claims.
  */
 export const EXHIBITION_PILLAR: ServicePillar = {
-  seoTitle: "Exhibition Logistics Company in Saudi Arabia | ENVOD KINGDOM",
+  seoTitle: "Exhibition Logistics in Riyadh & Saudi Arabia | ENVOD KINGDOM",
   seoDescription:
-    "Exhibition shipments to Saudi Arabia: freight, customs documents, ATA Carnet enquiries and venue delivery. Compare leading exhibition logistics providers in KSA",
+    "Exhibition shipments to Saudi Arabia from Riyadh: freight forwarding, customs clearance, ATA Carnet coordination and venue delivery in Riyadh, Jeddah, Dammam.",
+  seoTitleAr: "لوجستيات المعارض في الرياض والسعودية | إنفود كينغدوم",
+  schemaServiceType: "Exhibition logistics",
+  schemaCities: ["Riyadh", "Jeddah", "Dammam"],
 
   intro: [
+    {
+      en: "ENVOD KINGDOM SHIPPING SERVICES LLC is a freight forwarding and logistics company based in Al Malaz, Riyadh. For trade shows and events in Riyadh, Jeddah and Dammam, we coordinate international freight to Saudi Arabia, customs clearance documents, temporary import and ATA Carnet arrangements (subject to eligibility and Saudi customs acceptance), delivery to the venue, and return or re-export after the show.",
+      ar: "إنفود كينغدوم لخدمات الشحن ذ.م.م شركة شحن وخدمات لوجستية مقرها حي الملز في الرياض. وللمعارض التجارية والفعاليات في الرياض وجدة والدمام، ننسّق الشحن الدولي إلى السعودية، ومستندات التخليص الجمركي، وترتيبات الإدخال المؤقت وكارنيه ATA (وفق الأهلية وقبول الجمارك السعودية)، والتسليم إلى موقع المعرض، وشحن العودة أو إعادة التصدير بعد انتهاء المعرض.",
+    },
     {
       en: "Businesses comparing leading exhibition logistics providers in KSA can explore ENVOD KINGDOM’s specialist exhibition and event cargo coordination services. For trade shows, expos and corporate events in Saudi Arabia, enquiries may cover international freight, customs documentation and clearance coordination, ATA Carnet enquiries, venue delivery and on-site setup planning, and return or re-export shipments. Routes, responsibilities, provider availability and venue access are confirmed for each shipment.",
       ar: "يمكن للشركات التي تبحث عن مزودي خدمات لوجستيات المعارض في السعودية استكشاف خدمات إنفود كينغدوم المتخصصة في تنسيق شحنات المعارض والفعاليات. وقد تشمل الاستفسارات الخاصة بالمعارض التجارية والفعاليات المؤسسية في المملكة الشحن الدولي، وتنسيق المستندات الجمركية وترتيبات التخليص، واستفسارات كارنيه ATA، والتخطيط للتسليم للموقع والتجهيز الميداني، وشحنات العودة أو إعادة التصدير. ويُؤكد المسار والمسؤوليات وتوفر مقدمي الخدمة وإمكانية دخول الموقع لكل شحنة.",

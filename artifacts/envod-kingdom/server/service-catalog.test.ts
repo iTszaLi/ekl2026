@@ -104,6 +104,12 @@ test("Search Console service opportunities have useful bilingual answers and ali
   const exhibitionEn = getSeoForPath("/services/exhibition-logistics");
   const exhibitionAr = getSeoForPath("/ar/services/exhibition-logistics");
   assert.match(exhibitionEn.description, /Exhibition shipments to Saudi Arabia/i);
-  assert.match(exhibitionEn.description, /leading exhibition logistics providers in KSA/i);
+  // Owner-approved 2026-11-08 (ranking recovery P1b): the description names
+  // Riyadh instead of inviting searchers to "compare leading providers".
+  assert.match(exhibitionEn.description, /Riyadh/);
+  assert.doesNotMatch(exhibitionEn.description, /compare leading/i);
+  assert.ok(exhibitionEn.description.length <= 160, "exhibition description stays within 160 characters");
+  assert.match(exhibitionEn.title, /Riyadh/);
+  assert.match(exhibitionAr.title, /الرياض/);
   assert.match(exhibitionAr.description, /شحن المعارض إلى السعودية/);
 });
