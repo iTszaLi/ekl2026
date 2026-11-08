@@ -196,7 +196,8 @@ export const CONTENT_ROUTES: string[] = [
 const STATIC: Record<string, SeoConfig> = {
   "/": {
     title:
-      "ENVOD KINGDOM | Logistics & Shipping in Saudi Arabia",
+      // Owner approved 2026-11-07 (P1): measured demand "logistics company in riyadh" ≈ 720/month.
+      "ENVOD KINGDOM | Logistics Company in Riyadh, Saudi Arabia",
     description:
       "Saudi Arabia-based shipping coordination for exhibition cargo, customs clearance, ATA Carnet enquiries and international freight. Ask about shipment scope.",
     canonicalPath: "/",
