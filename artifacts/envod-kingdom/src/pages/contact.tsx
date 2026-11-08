@@ -4,7 +4,7 @@ import { useLanguage } from "@/lib/language-context";
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP } from "@/lib/quote-mailto";
 import { EnquiryApiError, submitEnquiry } from "@/lib/enquiry-api";
 import { emitAnalyticsEvent } from "@/lib/analytics";
-import { SERVICE_CATALOG, SLUG_TO_ID } from "@/lib/service-data";
+import { SERVICE_CATALOG, SERVICE_ID_BY_SLUG } from "@/lib/service-catalog";
 import { CommonShipmentFields } from "@/components/CommonShipmentFields";
 import { ServiceRequirementFields } from "@/components/ServiceRequirementFields";
 import { EMPTY_COMMON_SHIPMENT, ENQUIRY_SERVICES, getEnquiryServiceById, getEnquiryServiceByValue, getEnquiryServiceForCatalogId, getEnquiryServiceFormLabel, OTHER_SERVICE_VALUE, validServiceDetails, type CommonShipmentValues } from "@/lib/enquiry-services";
@@ -63,7 +63,7 @@ export default function Contact() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const slug = params.get("service");
-    const selected = slug ? SERVICE_CATALOG.find((item) => item.id === SLUG_TO_ID[slug]) : undefined;
+    const selected = slug ? SERVICE_CATALOG.find((item) => item.id === SERVICE_ID_BY_SLUG[slug]) : undefined;
     if (!selected) return;
     const isDoorToDoorEnquiry =
       slug === "freight-forwarding" && params.get("topic") === "door-to-door";

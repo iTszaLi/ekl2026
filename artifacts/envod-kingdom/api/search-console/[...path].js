@@ -2660,6 +2660,38 @@ var SERVICE_REVIEW_FAQ = {
   ]
 };
 
+// src/lib/service-catalog.ts
+var SERVICE_SLUG_BY_ID = {
+  1: "ocean-freight",
+  2: "air-freight",
+  3: "gcc-transportation",
+  4: "customs-clearance",
+  5: "warehousing",
+  6: "freight-forwarding",
+  7: "supply-chain",
+  8: "project-cargo",
+  9: "relocation",
+  10: "ecommerce-logistics",
+  11: "exhibition-logistics",
+  12: "medical-pharma",
+  13: "food-fmcg",
+  14: "pet-animal-import",
+  15: "breakbulk-shipping",
+  16: "dangerous-goods",
+  17: "oog-cargo",
+  18: "roro-shipping",
+  19: "ata-carnet",
+  20: "white-glove-logistics",
+  21: "temperature-controlled-logistics",
+  22: "packaging-crating",
+  23: "express-courier",
+  24: "cross-trade-shipping",
+  25: "door-to-door"
+};
+var SERVICE_ID_BY_SLUG = Object.fromEntries(
+  Object.entries(SERVICE_SLUG_BY_ID).map(([id, slug]) => [slug, Number(id)])
+);
+
 // src/lib/service-data.ts
 var SERVICE_META = {
   1: {

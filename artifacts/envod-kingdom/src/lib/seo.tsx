@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SITE_URL } from "./seo-config";
+import { SITE_URL } from "./seo-paths";
 
 interface MetaTag {
   attr: "name" | "property";
@@ -63,7 +63,10 @@ function absoluteCanonical(canonicalPath?: string): string {
  * per-page JSON-LD the build-time prerenderer injected (tagged data-seo-ssg) so
  * client rendering and SPA navigation never duplicate or leave stale schema.
  */
-export function useSeo(config: SeoConfig): void {
+export function useSeo(config: SeoConfig | null): void {
+  // null means "leave the current <head> alone", e.g. the prerendered tags on
+  // first load while the full SEO config has not been downloaded yet.
+  const active = config !== null;
   const {
     title,
     description,
@@ -76,9 +79,10 @@ export function useSeo(config: SeoConfig): void {
     alternateLocale = "ar_SA",
     alternates = [],
     jsonLd,
-  } = config;
+  } = config ?? { title: "", description: "" };
 
   useEffect(() => {
+    if (!active) return;
     document
       .querySelectorAll(`script[type="application/ld+json"][${PRERENDERED}]`)
       .forEach((s) => s.remove());
@@ -144,6 +148,7 @@ export function useSeo(config: SeoConfig): void {
       document.title = previousTitle;
     };
   }, [
+    active,
     title,
     description,
     canonicalPath,

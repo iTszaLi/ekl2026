@@ -7,7 +7,7 @@ import {
   Heart, UtensilsCrossed, PawPrint, Anchor, AlertTriangle,
   Maximize2, Car, CheckCircle2, ArrowRight,
 } from "lucide-react";
-import { type Service, SERVICE_CATALOG, SERVICE_META } from "@/lib/service-data";
+import { type Service, SERVICE_CATALOG, SERVICE_SLUG_BY_ID } from "@/lib/service-catalog";
 import { DOOR_TO_DOOR_IMAGE, SERVICE_IMAGES } from "@/lib/service-images";
 import { getIntrinsicImageDimensions } from "@/lib/image-dimensions";
 
@@ -121,8 +121,7 @@ function DiscoverMoreServicesCard({ index }: { index: number }) {
 // ─── Featured specialty card ─────────────────────────────────────────────────
 function FeaturedCard({ service, index }: { service: Service; index: number }) {
   const { t, isRtl } = useLanguage();
-  const meta = SERVICE_META[service.id];
-  const slug = meta?.slug ?? "";
+  const slug = SERVICE_SLUG_BY_ID[service.id] ?? "";
   const name = isRtl ? service.nameAr : service.name;
   const desc = isRtl ? service.descriptionAr : service.description;
   const feats = HERO_FEATURES[service.id];
@@ -224,8 +223,7 @@ function CompactCard({ service, index, doorToDoor = false }: {
   doorToDoor?: boolean;
 }) {
   const { t, isRtl } = useLanguage();
-  const meta = SERVICE_META[service.id];
-  const slug = meta?.slug ?? "";
+  const slug = SERVICE_SLUG_BY_ID[service.id] ?? "";
   const name = doorToDoor
     ? t("Door-to-Door Logistics", "الخدمات اللوجستية من الباب إلى الباب")
     : isRtl ? service.nameAr : service.name;

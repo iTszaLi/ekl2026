@@ -1,7 +1,7 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import { normalizeRoutePath } from "./lib/seo-config";
+import { normalizeRoutePath } from "./lib/seo-paths";
 import { preloadRoute } from "./lib/route-pages";
 
 const container = document.getElementById("root")!;
