@@ -22,6 +22,17 @@
       ],
       "destination": "https://www.envodkingdom.net/:path*",
       "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "ekl2026-envod-kingdom.vercel.app"
+        }
+      ],
+      "destination": "https://www.envodkingdom.net/:path*",
+      "permanent": true
     }
   ],
   "rewrites": [
