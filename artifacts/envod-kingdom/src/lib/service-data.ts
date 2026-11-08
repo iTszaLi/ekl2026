@@ -34,6 +34,8 @@ export interface PillarVenue {
   nameAr: string;
   city: string;
   cityAr: string;
+  /** Optional one-line planning note shown under the venue name. Owner approved 2026-11-08. */
+  note?: BiText;
 }
 
 export interface PillarEvent {
@@ -131,7 +133,7 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
       { en: "FCL and LCL options reviewed against route and cargo requirements", ar: "مراجعة خيارات FCL وLCL وفق المسار ومتطلبات البضاعة" },
     ],
     overview: [
-      { en: "Ocean freight moves goods by sea in containers or as breakbulk. Common booking types include Full Container Load (FCL) and Less-than-Container Load (LCL); breakbulk and roll-on/roll-off (RoRo) depend on cargo suitability, route and carrier acceptance. Ask ENVOD KINGDOM SHIPPING SERVICES to review the shipment scope and available options.", ar: "ينقل الشحن البحري البضائع عن طريق البحر في حاويات أو كبضائع سائبة غير حاوية. تشمل أنواع الحجز الشائعة الحاوية الكاملة (FCL) والحاوية الجزئية (LCL)، بينما تعتمد خيارات البريك بالك والدحرجة (RoRo) على ملاءمة البضاعة والمسار وقبول الناقل. أرسل لإنفود كينجدوم للخدمات الملاحية تفاصيل الشحنة لمراجعة النطاق والخيارات المتاحة." },
+      { en: "Ocean freight moves goods by sea in containers or as breakbulk. Common booking types include Full Container Load (FCL) and Less-than-Container Load (LCL); breakbulk and roll-on/roll-off (RoRo) depend on cargo suitability, route and carrier acceptance. Ask ENVOD KINGDOM SHIPPING SERVICES to review the shipment scope and available options.", ar: "ينقل الشحن البحري البضائع عن طريق البحر في حاويات أو كبضائع سائبة غير حاوية. تشمل أنواع الحجز الشائعة الحاوية الكاملة (FCL) والحاوية الجزئية (LCL)، بينما تعتمد خيارات البريك بالك والدحرجة (RoRo) على ملاءمة البضاعة والمسار وقبول الناقل. أرسل لإنفود كينغدوم للخدمات الملاحية تفاصيل الشحنة لمراجعة النطاق والخيارات المتاحة." },
       { en: "Saudi ocean-freight planning can involve Jeddah Islamic Port or King Abdulaziz Port in Dammam, depending on the carrier service and inland destination. Confirm booking acceptance, customs responsibility and local charges for your shipment. Typical transit times may vary depending on origin, destination, carrier schedules, customs procedures, and seasonal factors.", ar: "قد يشمل تخطيط الشحن البحري السعودي ميناء جدة الإسلامي أو ميناء الملك عبدالعزيز بالدمام، وفق خدمة الناقل والوجهة الداخلية. أكّد قبول الحجز ومسؤولية التخليص والرسوم المحلية لشحنتك. قد تختلف أوقات العبور المعتادة حسب المنشأ والوجهة وجداول الناقلين وإجراءات الجمارك والعوامل الموسمية." },
     ],
     faq: [
@@ -460,7 +462,7 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
       { en: "Saudi Aramco and SABIC supply chain experience", ar: "خبرة في سلاسل توريد أرامكو وسابك" },
     ],
     overview: [
-      { en: "Project cargo logistics is the transport of oversized, overweight, high-value, or complex shipments that cannot move as standard freight. It is common in oil and gas, power generation, renewable energy, construction, and mining, and it demands engineering-led planning. ENVOD KINGDOM SHIPPING SERVICES handles heavy-lift and break-bulk cargo, route surveys, permits, crane and rigging operations, and final site delivery.", ar: "لوجستيات بضائع المشاريع هي نقل الشحنات الضخمة أو الثقيلة أو عالية القيمة أو المعقّدة التي لا يمكن نقلها كشحن قياسي. وهي شائعة في النفط والغاز وتوليد الطاقة والطاقة المتجددة والبناء والتعدين، وتتطلّب تخطيطاً بقيادة هندسية. تتولّى شركة إنفود كينجدوم للخدمات الملاحية الرفع الثقيل وبضائع بريك بالك ومسح المسارات والتصاريح وعمليات الرافعات والتعليق والتسليم النهائي للموقع." },
+      { en: "Project cargo logistics is the transport of oversized, overweight, high-value, or complex shipments that cannot move as standard freight. It is common in oil and gas, power generation, renewable energy, construction, and mining, and it demands engineering-led planning. ENVOD KINGDOM SHIPPING SERVICES handles heavy-lift and break-bulk cargo, route surveys, permits, crane and rigging operations, and final site delivery.", ar: "لوجستيات بضائع المشاريع هي نقل الشحنات الضخمة أو الثقيلة أو عالية القيمة أو المعقّدة التي لا يمكن نقلها كشحن قياسي. وهي شائعة في النفط والغاز وتوليد الطاقة والطاقة المتجددة والبناء والتعدين، وتتطلّب تخطيطاً بقيادة هندسية. تتولّى شركة إنفود كينغدوم للخدمات الملاحية الرفع الثقيل وبضائع بريك بالك ومسح المسارات والتصاريح وعمليات الرافعات والتعليق والتسليم النهائي للموقع." },
       { en: "Each project begins with a feasibility study and route survey, followed by an engineering plan, permits and approvals, multimodal transport execution, on-site crane and rigging, and delivery directly to the project site. ENVOD brings specialist experience supporting Saudi industrial supply chains, including Saudi Aramco and SABIC projects.", ar: "يبدأ كل مشروع بدراسة جدوى ومسح للمسار، يليه خطة هندسية والتصاريح والموافقات وتنفيذ النقل متعدد الوسائط وعمليات الرافعات والتعليق في الموقع والتسليم مباشرة إلى موقع المشروع. وتقدّم إنفود خبرة متخصصة في دعم سلاسل التوريد الصناعية السعودية، بما في ذلك مشاريع أرامكو السعودية وسابك." },
     ],
     faq: [

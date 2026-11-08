@@ -40,3 +40,29 @@ test("quote checklist and official references are bilingual and use specific aut
     }
   }
 });
+
+// Owner approved 2026-11-08: one bilingual planning note per venue, no appointment
+// or venue-rule claims, and a single Arabic spelling of the brand name.
+test("every exhibition venue has a bilingual planning note without appointment claims", () => {
+  assert.equal(EXHIBITION_PILLAR.venues.length, 6);
+  for (const venue of EXHIBITION_PILLAR.venues) {
+    assert.ok(venue.note?.en.trim() && venue.note.ar.trim(), `missing note for ${venue.name}`);
+    assert.ok(!/\b(appointed|official partner|guarantee)/i.test(venue.note.en), `claim in note for ${venue.name}`);
+  }
+});
+
+test("the venue paragraph lists each Jeddah venue once and uses the card names", () => {
+  const paragraph = EXHIBITION_PILLAR.sections
+    .flatMap((section) => section.paragraphs)
+    .find((text) => text.en.startsWith("Planning references include"));
+  assert.ok(paragraph);
+  assert.ok(!paragraph.en.includes("Malham Exhibition Centre"));
+  assert.ok(paragraph.en.includes("(also called Jeddah Center for Forums & Events)"));
+  assert.ok(paragraph.en.includes("Dhahran Expo") && paragraph.ar.includes("ظهران إكسبو"));
+  assert.ok(!paragraph.ar.includes("، ومركز جدة للمنتديات والفعاليات"));
+});
+
+test("Arabic brand name uses one spelling", () => {
+  const text = JSON.stringify([EXHIBITION_PILLAR, SERVICE_META]);
+  assert.ok(!text.includes("كينجدوم"));
+});
