@@ -142,11 +142,21 @@ export default function PillarSections({
                       <p className="text-white/60 text-xs mt-1">
                         {isRtl ? v.cityAr : v.city}
                       </p>
+                      {v.note && (
+                        <p className="text-white/70 text-xs leading-5 mt-2">
+                          {isRtl ? v.note.ar : v.note.en}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
+            <p className="text-white/60 text-sm max-w-2xl mt-6">
+              {isRtl
+                ? "في جميع المواقع، يحدد دليل العارضين الصادر عن المنظّم عنوان التسليم ومواعيد التجهيز والتفكيك والمقاول الرسمي. أرسله مع استفسارك."
+                : "For every venue, the organizer’s exhibitor manual sets the delivery address, move-in and move-out times and the official contractor. Send it with your enquiry."}
+            </p>
           </div>
         </div>
       )}

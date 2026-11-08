@@ -385,7 +385,7 @@ export default function Services() {
               <p className="mx-auto mt-5 max-w-[790px] text-sm leading-[1.9] text-[#bac5d0] sm:text-[15px]">
                 {t(
                   "From exhibition and ATA Carnet coordination to customs clearance, international freight, project cargo, specialist transportation and GCC distribution, ENVOD KINGDOM helps businesses coordinate complex shipments across Saudi Arabia and international markets.",
-                  "من تنسيق المعارض وكارنيه ATA إلى التخليص الجمركي والشحن الدولي وبضائع المشاريع والنقل المتخصص والتوزيع الخليجي، تساعد إنفود كينجدوم الشركات على تنسيق الشحنات المعقدة في المملكة العربية السعودية والأسواق الدولية.",
+                  "من تنسيق المعارض وكارنيه ATA إلى التخليص الجمركي والشحن الدولي وبضائع المشاريع والنقل المتخصص والتوزيع الخليجي، تساعد إنفود كينغدوم الشركات على تنسيق الشحنات المعقدة في المملكة العربية السعودية والأسواق الدولية.",
                 )}
               </p>
               <p className="mt-4 flex items-center justify-center gap-2 text-xs font-medium tracking-wide text-white/60">

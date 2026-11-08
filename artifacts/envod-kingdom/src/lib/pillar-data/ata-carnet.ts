@@ -20,7 +20,7 @@ export const ATA_CARNET_PILLAR: ServicePillar = {
   intro: [
     {
       en: "An ATA Carnet is an international customs document for eligible goods moving temporarily under the ATA guarantee system. ENVOD KINGDOM SHIPPING SERVICES coordinates shipment documentation, customs endorsements and re-export planning for exhibition cargo entering or leaving Saudi Arabia. Carnets are issued by authorized associations, not automatically by the freight forwarder; confirm the goods, intended use and destination requirements before dispatch.",
-      ar: "كارنيه ATA مستند جمركي دولي للبضائع المؤهلة التي تُنقل مؤقتاً ضمن نظام الضمان الخاص بالكارنيه. تنسّق إنفود كينجدوم لخدمات الشحن مستندات الشحنة والتصديقات الجمركية وخطة إعادة التصدير لشحنات المعارض الداخلة إلى السعودية أو الخارجة منها. تُصدر الكارنيهات جهات مخوّلة، وليس وكيل الشحن تلقائياً؛ لذا تحقق من البضائع والغرض من استخدامها ومتطلبات الوجهة قبل الإرسال.",
+      ar: "كارنيه ATA مستند جمركي دولي للبضائع المؤهلة التي تُنقل مؤقتاً ضمن نظام الضمان الخاص بالكارنيه. تنسّق إنفود كينغدوم لخدمات الشحن مستندات الشحنة والتصديقات الجمركية وخطة إعادة التصدير لشحنات المعارض الداخلة إلى السعودية أو الخارجة منها. تُصدر الكارنيهات جهات مخوّلة، وليس وكيل الشحن تلقائياً؛ لذا تحقق من البضائع والغرض من استخدامها ومتطلبات الوجهة قبل الإرسال.",
     },
     {
       en: "Known as the \"passport for goods\", a Carnet works through an international guarantee chain. The holder remains responsible for accurate item descriptions, values and serial numbers, correct customs endorsements, and re-export within the period customs permits, which can be earlier than the Carnet expiry date. Issuance, pre-approval, inspection and release depend on the responsible authorities; no fixed processing time or claim-free outcome is promised.",

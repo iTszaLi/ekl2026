@@ -20,7 +20,7 @@ export const EXHIBITION_PILLAR: ServicePillar = {
   intro: [
     {
       en: "Businesses comparing leading exhibition logistics providers in KSA can explore ENVOD KINGDOM’s specialist exhibition and event cargo coordination services. For trade shows, expos and corporate events in Saudi Arabia, enquiries may cover international freight, customs documentation and clearance coordination, ATA Carnet enquiries, venue delivery and on-site setup planning, and return or re-export shipments. Routes, responsibilities, provider availability and venue access are confirmed for each shipment.",
-      ar: "يمكن للشركات التي تبحث عن مزودي خدمات لوجستيات المعارض في السعودية استكشاف خدمات إنفود كينجدوم المتخصصة في تنسيق شحنات المعارض والفعاليات. وقد تشمل الاستفسارات الخاصة بالمعارض التجارية والفعاليات المؤسسية في المملكة الشحن الدولي، وتنسيق المستندات الجمركية وترتيبات التخليص، واستفسارات كارنيه ATA، والتخطيط للتسليم للموقع والتجهيز الميداني، وشحنات العودة أو إعادة التصدير. ويُؤكد المسار والمسؤوليات وتوفر مقدمي الخدمة وإمكانية دخول الموقع لكل شحنة.",
+      ar: "يمكن للشركات التي تبحث عن مزودي خدمات لوجستيات المعارض في السعودية استكشاف خدمات إنفود كينغدوم المتخصصة في تنسيق شحنات المعارض والفعاليات. وقد تشمل الاستفسارات الخاصة بالمعارض التجارية والفعاليات المؤسسية في المملكة الشحن الدولي، وتنسيق المستندات الجمركية وترتيبات التخليص، واستفسارات كارنيه ATA، والتخطيط للتسليم للموقع والتجهيز الميداني، وشحنات العودة أو إعادة التصدير. ويُؤكد المسار والمسؤوليات وتوفر مقدمي الخدمة وإمكانية دخول الموقع لكل شحنة.",
     },
     {
       en: "From a single crate of samples to a multi-country pavilion, confirm freight routing, itemized equipment lists, temporary-import eligibility, on-site responsibilities and return transport before booking. LEAP, Cityscape Global, Big 5 Construct Saudi, Saudi Build and INDEX are examples of events to research when preparing an exhibition shipment, not a claim of ENVOD's official appointment or past participation.",
@@ -77,15 +77,15 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       paragraphs: [
         {
           en: "ENVOD KINGDOM is based in Al Malaz, Riyadh, and reviews exhibition-freight enquiries for Saudi venues. Depending on the shipment, the requested scope may include international show freight, customs-clearance arrangements at ports or airports, ATA Carnet eligibility and document coordination, door-to-door delivery planning, venue delivery, nationwide destination-delivery requests and on-site setup coordination. Each element is confirmed per shipment; local-provider availability, venue-appointed contractors, organizer rules, customs approval and site access can affect the scope.",
-          ar: "يقع مقر إنفود كينجدوم في حي الملز بالرياض، وتراجع الشركة استفسارات شحن المعارض إلى المواقع السعودية. وقد يشمل النطاق المطلوب، بحسب الشحنة، الشحن الدولي للمعارض وترتيبات التخليص الجمركي في الموانئ أو المطارات وأهلية كارنيه ATA وتنسيق مستنداته والتخطيط للتوصيل من الباب إلى الباب والتسليم للموقع وطلبات التوصيل إلى وجهات في أنحاء المملكة وتنسيق التركيب الميداني. ويُؤكد كل عنصر لكل شحنة؛ إذ قد يؤثر توفر مقدمي الخدمة المحليين ومقاولو الموقع المعتمدون وقواعد المنظّم والموافقات الجمركية وإمكانية الدخول في النطاق المتاح.",
+          ar: "يقع مقر إنفود كينغدوم في حي الملز بالرياض، وتراجع الشركة استفسارات شحن المعارض إلى المواقع السعودية. وقد يشمل النطاق المطلوب، بحسب الشحنة، الشحن الدولي للمعارض وترتيبات التخليص الجمركي في الموانئ أو المطارات وأهلية كارنيه ATA وتنسيق مستنداته والتخطيط للتوصيل من الباب إلى الباب والتسليم للموقع وطلبات التوصيل إلى وجهات في أنحاء المملكة وتنسيق التركيب الميداني. ويُؤكد كل عنصر لكل شحنة؛ إذ قد يؤثر توفر مقدمي الخدمة المحليين ومقاولو الموقع المعتمدون وقواعد المنظّم والموافقات الجمركية وإمكانية الدخول في النطاق المتاح.",
         },
         {
           en: "Requests can include exhibition cargo to Riyadh, Jeddah, Dammam and other Saudi destinations. The port or airport gateway, inland route, customs operator and local-delivery scope are confirmed for each shipment; city references do not imply venue appointment or fixed clearance timing.",
           ar: "قد تشمل الاستفسارات شحن المعارض إلى الرياض وجدة والدمام وغيرها من الوجهات السعودية. ويتم تأكيد بوابة الميناء أو المطار والمسار الداخلي ومشغّل الجمارك ونطاق التسليم المحلي لكل شحنة؛ ولا يعني ذكر المدن وجود تعيين من الموقع أو توقيت ثابت للتخليص.",
         },
         {
-          en: "Planning references include Riyadh Front Exhibition & Conference Center (RFECC), Riyadh International Convention & Exhibition Center (RICEC), Malham Exhibition Centre, Jeddah International Exhibition & Convention Center, Jeddah Superdome and Jeddah Center for Forums & Events. These are possible destinations for planning only; the list does not imply venue or organizer appointment, or a completed ENVOD project at any location.",
-          ar: "تشمل مراجع التخطيط مركز واجهة الرياض للمعارض والمؤتمرات (RFECC)، ومركز الرياض الدولي للمؤتمرات والمعارض (RICEC)، ومركز معارض ملهم، ومركز جدة الدولي للمعارض والمؤتمرات، وقبة جدة، ومركز جدة للمنتديات والفعاليات. هذه وجهات محتملة لأغراض التخطيط فقط؛ ولا تعني القائمة وجود تعيين من أي موقع أو منظّم أو تنفيذ إنفود مشروعاً في أي منها.",
+          en: "Planning references include Riyadh Front Exhibition & Conference Center (RFECC), Riyadh International Convention & Exhibition Center (RICEC), Riyadh Exhibition and Convention Center (Malham), Jeddah International Exhibition & Convention Center (also called Jeddah Center for Forums & Events), Jeddah Superdome and Dhahran Expo. These are possible destinations for planning only; the list does not imply venue or organizer appointment, or a completed ENVOD project at any location.",
+          ar: "تشمل مراجع التخطيط مركز واجهة الرياض للمعارض والمؤتمرات (RFECC)، ومركز الرياض الدولي للمؤتمرات والمعارض (RICEC)، ومركز الرياض للمعارض والمؤتمرات (ملهم)، ومركز جدة الدولي للمعارض والمؤتمرات (ويُعرف أيضاً بمركز جدة للمنتديات والفعاليات)، وقبة جدة (سوبر دوم)، وظهران إكسبو. هذه وجهات محتملة لأغراض التخطيط فقط؛ ولا تعني القائمة وجود تعيين من أي موقع أو منظّم أو تنفيذ إنفود مشروعاً في أي منها.",
         },
         {
           en: "For Jubail event or exhibition-cargo enquiries, provide the venue or site, event dates, cargo details, gateway and access window. The route, local handling and any return movement are confirmed for each shipment; this city reference does not imply a local branch or fixed service availability.",
@@ -336,7 +336,7 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       paragraphs: [
         {
           en: "Exhibition and event enquiries are coordinated by the same Riyadh logistics team that coordinates ENVOD KINGDOM’s freight, storage and delivery requests. A shipment-specific plan can bring these requirements together while you focus on the event; each service, provider and responsibility is confirmed before booking.",
-          ar: "يتولى الفريق اللوجستي نفسه في الرياض تنسيق استفسارات المعارض والفعاليات، وهو الفريق الذي ينسق طلبات الشحن والتخزين والتسليم لدى إنفود كينجدوم. ويمكن لخطة خاصة بالشحنة جمع هذه المتطلبات مع إتاحة تركيزك على الفعالية؛ ويُؤكد كلٌّ من الخدمة ومقدمها والمسؤولية قبل الحجز.",
+          ar: "يتولى الفريق اللوجستي نفسه في الرياض تنسيق استفسارات المعارض والفعاليات، وهو الفريق الذي ينسق طلبات الشحن والتخزين والتسليم لدى إنفود كينغدوم. ويمكن لخطة خاصة بالشحنة جمع هذه المتطلبات مع إتاحة تركيزك على الفعالية؛ ويُؤكد كلٌّ من الخدمة ومقدمها والمسؤولية قبل الحجز.",
         },
       ],
       bullets: [
@@ -362,36 +362,60 @@ export const EXHIBITION_PILLAR: ServicePillar = {
       nameAr: "مركز الرياض الدولي للمؤتمرات والمعارض",
       city: "Riyadh",
       cityAr: "الرياض",
+      note: {
+        en: "On King Abdullah Road, Riyadh. Not the same venue as Riyadh Front (RFECC), so check the venue name in your exhibitor manual before booking delivery.",
+        ar: "يقع على طريق الملك عبدالله في الرياض. وهو موقع مختلف عن مركز واجهة الرياض (RFECC)، لذا تحقّق من اسم الموقع في دليل العارضين قبل حجز التسليم.",
+      },
     },
     {
       name: "Riyadh Front Exhibition & Conference Center (RFECC)",
       nameAr: "مركز واجهة الرياض للمعارض والمؤتمرات (RFECC)",
       city: "Riyadh",
       cityAr: "الرياض",
+      note: {
+        en: "Not the same venue as RICEC or the Malham center, although the names are similar. Confirm the venue named in the organizer’s shipping manual, plus the official freight contractor and move-in schedule it lists.",
+        ar: "موقع مختلف عن مركز الرياض الدولي (RICEC) وعن مركز ملهم رغم تشابه الأسماء. أكّد الموقع المذكور في دليل الشحن الصادر عن المنظّم، ومقاول الشحن الرسمي وجدول التجهيز الواردين فيه.",
+      },
     },
     {
       name: "Riyadh Exhibition and Convention Center (Malham)",
       nameAr: "مركز الرياض للمعارض والمؤتمرات (ملهم)",
       city: "Malham",
       cityAr: "ملهم",
+      note: {
+        en: "In Malham, outside central Riyadh. Allow for the inland journey when planning the delivery truck’s arrival, and confirm vehicle access and the delivery window with the organizer.",
+        ar: "يقع في ملهم خارج وسط الرياض. احسب مدة النقل الداخلي عند تحديد موعد وصول شاحنة التسليم، وأكّد دخول المركبات ونافذة التسليم مع المنظّم.",
+      },
     },
     {
       name: "Jeddah International Exhibition & Convention Center (Jeddah Forums and Events Center)",
       nameAr: "مركز جدة الدولي للمعارض والمؤتمرات (مركز جدة للمنتديات والفعاليات)",
       city: "Jeddah",
       cityAr: "جدة",
+      note: {
+        en: "Not the same venue as the Jeddah Superdome. Many Jeddah shows now use the Superdome, so check which venue your event is booked at before arranging delivery.",
+        ar: "موقع مختلف عن قبة جدة (سوبر دوم). تُقام معارض كثيرة في جدة حالياً في قبة جدة، لذا تحقّق من موقع فعاليتك قبل ترتيب التسليم.",
+      },
     },
     {
       name: "Jeddah Superdome",
       nameAr: "قبة جدة (سوبر دوم)",
       city: "Jeddah",
       cityAr: "جدة",
+      note: {
+        en: "On Madinah Road, Jeddah; opened in 2021. Not the same venue as the historic Jeddah Dome in Al-Sharafiyah, so make sure the delivery address on the waybill is the Superdome.",
+        ar: "يقع على طريق المدينة في جدة، وافتُتح عام 2021. وهو موقع مختلف عن قبة جدة التاريخية في حي الشرفية، لذا تأكّد أن عنوان التسليم في بوليصة الشحن هو قبة جدة (سوبر دوم).",
+      },
     },
     {
       name: "Dhahran Expo",
       nameAr: "ظهران إكسبو",
       city: "Dhahran",
       cityAr: "الظهران",
+      note: {
+        en: "Venue listings put it on Exhibition Road in Dammam, despite the Dhahran name. Use the address in the organizer’s manual on the waybill, not just the city name.",
+        ar: "تشير قوائم المواقع إلى أنه يقع على طريق المعارض في الدمام رغم اسمه. استخدم العنوان الوارد في دليل المنظّم في بوليصة الشحن، وليس اسم المدينة فقط.",
+      },
     },
   ],
 
