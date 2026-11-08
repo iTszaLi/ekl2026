@@ -160,6 +160,8 @@ export class SearchConsoleApiError extends Error {
   constructor(
     message: string,
     readonly status: number,
+    /** Machine-readable reason, e.g. "google_reconnect_required". */
+    readonly code: string = "",
   ) {
     super(message);
     this.name = "SearchConsoleApiError";
@@ -186,7 +188,12 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
       typeof body.error === "string"
         ? body.error
         : "The Search Console request could not be completed.";
-    throw new SearchConsoleApiError(message, response.status);
+    const code =
+      body && typeof body === "object" && "code" in body &&
+      typeof body.code === "string"
+        ? body.code
+        : "";
+    throw new SearchConsoleApiError(message, response.status, code);
   }
   return body as T;
 }

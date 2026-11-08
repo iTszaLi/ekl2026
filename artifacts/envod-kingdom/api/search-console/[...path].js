@@ -4513,20 +4513,30 @@ function previousDateRange(start, days) {
     endDate: previousEnd.toISOString().slice(0, 10)
   };
 }
-function responseError(res, status, message) {
-  res.status(status).json({ ok: false, error: message });
+function responseError(res, status, message, code) {
+  res.status(status).json(code ? { ok: false, error: message, code } : { ok: false, error: message });
 }
+var GOOGLE_RECONNECT_REQUIRED = "google_reconnect_required";
 function sendProviderError(req, res, error, action) {
   if (error instanceof GoogleApiError) {
     req.log?.warn(
       { providerStatus: error.status, provider: error.kind },
       "Google Search Console request failed"
     );
-    if (error.status === 401 || error.status === 400) {
+    if (error.status === 401 || error.status === 400 && error.kind === "oauth") {
       responseError(
         res,
-        401,
-        "Google access expired or was declined. Reconnect the authorized account and try again."
+        409,
+        "Google access expired or was declined. Reconnect the authorized account and try again.",
+        GOOGLE_RECONNECT_REQUIRED
+      );
+      return;
+    }
+    if (error.status === 400) {
+      responseError(
+        res,
+        502,
+        "Google rejected this Search Console request. Retry, and if it keeps failing, reconnect the authorized account."
       );
       return;
     }

@@ -340,6 +340,16 @@ export default function SearchConsoleDashboard() {
       setProviderError("");
       return;
     }
+    // Google refused the stored authorization: the admin is still signed in,
+    // so offer to reconnect Google instead of showing the sign-in screen.
+    if (error instanceof SearchConsoleApiError && error.code === "google_reconnect_required") {
+      setStatus((current) => current ? { ...current, connected: false } : current);
+      setDashboard(null);
+      setProperties([]);
+      setProviderError(errorMessage(error));
+      setPageState("unconnected");
+      return;
+    }
     setProviderError(errorMessage(error));
     setPageState("error");
   }, []);

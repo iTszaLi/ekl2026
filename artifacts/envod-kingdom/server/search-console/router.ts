@@ -283,9 +283,18 @@ function responseError(
   res: Response,
   status: number,
   message: string,
+  code?: string,
 ): void {
-  res.status(status).json({ ok: false, error: message });
+  res.status(status).json(code ? { ok: false, error: message, code } : { ok: false, error: message });
 }
+
+/**
+ * A Google-side authorization failure is NOT an administrator sign-out.
+ * HTTP 401 from this API means only "the admin session cookie is missing or
+ * invalid"; the dashboard sends the visitor back to "Sign in to continue" on
+ * 401, so Google errors must never be reported with that status.
+ */
+export const GOOGLE_RECONNECT_REQUIRED = "google_reconnect_required";
 
 function sendProviderError(
   req: Request,
@@ -298,11 +307,20 @@ function sendProviderError(
       { providerStatus: error.status, provider: error.kind },
       "Google Search Console request failed",
     );
-    if (error.status === 401 || error.status === 400) {
+    if (error.status === 401 || (error.status === 400 && error.kind === "oauth")) {
       responseError(
         res,
-        401,
+        409,
         "Google access expired or was declined. Reconnect the authorized account and try again.",
+        GOOGLE_RECONNECT_REQUIRED,
+      );
+      return;
+    }
+    if (error.status === 400) {
+      responseError(
+        res,
+        502,
+        "Google rejected this Search Console request. Retry, and if it keeps failing, reconnect the authorized account.",
       );
       return;
     }
