@@ -5,23 +5,11 @@ import { INDUSTRY_META, INDUSTRY_BY_SLUG } from "./industry-data";
 import { VISION_SEO, VISION_FAQ } from "./vision-data";
 import { GALLERY_ITEMS } from "./gallery-content";
 
-/** Canonical production origin. Single source of truth for absolute URLs. */
-export const SITE_URL = "https://www.envodkingdom.net";
-export const OG_IMAGE = `${SITE_URL}/opengraph.jpg`;
+import { SITE_URL, OG_IMAGE, toAbsolute, normalizeRoutePath } from "./seo-paths";
+
+// Re-exported so existing imports (prerender.mjs, entry-server.tsx) keep working.
+export { SITE_URL, OG_IMAGE, toAbsolute, normalizeRoutePath };
 const ORG_ID = `${SITE_URL}/#organization`;
-
-export function toAbsolute(pathOrUrl?: string): string {
-  if (!pathOrUrl) return SITE_URL;
-  if (pathOrUrl.startsWith("http")) return pathOrUrl;
-  return `${SITE_URL}${pathOrUrl.startsWith("/") ? "" : "/"}${pathOrUrl}`;
-}
-
-export function normalizeRoutePath(path: string): string {
-  let out = (path || "/").split("?")[0].split("#")[0];
-  if (!out.startsWith("/")) out = `/${out}`;
-  if (out.length > 1) out = out.replace(/\/+$/, "");
-  return out || "/";
-}
 
 function breadcrumb(items: Array<{ name: string; path: string }>): Record<string, unknown> {
   return {
