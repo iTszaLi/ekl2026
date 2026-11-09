@@ -527,8 +527,8 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Partial<Record<SeoLanguage, 
     ar: "التخليص الجمركي في السعودية: جهّز مستندات الاستيراد والتصدير وراجع متطلبات البضاعة لمنفذ الرياض أو جدة أو الدمام. يظل الفسح خاضعاً للجهات المختصة.",
   },
   "exhibition-logistics": {
-    en: "Exhibition shipments to Saudi Arabia: freight, customs documents, ATA Carnet enquiries and venue delivery. Compare leading exhibition logistics providers in KSA",
-    ar: "شحن المعارض إلى السعودية: تنسيق الشحن ومستندات الجمارك واستفسارات كارنيه ATA والتسليم للموقع. استكشف خدمات مزودي لوجستيات المعارض في المملكة.",
+    en: "Exhibition shipments to Saudi Arabia from Riyadh: freight forwarding, customs clearance, ATA Carnet coordination and venue delivery in Riyadh, Jeddah, Dammam.",
+    ar: "شحن المعارض إلى السعودية من الرياض: الشحن الدولي والتخليص الجمركي وتنسيق كارنيه ATA والتسليم لمواقع المعارض في الرياض وجدة والدمام.",
   },
   "ata-carnet": {
     en: "ATA Carnet and temporary-import coordination in Saudi Arabia: eligibility, equipment lists, customs endorsements and re-export planning for exhibition cargo.",
@@ -580,10 +580,13 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
       "@type": "Service",
       name: serviceName,
       description: serviceDescription,
-      serviceType: svc.category,
-      areaServed: meta?.serviceAreas?.cities?.length
-        ? ["Saudi Arabia", ...meta.serviceAreas.cities.map((name) => ({ "@type": "City", name }))]
-        : "Saudi Arabia",
+      serviceType: pillar?.schemaServiceType ?? svc.category,
+      areaServed: (() => {
+        const cities = meta?.serviceAreas?.cities ?? pillar?.schemaCities;
+        return cities?.length
+          ? ["Saudi Arabia", ...cities.map((name) => ({ "@type": "City", name }))]
+          : "Saudi Arabia";
+      })(),
       provider: { "@id": ORG_ID },
       url: toAbsolute(path),
     },
@@ -612,7 +615,7 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
   return {
     title: serviceTitle ?? (
       language === "ar"
-        ? `${svc.nameAr} في السعودية | إنفود كينغدوم`
+        ? pillar?.seoTitleAr ?? `${svc.nameAr} في السعودية | إنفود كينغدوم`
         : slug === "oog-cargo"
           ? "Out-of-Gauge Cargo in Saudi Arabia | ENVOD KINGDOM"
         : pillar?.seoTitle ?? `${svc.name} in Saudi Arabia | ENVOD KINGDOM`

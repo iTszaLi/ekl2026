@@ -411,6 +411,28 @@ export function ExhibitionSection() {
               )}
             </motion.p>
 
+            {/* Contextual link to the exhibition service page (plain element so it
+                is visible in the prerendered HTML, not hidden behind an animation). */}
+            <p className={`text-white/70 text-sm leading-[1.8] -mt-6 mb-10 max-w-lg ${isRtl ? "text-right" : ""}`}>
+              {isRtl ? (
+                <>
+                  اقرأ المزيد عن{" "}
+                  <Link href="/services/exhibition-logistics" className="text-white underline underline-offset-4 decoration-secondary/60 hover:text-secondary transition-colors">
+                    لوجستيات المعارض في الرياض
+                  </Link>{" "}
+                  وفي أنحاء المملكة: الشحن الدولي ومستندات التخليص الجمركي وتنسيق كارنيه ATA والتسليم إلى موقع المعرض.
+                </>
+              ) : (
+                <>
+                  Read more about our{" "}
+                  <Link href="/services/exhibition-logistics" className="text-white underline underline-offset-4 decoration-secondary/60 hover:text-secondary transition-colors">
+                    exhibition logistics in Riyadh
+                  </Link>{" "}
+                  and across Saudi Arabia: international freight, customs clearance documents, ATA Carnet coordination and delivery to the venue.
+                </>
+              )}
+            </p>
+
             {/* Two-column specialisation groups */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
