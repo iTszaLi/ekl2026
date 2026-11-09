@@ -118,6 +118,131 @@ export const EXHIBITION_PILLAR: ServicePillar = {
         },
       ],
     },
+    // City sections added 2026-11-09 after a live Saudi Google check: the page
+    // ranked for Riyadh/Jeddah provider queries but not for any Dammam or
+    // Eastern Province query. Gateways and road distances are public facts;
+    // ENVOD's only office is Riyadh, so no local branch is claimed.
+    {
+      id: "exhibition-logistics-riyadh",
+      heading: {
+        en: "Exhibition logistics in Riyadh",
+        ar: "لوجستيات المعارض في الرياض",
+      },
+      paragraphs: [
+        {
+          en: "Riyadh hosts many of the Kingdom’s largest trade shows. For Riyadh events, the enquiry is handled by our team in Al Malaz, in the same city as the Riyadh International Convention & Exhibition Center (RICEC), Riyadh Front (RFECC) and the Malham exhibition centre. We coordinate the freight booking, the customs-document review, local trucking and the delivery appointment set out in the organizer’s exhibitor manual.",
+          ar: "تستضيف الرياض كثيراً من أكبر المعارض التجارية في المملكة. ولفعاليات الرياض، يتابع فريقنا في حي الملز الاستفسار من المدينة نفسها التي يقع فيها مركز الرياض الدولي للمؤتمرات والمعارض (RICEC) ومركز واجهة الرياض (RFECC) ومركز ملهم للمعارض. وننسّق حجز الشحن ومراجعة المستندات الجمركية والنقل بالشاحنات داخل المدينة وموعد التسليم المحدد في دليل العارضين الصادر عن المنظّم.",
+        },
+        {
+          en: "Air shipments for Riyadh events usually arrive through King Khalid International Airport. Sea freight normally lands at Jeddah Islamic Port on the Red Sea or King Abdulaziz Port in Dammam on the Arabian Gulf, then continues inland by road, or by rail to the Riyadh Dry Port where that option suits the cargo. The gateway is chosen for each shipment against the cargo-ready date, transit time and the venue’s move-in window.",
+          ar: "تصل الشحنات الجوية لفعاليات الرياض عادةً عبر مطار الملك خالد الدولي. أما الشحن البحري فيصل غالباً إلى ميناء جدة الإسلامي على البحر الأحمر أو ميناء الملك عبدالعزيز بالدمام على الخليج العربي، ثم يُستكمل إلى الرياض براً، أو بالقطار إلى ميناء الرياض الجاف إذا كان هذا الخيار مناسباً للبضاعة. ويُختار منفذ الدخول لكل شحنة وفق تاريخ جاهزية البضاعة ومدة العبور ونافذة التجهيز في موقع المعرض.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Exhibition freight to Riyadh by air through King Khalid International Airport, or by sea through Jeddah or Dammam with an inland road or rail leg",
+          ar: "شحن المعارض إلى الرياض جواً عبر مطار الملك خالد الدولي، أو بحراً عبر جدة أو الدمام مع نقل داخلي براً أو بالقطار",
+        },
+        {
+          en: "Exhibition transportation within Riyadh, with truck size, loading-dock access and delivery appointment matched to the venue’s rules",
+          ar: "نقل المعارض داخل الرياض، مع مطابقة حجم الشاحنة والوصول إلى رصيف التحميل وموعد التسليم لقواعد الموقع",
+        },
+        {
+          en: "Customs-document review for Riyadh shows before dispatch; declarations are lodged by the responsible licensed operator and release rests with ZATCA",
+          ar: "مراجعة المستندات الجمركية لمعارض الرياض قبل الإرسال؛ ويقدّم البيان الجمركي المشغّل المرخّص المسؤول، ويبقى قرار الفسح لهيئة الزكاة والضريبة والجمارك",
+        },
+        {
+          en: "Exhibition cargo handling at RICEC, RFECC and Malham, following the organizer’s rules on which appointed contractor moves cargo from the dock to the stand",
+          ar: "مناولة بضائع المعارض في RICEC وRFECC وملهم وفق قواعد المنظّم بشأن المقاول المعتمد الذي ينقل البضائع من الرصيف إلى الجناح",
+        },
+      ],
+      links: [
+        { label: { en: "Customs clearance", ar: "التخليص الجمركي" }, href: "/services/customs-clearance" },
+        { label: { en: "Air freight for urgent exhibition cargo", ar: "الشحن الجوي لبضائع المعارض العاجلة" }, href: "/services/air-freight" },
+      ],
+    },
+    {
+      id: "exhibition-logistics-jeddah",
+      heading: {
+        en: "Exhibition logistics in Jeddah",
+        ar: "لوجستيات المعارض في جدة",
+      },
+      paragraphs: [
+        {
+          en: "Jeddah events are coordinated from our Riyadh office, with local trucking and any handling partner confirmed for each shipment. Jeddah Islamic Port is the Kingdom’s main Red Sea container gateway, so sea freight for a Jeddah show can often be cleared close to the venue instead of moving across the country from another port.",
+          ar: "تُنسَّق فعاليات جدة من مكتبنا في الرياض، مع تأكيد النقل المحلي بالشاحنات وأي شريك مناولة لكل شحنة. ويُعد ميناء جدة الإسلامي البوابة الرئيسية للحاويات على البحر الأحمر، لذلك يمكن في كثير من الحالات تخليص الشحن البحري لمعارض جدة بالقرب من موقع الفعالية بدلاً من نقله عبر المملكة من ميناء آخر.",
+        },
+        {
+          en: "Air cargo for Jeddah usually arrives at King Abdulaziz International Airport. Before booking delivery, check whether your event is at the Jeddah Superdome on Madinah Road or the Jeddah International Exhibition & Convention Center (Jeddah Center for Forums & Events); they are separate venues with separate access arrangements.",
+          ar: "تصل الشحنات الجوية إلى جدة عادةً عبر مطار الملك عبدالعزيز الدولي. وقبل حجز التسليم، تحقّق مما إذا كانت فعاليتك في قبة جدة (سوبر دوم) على طريق المدينة أو في مركز جدة الدولي للمعارض والمؤتمرات (مركز جدة للمنتديات والفعاليات)؛ فهما موقعان منفصلان لكل منهما ترتيبات دخول خاصة.",
+        },
+        {
+          en: "Moving a stand or exhibits between Riyadh and Jeddah is a road journey of roughly 950 km, so build the transit time into the plan and book the vehicle against the venue’s delivery appointment.",
+          ar: "نقل الجناح أو المعروضات بين الرياض وجدة رحلة برية تقارب 950 كيلومتراً، لذا احسب مدة النقل ضمن الخطة واحجز المركبة وفق موعد التسليم في موقع المعرض.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Exhibition cargo to Jeddah by sea through Jeddah Islamic Port or by air through King Abdulaziz International Airport",
+          ar: "شحن المعارض إلى جدة بحراً عبر ميناء جدة الإسلامي أو جواً عبر مطار الملك عبدالعزيز الدولي",
+        },
+        {
+          en: "Trade show freight between Riyadh and Jeddah by road, with the vehicle type and loading plan confirmed for the stand and exhibits",
+          ar: "نقل بضائع المعارض بين الرياض وجدة براً، مع تأكيد نوع المركبة وخطة التحميل بحسب الجناح والمعروضات",
+        },
+        {
+          en: "Exhibition transportation to the Jeddah Superdome or the Jeddah Center for Forums & Events, booked against the organizer’s delivery slots",
+          ar: "نقل المعارض إلى قبة جدة (سوبر دوم) أو مركز جدة للمنتديات والفعاليات وفق مواعيد التسليم التي يحددها المنظّم",
+        },
+      ],
+      links: [
+        { label: { en: "Ocean freight", ar: "الشحن البحري" }, href: "/services/ocean-freight" },
+        { label: { en: "Freight forwarding", ar: "الشحن وإدارة النقل" }, href: "/services/freight-forwarding" },
+      ],
+    },
+    {
+      id: "exhibition-logistics-dammam-eastern-province",
+      heading: {
+        en: "Exhibition logistics in Dammam, Al Khobar & the Eastern Province",
+        ar: "لوجستيات المعارض في الدمام والخبر والمنطقة الشرقية",
+      },
+      paragraphs: [
+        {
+          en: "Eastern Province shows, including events at Dhahran Expo, are coordinated from our Riyadh office, roughly 400 km from Dammam by road. Local trucking and any handling partner are confirmed for each shipment; naming these cities does not imply an ENVOD branch there.",
+          ar: "تُنسَّق معارض المنطقة الشرقية، ومنها فعاليات ظهران إكسبو، من مكتبنا في الرياض الذي يبعد عن الدمام نحو 400 كيلومتر براً. ويُؤكد النقل المحلي وأي شريك مناولة لكل شحنة؛ ولا يعني ذكر هذه المدن وجود فرع لإنفود فيها.",
+        },
+        {
+          en: "Sea freight for Eastern Province events usually arrives through King Abdulaziz Port in Dammam, and air cargo through King Fahd International Airport. Stands and products trucked from Bahrain or the UAE enter by road at the King Fahd Causeway or the Al Batha border crossing. Border documents, the carrier’s GCC permits and the customs procedure for goods that will return after the show need to be settled before the truck leaves.",
+          ar: "يصل الشحن البحري لفعاليات المنطقة الشرقية عادةً عبر ميناء الملك عبدالعزيز بالدمام، والشحن الجوي عبر مطار الملك فهد الدولي. أما الأجنحة والمنتجات المنقولة بالشاحنات من البحرين أو الإمارات فتدخل براً عبر جسر الملك فهد أو منفذ البطحاء. ويجب استكمال مستندات العبور وتصاريح الناقل الخليجية والإجراء الجمركي للبضائع التي ستعود بعد المعرض قبل انطلاق الشاحنة.",
+        },
+        {
+          en: "For Al Khobar hotel and conference venues or Jubail industrial sites, send the exact site address, access rules and delivery window. For Dhahran Expo, use the address in the organizer’s manual on the waybill rather than the city name alone.",
+          ar: "لمواقع الفنادق والمؤتمرات في الخبر أو المواقع الصناعية في الجبيل، أرسل العنوان الدقيق للموقع وقواعد الدخول ونافذة التسليم. ولظهران إكسبو، استخدم العنوان الوارد في دليل المنظّم على بوليصة الشحن بدلاً من اسم المدينة وحده.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Exhibition cargo to Dammam through King Abdulaziz Port or King Fahd International Airport",
+          ar: "شحن المعارض إلى الدمام عبر ميناء الملك عبدالعزيز أو مطار الملك فهد الدولي",
+        },
+        {
+          en: "Exhibition freight from Riyadh to the Eastern Province by road, including the return movement after the show",
+          ar: "نقل بضائع المعارض من الرياض إلى المنطقة الشرقية براً، بما في ذلك نقل العودة بعد المعرض",
+        },
+        {
+          en: "GCC road freight for exhibitions from Bahrain via the King Fahd Causeway or from the UAE via Al Batha, subject to border documents and carrier acceptance",
+          ar: "النقل البري الخليجي للمعارض من البحرين عبر جسر الملك فهد أو من الإمارات عبر منفذ البطحاء، وفق مستندات العبور وقبول الناقل",
+        },
+        {
+          en: "Delivery planning for Dhahran Expo, Al Khobar venues and Jubail sites against the organizer’s move-in schedule",
+          ar: "تخطيط التسليم إلى ظهران إكسبو ومواقع الخبر والجبيل وفق جدول التجهيز الصادر عن المنظّم",
+        },
+      ],
+      links: [
+        { label: { en: "GCC road transportation", ar: "النقل البري داخل دول مجلس التعاون" }, href: "/services/gcc-transportation" },
+        { label: { en: "Customs clearance", ar: "التخليص الجمركي" }, href: "/services/customs-clearance" },
+      ],
+    },
     {
       id: "ata-carnet-temporary-import",
       heading: {
@@ -161,6 +286,50 @@ export const EXHIBITION_PILLAR: ServicePillar = {
           en: "The return plan should confirm the collection slot, repacking responsibility, stored-crate access, export documents and next destination. Assign a named event contact and confirm any coordinator or on-site support as part of the booking.",
           ar: "ينبغي أن تحدد خطة العودة موعد الاستلام ومسؤولية إعادة التغليف والوصول إلى الصناديق المخزنة ومستندات التصدير والوجهة التالية. عيّن جهة تواصل للفعالية وأكّد أي تنسيق أو دعم ميداني ضمن الحجز.",
         },
+      ],
+    },
+    {
+      id: "exhibition-storage-returns-roadshows",
+      heading: {
+        en: "Exhibition storage, return shipments & multi-city roadshows",
+        ar: "تخزين المعارض وشحنات العودة والجولات بين المدن",
+      },
+      paragraphs: [
+        {
+          en: "Exhibitors often need somewhere to hold crates before move-in, keep empty packaging during the show, and park the stand after breakdown if it is going on to another event. Storage before or after an exhibition can be requested as part of the plan; the facility, its location, customs status and access hours are confirmed for each shipment. Goods under temporary admission must stay within the conditions and deadlines of that procedure while they are stored.",
+          ar: "يحتاج العارضون غالباً إلى مكان لحفظ الصناديق قبل التجهيز، وحفظ مواد التغليف الفارغة أثناء المعرض، وإيداع الجناح بعد التفكيك إذا كان سينتقل إلى فعالية أخرى. ويمكن طلب التخزين قبل المعرض أو بعده ضمن الخطة؛ ويُؤكد المرفق وموقعه ووضعه الجمركي وساعات الوصول إليه لكل شحنة. ويجب أن تبقى البضائع الخاضعة للإدخال المؤقت ضمن شروط ذلك الإجراء ومواعيده طوال مدة تخزينها.",
+        },
+        {
+          en: "When the same stand travels to several Saudi cities, for example Riyadh, then Jeddah, then Dammam, plan the sequence as one route: each venue’s move-out slot, the road transit to the next city, storage between dates, and the final return or re-export. If the goods entered under an ATA Carnet or another temporary-import procedure, every movement and the final exit must fit that document’s validity and conditions.",
+          ar: "عندما ينتقل الجناح نفسه إلى عدة مدن سعودية، كالرياض ثم جدة ثم الدمام، خطّط للتسلسل كمسار واحد: موعد الإخلاء في كل موقع، والنقل البري إلى المدينة التالية، والتخزين بين التواريخ، ثم العودة النهائية أو إعادة التصدير. وإذا دخلت البضائع بكارنيه ATA أو بإجراء إدخال مؤقت آخر، فيجب أن تتوافق كل حركة والخروج النهائي مع صلاحية ذلك المستند وشروطه.",
+        },
+        {
+          en: "After the show, the return plan covers collection from the venue, repacking, export documents and transport to the next destination. Re-export deadlines matter: goods that are not re-exported in time may become liable for duties or guarantee claims under the procedure used.",
+          ar: "بعد انتهاء المعرض، تشمل خطة العودة الاستلام من الموقع وإعادة التغليف ومستندات التصدير والنقل إلى الوجهة التالية. ولمواعيد إعادة التصدير أهمية كبيرة: فالبضائع التي لا يُعاد تصديرها في الوقت المحدد قد تخضع للرسوم أو للمطالبة بالضمان وفق الإجراء المستخدم.",
+        },
+      ],
+      bullets: [
+        {
+          en: "Pre-show and post-show storage requests, with the facility and its customs status confirmed",
+          ar: "طلبات التخزين قبل المعرض وبعده، مع تأكيد المرفق ووضعه الجمركي",
+        },
+        {
+          en: "Empty-crate storage during the event where the venue or its appointed contractor allows it",
+          ar: "تخزين الصناديق الفارغة أثناء الفعالية حيث يسمح الموقع أو مقاوله المعتمد",
+        },
+        {
+          en: "Roadshow routing between Riyadh, Jeddah and Dammam",
+          ar: "تخطيط مسار الجولات بين الرياض وجدة والدمام",
+        },
+        {
+          en: "Return shipments and re-export after the exhibition, planned against document deadlines",
+          ar: "شحنات العودة وإعادة التصدير بعد المعرض وفق مواعيد المستندات",
+        },
+      ],
+      links: [
+        { label: { en: "Warehousing & distribution", ar: "التخزين والتوزيع" }, href: "/services/warehousing" },
+        { label: { en: "ATA Carnet coordination", ar: "تنسيق كارنيه ATA" }, href: "/services/ata-carnet" },
+        { label: { en: "Packaging & crating", ar: "التغليف والصناديق" }, href: "/services/packaging-crating" },
       ],
     },
     {

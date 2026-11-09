@@ -1,4 +1,5 @@
 import { MapPin, CalendarDays, CheckCircle2 } from "lucide-react";
+import { Link } from "wouter";
 import type { ServicePillar } from "@/lib/service-data";
 
 /**
@@ -93,6 +94,23 @@ export default function PillarSections({
                     ))}
                   </ul>
                 </div>
+              )}
+              {!!s.links?.length && (
+                <p className="mt-5 text-sm leading-relaxed text-white/70">
+                  <span className="font-semibold">{isRtl ? "خدمات ذات صلة: " : "Related services: "}</span>
+                  {s.links.map((l, index) => (
+                    <span key={l.href}>
+                      {index > 0 && (isRtl ? "، " : ", ")}
+                      <Link
+                        href={l.href}
+                        className="underline underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                        data-testid={`link-pillar-section-${s.id}-${index + 1}`}
+                      >
+                        {isRtl ? l.label.ar : l.label.en}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
               )}
             </article>
           ))}
