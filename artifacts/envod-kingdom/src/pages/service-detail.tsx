@@ -475,14 +475,14 @@ export default function ServiceDetail() {
       )}
 
       {/* ── Related Services (pillar internal links) ── */}
-      {meta.pillar && meta.pillar.relatedLinks.length > 0 && (
+      {(meta.pillar?.relatedLinks ?? meta.relatedLinks ?? []).length > 0 && (
         <section className="py-14 border-t border-white/6">
           <div className={`container mx-auto px-4 max-w-5xl ${isRtl ? "text-right" : ""}`} dir={isRtl ? "rtl" : "ltr"}>
             <p className="text-white/90 text-[10px] font-bold tracking-[0.4em] uppercase mb-5">
               {t("RELATED SERVICES", "خدمات ذات صلة")}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-              {meta.pillar.relatedLinks.map((l, i) => (
+              {(meta.pillar?.relatedLinks ?? meta.relatedLinks ?? []).map((l, i) => (
                 <Link
                   key={i}
                   href={l.href}

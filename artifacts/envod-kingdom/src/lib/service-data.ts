@@ -3,6 +3,7 @@ import { ATA_CARNET_PILLAR } from "./pillar-data/ata-carnet";
 import { RESTORED_RELOCATION_OPTIONS } from "./relocation-options";
 import { DOOR_TO_DOOR_META, DOOR_TO_DOOR_SERVICE } from "./door-to-door";
 import { SERVICE_REVIEW_FAQ } from "./service-review-faq";
+import { SERVICE_RELATED_LINKS } from "./service-related-links";
 import { SERVICE_CATALOG, type Service } from "./service-catalog";
 
 // The catalog moved to service-catalog.ts so pages that only list services do
@@ -27,6 +28,9 @@ export interface PillarSectionData {
   paragraphs: BiText[];
   bullets?: BiText[];
   references?: { label: BiText; href: string; hrefAr?: string }[];
+  /** Optional contextual internal links (site paths, e.g. "/services/customs-clearance");
+   *  rendered as language-aware wouter links under the section. */
+  links?: { label: BiText; href: string }[];
 }
 
 export interface PillarVenue {
@@ -88,6 +92,9 @@ export interface ServiceMeta {
    *  actually performed in). Rendered after the overview as crawlable HTML. */
   serviceAreas?: ServiceAreas;
   pillar?: ServicePillar;
+  /** Optional "Related services" internal links for non-pillar pages (pillar
+   *  pages use pillar.relatedLinks). Merged from service-related-links.ts. */
+  relatedLinks?: PillarRelatedLink[];
 }
 
 export interface ServiceAreas {
@@ -1101,6 +1108,7 @@ export const SERVICE_META: Record<number, ServiceMeta> = {
 SERVICE_META[25] = DOOR_TO_DOOR_META;
 for (const meta of Object.values(SERVICE_META)) {
   meta.faq = [...meta.faq, ...(SERVICE_REVIEW_FAQ[meta.slug] ?? [])];
+  if (!meta.pillar && SERVICE_RELATED_LINKS[meta.slug]) meta.relatedLinks = SERVICE_RELATED_LINKS[meta.slug];
 }
 export function getServiceById(id: number) {
   return id === 25 ? DOOR_TO_DOOR_SERVICE : SERVICE_CATALOG.find(service => service.id === id);
