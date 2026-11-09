@@ -364,9 +364,9 @@ const STATIC: Record<string, SeoConfig> = {
 
 const STATIC_AR: Record<string, { title: string; description: string }> = {
   "/": {
-    title: "إنفود كينغدوم | خدمات الشحن واللوجستيات في السعودية",
+    title: "شركة شحن وخدمات لوجستية في الرياض | إنفود كينغدوم",
     description:
-      "تنسيق الشحن من المملكة العربية السعودية لبضائع المعارض والتخليص الجمركي واستفسارات دفتر ATA والشحن الدولي. تواصل لتحديد نطاق الشحنة.",
+      "شركة شحن وخدمات لوجستية في الرياض: تنسيق شحن بضائع المعارض والتخليص الجمركي واستفسارات دفتر ATA والشحن الدولي من السعودية. تواصل لتحديد نطاق الشحنة.",
   },
   "/services": {
     title: "خدمات الشحن واللوجستيات في السعودية | إنفود كينغدوم",
@@ -536,7 +536,7 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Partial<Record<SeoLanguage, 
   },
   "freight-forwarding": {
     en: "Freight forwarding in Saudi Arabia: coordinate air, ocean and road cargo, shipment documents, customs responsibilities and delivery requirements.",
-    ar: "خدمات الشحن المتكامل في السعودية: تنسيق الشحن الجوي والبحري والبري ومستندات الشحنة ومسؤوليات التخليص ومتطلبات التسليم.",
+    ar: "شركة شحن دولي ووكيل شحن في السعودية: تنسيق الشحن الجوي والبحري والبري ومستندات الشحنة ومسؤوليات التخليص ومتطلبات التسليم.",
   },
   "ocean-freight": {
     en: "Container shipping to Saudi Arabia: compare FCL and LCL, share origin, destination and cargo details, and plan inland delivery. Carriers confirmed per shipment.",
@@ -545,6 +545,18 @@ const PRIORITY_SERVICE_DESCRIPTIONS: Record<string, Partial<Record<SeoLanguage, 
   "gcc-transportation": {
     en: "GCC transportation from Saudi Arabia: plan cross-border road freight, cargo documents, border requirements and vehicle suitability before booking.",
     ar: "النقل الخليجي من السعودية: تخطيط الشحن البري العابر للحدود ومستندات البضائع ومتطلبات المنافذ وملاءمة المركبة قبل الحجز.",
+  },
+};
+
+/** Search-led titles for services where measured Saudi demand uses different wording. */
+const SERVICE_TITLE_OVERRIDES: Record<string, Record<SeoLanguage, string>> = {
+  relocation: {
+    en: "Movers & Packers in Riyadh, Jeddah, Dammam & Khobar | ENVOD",
+    ar: "شركة نقل عفش بالرياض وجدة والدمام والخبر | إنفود كينغدوم",
+  },
+  "freight-forwarding": {
+    en: "Freight Forwarder in Saudi Arabia | Air, Sea & Road | ENVOD",
+    ar: "شركة شحن دولي ووكيل شحن في السعودية | إنفود كينغدوم",
   },
 };
 
@@ -560,11 +572,7 @@ function serviceSeo(id: number, language: SeoLanguage): SeoConfig {
       ? meta?.pillar?.intro.map((paragraph) => paragraph.ar).join(" ") ||
         svc.descriptionAr
       : pillar?.seoDescription ?? svc.description);
-  const serviceTitle = slug === "relocation"
-    ? language === "ar"
-      ? "نقل عفش في الرياض وجدة والدمام | إنفود كينغدوم"
-      : "House Moving in Riyadh, Jeddah & Dammam | ENVOD KINGDOM"
-    : undefined;
+  const serviceTitle = SERVICE_TITLE_OVERRIDES[slug]?.[language];
 
   const jsonLd: Array<Record<string, unknown>> = [
     {

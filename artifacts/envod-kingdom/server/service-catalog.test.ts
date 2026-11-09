@@ -69,10 +69,10 @@ test("Riyadh relocation content, metadata, internal services and optional move-a
   assert.ok(relocation.faq.length >= 4);
   assert.ok(!relocation.process.some((step) => /customs|الجمارك/i.test(`${step.en} ${step.ar}`)));
 
-  assert.equal(seoEn.title, "House Moving in Riyadh, Jeddah & Dammam | ENVOD KINGDOM");
+  assert.equal(seoEn.title, "Movers & Packers in Riyadh, Jeddah, Dammam & Khobar | ENVOD");
   assert.equal(seoEn.canonicalPath, "/services/relocation");
   assert.match(seoEn.description, /House moving in Riyadh, Jeddah, Dammam and Khobar/);
-  assert.equal(seoAr.title, "نقل عفش في الرياض وجدة والدمام | إنفود كينغدوم");
+  assert.equal(seoAr.title, "شركة نقل عفش بالرياض وجدة والدمام والخبر | إنفود كينغدوم");
   assert.equal(seoAr.canonicalPath, "/ar/services/relocation");
   assert.match(seoAr.description, /نقل عفش المنازل في الرياض وجدة والدمام والخبر/);
   // Owner-confirmed coverage section and JSON-LD cities (2026-11-07).
@@ -106,4 +106,21 @@ test("Search Console service opportunities have useful bilingual answers and ali
   assert.match(exhibitionEn.description, /Exhibition shipments to Saudi Arabia/i);
   assert.match(exhibitionEn.description, /leading exhibition logistics providers in KSA/i);
   assert.match(exhibitionAr.description, /شحن المعارض إلى السعودية/);
+});
+
+test("Arabic homepage and freight-forwarding metadata use measured Saudi search wording", () => {
+  const arHome = getSeoForPath("/ar");
+  assert.equal(arHome.title, "شركة شحن وخدمات لوجستية في الرياض | إنفود كينغدوم");
+  assert.match(arHome.description, /^شركة شحن وخدمات لوجستية في الرياض/);
+
+  const forwardingEn = getSeoForPath("/services/freight-forwarding");
+  const forwardingAr = getSeoForPath("/ar/services/freight-forwarding");
+  assert.equal(forwardingEn.title, "Freight Forwarder in Saudi Arabia | Air, Sea & Road | ENVOD");
+  assert.equal(forwardingAr.title, "شركة شحن دولي ووكيل شحن في السعودية | إنفود كينغدوم");
+  assert.match(forwardingAr.description, /^شركة شحن دولي ووكيل شحن في السعودية/);
+
+  for (const seo of [arHome, forwardingEn, forwardingAr]) {
+    assert.ok(seo.title.length <= 60, `title too long: ${seo.title}`);
+    assert.ok(seo.description.length <= 160, `description too long: ${seo.description}`);
+  }
 });
