@@ -24,6 +24,8 @@ export const routePages = {
   track: loadPage(() => import("../pages/track")),
   services: loadPage(() => import("../pages/services")),
   service: loadPage(() => import("../pages/service-detail")),
+  exhibitionHub: loadPage(() => import("../pages/exhibition-authority-hub")),
+  exhibitionGuide: loadPage(() => import("../pages/exhibition-guide")),
   industries: loadPage(() => import("../pages/industries")),
   industry: loadPage(() => import("../pages/industry-detail")),
   vision: loadPage(() => import("../pages/vision-2030")),
@@ -40,6 +42,8 @@ export async function preloadRoute(path: string): Promise<void> {
   const page = route === "/" ? routePages.home
     : route === "/services" ? routePages.services
     : route.startsWith("/services/") ? routePages.service
+    : route === "/exhibition-event-logistics-saudi-arabia" ? routePages.exhibitionHub
+    : route.startsWith("/guides/") ? routePages.exhibitionGuide
     : route === "/industries" ? routePages.industries
     : route.startsWith("/industries/") ? routePages.industry
     : route === "/vision-2030" ? routePages.vision

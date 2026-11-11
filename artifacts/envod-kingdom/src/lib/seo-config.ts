@@ -4,6 +4,13 @@ import { SERVICE_FAQS } from "./services-faq";
 import { INDUSTRY_META, INDUSTRY_BY_SLUG } from "./industry-data";
 import { VISION_SEO, VISION_FAQ } from "./vision-data";
 import { GALLERY_ITEMS } from "./gallery-content";
+import {
+  EXHIBITION_GUIDE_BY_SLUG,
+  EXHIBITION_GUIDES,
+  EXHIBITION_HUB,
+  EXHIBITION_HUB_PATH,
+  type ExhibitionGuide,
+} from "./exhibition-authority-content";
 
 import { SITE_URL, OG_IMAGE, toAbsolute, normalizeRoutePath } from "./seo-paths";
 
@@ -151,9 +158,121 @@ function servicesFaqPage(language: "en" | "ar"): Record<string, unknown> {
   };
 }
 
+function exhibitionHubStructuredData(language: "en" | "ar"): Array<Record<string, unknown>> {
+  const path = language === "ar" ? `/ar${EXHIBITION_HUB_PATH}` : EXHIBITION_HUB_PATH;
+  const url = toAbsolute(path);
+  const name = EXHIBITION_HUB.title[language];
+  const description = EXHIBITION_HUB.subtitle[language];
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name,
+      description,
+      url,
+      inLanguage: language === "ar" ? "ar-SA" : "en-SA",
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": ORG_ID },
+      mainEntity: {
+        "@type": "Service",
+        name,
+        description,
+        serviceType: language === "ar" ? "لوجستيات المعارض والفعاليات" : "Exhibition and event logistics coordination",
+        provider: { "@id": ORG_ID },
+        areaServed: EXHIBITION_HUB.cities.map((city) => ({
+          "@type": "City",
+          name: city.title[language],
+          containedInPlace: {
+            "@type": "Country",
+            name: language === "ar" ? "المملكة العربية السعودية" : "Saudi Arabia",
+          },
+        })),
+        url,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: EXHIBITION_HUB.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question[language],
+        acceptedAnswer: { "@type": "Answer", text: faq.answer[language] },
+      })),
+    },
+    breadcrumb([
+      { name: language === "ar" ? "الرئيسية" : "Home", path: language === "ar" ? "/ar" : "/" },
+      {
+        name: language === "ar" ? "لوجستيات المعارض والفعاليات" : "Exhibition & Event Logistics",
+        path,
+      },
+    ]),
+  ];
+}
+
+function exhibitionGuideStructuredData(
+  guide: ExhibitionGuide,
+  language: "en" | "ar",
+): Array<Record<string, unknown>> {
+  const path = `/guides/${guide.slug}`;
+  const localizedPath = language === "ar" ? `/ar${path}` : path;
+  const url = toAbsolute(localizedPath);
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: guide.title[language],
+      description: guide.description[language],
+      inLanguage: language === "ar" ? "ar-SA" : "en-SA",
+      url,
+      mainEntityOfPage: url,
+      publisher: { "@id": ORG_ID },
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: guide.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question[language],
+        acceptedAnswer: { "@type": "Answer", text: faq.answer[language] },
+      })),
+    },
+    breadcrumb([
+      { name: language === "ar" ? "الرئيسية" : "Home", path: language === "ar" ? "/ar" : "/" },
+      {
+        name: language === "ar" ? "لوجستيات المعارض والفعاليات" : "Exhibition & Event Logistics",
+        path: language === "ar" ? `/ar${EXHIBITION_HUB_PATH}` : EXHIBITION_HUB_PATH,
+      },
+      { name: guide.title[language], path: localizedPath },
+    ]),
+  ];
+}
+
+function exhibitionGuideSeo(guide: ExhibitionGuide, language: "en" | "ar"): SeoConfig {
+  const title = guide.seoTitle
+    ? guide.seoTitle[language]
+    : language === "ar"
+      ? `${guide.title.ar} | إنفود كينغدوم`
+      : `${guide.title.en} | ENVOD KINGDOM`;
+  return {
+    title,
+    description: guide.description[language],
+    canonicalPath: language === "ar" ? `/ar/guides/${guide.slug}` : `/guides/${guide.slug}`,
+    image: OG_IMAGE,
+    type: "article",
+    jsonLd: exhibitionGuideStructuredData(guide, language),
+  };
+}
+
+export const EXHIBITION_GUIDE_ROUTES = EXHIBITION_GUIDES.map(
+  (guide) => `/guides/${guide.slug}`,
+);
+
 /** English content routes; Arabic counterparts are generated below. */
 export const ENGLISH_CONTENT_ROUTES: string[] = [
   "/",
+  EXHIBITION_HUB_PATH,
+  ...EXHIBITION_GUIDE_ROUTES,
   "/services",
   "/about",
   "/gallery",
@@ -347,6 +466,15 @@ const STATIC: Record<string, SeoConfig> = {
       ]),
     ],
   },
+  [EXHIBITION_HUB_PATH]: {
+    title: "Exhibition Logistics in Saudi Arabia | ENVOD",
+    description:
+      "Plan exhibition freight, ATA Carnet enquiries, customs documents, venue delivery and returns across Saudi Arabia, including Riyadh, Jeddah and Dammam.",
+    canonicalPath: EXHIBITION_HUB_PATH,
+    image: OG_IMAGE,
+    imageAlt: "ENVOD KINGDOM exhibition and event cargo coordination in Saudi Arabia",
+    jsonLd: exhibitionHubStructuredData("en"),
+  },
   "/track": {
     title: "Shipment Status Assistance | ENVOD KINGDOM",
     description:
@@ -362,7 +490,7 @@ const STATIC: Record<string, SeoConfig> = {
   },
 };
 
-const STATIC_AR: Record<string, { title: string; description: string }> = {
+const STATIC_AR: Record<string, Pick<SeoConfig, "title" | "description" | "jsonLd">> = {
   "/": {
     title: "شركة شحن وخدمات لوجستية في الرياض | إنفود كينغدوم",
     description:
@@ -412,6 +540,12 @@ const STATIC_AR: Record<string, { title: string; description: string }> = {
     title: "الخدمات اللوجستية ورؤية السعودية 2030 | إنفود كينغدوم",
     description:
       "استكشف دور النقل وسلاسل الإمداد في دعم القطاعات والمشاريع المرتبطة برؤية السعودية 2030.",
+  },
+  [EXHIBITION_HUB_PATH]: {
+    title: "لوجستيات المعارض في السعودية | الرياض وجدة والدمام | إنفود كينغدوم",
+    description:
+      "نسّق شحن المعارض واستفسارات كارنيه ATA والمستندات الجمركية والتسليم للموقع وشحنات العودة في السعودية، مع تخطيط للرياض وجدة والدمام.",
+    jsonLd: exhibitionHubStructuredData("ar"),
   },
   "/track": {
     title: "المساعدة في تحديث حالة الشحنة | إنفود كينغدوم",
@@ -703,7 +837,7 @@ export function getSeoForPath(
                 ? [servicesFaqPage("ar")]
                 : path === "/gallery"
                   ? galleryStructuredData("ar")
-                  : [],
+                  : STATIC_AR[path]?.jsonLd ?? [],
           }
         : STATIC[path];
     return withHreflang(seo, path, language);
@@ -718,5 +852,8 @@ export function getSeoForPath(
   if (mi && INDUSTRY_BY_SLUG[mi[1]]) {
     return withHreflang(industrySeo(mi[1], language), path, language);
   }
+  const mg = path.match(/^\/guides\/([^/]+)$/);
+  const guide = mg ? EXHIBITION_GUIDE_BY_SLUG[mg[1]] : undefined;
+  if (guide) return withHreflang(exhibitionGuideSeo(guide, language), path, language);
   return defaultSeo(localizedPath(path, language));
 }

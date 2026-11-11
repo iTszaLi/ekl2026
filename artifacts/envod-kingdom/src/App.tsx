@@ -19,6 +19,8 @@ const Contact = routePages.contact.Page;
 const About = routePages.about.Page;
 const Gallery = routePages.gallery.Page;
 const ServiceDetail = routePages.service.Page;
+const ExhibitionAuthorityHub = routePages.exhibitionHub.Page;
+const ExhibitionGuide = routePages.exhibitionGuide.Page;
 const Industries = routePages.industries.Page;
 const IndustryDetail = routePages.industry.Page;
 const Vision2030 = routePages.vision.Page;
@@ -57,6 +59,12 @@ function Router() {
       </Route>
       <Route path="/services/:slug">
         <MainLayout><ServiceDetail /></MainLayout>
+      </Route>
+      <Route path="/exhibition-event-logistics-saudi-arabia">
+        <MainLayout><ExhibitionAuthorityHub /></MainLayout>
+      </Route>
+      <Route path="/guides/:slug">
+        <MainLayout><ExhibitionGuide /></MainLayout>
       </Route>
       <Route path="/industries">
         <MainLayout><Industries /></MainLayout>

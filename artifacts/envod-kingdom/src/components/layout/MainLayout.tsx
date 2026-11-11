@@ -396,6 +396,7 @@ export function Footer() {
 
   const services: [string, string][] = [
     [t("Exhibition & Event Logistics", "لوجستيات المعارض والفعاليات"), "/services/exhibition-logistics"],
+    [t("Saudi Exhibition Logistics Planning Guide", "دليل تخطيط لوجستيات المعارض في السعودية"), "/exhibition-event-logistics-saudi-arabia"],
     [t("Customs Clearance in Saudi Arabia", "التخليص الجمركي في السعودية"), "/services/customs-clearance"],
     [t("Packing, Crating & Relocation", "التعبئة والتغليف والانتقال"), "/services/packaging-crating"],
     [t("House Moving & Relocation", "نقل المنازل والانتقال"), "/services/relocation"],

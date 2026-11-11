@@ -432,6 +432,11 @@ export function ExhibitionSection() {
                 </>
               )}
             </p>
+            <p className={`-mt-6 mb-8 max-w-lg text-sm leading-[1.8] ${isRtl ? "text-right" : ""}`}>
+              <Link href="/exhibition-event-logistics-saudi-arabia" data-testid="link-exhibition-authority-hub-home" className="text-white underline underline-offset-4 decoration-secondary/60 hover:text-secondary transition-colors">
+                {t("Read the Saudi exhibition logistics planning guide", "اقرأ دليل تخطيط لوجستيات المعارض في السعودية")}
+              </Link>
+            </p>
 
             {/* Two-column specialisation groups */}
             <motion.div
@@ -453,7 +458,7 @@ export function ExhibitionSection() {
               transition={{ delay: 0.4 }}
             >
               <Link
-                href="/contact"
+                href="/contact?service=exhibition-logistics"
                 className={`inline-flex items-center gap-2.5 bg-secondary hover:bg-secondary/85 text-white px-8 py-4 rounded-xl font-black text-[13px] uppercase tracking-wider transition-all shadow-lg shadow-secondary/20 hover:shadow-secondary/35 hover:-translate-y-px ${isRtl ? "flex-row-reverse" : ""}`}
               >
                 {t("Request Exhibition Quote", "اطلب عرض سعر للمعرض")}

@@ -206,6 +206,15 @@ export default function ServiceDetail() {
               WhatsApp
             </a>
             <ServiceGalleryCta />
+            {serviceId === 11 && (
+              <Link
+                href="/exhibition-event-logistics-saudi-arabia"
+                data-testid="link-exhibition-authority-hub-detail"
+                className="inline-flex min-h-12 items-center gap-2 border border-white/25 px-5 py-3 text-sm font-semibold text-white/85 transition hover:border-secondary hover:text-white"
+              >
+                {t("Saudi exhibition planning guide", "دليل تخطيط المعارض في السعودية")}
+              </Link>
+            )}
           </motion.div>
         </div>
       </div>

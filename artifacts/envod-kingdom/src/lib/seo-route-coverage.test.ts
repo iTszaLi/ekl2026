@@ -5,7 +5,8 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 import { DOOR_TO_DOOR_META } from "./door-to-door";
 import { INDUSTRY_META } from "./industry-data";
-import { CONTENT_ROUTES, SITE_URL } from "./seo-config";
+import { CONTENT_ROUTES, EXHIBITION_GUIDE_ROUTES, SITE_URL } from "./seo-config";
+import { EXHIBITION_GUIDES, EXHIBITION_HUB, EXHIBITION_HUB_PATH } from "./exhibition-authority-content";
 import { SERVICE_CATALOG, SERVICE_META } from "./service-data";
 import { PREPARATION_LINKS } from "./service-preparation";
 
@@ -100,6 +101,49 @@ test("every industry detail page has English and Arabic indexable routes", () =>
       assertDiscoverableRoute(route, sitemap);
     }
   }
+});
+
+test("the exhibition authority hub and guides are discoverable in both languages", () => {
+  const sitemap = readFileSync(sitemapPath, "utf8");
+  const routes = [EXHIBITION_HUB_PATH, ...EXHIBITION_GUIDE_ROUTES];
+  for (const route of routes) {
+    for (const localizedRoute of [route, `/ar${route}`]) {
+      assert.ok(CONTENT_ROUTES.includes(localizedRoute), `${localizedRoute} is registered for prerender`);
+      assertDiscoverableRoute(localizedRoute, sitemap);
+      const html = readFileSync(htmlPath(localizedRoute), "utf8");
+      assert.match(html, /application\/ld\+json/, `${localizedRoute} has structured data`);
+      assert.match(html, /FAQPage/, `${localizedRoute} has FAQ structured data`);
+      const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1] ?? "";
+      assert.ok(description.length > 0 && description.length <= 160, `${localizedRoute} has a concise, unique description`);
+    }
+  }
+
+  const hubHtml = readFileSync(htmlPath(EXHIBITION_HUB_PATH), "utf8");
+  const hubArabicHtml = readFileSync(htmlPath(`/ar${EXHIBITION_HUB_PATH}`), "utf8");
+  assert.ok(hubHtml.includes(EXHIBITION_HUB.title.en), "English hub uses its focused page heading");
+  assert.ok(hubArabicHtml.includes(EXHIBITION_HUB.title.ar), "Arabic hub uses its localized page heading");
+  assert.ok(hubHtml.includes("/contact?service=exhibition-logistics"), "hub quote CTA preselects the exhibition enquiry");
+
+  const internalPaths = [
+    ...EXHIBITION_HUB.capabilities.map((item) => item.href),
+    ...EXHIBITION_HUB.cities.map((item) => item.href.split("#")[0]),
+    ...EXHIBITION_GUIDES.flatMap((guide) => guide.relatedLinks.map((item) => item.href)),
+  ];
+  for (const route of internalPaths) {
+    assert.ok(CONTENT_ROUTES.includes(route), `${route} is a registered internal destination`);
+    assert.ok(CONTENT_ROUTES.includes(`/ar${route}`), `/ar${route} has a localized destination`);
+  }
+  for (const city of EXHIBITION_HUB.cities) {
+    const [route, anchor] = city.href.split("#");
+    const targetHtml = readFileSync(htmlPath(route), "utf8");
+    assert.ok(targetHtml.includes(`id="${anchor}"`), `${city.href} points to an existing venue-planning section`);
+  }
+
+  const homepageHtml = readFileSync(htmlPath("/"), "utf8");
+  const exhibitionServiceHtml = readFileSync(htmlPath("/services/exhibition-logistics"), "utf8");
+  assert.ok(homepageHtml.includes(EXHIBITION_HUB_PATH), "homepage links to the exhibition hub");
+  assert.ok(homepageHtml.includes("/contact?service=exhibition-logistics"), "homepage exhibition quote preselects the exhibition enquiry");
+  assert.ok(exhibitionServiceHtml.includes(EXHIBITION_HUB_PATH), "existing exhibition service page links to the hub");
 });
 
 test("every related shipment-preparation link resolves to a prerendered bilingual anchor", () => {
